@@ -1,4 +1,4 @@
-const Composite = require("../src/Composite");
+const Composite = require("./Composite");
 
 /**
  * GameObjects hold a collection of Components.
