@@ -18,7 +18,7 @@ class Composite {
   }
 
   /**
-   * Remove a GameObject from the Composite if it is a child
+   * Remove a GameObject from the Composite if it exists
    * @param {GameObject} gameObject
    */
   removeGameObject(gameObject) {

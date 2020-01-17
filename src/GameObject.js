@@ -11,11 +11,22 @@ class GameObject extends Composite {
   }
 
   /**
-   * Add a component
+   * Add a Component
    * @param {Component} component
    */
   addComponent(component) {
     this.components.push(component);
+  }
+
+  /**
+   * Remove a Component if it exists
+   * @param {Component} component
+   */
+  removeComponent(component) {
+    let index = this.components.indexOf(component);
+    if (index >= 0) {
+      this.components.splice(index, 1);
+    }
   }
 }
 
