@@ -1,0 +1,34 @@
+{
+  "name": "GameEngine",
+  "version": "1.0.0",
+  "description": "HTML5 Canvas Game Engine",
+  "main": "src/Dna.js",
+  "scripts": {
+    "test": "jest",
+    "docs": "jsdoc src",
+    "build": "webpack"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "html"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidyansoftware/GameEngine.git"
+  },
+  "keywords": [],
+  "author": "David Yan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/davidyansoftware/GameEngine/issues"
+  },
+  "homepage": "https://github.com/davidyansoftware/GameEngine#readme",
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "jsdoc": "^3.6.3",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  }
+}
