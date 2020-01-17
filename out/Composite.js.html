@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: Composite.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,50 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: Composite.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Base class for composite pattern. Will manage update and render calls for itself and child GameObjects.
+ */
+class Composite {
+  /**
+   * Create a Composite
+   */
+  constructor() {
+    this.gameObjects = [];
+  }
 
+  /**
+   * Add a GameObject to the Composite
+   * @param {GameObject} gameObject - The child game object
+   */
+  addGameObject(gameObject) {
+    this.gameObjects.push(gameObject);
+  }
 
-    <h3> </h3>
+  /**
+   * Remove a GameObject from the Composite if it exists
+   * @param {GameObject} gameObject
+   */
+  removeGameObject(gameObject) {
+    let index = this.gameObjects.indexOf(gameObject);
+    if (index >= 0) {
+      this.gameObjects.splice(index, 1);
+    }
+  }
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = Composite;
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: GameObject.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,62 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: GameObject.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const Composite = require("./Composite");
 
+/**
+ * GameObjects hold a collection of Components.
+ * @extends Composite
+ */
+class GameObject extends Composite {
+  /**
+   * Create a GameObject
+   */
+  constructor() {
+    super();
 
-    <h3> </h3>
+    this.components = [];
+  }
 
+  /**
+   * Add a Component
+   * @param {Component} component
+   */
+  addComponent(component) {
+    this.components.push(component);
+  }
 
+  /**
+   * Remove a Component if it exists
+   * @param {Component} component
+   */
+  removeComponent(component) {
+    let index = this.components.indexOf(component);
+    if (index >= 0) {
+      this.components.splice(index, 1);
+    }
+  }
 
+  /**
+   * Updates the GameObject
+   * Called by the GameLoop every frame
+   * Can also be called manually
+   */
+  update() {}
+}
 
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = GameObject;
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -3,7 +3,7 @@
  */
 class Composite {
   /**
-   * Create a composite.
+   * Create a Composite
    */
   constructor() {
     this.gameObjects = [];

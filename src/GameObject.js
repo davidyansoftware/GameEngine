@@ -5,6 +5,9 @@ const Composite = require("./Composite");
  * @extends Composite
  */
 class GameObject extends Composite {
+  /**
+   * Create a GameObject
+   */
   constructor() {
     super();
 
@@ -29,6 +32,13 @@ class GameObject extends Composite {
       this.components.splice(index, 1);
     }
   }
+
+  /**
+   * Updates the GameObject
+   * Called by the GameLoop every frame
+   * Can also be called manually
+   */
+  update() {}
 }
 
 module.exports = GameObject;
