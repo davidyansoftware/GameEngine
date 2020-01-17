@@ -11,7 +11,7 @@ class Composite {
 
   /**
    * Add a GameObject to the Composite
-   * @param {Composite} gameObject - The child game object
+   * @param {GameObject} gameObject - The child game object
    */
   addGameObject(gameObject) {
     this.gameObjects.push(gameObject);
@@ -19,7 +19,7 @@ class Composite {
 
   /**
    * Remove a GameObject from the Composite if it is a child
-   * @param {Composite} gameObject
+   * @param {GameObject} gameObject
    */
   removeGameObject(gameObject) {
     let index = this.gameObjects.indexOf(gameObject);

@@ -1,9 +1,10 @@
-const Composite = require("../src/composite");
+const Composite = require("../src/Composite");
+const GameObject = require("../src/GameObject");
 
 describe("Composite", () => {
   test("addGameObject adds a game object", () => {
     const parent = new Composite();
-    const child = new Composite();
+    const child = new GameObject();
 
     expect(!parent.gameObjects.includes(child));
 
@@ -13,7 +14,7 @@ describe("Composite", () => {
 
   test("removeGameObject removes a game object", () => {
     const parent = new Composite();
-    const child = new Composite();
+    const child = new GameObject();
 
     expect(parent.gameObjects.includes(child));
 
