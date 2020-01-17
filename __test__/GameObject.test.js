@@ -22,4 +22,39 @@ describe("GameObject", () => {
     gameObject.removeComponent(component);
     expect(!gameObject.components.includes(component));
   });
+
+  test("update will update children GameObjects", () => {
+    const parent = new GameObject();
+    const child1 = new GameObject();
+    jest.spyOn(child1, "update");
+    const child2 = new GameObject();
+    jest.spyOn(child2, "update");
+    const child1Child = new GameObject();
+    jest.spyOn(child1Child, "update");
+
+    parent.addGameObject(child1);
+    parent.addGameObject(child2);
+    child1.addGameObject(child1Child);
+
+    expect(child1.update).not.toHaveBeenCalled();
+    expect(child2.update).not.toHaveBeenCalled();
+    expect(child1Child.update).not.toHaveBeenCalled();
+
+    parent.update();
+    expect(child1.update).toHaveBeenCalledTimes(1);
+    expect(child2.update).toHaveBeenCalledTimes(1);
+    expect(child1Child.update).toHaveBeenCalledTimes(1);
+  });
+
+  test("update will update components", () => {
+    const gameObject = new GameObject();
+    const component = new Component();
+    jest.spyOn(component, "update");
+    gameObject.addComponent(component);
+
+    expect(component.update).not.toHaveBeenCalled();
+
+    gameObject.update();
+    expect(component.update).toHaveBeenCalledTimes(1);
+  });
 });

@@ -34,11 +34,19 @@ class GameObject extends Composite {
   }
 
   /**
-   * Updates the GameObject
+   * Updates the GameObject and all children GameObjects by updating all components
+   * Game logic is handled within component updates
    * Called by the GameLoop every frame
    * Can also be called manually
    */
-  update() {}
+  update() {
+    this.components.forEach(component => {
+      component.update();
+    });
+    this.gameObjects.forEach(gameObject => {
+      gameObject.update();
+    });
+  }
 }
 
 module.exports = GameObject;
