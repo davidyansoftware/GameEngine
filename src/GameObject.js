@@ -1,6 +1,7 @@
 const Composite = require("../src/Composite");
 
 /**
+ * GameObjects hold a collection of Components.
  * @extends Composite
  */
 class GameObject extends Composite {
