@@ -8,10 +8,11 @@ const Transform = require("./Transform");
 class GameObject {
   /**
    * Create a GameObject
-   * @param {Transform} transform - The Transform for this GameObject
+   * @param {number} x - The x-coordinate for the GameObject's Transform
+   * @param {number} y - The y-coordinate for the GameObject's Transform
    */
-  constructor(transform = new Transform()) {
-    this.transform = transform;
+  constructor(x = 0, y = 0) {
+    this.transform = new Transform(x, y);
 
     this.gameObjects = [];
     this.components = [];

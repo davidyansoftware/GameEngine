@@ -10,9 +10,9 @@ describe("GameObject", () => {
 
     const X_VALUE = 1;
     const Y_VALUE = 2;
-    const transform = new Transform(X_VALUE, Y_VALUE);
-    const gameObject = new GameObject(transform);
-    expect(gameObject.transform).toBe(transform);
+    const gameObject = new GameObject(X_VALUE, Y_VALUE);
+    expect(gameObject.transform.x).toBe(X_VALUE);
+    expect(gameObject.transform.y).toBe(Y_VALUE);
   });
 
   test("addGameObject adds a game object", () => {
