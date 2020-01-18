@@ -1,7 +1,7 @@
 const GameObject = require("../src/GameObject");
 const Component = require("../src/Component");
 
-describe("Component", () => {
+describe("Component constructor", () => {
   test("Components store a reference to their GameObject", () => {
     const gameObject = new GameObject();
     const component = new Component();

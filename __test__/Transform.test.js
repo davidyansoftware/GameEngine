@@ -1,6 +1,6 @@
 const GameObject = require("../src/GameObject");
 
-describe("Transform", () => {
+describe("Transform constructor", () => {
   test("GameObject is tied to its Tranform", () => {
     const gameObject = new GameObject();
     expect(gameObject.transform.gameObject).toBe(gameObject);
@@ -38,8 +38,10 @@ describe("Transform", () => {
     expect(gameObject.transform.y).toBe(Y_VALUE);
     expect(gameObject.transform.rotation).toBe(ROTATION);
   });
+});
 
-  // position and rotation tests are separated so dirty flags do not interfere with eachother
+// position and rotation tests are separated so dirty flags do not interfere with eachother
+describe("Transform position", () => {
   test("Transform absolute position includes parent's absolute position", () => {
     const GRAND_PARENT_X = 1;
     const GRAND_PARENT_Y = 2;
@@ -62,26 +64,6 @@ describe("Transform", () => {
     expect(child.transform.absoluteY).toBe(GRAND_PARENT_Y + PARENT_Y + CHILD_Y);
   });
 
-  test("Transform absolute rotation includes parent's absolute rotation", () => {
-    const GRAND_PARENT_ROTATION = Math.PI / 2;
-    const grandParent = new GameObject(0, 0, GRAND_PARENT_ROTATION);
-    expect(grandParent.transform.absoluteRotation).toBe(GRAND_PARENT_ROTATION);
-
-    const PARENT_ROTATION = Math.PI / 4;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
-    grandParent.addGameObject(parent);
-    expect(parent.transform.absoluteRotation).toBe(
-      GRAND_PARENT_ROTATION + PARENT_ROTATION
-    );
-
-    const CHILD_ROTATION = Math.PI / 8;
-    const child = new GameObject(0, 0, CHILD_ROTATION);
-    parent.addGameObject(child);
-    expect(child.transform.absoluteRotation).toBe(
-      GRAND_PARENT_ROTATION + PARENT_ROTATION + CHILD_ROTATION
-    );
-  });
-
   test("Transform absolute position is updated when its position changes", () => {
     const X_VALUE = 1;
     const Y_VALUE = 2;
@@ -96,17 +78,6 @@ describe("Transform", () => {
 
     gameObject.transform.y += OFFSET_Y;
     expect(gameObject.transform.absoluteY).toBe(Y_VALUE + OFFSET_Y);
-  });
-
-  test("Transform absolute position is updated when its position changes", () => {
-    const ROTATION = Math.PI / 2;
-    const gameObject = new GameObject(0, 0, ROTATION);
-
-    const OFFSET_ROTATION = Math.PI / 4;
-    gameObject.transform.rotation += OFFSET_ROTATION;
-    expect(gameObject.transform.absoluteRotation).toBe(
-      ROTATION + OFFSET_ROTATION
-    );
   });
 
   test("Transform set absolute position updates its own position", () => {
@@ -129,6 +100,39 @@ describe("Transform", () => {
     expect(parent.transform.y).toBe(PARENT_Y);
     expect(parent.transform.absoluteX).toBe(PARENT_X);
     expect(parent.transform.absoluteY).toBe(PARENT_Y);
+  });
+});
+
+describe("Transform rotation", () => {
+  test("Transform absolute rotation includes parent's absolute rotation", () => {
+    const GRAND_PARENT_ROTATION = Math.PI / 2;
+    const grandParent = new GameObject(0, 0, GRAND_PARENT_ROTATION);
+    expect(grandParent.transform.absoluteRotation).toBe(GRAND_PARENT_ROTATION);
+
+    const PARENT_ROTATION = Math.PI / 4;
+    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    grandParent.addGameObject(parent);
+    expect(parent.transform.absoluteRotation).toBe(
+      GRAND_PARENT_ROTATION + PARENT_ROTATION
+    );
+
+    const CHILD_ROTATION = Math.PI / 8;
+    const child = new GameObject(0, 0, CHILD_ROTATION);
+    parent.addGameObject(child);
+    expect(child.transform.absoluteRotation).toBe(
+      GRAND_PARENT_ROTATION + PARENT_ROTATION + CHILD_ROTATION
+    );
+  });
+
+  test("Transform absolute rotation is updated when its rotation changes", () => {
+    const ROTATION = Math.PI / 2;
+    const gameObject = new GameObject(0, 0, ROTATION);
+
+    const OFFSET_ROTATION = Math.PI / 4;
+    gameObject.transform.rotation += OFFSET_ROTATION;
+    expect(gameObject.transform.absoluteRotation).toBe(
+      ROTATION + OFFSET_ROTATION
+    );
   });
 
   test("Transform set absolute rotation updates its own rotation", () => {

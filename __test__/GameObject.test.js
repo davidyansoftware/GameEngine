@@ -6,7 +6,9 @@ describe("GameObject", () => {
     const defaultGameObject = new GameObject();
     expect(defaultGameObject.transform).toBeDefined();
   });
+});
 
+describe("GameObject composite", () => {
   test("addGameObject adds a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
@@ -45,24 +47,6 @@ describe("GameObject", () => {
     expect(parent2.gameObjects).toContain(child);
   });
 
-  test("addComponent adds a component", () => {
-    const gameObject = new GameObject();
-    const component = new Component();
-    expect(gameObject.components).not.toContain(component);
-
-    gameObject.addComponent(component);
-    expect(gameObject.components).toContain(component);
-  });
-
-  test("removeComponent removes a component", () => {
-    const gameObject = new GameObject();
-    const component = new Component();
-    gameObject.addComponent(component);
-
-    gameObject.removeComponent(component);
-    expect(gameObject.components).not.toContain(component);
-  });
-
   test("update will update children GameObjects", () => {
     const parent = new GameObject();
     const child1 = new GameObject();
@@ -95,6 +79,26 @@ describe("GameObject", () => {
     const TIMESTAMP = 12345;
     parent.update(TIMESTAMP);
     expect(child.update).toHaveBeenLastCalledWith(TIMESTAMP);
+  });
+});
+
+describe("GameObject components", () => {
+  test("addComponent adds a component", () => {
+    const gameObject = new GameObject();
+    const component = new Component();
+    expect(gameObject.components).not.toContain(component);
+
+    gameObject.addComponent(component);
+    expect(gameObject.components).toContain(component);
+  });
+
+  test("removeComponent removes a component", () => {
+    const gameObject = new GameObject();
+    const component = new Component();
+    gameObject.addComponent(component);
+
+    gameObject.removeComponent(component);
+    expect(gameObject.components).not.toContain(component);
   });
 
   test("update will update components", () => {
