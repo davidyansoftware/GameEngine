@@ -70,6 +70,7 @@ class GameObject {
    * Game logic is handled within component updates
    * Called by the GameLoop every frame
    * Can also be called manually
+   * @param {number} currTime - The timestamp passed by requestAnimationFrame
    */
   update(currTime) {
     this.components.forEach(component => {

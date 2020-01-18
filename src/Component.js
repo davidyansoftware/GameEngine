@@ -12,8 +12,9 @@ class Component {
    * To be implimented for individual components
    * Called by the GameLoop every frame
    * Can also be called manually
+   * @param {number} currTime - The timestamp passed by requestAnimationFrame
    */
-  update() {}
+  update(currTime) {}
 }
 
 module.exports = Component;
