@@ -71,12 +71,12 @@ class GameObject {
    * Called by the GameLoop every frame
    * Can also be called manually
    */
-  update() {
+  update(currTime) {
     this.components.forEach(component => {
-      component.update();
+      component.update(currTime);
     });
     this.gameObjects.forEach(gameObject => {
-      gameObject.update();
+      gameObject.update(currTime);
     });
   }
 }

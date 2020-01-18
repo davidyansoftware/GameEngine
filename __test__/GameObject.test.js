@@ -86,6 +86,17 @@ describe("GameObject", () => {
     expect(child1Child.update).toHaveBeenCalledTimes(1);
   });
 
+  test("update will pass timestamp to children GameObjects' update", () => {
+    const parent = new GameObject();
+    const child = new GameObject();
+    jest.spyOn(child, "update");
+    parent.addGameObject(child);
+
+    const TIMESTAMP = 12345;
+    parent.update(TIMESTAMP);
+    expect(child.update).toHaveBeenLastCalledWith(TIMESTAMP);
+  });
+
   test("update will update components", () => {
     const gameObject = new GameObject();
     const component = new Component();
@@ -95,5 +106,16 @@ describe("GameObject", () => {
 
     gameObject.update();
     expect(component.update).toHaveBeenCalledTimes(1);
+  });
+
+  test("update will pass timestamp to components' update", () => {
+    const gameObject = new GameObject();
+    const component = new Component();
+    jest.spyOn(component, "update");
+    gameObject.addComponent(component);
+
+    const TIMESTAMP = 12345;
+    gameObject.update(TIMESTAMP);
+    expect(component.update).toHaveBeenLastCalledWith(TIMESTAMP);
   });
 });
