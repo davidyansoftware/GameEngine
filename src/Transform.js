@@ -7,11 +7,13 @@ class Transform {
    * @param {GameObject} gameObject - The GameObject this Transform is attached to
    * @param {number} x - The x-coordinate
    * @param {number} y - The y-coordinate
+   * @param {number} rotation - The rotation in radians
    */
-  constructor(gameObject, x = 0, y = 0) {
+  constructor(gameObject, x = 0, y = 0, rotation = 0) {
     this.gameObject = gameObject;
     this._x = x;
     this._y = y;
+    this.rotation = rotation;
 
     this._cacheAbsolutePosition();
   }

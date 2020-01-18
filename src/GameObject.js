@@ -10,9 +10,10 @@ class GameObject {
    * Create a GameObject
    * @param {number} x - The x-coordinate for the GameObject's Transform
    * @param {number} y - The y-coordinate for the GameObject's Transform
+   * @param {number} rotation - The rotation for the GameObject's Transform
    */
-  constructor(x = 0, y = 0) {
-    this.transform = new Transform(this, x, y);
+  constructor(x = 0, y = 0, rotation = 0) {
+    this.transform = new Transform(this, x, y, rotation);
 
     this.gameObjects = [];
     this.components = [];

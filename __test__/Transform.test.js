@@ -1,15 +1,17 @@
 const GameObject = require("../src/GameObject");
 
 describe("Transform", () => {
-  test("Transform constructor defaults to (0,0)", () => {
+  test("Transform constructor defaults to (0,0,0)", () => {
     const defaultGameObject = new GameObject();
     expect(defaultGameObject.transform.x).toBe(0);
     expect(defaultGameObject.transform.y).toBe(0);
+    expect(defaultGameObject.transform.rotation).toBe(0);
   });
 
-  test("Transform position getters match setters", () => {
+  test("Transform getters match setters", () => {
     const X_VALUE = 1;
     const Y_VALUE = 2;
+    const ROTATION = Math.PI / 2;
     const gameObject = new GameObject();
 
     gameObject.transform.x = X_VALUE;
@@ -17,14 +19,19 @@ describe("Transform", () => {
 
     gameObject.transform.y = Y_VALUE;
     expect(gameObject.transform.y).toBe(Y_VALUE);
+
+    gameObject.transform.rotation = ROTATION;
+    expect(gameObject.transform.rotation).toBe(ROTATION);
   });
 
-  test("Transform constructor sets x and y coordinates", () => {
+  test("Transform constructor sets values", () => {
     const X_VALUE = 1;
     const Y_VALUE = 2;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE);
+    const ROTATION = Math.PI / 2;
+    const gameObject = new GameObject(X_VALUE, Y_VALUE, ROTATION);
     expect(gameObject.transform.x).toBe(X_VALUE);
     expect(gameObject.transform.y).toBe(Y_VALUE);
+    expect(gameObject.transform.rotation).toBe(ROTATION);
   });
 
   test("GameObject is tied to its Tranform", () => {
