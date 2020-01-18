@@ -1,7 +1,7 @@
 /**
  * GameObjects store game entities and logic
  * GameObjects are composites that propagate call to children GameObjects
- * GameObjects hold components which handle game logic
+ * GameObjects hold Components which handle game logic
  */
 class GameObject {
   /**
@@ -13,7 +13,7 @@ class GameObject {
   }
 
   /**
-   * Add a GameObject to the Composite
+   * Add a child GameObject
    * @param {GameObject} gameObject - The child game object
    */
   addGameObject(gameObject) {
@@ -21,7 +21,7 @@ class GameObject {
   }
 
   /**
-   * Remove a GameObject from the Composite if it exists
+   * Remove a child GameObject if it exists
    * @param {GameObject} gameObject
    */
   removeGameObject(gameObject) {
