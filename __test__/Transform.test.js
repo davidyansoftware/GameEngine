@@ -153,3 +153,23 @@ describe("Transform rotation", () => {
     expect(parent.transform.absoluteRotation).toBe(PARENT_ROTATION);
   });
 });
+
+describe("Transform position and rotation", () => {
+  test("absolute position includes parent's rotation", () => {
+    const PARENT_ROTATION = Math.PI;
+    const parent = new GameObject(0, 0, PARENT_ROTATION);
+
+    const CHILD_X = 1;
+    const CHILD_Y = 2;
+    const child = new GameObject(CHILD_X, CHILD_Y);
+
+    parent.addGameObject(child);
+
+    const ABSOLUTE_X =
+      CHILD_X * Math.cos(PARENT_ROTATION) - CHILD_Y * Math.sin(PARENT_ROTATION);
+    const ABSOLUTE_Y =
+      CHILD_X * Math.sin(PARENT_ROTATION) + CHILD_Y * Math.cos(PARENT_ROTATION);
+    expect(child.transform.absoluteX).toBe(ABSOLUTE_X);
+    expect(child.transform.absoluteY).toBe(ABSOLUTE_Y);
+  });
+});

@@ -91,16 +91,21 @@ class Transform {
   }
 
   _cacheAbsolutePosition() {
-    if (!this.gameObject.parent) {
-      this._absoluteX = this.x;
-      this._absoluteY = this.y;
-      this._absoluteRotation = this.rotation;
-    } else {
-      this._absoluteX = this.gameObject.parent.transform.absoluteX + this.x;
-      this._absoluteY = this.gameObject.parent.transform.absoluteY + this.y;
-      this._absoluteRotation =
-        this.gameObject.parent.transform.absoluteRotation + this.rotation;
-    }
+    const baseX = this.gameObject.parent
+      ? this.gameObject.parent.transform.absoluteX
+      : 0;
+    const baseY = this.gameObject.parent
+      ? this.gameObject.parent.transform.absoluteY
+      : 0;
+    const baseRotation = this.gameObject.parent
+      ? this.gameObject.parent.transform.absoluteRotation
+      : 0;
+
+    this._absoluteX =
+      baseX + this.x * Math.cos(baseRotation) - this.y * Math.sin(baseRotation);
+    this._absoluteY =
+      baseY + this.x * Math.sin(baseRotation) + this.y * Math.cos(baseRotation);
+    this._absoluteRotation = baseRotation + this.rotation;
     this._absoluteDirty = false;
   }
 }
