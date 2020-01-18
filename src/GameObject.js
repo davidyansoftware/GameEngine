@@ -28,6 +28,8 @@ class GameObject {
     }
     gameObject.parent = this;
     this.gameObjects.push(gameObject);
+
+    gameObject.transform._setAbsolutePosition();
   }
 
   /**
@@ -39,6 +41,8 @@ class GameObject {
     if (index >= 0) {
       this.gameObjects.splice(index, 1);
     }
+
+    gameObject.transform._setAbsolutePosition();
   }
 
   /**

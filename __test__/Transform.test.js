@@ -15,8 +15,32 @@ describe("Transform", () => {
     expect(gameObject.transform.y).toBe(Y_VALUE);
   });
 
-  test("GameObject is tied to its tranform", () => {
+  test("GameObject is tied to its Tranform", () => {
     const gameObject = new GameObject();
     expect(gameObject.transform.gameObject).toBe(gameObject);
+  });
+
+  test("Transform absolute position includes parent's absolute position", () => {
+    const GRAND_PARENT_X = 1;
+    const GRAND_PARENT_Y = 2;
+    const grandParent = new GameObject(GRAND_PARENT_X, GRAND_PARENT_Y);
+    expect(grandParent.transform.absoluteX).toBe(GRAND_PARENT_X);
+    expect(grandParent.transform.absoluteY).toBe(GRAND_PARENT_Y);
+
+    const PARENT_X = 3;
+    const PARENT_Y = 4;
+    const parent = new GameObject(PARENT_X, PARENT_Y);
+
+    grandParent.addGameObject(parent);
+    expect(parent.transform.absoluteX).toBe(GRAND_PARENT_X + PARENT_X);
+    expect(parent.transform.absoluteY).toBe(GRAND_PARENT_Y + PARENT_Y);
+
+    const CHILD_X = 5;
+    const CHILD_Y = 6;
+    const child = new GameObject(CHILD_X, CHILD_Y);
+
+    parent.addGameObject(child);
+    expect(child.transform.absoluteX).toBe(GRAND_PARENT_X + PARENT_X + CHILD_X);
+    expect(child.transform.absoluteY).toBe(GRAND_PARENT_Y + PARENT_Y + CHILD_Y);
   });
 });
