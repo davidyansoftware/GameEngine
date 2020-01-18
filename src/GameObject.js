@@ -42,6 +42,7 @@ class GameObject {
    * @param {Component} component
    */
   addComponent(component) {
+    component.gameObject = this;
     this.components.push(component);
   }
 
