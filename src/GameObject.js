@@ -23,6 +23,10 @@ class GameObject {
    * @param {GameObject} gameObject - The child game object
    */
   addGameObject(gameObject) {
+    if (gameObject.parent) {
+      gameObject.parent.removeGameObject(gameObject);
+    }
+    gameObject.parent = this;
     this.gameObjects.push(gameObject);
   }
 

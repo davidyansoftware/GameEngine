@@ -16,6 +16,14 @@ describe("GameObject", () => {
     expect(parent.gameObjects.includes(child));
   });
 
+  test("addGameObject sets the parent", () => {
+    const parent = new GameObject();
+    const child = new GameObject();
+
+    parent.addGameObject(child);
+    expect(child.parent).toBe(parent);
+  });
+
   test("removeGameObject removes a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
@@ -23,6 +31,18 @@ describe("GameObject", () => {
 
     parent.removeGameObject(child);
     expect(!parent.gameObjects.includes(child));
+  });
+
+  test("addGameObject removes the object from the previous parent", () => {
+    const parent1 = new GameObject();
+    const parent2 = new GameObject();
+    const child = new GameObject();
+
+    parent1.addGameObject(child);
+    parent2.addGameObject(child);
+
+    expect(parent1.gameObjects).not.toContain(child);
+    expect(parent2.gameObjects).toContain(child);
   });
 
   test("addComponent adds a component", () => {
