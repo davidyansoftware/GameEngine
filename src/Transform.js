@@ -25,6 +25,9 @@ class Transform {
     }
     return this._absoluteX;
   }
+  set absoluteX(value) {
+    this.x = value - this.gameObject.parent.transform.absoluteX;
+  }
 
   /**
    * @type {number}
@@ -34,6 +37,9 @@ class Transform {
       this._cacheAbsolutePosition();
     }
     return this._absoluteY;
+  }
+  set absoluteY(value) {
+    this.y = value - this.gameObject.parent.transform.absoluteY;
   }
 
   /**

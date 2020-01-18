@@ -7,6 +7,18 @@ describe("Transform", () => {
     expect(defaultGameObject.transform.y).toBe(0);
   });
 
+  test("Transform position getters match setters", () => {
+    const X_VALUE = 1;
+    const Y_VALUE = 2;
+    const gameObject = new GameObject();
+
+    gameObject.transform.x = X_VALUE;
+    expect(gameObject.transform.x).toBe(X_VALUE);
+
+    gameObject.transform.y = Y_VALUE;
+    expect(gameObject.transform.y).toBe(Y_VALUE);
+  });
+
   test("Transform constructor sets x and y coordinates", () => {
     const X_VALUE = 1;
     const Y_VALUE = 2;
@@ -59,5 +71,27 @@ describe("Transform", () => {
     parent.transform.y += OFFSET;
     expect(parent.transform.absoluteX).toBe(PARENT_X + OFFSET);
     expect(parent.transform.absoluteY).toBe(PARENT_Y + OFFSET);
+  });
+
+  test("Transform set absolute position updates its own position", () => {
+    const PARENT_X = 1;
+    const PARENT_Y = 2;
+    const parent = new GameObject(PARENT_X, PARENT_Y);
+    const child = new GameObject();
+    parent.addGameObject(child);
+
+    const CHILD_ABSOLUTE_X = 3;
+    const CHILD_ABSOLUTE_Y = 4;
+    child.transform.absoluteX = CHILD_ABSOLUTE_X;
+    child.transform.absoluteY = CHILD_ABSOLUTE_Y;
+
+    expect(child.transform.absoluteX).toBe(CHILD_ABSOLUTE_X);
+    expect(child.transform.absoluteY).toBe(CHILD_ABSOLUTE_Y);
+    expect(child.transform.x).toBe(CHILD_ABSOLUTE_X - PARENT_X);
+    expect(child.transform.y).toBe(CHILD_ABSOLUTE_Y - PARENT_Y);
+    expect(parent.transform.x).toBe(PARENT_X);
+    expect(parent.transform.y).toBe(PARENT_Y);
+    expect(parent.transform.absoluteX).toBe(PARENT_X);
+    expect(parent.transform.absoluteY).toBe(PARENT_Y);
   });
 });
