@@ -1,17 +1,34 @@
-const Composite = require("./Composite");
-
 /**
- * GameObjects hold a collection of Components.
- * @extends Composite
+ * GameObjects store game entities and logic
+ * GameObjects are composites that propagate call to children GameObjects
+ * GameObjects hold components which handle game logic
  */
-class GameObject extends Composite {
+class GameObject {
   /**
    * Create a GameObject
    */
   constructor() {
-    super();
-
+    this.gameObjects = [];
     this.components = [];
+  }
+
+  /**
+   * Add a GameObject to the Composite
+   * @param {GameObject} gameObject - The child game object
+   */
+  addGameObject(gameObject) {
+    this.gameObjects.push(gameObject);
+  }
+
+  /**
+   * Remove a GameObject from the Composite if it exists
+   * @param {GameObject} gameObject
+   */
+  removeGameObject(gameObject) {
+    let index = this.gameObjects.indexOf(gameObject);
+    if (index >= 0) {
+      this.gameObjects.splice(index, 1);
+    }
   }
 
   /**
