@@ -20,6 +20,11 @@ class Text extends Component {
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
   render(ctx) {
+    ctx.font = "12px serif";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+
     ctx.fillText(this.text, 0, 0);
   }
 }
