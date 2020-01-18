@@ -28,7 +28,7 @@ class Transform {
     return this._absoluteX;
   }
   set absoluteX(value) {
-    this.x = value - this.gameObject.parent.transform.absoluteX;
+    this._setAbsolutePosition(value, this.absoluteY);
   }
 
   /**
@@ -41,7 +41,7 @@ class Transform {
     return this._absoluteY;
   }
   set absoluteY(value) {
-    this.y = value - this.gameObject.parent.transform.absoluteY;
+    this._setAbsolutePosition(this.absoluteX, value);
   }
 
   /**
@@ -91,22 +91,52 @@ class Transform {
   }
 
   _cacheAbsolutePosition() {
-    const baseX = this.gameObject.parent
+    const parentAbsoluteX = this.gameObject.parent
       ? this.gameObject.parent.transform.absoluteX
       : 0;
-    const baseY = this.gameObject.parent
+    const parentAbsoluteY = this.gameObject.parent
       ? this.gameObject.parent.transform.absoluteY
       : 0;
-    const baseRotation = this.gameObject.parent
+    const parentAbsoluteRotation = this.gameObject.parent
       ? this.gameObject.parent.transform.absoluteRotation
       : 0;
 
     this._absoluteX =
-      baseX + this.x * Math.cos(baseRotation) - this.y * Math.sin(baseRotation);
+      parentAbsoluteX +
+      this.x * Math.cos(parentAbsoluteRotation) -
+      this.y * Math.sin(parentAbsoluteRotation);
     this._absoluteY =
-      baseY + this.x * Math.sin(baseRotation) + this.y * Math.cos(baseRotation);
-    this._absoluteRotation = baseRotation + this.rotation;
+      parentAbsoluteY +
+      this.x * Math.sin(parentAbsoluteRotation) +
+      this.y * Math.cos(parentAbsoluteRotation);
+    this._absoluteRotation = parentAbsoluteRotation + this.rotation;
+
     this._absoluteDirty = false;
+  }
+
+  _setAbsolutePosition(x, y) {
+    console.log(x, y);
+    const parentAbsoluteX = this.gameObject.parent
+      ? this.gameObject.parent.transform.absoluteX
+      : 0;
+    const parentAbsoluteY = this.gameObject.parent
+      ? this.gameObject.parent.transform.absoluteY
+      : 0;
+    const parentAbsoluteRotation = this.gameObject.parent
+      ? this.gameObject.parent.transform.absoluteRotation
+      : 0;
+
+    const offsetX = x - parentAbsoluteX;
+    const offsetY = y - parentAbsoluteY;
+    console.log(offsetX, offsetY);
+    //const offsetRotation = this.absoluteRotation - parentAbsoluteRotation;
+
+    this._x =
+      offsetX * Math.cos(parentAbsoluteRotation) -
+      offsetY * Math.sin(parentAbsoluteRotation);
+    this._y =
+      offsetX * Math.sin(parentAbsoluteRotation) +
+      offsetY * Math.cos(parentAbsoluteRotation);
   }
 }
 
