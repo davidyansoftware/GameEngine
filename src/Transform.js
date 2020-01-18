@@ -101,14 +101,12 @@ class Transform {
       ? this.gameObject.parent.transform.absoluteRotation
       : 0;
 
-    this._absoluteX =
-      parentAbsoluteX +
-      this._x * Math.cos(-parentAbsoluteRotation) -
-      this._y * Math.sin(-parentAbsoluteRotation);
-    this._absoluteY =
-      parentAbsoluteY +
-      this._x * Math.sin(-parentAbsoluteRotation) +
-      this._y * Math.cos(-parentAbsoluteRotation);
+    // angle is negative to negate parent rotation
+    const sin = Math.sin(-parentAbsoluteRotation);
+    const cos = Math.cos(-parentAbsoluteRotation);
+
+    this._absoluteX = this.x * cos - this.y * sin + parentAbsoluteX;
+    this._absoluteY = this.x * sin + this.y * cos + parentAbsoluteY;
     this._absoluteRotation = parentAbsoluteRotation + this._rotation;
 
     this._absoluteDirty = false;
@@ -127,13 +125,11 @@ class Transform {
 
     const offsetX = x - parentAbsoluteX;
     const offsetY = y - parentAbsoluteY;
+    const sin = Math.sin(parentAbsoluteRotation);
+    const cos = Math.cos(parentAbsoluteRotation);
 
-    this.x =
-      offsetX * Math.cos(parentAbsoluteRotation) -
-      offsetY * Math.sin(parentAbsoluteRotation);
-    this.y =
-      offsetX * Math.sin(parentAbsoluteRotation) +
-      offsetY * Math.cos(parentAbsoluteRotation);
+    this.x = offsetX * cos - offsetY * sin;
+    this.y = offsetX * sin + offsetY * cos;
   }
 }
 
