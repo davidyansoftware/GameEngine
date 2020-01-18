@@ -10,10 +10,10 @@ describe("GameObject", () => {
   test("addGameObject adds a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
-    expect(!parent.gameObjects.includes(child));
+    expect(parent.gameObjects).not.toContain(child);
 
     parent.addGameObject(child);
-    expect(parent.gameObjects.includes(child));
+    expect(parent.gameObjects).toContain(child);
   });
 
   test("addGameObject sets the parent", () => {
@@ -27,10 +27,10 @@ describe("GameObject", () => {
   test("removeGameObject removes a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
-    expect(parent.gameObjects.includes(child));
+    parent.addGameObject(child);
 
     parent.removeGameObject(child);
-    expect(!parent.gameObjects.includes(child));
+    expect(parent.gameObjects).not.toContain(child);
   });
 
   test("addGameObject removes the object from the previous parent", () => {
@@ -48,20 +48,19 @@ describe("GameObject", () => {
   test("addComponent adds a component", () => {
     const gameObject = new GameObject();
     const component = new Component();
-    expect(!gameObject.components.includes(component));
+    expect(gameObject.components).not.toContain(component);
 
     gameObject.addComponent(component);
-    expect(gameObject.components.includes(component));
+    expect(gameObject.components).toContain(component);
   });
 
   test("removeComponent removes a component", () => {
     const gameObject = new GameObject();
     const component = new Component();
     gameObject.addComponent(component);
-    expect(gameObject.components.includes(component));
 
     gameObject.removeComponent(component);
-    expect(!gameObject.components.includes(component));
+    expect(gameObject.components).not.toContain(component);
   });
 
   test("update will update children GameObjects", () => {
