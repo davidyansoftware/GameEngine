@@ -1,3 +1,5 @@
+const Transform = require("./Transform");
+
 /**
  * GameObjects store game entities and logic
  * GameObjects are composites that propagate call to children GameObjects
@@ -6,8 +8,11 @@
 class GameObject {
   /**
    * Create a GameObject
+   * @param {Transform} transform - The Transform for this GameObject
    */
-  constructor() {
+  constructor(transform = new Transform()) {
+    this.transform = transform;
+
     this.gameObjects = [];
     this.components = [];
   }

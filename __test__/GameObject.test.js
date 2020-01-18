@@ -1,7 +1,20 @@
 const GameObject = require("../src/GameObject");
+const Transform = require("../src/Transform");
 const Component = require("../src/Component");
 
 describe("GameObject", () => {
+  test("GameObject constructor stores Transform", () => {
+    const defaultGameObject = new GameObject();
+    expect(defaultGameObject.transform.x).toBe(0);
+    expect(defaultGameObject.transform.y).toBe(0);
+
+    const X_VALUE = 1;
+    const Y_VALUE = 2;
+    const transform = new Transform(X_VALUE, Y_VALUE);
+    const gameObject = new GameObject(transform);
+    expect(gameObject.transform).toBe(transform);
+  });
+
   test("addGameObject adds a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
