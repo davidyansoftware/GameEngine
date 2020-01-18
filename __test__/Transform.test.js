@@ -43,4 +43,21 @@ describe("Transform", () => {
     expect(child.transform.absoluteX).toBe(GRAND_PARENT_X + PARENT_X + CHILD_X);
     expect(child.transform.absoluteY).toBe(GRAND_PARENT_Y + PARENT_Y + CHILD_Y);
   });
+
+  test("Transform absolute position is updated when its position changes", () => {
+    const PARENT_X = 1;
+    const PARENT_Y = 2;
+    const parent = new GameObject(PARENT_X, PARENT_Y);
+
+    const CHILD_X = 3;
+    const CHILD_Y = 4;
+    const child = new GameObject(CHILD_X, CHILD_Y);
+
+    parent.addGameObject(child);
+    const OFFSET = 1;
+    parent.transform.x += OFFSET;
+    parent.transform.y += OFFSET;
+    expect(parent.transform.absoluteX).toBe(PARENT_X + OFFSET);
+    expect(parent.transform.absoluteY).toBe(PARENT_Y + OFFSET);
+  });
 });
