@@ -2,6 +2,7 @@ const Component = require("../Component");
 
 /**
  * A component for rendering GameObjects to canvas context
+ * @extends Component
  */
 class Camera extends Component {
   /**

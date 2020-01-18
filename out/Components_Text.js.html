@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Component.js</title>
+    <title>JSDoc: Source: Components/Text.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Component.js</h1>
+    <h1 class="page-title">Source: Components/Text.js</h1>
 
     
 
@@ -26,35 +26,33 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * A base class for components of GameObjects
+            <pre class="prettyprint source linenums"><code>const Component = require("../Component");
+
+/**
+ * A component for rendering text
+ * @extends Component
  */
-class Component {
+class Text extends Component {
   /**
-   * Create a component
+   * Create a Text
+   * @param {string} text - The text to be rendered
    */
-  constructor() {}
+  constructor(text) {
+    super();
+
+    this.text = text;
+  }
 
   /**
-   * Runs game logic for this component every frame
-   * To be implimented for individual components
-   * Called by the GameLoop every frame
-   * Can also be called manually
-   * @param {number} currTime - The timestamp passed by requestAnimationFrame
-   */
-  update(currTime) {}
-
-  /**
-   * Renders the component every frame
-   * To be implimented for individual components
-   * Called by Cameras every frame
-   * Can also be called manually
+   * Renders the text
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  render(ctx) {}
+  render(ctx) {
+    ctx.fillText(this.text, 0, 0);
+  }
 }
 
-module.exports = Component;
+module.exports = Text;
 </code></pre>
         </article>
     </section>

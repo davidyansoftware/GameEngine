@@ -48,7 +48,7 @@ class GameObject {
 
   /**
    * Add a Component
-   * @param {Component} component
+   * @param {Component} component - Component to be added
    */
   addComponent(component) {
     component.gameObject = this;
@@ -57,7 +57,7 @@ class GameObject {
 
   /**
    * Remove a Component if it exists
-   * @param {Component} component
+   * @param {Component} component - Component to be removed
    */
   removeComponent(component) {
     let index = this.components.indexOf(component);

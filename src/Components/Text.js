@@ -2,6 +2,7 @@ const Component = require("../Component");
 
 /**
  * A component for rendering text
+ * @extends Component
  */
 class Text extends Component {
   /**

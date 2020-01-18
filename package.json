@@ -5,7 +5,7 @@
   "main": "src/Dna.js",
   "scripts": {
     "test": "jest",
-    "docs": "jsdoc src",
+    "docs": "jsdoc -r src",
     "build": "webpack"
   },
   "jest": {
