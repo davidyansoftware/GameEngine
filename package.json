@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/davidyansoftware/GameEngine#readme",
   "devDependencies": {
+    "canvas": "^2.6.1",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "webpack": "^4.41.5",

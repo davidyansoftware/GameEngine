@@ -81,6 +81,15 @@ class GameObject {
       gameObject.update(currTime);
     });
   }
+
+  /**
+   * Renders the GameObject and all children GameObjects by rendering all components
+   * Canvas rendering is handled within component renders
+   * Called by Cameras every frame
+   * Can also be called manually
+   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
+   */
+  render(ctx) {}
 }
 
 module.exports = GameObject;
