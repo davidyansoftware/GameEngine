@@ -10,17 +10,4 @@ describe("Component", () => {
     gameObject.addComponent(component);
     expect(component.gameObject).toBe(gameObject);
   });
-
-  test("Components are updated when their GameObject is updated", () => {
-    const gameObject = new GameObject();
-    const component = new Component();
-    gameObject.addComponent(component);
-    jest.spyOn(component, "update");
-
-    gameObject.update();
-    expect(component.update).toHaveBeenCalledTimes(1);
-
-    gameObject.update();
-    expect(component.update).toHaveBeenCalledTimes(2);
-  });
 });

@@ -91,7 +91,6 @@ describe("GameObject", () => {
     const component = new Component();
     jest.spyOn(component, "update");
     gameObject.addComponent(component);
-
     expect(component.update).not.toHaveBeenCalled();
 
     gameObject.update();
