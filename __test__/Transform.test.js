@@ -164,12 +164,10 @@ describe("Transform position and rotation", () => {
     const child = new GameObject(CHILD_X, CHILD_Y);
     parent.addGameObject(child);
 
-    const ABSOLUTE_X =
-      CHILD_X * Math.cos(PARENT_ROTATION) - CHILD_Y * Math.sin(PARENT_ROTATION);
-    const ABSOLUTE_Y =
-      CHILD_X * Math.sin(PARENT_ROTATION) + CHILD_Y * Math.cos(PARENT_ROTATION);
-    expect(child.transform.absoluteX).toBe(ABSOLUTE_X); // -2
-    expect(child.transform.absoluteY).toBe(ABSOLUTE_Y); // 1
+    const ABSOLUTE_X = -2;
+    const ABSOLUTE_Y = 1;
+    expect(child.transform.absoluteX).toBeCloseTo(ABSOLUTE_X);
+    expect(child.transform.absoluteY).toBeCloseTo(ABSOLUTE_Y);
   });
 
   test("absolute position includes parent's rotation (-Math.PI/2)", () => {
@@ -180,15 +178,26 @@ describe("Transform position and rotation", () => {
     const child = new GameObject(CHILD_X, CHILD_Y);
     parent.addGameObject(child);
 
-    const ABSOLUTE_X =
-      CHILD_X * Math.cos(PARENT_ROTATION) - CHILD_Y * Math.sin(PARENT_ROTATION);
-    const ABSOLUTE_Y =
-      CHILD_X * Math.sin(PARENT_ROTATION) + CHILD_Y * Math.cos(PARENT_ROTATION);
-    expect(child.transform.absoluteX).toBe(ABSOLUTE_X); // 2
-    expect(child.transform.absoluteY).toBe(ABSOLUTE_Y); // -1
+    const ABSOLUTE_X = 2;
+    const ABSOLUTE_Y = -1;
+    expect(child.transform.absoluteX).toBeCloseTo(ABSOLUTE_X);
+    expect(child.transform.absoluteY).toBeCloseTo(ABSOLUTE_Y);
   });
 
-  /*
+  test("absolute position includes parent's rotation (Math.PI)", () => {
+    const PARENT_ROTATION = Math.PI;
+    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const CHILD_X = 1;
+    const CHILD_Y = 2;
+    const child = new GameObject(CHILD_X, CHILD_Y);
+    parent.addGameObject(child);
+
+    const ABSOLUTE_X = -1;
+    const ABSOLUTE_Y = -2;
+    expect(child.transform.absoluteX).toBeCloseTo(ABSOLUTE_X);
+    expect(child.transform.absoluteY).toBeCloseTo(ABSOLUTE_Y);
+  });
+
   test("setting absolute position includes parent's rotation", () => {
     const PARENT_ROTATION = Math.PI;
     const parent = new GameObject(0, 0, PARENT_ROTATION);
@@ -196,14 +205,15 @@ describe("Transform position and rotation", () => {
     parent.addGameObject(child);
 
     const ABSOLUTE_X = 1;
-    child.absoluteX = ABSOLUTE_X;
+    child.transform.absoluteX = ABSOLUTE_X;
     const CHILD_X = -1;
-    expect(child.transform.x).toBe(CHILD_X);
+    expect(child.transform.x).toBeCloseTo(CHILD_X);
+    expect(child.transform.y).toBeCloseTo(0);
 
     const ABSOLUTE_Y = 2;
-    child.absoluteY = ABSOLUTE_Y;
+    child.transform.absoluteY = ABSOLUTE_Y;
     const CHILD_Y = -2;
-    expect(child.transform.y).toBe(CHILD_Y);
+    expect(child.transform.x).toBeCloseTo(CHILD_X);
+    expect(child.transform.y).toBeCloseTo(CHILD_Y);
   });
-  */
 });
