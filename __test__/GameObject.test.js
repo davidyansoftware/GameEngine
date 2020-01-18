@@ -56,18 +56,9 @@ describe("GameObject composite", () => {
     parent.addGameObject(child);
     expect(child.update).not.toHaveBeenCalled();
 
-    parent.update();
-    expect(child.update).toHaveBeenCalledTimes(1);
-  });
-
-  test("update will pass timestamp to children GameObject updates", () => {
-    const parent = new GameObject();
-    const child = new GameObject();
-    jest.spyOn(child, "update");
-    parent.addGameObject(child);
-
     const TIMESTAMP = 12345;
     parent.update(TIMESTAMP);
+    expect(child.update).toHaveBeenCalledTimes(1);
     expect(child.update).toHaveBeenLastCalledWith(TIMESTAMP);
   });
 
@@ -79,19 +70,10 @@ describe("GameObject composite", () => {
     parent.addGameObject(child);
     expect(child.render).not.toHaveBeenCalled();
 
-    parent.render();
-    expect(child.render).toHaveBeenCalledTimes(1);
-  });
-
-  test("render will pass context to children GameObject updates", () => {
-    const parent = new GameObject();
-    const child = new GameObject();
-    jest.spyOn(child, "render");
-    parent.addGameObject(child);
-
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
     parent.render(ctx);
+    expect(child.render).toHaveBeenCalledTimes(1);
     expect(child.render).toHaveBeenLastCalledWith(ctx);
   });
 });
@@ -123,18 +105,9 @@ describe("GameObject components", () => {
     gameObject.addComponent(component);
     expect(component.update).not.toHaveBeenCalled();
 
-    gameObject.update();
-    expect(component.update).toHaveBeenCalledTimes(1);
-  });
-
-  test("update will pass timestamp to component updates", () => {
-    const gameObject = new GameObject();
-    const component = new Component();
-    jest.spyOn(component, "update");
-    gameObject.addComponent(component);
-
     const TIMESTAMP = 12345;
     gameObject.update(TIMESTAMP);
+    expect(component.update).toHaveBeenCalledTimes(1);
     expect(component.update).toHaveBeenLastCalledWith(TIMESTAMP);
   });
 
@@ -146,19 +119,10 @@ describe("GameObject components", () => {
     gameObject.addComponent(component);
     expect(component.render).not.toHaveBeenCalled();
 
-    gameObject.render();
-    expect(component.render).toHaveBeenCalledTimes(1);
-  });
-
-  test("render will pass context to Component renders", () => {
-    const gameObject = new GameObject();
-    const component = new Component();
-    jest.spyOn(component, "render");
-    gameObject.addComponent(component);
-
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
     gameObject.render(ctx);
+    expect(component.render).toHaveBeenCalledTimes(1);
     expect(component.render).toHaveBeenLastCalledWith(ctx);
   });
 });

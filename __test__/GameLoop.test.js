@@ -18,7 +18,7 @@ describe("GameLoop", () => {
 
     expect(gameObject.update).not.toHaveBeenCalled();
 
-    const gameLoop = new GameLoop(gameObject);
+    new GameLoop(gameObject);
     expect(gameObject.update).toHaveBeenCalled();
   });
 });
