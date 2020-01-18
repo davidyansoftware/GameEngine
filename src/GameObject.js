@@ -89,7 +89,14 @@ class GameObject {
    * Can also be called manually
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  render(ctx) {}
+  render(ctx) {
+    this.components.forEach(component => {
+      component.render(ctx);
+    });
+    this.gameObjects.forEach(gameObject => {
+      gameObject.render(ctx);
+    });
+  }
 }
 
 module.exports = GameObject;

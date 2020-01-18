@@ -1,3 +1,4 @@
+const Canvas = require("canvas");
 const GameObject = require("../src/GameObject");
 const Component = require("../src/Component");
 
@@ -49,28 +50,17 @@ describe("GameObject composite", () => {
 
   test("update will update children GameObjects", () => {
     const parent = new GameObject();
-    const child1 = new GameObject();
-    jest.spyOn(child1, "update");
-    const child2 = new GameObject();
-    jest.spyOn(child2, "update");
-    const child1Child = new GameObject();
-    jest.spyOn(child1Child, "update");
+    const child = new GameObject();
+    jest.spyOn(child, "update");
 
-    parent.addGameObject(child1);
-    parent.addGameObject(child2);
-    child1.addGameObject(child1Child);
-
-    expect(child1.update).not.toHaveBeenCalled();
-    expect(child2.update).not.toHaveBeenCalled();
-    expect(child1Child.update).not.toHaveBeenCalled();
+    parent.addGameObject(child);
+    expect(child.update).not.toHaveBeenCalled();
 
     parent.update();
-    expect(child1.update).toHaveBeenCalledTimes(1);
-    expect(child2.update).toHaveBeenCalledTimes(1);
-    expect(child1Child.update).toHaveBeenCalledTimes(1);
+    expect(child.update).toHaveBeenCalledTimes(1);
   });
 
-  test("update will pass timestamp to children GameObjects' update", () => {
+  test("update will pass timestamp to children GameObject updates", () => {
     const parent = new GameObject();
     const child = new GameObject();
     jest.spyOn(child, "update");
@@ -79,6 +69,30 @@ describe("GameObject composite", () => {
     const TIMESTAMP = 12345;
     parent.update(TIMESTAMP);
     expect(child.update).toHaveBeenLastCalledWith(TIMESTAMP);
+  });
+
+  test("render will render children GameObject", () => {
+    const parent = new GameObject();
+    const child = new GameObject();
+    jest.spyOn(child, "render");
+
+    parent.addGameObject(child);
+    expect(child.render).not.toHaveBeenCalled();
+
+    parent.render();
+    expect(child.render).toHaveBeenCalledTimes(1);
+  });
+
+  test("render will pass context to children GameObject updates", () => {
+    const parent = new GameObject();
+    const child = new GameObject();
+    jest.spyOn(child, "render");
+    parent.addGameObject(child);
+
+    const canvas = Canvas.createCanvas(100, 100);
+    const ctx = canvas.getContext("2d");
+    parent.render(ctx);
+    expect(child.render).toHaveBeenLastCalledWith(ctx);
   });
 });
 
@@ -105,6 +119,7 @@ describe("GameObject components", () => {
     const gameObject = new GameObject();
     const component = new Component();
     jest.spyOn(component, "update");
+
     gameObject.addComponent(component);
     expect(component.update).not.toHaveBeenCalled();
 
@@ -112,7 +127,7 @@ describe("GameObject components", () => {
     expect(component.update).toHaveBeenCalledTimes(1);
   });
 
-  test("update will pass timestamp to components' update", () => {
+  test("update will pass timestamp to component updates", () => {
     const gameObject = new GameObject();
     const component = new Component();
     jest.spyOn(component, "update");
@@ -121,5 +136,29 @@ describe("GameObject components", () => {
     const TIMESTAMP = 12345;
     gameObject.update(TIMESTAMP);
     expect(component.update).toHaveBeenLastCalledWith(TIMESTAMP);
+  });
+
+  test("render will render Components", () => {
+    const gameObject = new GameObject();
+    const component = new Component();
+
+    jest.spyOn(component, "render");
+    gameObject.addComponent(component);
+    expect(component.render).not.toHaveBeenCalled();
+
+    gameObject.render();
+    expect(component.render).toHaveBeenCalledTimes(1);
+  });
+
+  test("render will pass context to Component renders", () => {
+    const gameObject = new GameObject();
+    const component = new Component();
+    jest.spyOn(component, "render");
+    gameObject.addComponent(component);
+
+    const canvas = Canvas.createCanvas(100, 100);
+    const ctx = canvas.getContext("2d");
+    gameObject.render(ctx);
+    expect(component.render).toHaveBeenLastCalledWith(ctx);
   });
 });

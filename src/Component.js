@@ -15,6 +15,15 @@ class Component {
    * @param {number} currTime - The timestamp passed by requestAnimationFrame
    */
   update(currTime) {}
+
+  /**
+   * Renders the component every frame
+   * To be implimented for individual components
+   * Called by Cameras every frame
+   * Can also be called manually
+   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
+   */
+  render() {}
 }
 
 module.exports = Component;
