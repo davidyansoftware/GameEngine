@@ -12,7 +12,7 @@ class GameObject {
    * @param {number} y - The y-coordinate for the GameObject's Transform
    */
   constructor(x = 0, y = 0) {
-    this.transform = new Transform(x, y);
+    this.transform = new Transform(this, x, y);
 
     this.gameObjects = [];
     this.components = [];

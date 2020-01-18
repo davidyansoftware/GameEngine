@@ -1,24 +1,15 @@
 const GameObject = require("../src/GameObject");
-const Transform = require("../src/Transform");
 const Component = require("../src/Component");
 
 describe("GameObject", () => {
-  test("GameObject constructor stores Transform", () => {
+  test("GameObject constructor creates a Transform", () => {
     const defaultGameObject = new GameObject();
-    expect(defaultGameObject.transform.x).toBe(0);
-    expect(defaultGameObject.transform.y).toBe(0);
-
-    const X_VALUE = 1;
-    const Y_VALUE = 2;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE);
-    expect(gameObject.transform.x).toBe(X_VALUE);
-    expect(gameObject.transform.y).toBe(Y_VALUE);
+    expect(defaultGameObject.transform).toBeDefined();
   });
 
   test("addGameObject adds a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
-
     expect(!parent.gameObjects.includes(child));
 
     parent.addGameObject(child);
@@ -28,7 +19,6 @@ describe("GameObject", () => {
   test("removeGameObject removes a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
-
     expect(parent.gameObjects.includes(child));
 
     parent.removeGameObject(child);
@@ -38,7 +28,6 @@ describe("GameObject", () => {
   test("addComponent adds a component", () => {
     const gameObject = new GameObject();
     const component = new Component();
-
     expect(!gameObject.components.includes(component));
 
     gameObject.addComponent(component);
@@ -48,7 +37,6 @@ describe("GameObject", () => {
   test("removeComponent removes a component", () => {
     const gameObject = new GameObject();
     const component = new Component();
-
     gameObject.addComponent(component);
     expect(gameObject.components.includes(component));
 
