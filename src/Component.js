@@ -23,7 +23,7 @@ class Component {
    * Can also be called manually
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  render() {}
+  render(ctx) {}
 }
 
 module.exports = Component;
