@@ -1,6 +1,6 @@
 const Canvas = require("canvas");
 const GameObject = require("../../src/GameObject");
-const Camera = require("../../src/Components/Camera");
+const Camera = require("../../src/components/Camera");
 
 describe("Camera logic", () => {
   let ctx;

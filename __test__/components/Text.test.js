@@ -1,5 +1,5 @@
 const Canvas = require("canvas");
-const Text = require("../../src/Components/Text");
+const Text = require("../../src/components/Text");
 
 describe("Text logic", () => {
   const TEST = "test";
