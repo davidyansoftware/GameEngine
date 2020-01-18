@@ -13,7 +13,7 @@ class Transform {
     this.gameObject = gameObject;
     this._x = x;
     this._y = y;
-    this.rotation = rotation;
+    this._rotation = rotation;
 
     this._cacheAbsolutePosition();
   }
@@ -47,6 +47,19 @@ class Transform {
   /**
    * @type {number}
    */
+  get absoluteRotation() {
+    if (this._absoluteDirty) {
+      this._cacheAbsolutePosition();
+    }
+    return this._absoluteRotation;
+  }
+  set absoluteRotation(value) {
+    this.rotation = value - this.gameObject.parent.transform.absoluteRotation;
+  }
+
+  /**
+   * @type {number}
+   */
   get x() {
     return this._x;
   }
@@ -66,16 +79,29 @@ class Transform {
     this._absoluteDirty = true;
   }
 
+  /**
+   * @type {number}
+   */
+  get rotation() {
+    return this._rotation;
+  }
+  set rotation(value) {
+    this._rotation = value;
+    this._absoluteDirty = true;
+  }
+
   _cacheAbsolutePosition() {
     if (!this.gameObject.parent) {
       this._absoluteX = this.x;
       this._absoluteY = this.y;
-      this._absoluteDirty = false;
+      this._absoluteRotation = this.rotation;
     } else {
       this._absoluteX = this.gameObject.parent.transform.absoluteX + this.x;
       this._absoluteY = this.gameObject.parent.transform.absoluteY + this.y;
-      this._absoluteDirty = false;
+      this._absoluteRotation =
+        this.gameObject.parent.transform.absoluteRotation + this.rotation;
     }
+    this._absoluteDirty = false;
   }
 }
 
