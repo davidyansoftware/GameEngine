@@ -103,12 +103,12 @@ class Transform {
 
     this._absoluteX =
       parentAbsoluteX +
-      this._x * Math.cos(parentAbsoluteRotation) -
-      this._y * Math.sin(parentAbsoluteRotation);
+      this._x * Math.cos(-parentAbsoluteRotation) -
+      this._y * Math.sin(-parentAbsoluteRotation);
     this._absoluteY =
       parentAbsoluteY +
-      this._x * Math.sin(parentAbsoluteRotation) +
-      this._y * Math.cos(parentAbsoluteRotation);
+      this._x * Math.sin(-parentAbsoluteRotation) +
+      this._y * Math.cos(-parentAbsoluteRotation);
     this._absoluteRotation = parentAbsoluteRotation + this._rotation;
 
     this._absoluteDirty = false;
@@ -129,11 +129,11 @@ class Transform {
     const offsetY = y - parentAbsoluteY;
 
     this.x =
-      offsetX * Math.cos(-parentAbsoluteRotation) -
-      offsetY * Math.sin(-parentAbsoluteRotation);
+      offsetX * Math.cos(parentAbsoluteRotation) -
+      offsetY * Math.sin(parentAbsoluteRotation);
     this.y =
-      offsetX * Math.sin(-parentAbsoluteRotation) +
-      offsetY * Math.cos(-parentAbsoluteRotation);
+      offsetX * Math.sin(parentAbsoluteRotation) +
+      offsetY * Math.cos(parentAbsoluteRotation);
   }
 }
 
