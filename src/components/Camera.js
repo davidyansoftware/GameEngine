@@ -10,11 +10,16 @@ class Camera extends Component {
    * @param {CanvasRenderingContext2D} ctx - The context to render to
    * @param {GameObject} root - The GameObject to be rendered
    */
-  constructor(ctx, root) {
+  constructor(canvas, root) {
     super();
 
-    this.ctx = ctx;
+    this.ctx = canvas.getContext("2d");
     this.root = root;
+
+    const width = canvas.width;
+    const height = canvas.height;
+    this.ctx.save();
+    this.ctx.translate(width / 2, height / 2);
   }
 
   /**
