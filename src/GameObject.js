@@ -92,6 +92,7 @@ class GameObject {
   render(ctx) {
     ctx.save();
     ctx.translate(this.transform.x, this.transform.y);
+    ctx.rotate(this.transform.rotation);
 
     this.components.forEach(component => {
       component.render(ctx);

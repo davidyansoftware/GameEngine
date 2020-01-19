@@ -146,13 +146,16 @@ describe("GameObject render", () => {
   test("render will translate canvas based on Transform", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE);
+    const ROTATION = Math.PI / 2;
+    const gameObject = new GameObject(X_VALUE, Y_VALUE, ROTATION);
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
     jest.spyOn(ctx, "translate");
+    jest.spyOn(ctx, "rotate");
 
     gameObject.render(ctx);
     expect(ctx.translate).toHaveBeenCalledWith(X_VALUE, Y_VALUE);
+    expect(ctx.rotate).toHaveBeenCalledWith(ROTATION);
   });
 });
