@@ -126,3 +126,33 @@ describe("GameObject components", () => {
     expect(component.render).toHaveBeenLastCalledWith(ctx);
   });
 });
+
+describe("GameObject render", () => {
+  test("render will restore the state of the context", () => {
+    const X_VALUE = 100;
+    const Y_VALUE = 200;
+    const gameObject = new GameObject(X_VALUE, Y_VALUE);
+
+    const canvas = Canvas.createCanvas(100, 100);
+    const ctx = canvas.getContext("2d");
+    gameObject.render(ctx);
+
+    //TODO check this for rotation too
+    const matrix = ctx.currentTransform;
+    expect(matrix.e).toBe(0);
+    expect(matrix.e).toBe(0);
+  });
+
+  test("render will translate canvas based on Transform", () => {
+    const X_VALUE = 100;
+    const Y_VALUE = 200;
+    const gameObject = new GameObject(X_VALUE, Y_VALUE);
+
+    const canvas = Canvas.createCanvas(100, 100);
+    const ctx = canvas.getContext("2d");
+    jest.spyOn(ctx, "translate");
+
+    gameObject.render(ctx);
+    expect(ctx.translate).toHaveBeenCalledWith(X_VALUE, Y_VALUE);
+  });
+});

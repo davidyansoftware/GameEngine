@@ -90,12 +90,17 @@ class GameObject {
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
   render(ctx) {
+    ctx.save();
+    ctx.translate(this.transform.x, this.transform.y);
+
     this.components.forEach(component => {
       component.render(ctx);
     });
     this.gameObjects.forEach(gameObject => {
       gameObject.render(ctx);
     });
+
+    ctx.restore();
   }
 }
 
