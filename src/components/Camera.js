@@ -7,18 +7,18 @@ const Component = require("../Component");
 class Camera extends Component {
   /**
    *
-   * @param {CanvasRenderingContext2D} ctx - The context to render to
+   * @param {HTMLCanvasElement} canvas - The canvas to render to
    * @param {GameObject} root - The GameObject to be rendered
    */
   constructor(canvas, root) {
     super();
 
+    this._canvas = canvas;
     this.ctx = canvas.getContext("2d");
     this.root = root;
 
     const width = canvas.width;
     const height = canvas.height;
-    this.ctx.save();
     this.ctx.translate(width / 2, height / 2);
   }
 

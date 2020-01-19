@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: GameLoop.js</title>
+    <title>JSDoc: Source: components/Text.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: GameLoop.js</h1>
+    <h1 class="page-title">Source: components/Text.js</h1>
 
     
 
@@ -26,41 +26,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * GameLoop is responsible for updating game logic on every frame
+            <pre class="prettyprint source linenums"><code>const Component = require("../Component");
+
+/**
+ * A component for rendering text
+ * @extends Component
  */
-class GameLoop {
+class Text extends Component {
   /**
-   * Create a GameLoop
-   * @param {GameObject} gameObject - The root GameObject to be updated
+   * Create a Text
+   * @param {string} text - The text to be rendered
    */
-  constructor(gameObject) {
-    this.gameObject = gameObject;
-    this._currAnimationFrame = this.gameLoop();
+  constructor(text) {
+    super();
+
+    this.text = text;
   }
 
   /**
-   * @type {number}
+   * Renders the text
+   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  get currAnimationFrame() {
-    return this._currAnimationFrame;
-  }
+  render(ctx) {
+    ctx.font = "12px serif";
+    ctx.fillStyle = "black";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
 
-  /**
-   * gameLoop is responsible for calling the logic in the GameObject via update
-   * gameLoop requests an animation frame and then recursively calls itself
-   * @return {number} The animation frame of the current request
-   */
-  gameLoop() {
-    this.gameObject.update();
-
-    return window.requestAnimationFrame(() => {
-      this._currAnimationFrame = this.gameLoop();
-    });
+    ctx.fillText(this.text, 0, 0);
   }
 }
 
-module.exports = GameLoop;
+module.exports = Text;
 </code></pre>
         </article>
     </section>

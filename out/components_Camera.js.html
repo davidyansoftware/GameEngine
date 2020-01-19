@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: GameLoop.js</title>
+    <title>JSDoc: Source: components/Camera.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: GameLoop.js</h1>
+    <h1 class="page-title">Source: components/Camera.js</h1>
 
     
 
@@ -26,41 +26,40 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * GameLoop is responsible for updating game logic on every frame
+            <pre class="prettyprint source linenums"><code>const Component = require("../Component");
+
+/**
+ * A component for rendering GameObjects to canvas context
+ * @extends Component
  */
-class GameLoop {
+class Camera extends Component {
   /**
-   * Create a GameLoop
-   * @param {GameObject} gameObject - The root GameObject to be updated
+   *
+   * @param {HTMLCanvasElement} canvas - The canvas to render to
+   * @param {GameObject} root - The GameObject to be rendered
    */
-  constructor(gameObject) {
-    this.gameObject = gameObject;
-    this._currAnimationFrame = this.gameLoop();
+  constructor(canvas, root) {
+    super();
+
+    this._canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.root = root;
+
+    const width = canvas.width;
+    const height = canvas.height;
+    this.ctx.translate(width / 2, height / 2);
   }
 
   /**
-   * @type {number}
+   * Renders to context every frame
+   * @param {number} currTime - The timestamp passed by requestAnimationFrame
    */
-  get currAnimationFrame() {
-    return this._currAnimationFrame;
-  }
-
-  /**
-   * gameLoop is responsible for calling the logic in the GameObject via update
-   * gameLoop requests an animation frame and then recursively calls itself
-   * @return {number} The animation frame of the current request
-   */
-  gameLoop() {
-    this.gameObject.update();
-
-    return window.requestAnimationFrame(() => {
-      this._currAnimationFrame = this.gameLoop();
-    });
+  update() {
+    this.root.render(this.ctx);
   }
 }
 
-module.exports = GameLoop;
+module.exports = Camera;
 </code></pre>
         </article>
     </section>
