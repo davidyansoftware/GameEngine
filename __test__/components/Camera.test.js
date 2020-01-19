@@ -17,12 +17,15 @@ describe("Camera", () => {
 });
 
 describe("Camera logic", () => {
+  const WIDTH = 100;
+  const HEIGHT = 200;
+
   let ctx;
   let gameObject;
   let camera;
 
   beforeAll(() => {
-    const canvas = Canvas.createCanvas(100, 100);
+    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
     ctx = canvas.getContext("2d");
 
     gameObject = new GameObject();
@@ -36,5 +39,12 @@ describe("Camera logic", () => {
     gameObject.update();
     expect(gameObject.render).toHaveBeenCalledTimes(1);
     expect(gameObject.render).toHaveBeenLastCalledWith(ctx);
+  });
+
+  test("Camera will clear before rendering", () => {
+    jest.spyOn(ctx, "clearRect");
+
+    camera.update(ctx);
+    expect(ctx.clearRect).toHaveBeenCalledWith(0, 0, WIDTH, HEIGHT);
   });
 });
