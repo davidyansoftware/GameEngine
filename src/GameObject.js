@@ -22,13 +22,37 @@ class GameObject {
   /**
    * Add a child GameObject
    * @param {GameObject} gameObject - The child game object
+   * @param {boolean} maintainAbsolutePosition - GameObject should maintain its absolute position
+   * @param {boolean} maintainAbsoluteRotation  - Gamebject should maintain its absolute rotation
    */
-  addGameObject(gameObject) {
+  addGameObject(
+    gameObject,
+    maintainAbsolutePosition = false,
+    maintainAbsoluteRotation = false
+  ) {
+    let prevAbsoluteX;
+    let prevAbsoluteY;
+    let prevAbsoluteRotation;
     if (gameObject.parent) {
+      if (maintainAbsolutePosition) {
+        prevAbsoluteX = gameObject.transform.absoluteX;
+        prevAbsoluteY = gameObject.transform.absoluteY;
+      }
+      if (maintainAbsoluteRotation) {
+        prevAbsoluteRotation = gameObject.transform.absoluteRotation;
+      }
       gameObject.parent.removeGameObject(gameObject);
     }
     gameObject.parent = this;
     this.gameObjects.push(gameObject);
+
+    if (gameObject.parent && maintainAbsolutePosition) {
+      gameObject.transform.absoluteX = prevAbsoluteX;
+      gameObject.transform.absoluteY = prevAbsoluteY;
+    }
+    if (gameObject.parent && maintainAbsoluteRotation) {
+      gameObject.transform.absoluteRotation = prevAbsoluteRotation;
+    }
 
     gameObject.transform._cacheAbsolutePosition();
   }
