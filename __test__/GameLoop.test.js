@@ -21,4 +21,19 @@ describe("GameLoop", () => {
     new GameLoop(gameObject);
     expect(gameObject.update).toHaveBeenCalled();
   });
+
+  test("GameLoop passes elapsedTime to update", () => {
+    const gameObject = new GameObject();
+    jest.spyOn(gameObject, "update");
+
+    const gameLoop = new GameLoop(gameObject);
+    const currTimeStart = performance.now();
+    gameLoop.gameLoop(currTimeStart);
+
+    const currTimeFinish = performance.now();
+    gameLoop.gameLoop(currTimeFinish);
+
+    const deltaTime = (currTimeFinish - currTimeStart) / 1000;
+    expect(gameObject.update).toHaveBeenLastCalledWith(deltaTime);
+  });
 });

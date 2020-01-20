@@ -21,13 +21,18 @@ class GameLoop {
   /**
    * gameLoop is responsible for calling the logic in the GameObject via update
    * gameLoop requests an animation frame and then recursively calls itself
+   * @param {DOMHighResTimeStamp} - The current time passed by requestAnimationFrame
    * @return {number} The animation frame of the current request
    */
-  gameLoop() {
-    this.gameObject.update();
+  gameLoop(currTime) {
+    if (!this.prevTime) this.prevTime = currTime;
+    let deltaTime = (currTime - this.prevTime) / 1000;
+    this.prevTime = currTime;
 
-    return window.requestAnimationFrame(() => {
-      this._currAnimationFrame = this.gameLoop();
+    this.gameObject.update(deltaTime);
+
+    return window.requestAnimationFrame(currTime => {
+      this._currAnimationFrame = this.gameLoop(currTime);
     });
   }
 }
