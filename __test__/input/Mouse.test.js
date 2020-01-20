@@ -1,5 +1,7 @@
 const Mouse = require("../../src/input/Mouse");
 
+const MOUSE_EVENT_MOVE = "mousemove";
+
 describe("Mouse", () => {
   test("Mouse constructor", () => {
     jest.spyOn(document, "addEventListener");
@@ -7,17 +9,17 @@ describe("Mouse", () => {
     let mouse = new Mouse();
     expect(document.addEventListener).toHaveBeenCalledTimes(1);
     expect(document.addEventListener).toHaveBeenCalledWith(
-      "mousemove",
+      MOUSE_EVENT_MOVE,
       mouse._onMouseMove
     );
   });
 
-  test("Mousemove updates Mouse position", () => {
+  test("mousemove updates Mouse position", () => {
     let mouse = new Mouse();
 
     const X = 100;
     const Y = 200;
-    let mouseEvent = new MouseEvent("mousemove", {
+    let mouseEvent = new MouseEvent(MOUSE_EVENT_MOVE, {
       clientX: X,
       clientY: Y
     });

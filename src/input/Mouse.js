@@ -12,10 +12,16 @@ class Mouse {
     document.addEventListener("mousemove", this._onMouseMove);
   }
 
+  /**
+   * @type {number}
+   */
   get x() {
     return this._x;
   }
 
+  /**
+   * @type {number}
+   */
   get y() {
     return this._y;
   }
