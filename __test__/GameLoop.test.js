@@ -6,8 +6,7 @@ describe("GameLoop", () => {
     jest.spyOn(window, "requestAnimationFrame");
 
     const gameObject = new GameObject();
-    const gameLoop = new GameLoop(gameObject);
-
+    new GameLoop(gameObject);
     expect(window.requestAnimationFrame).toHaveBeenCalled();
   });
 
