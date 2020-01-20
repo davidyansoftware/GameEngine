@@ -9,7 +9,6 @@ describe("GameLoop", () => {
     const gameLoop = new GameLoop(gameObject);
 
     expect(window.requestAnimationFrame).toHaveBeenCalled();
-    expect(typeof gameLoop.currAnimationFrame).toBe("number");
   });
 
   test("GameLoop calls update on the gameObject", () => {
@@ -18,7 +17,8 @@ describe("GameLoop", () => {
 
     expect(gameObject.update).not.toHaveBeenCalled();
 
-    new GameLoop(gameObject);
+    const gameLoop = new GameLoop(gameObject);
+    gameLoop.gameLoop(); // called by requestAnimationFrame
     expect(gameObject.update).toHaveBeenCalled();
   });
 

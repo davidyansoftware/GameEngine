@@ -8,14 +8,9 @@ class GameLoop {
    */
   constructor(gameObject) {
     this.gameObject = gameObject;
-    this._currAnimationFrame = this.gameLoop();
-  }
-
-  /**
-   * @type {number}
-   */
-  get currAnimationFrame() {
-    return this._currAnimationFrame;
+    this._currAnimationFrame = window.requestAnimationFrame(currTime => {
+      this.gameLoop(currTime);
+    });
   }
 
   /**
