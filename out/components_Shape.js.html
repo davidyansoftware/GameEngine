@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Camera.js</title>
+    <title>JSDoc: Source: components/Shape.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Camera.js</h1>
+    <h1 class="page-title">Source: components/Shape.js</h1>
 
     
 
@@ -29,39 +29,27 @@
             <pre class="prettyprint source linenums"><code>const Component = require("../Component");
 
 /**
- * A component for rendering GameObjects to canvas context
+ * A component that renders a ShapeType
  * @extends Component
  */
-class Camera extends Component {
+class Shape extends Component {
   /**
-   *
-   * @param {HTMLCanvasElement} canvas - The canvas to render to
-   * @param {GameObject} root - The GameObject to be rendered
+   * The type of shape to render
+   * @param {ShapeType} shapeType
    */
-  constructor(canvas, root) {
+  constructor(shapeType) {
     super();
 
-    this._canvas = canvas;
-    this.ctx = canvas.getContext("2d");
-    this.root = root;
-
-    this._width = canvas.width;
-    this._height = canvas.height;
-    this.ctx.translate(this._width / 2, this._height / 2);
+    this.shapeType = shapeType;
   }
 
-  /**
-   * Renders to context every frame
-   * @param {number} currTime - The timestamp passed by requestAnimationFrame
-   */
-  update() {
-    this.ctx.clearRect(0, 0, this._width, this._height);
-
-    this.root.render(this.ctx);
+  render(ctx) {
+    ctx.strokeStyle = "black";
+    this.shapeType.render(ctx);
   }
 }
 
-module.exports = Camera;
+module.exports = Shape;
 </code></pre>
         </article>
     </section>

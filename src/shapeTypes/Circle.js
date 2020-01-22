@@ -20,7 +20,7 @@ class Circle {
   }
 
   isCollidingWith(self, hurtbox) {
-    return hurtbox.shape._isCollidingWithCircle(hurtbox, self);
+    return hurtbox.shapeType._isCollidingWithCircle(hurtbox, self);
   }
 
   _isCollidingWithCircle(self, hitbox) {
@@ -36,7 +36,7 @@ class Circle {
           2
         )
     );
-    return distanceBetween <= self.shape.radius + hitbox.shape.radius;
+    return distanceBetween <= self.shapeType.radius + hitbox.shapeType.radius;
   }
 }
 

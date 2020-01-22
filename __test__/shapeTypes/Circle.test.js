@@ -14,7 +14,7 @@ describe("Circle render", () => {
     const circle = new Circle(RADIUS);
     circle.render(ctx);
     expect(ctx.arc).toHaveBeenCalledTimes(1);
-    expect(ctx.arc).toHaveBeenLastCalledWith(0, 0, RADIUS, Math.PI * 2);
+    expect(ctx.arc).toHaveBeenLastCalledWith(0, 0, RADIUS, 0, Math.PI * 2);
     expect(ctx.stroke).toHaveBeenCalledTimes(1);
   });
 });

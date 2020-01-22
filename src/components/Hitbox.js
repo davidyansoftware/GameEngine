@@ -1,10 +1,14 @@
 const Component = require("../Component");
 
+/**
+ * A component for determining if GameObjects are colliding
+ * @extends Component
+ */
 class Hitbox extends Component {
-  constructor(shape) {
+  constructor(shapeType) {
     super();
 
-    this.shape = shape;
+    this.shapeType = shapeType;
   }
 
   //isCollingWith(hurtbox) {
