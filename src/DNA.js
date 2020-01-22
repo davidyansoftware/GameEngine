@@ -3,6 +3,10 @@ const GameLoop = require("./GameLoop");
 
 const Camera = require("./components/Camera");
 const Text = require("./components/Text");
+const Shape = require("./components/Shape");
+const Hitbox = require("./components/Hitbox");
+
+const Circle = require("./shapes/Circle");
 
 const DNA = {
   GameObject: GameObject,
@@ -10,7 +14,13 @@ const DNA = {
 
   Components: {
     Camera: Camera,
-    Text: Text
+    Text: Text,
+    Shape: Shape,
+    Hitbox: Hitbox
+  },
+
+  Shapes: {
+    Circle: Circle
   }
 };
 
