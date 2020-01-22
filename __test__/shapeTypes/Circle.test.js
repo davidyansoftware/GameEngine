@@ -1,4 +1,4 @@
-const Circle = require("../../src/shapes/Circle");
+const Circle = require("../../src/shapeTypes/Circle");
 const Hitbox = require("../../src/components/Hitbox");
 const GameObject = require("../../src/GameObject");
 const Canvas = require("canvas");
