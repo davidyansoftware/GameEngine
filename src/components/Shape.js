@@ -8,6 +8,7 @@ class Shape extends Component {
   }
 
   render(ctx) {
+    ctx.strokeStyle = "black";
     this.shapeType.render(ctx);
   }
 }

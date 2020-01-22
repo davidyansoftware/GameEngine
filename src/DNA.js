@@ -6,7 +6,7 @@ const Text = require("./components/Text");
 const Shape = require("./components/Shape");
 const Hitbox = require("./components/Hitbox");
 
-const Circle = require("./shapes/Circle");
+const Circle = require("./shapeTypes/Circle");
 
 const DNA = {
   GameObject: GameObject,
@@ -19,7 +19,7 @@ const DNA = {
     Hitbox: Hitbox
   },
 
-  Shapes: {
+  ShapeTypes: {
     Circle: Circle
   }
 };
