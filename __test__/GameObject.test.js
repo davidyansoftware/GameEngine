@@ -187,7 +187,7 @@ describe("GameObject render", () => {
     jest.spyOn(ctx, "rotate");
 
     gameObject.render(ctx);
-    expect(ctx.translate).toHaveBeenCalledWith(X_VALUE, Y_VALUE);
+    expect(ctx.translate).toHaveBeenCalledWith(X_VALUE, -Y_VALUE);
     expect(ctx.rotate).toHaveBeenCalledWith(ROTATION);
   });
 });

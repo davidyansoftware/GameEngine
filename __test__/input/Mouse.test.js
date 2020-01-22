@@ -10,7 +10,7 @@ describe("Mouse", () => {
     expect(document.addEventListener).toHaveBeenCalledTimes(1);
     expect(document.addEventListener).toHaveBeenCalledWith(
       MOUSE_EVENT_MOVE,
-      mouse._onMouseMove
+      expect.any(Function)
     );
   });
 

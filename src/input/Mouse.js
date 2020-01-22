@@ -9,7 +9,10 @@ class Mouse {
     this._x = 0;
     this._y = 0;
 
-    document.addEventListener("mousemove", this._onMouseMove);
+    // this will not call _onMouseMove directly
+    document.addEventListener("mousemove", event => {
+      this._onMouseMove(event);
+    });
   }
 
   /**
