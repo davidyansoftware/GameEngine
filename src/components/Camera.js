@@ -19,7 +19,9 @@ class Camera extends Component {
 
     this._width = canvas.width;
     this._height = canvas.height;
-    this.ctx.translate(this._width / 2, this._height / 2);
+    this._x = this._width / 2;
+    this._y = this._height / 2;
+    this.ctx.translate(this._x, this._y);
   }
 
   /**
@@ -27,7 +29,7 @@ class Camera extends Component {
    * @param {number} currTime - The timestamp passed by requestAnimationFrame
    */
   update() {
-    this.ctx.clearRect(0, 0, this._width, this._height);
+    this.ctx.clearRect(-this._x, -this._y, this._width, this._height);
 
     this.root.render(this.ctx);
   }

@@ -45,6 +45,11 @@ describe("Camera logic", () => {
     jest.spyOn(ctx, "clearRect");
 
     camera.update(ctx);
-    expect(ctx.clearRect).toHaveBeenCalledWith(0, 0, WIDTH, HEIGHT);
+    expect(ctx.clearRect).toHaveBeenCalledWith(
+      -WIDTH / 2,
+      -HEIGHT / 2,
+      WIDTH,
+      HEIGHT
+    );
   });
 });

@@ -18,7 +18,7 @@ class Player extends DNA.Component {
   }
 }
 
-const mouse = new DNA.Input.Mouse();
+const mouse = new DNA.Input.Mouse(camera);
 
 const player = new DNA.GameObject();
 player.addComponent(new DNA.Components.Shape(new DNA.ShapeTypes.Circle(20)));
