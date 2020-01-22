@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Text.js</title>
+    <title>JSDoc: Source: shapeTypes/Circle.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Text.js</h1>
+    <h1 class="page-title">Source: shapeTypes/Circle.js</h1>
 
     
 
@@ -26,38 +26,44 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Component = require("../Component");
-
-/**
- * A component for rendering text
- * @extends Component
+            <pre class="prettyprint source linenums"><code>/**
+ * A Circle
+ *
+ * @impliments {ShapeType}
  */
-class Text extends Component {
-  /**
-   * Create a Text
-   * @param {string} text - The text to be rendered
-   */
-  constructor(text) {
-    super();
-
-    this.text = text;
+class Circle {
+  constructor(radius) {
+    this.radius = radius;
   }
 
-  /**
-   * Renders the text
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
   render(ctx) {
-    ctx.font = "12px serif";
-    ctx.fillStyle = "black";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    ctx.beginPath();
+    ctx.arc(0, 0, this.radius, Math.PI * 2);
+    ctx.stroke();
+  }
 
-    ctx.fillText(this.text, 0, 0);
+  isCollidingWith(self, hurtbox) {
+    return hurtbox.shape.isCollidingWithCircle(hurtbox, self);
+  }
+
+  isCollidingWithCircle(self, hitbox) {
+    let distanceBetween = Math.sqrt(
+      Math.pow(
+        self.gameObject.transform.absoluteX -
+          hitbox.gameObject.transform.absoluteX,
+        2
+      ) +
+        Math.pow(
+          self.gameObject.transform.absoluteY -
+            hitbox.gameObject.transform.absoluteY,
+          2
+        )
+    );
+    return distanceBetween &lt;= self.shape.radius + hitbox.shape.radius;
   }
 }
 
-module.exports = Text;
+module.exports = Circle;
 </code></pre>
         </article>
     </section>

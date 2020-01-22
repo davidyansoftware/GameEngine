@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Text.js</title>
+    <title>JSDoc: Source: ShapeType.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Text.js</h1>
+    <h1 class="page-title">Source: ShapeType.js</h1>
 
     
 
@@ -26,38 +26,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Component = require("../Component");
+            <pre class="prettyprint source linenums"><code>/**
+ * Interface for types of shapes
+ * Used in drawing Shapes and determining collisions in Hitboxes
+ *
+ * @interface ShapeType
+ */
 
 /**
- * A component for rendering text
- * @extends Component
+ * Render the ShapeType on the given context
+ *
+ * @function
+ * @name ShapeType#render
+ * @param {CanvasRenderingContext2D} ctx - The context to render the ShapeType on
  */
-class Text extends Component {
-  /**
-   * Create a Text
-   * @param {string} text - The text to be rendered
-   */
-  constructor(text) {
-    super();
 
-    this.text = text;
-  }
-
-  /**
-   * Renders the text
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
-  render(ctx) {
-    ctx.font = "12px serif";
-    ctx.fillStyle = "black";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-
-    ctx.fillText(this.text, 0, 0);
-  }
-}
-
-module.exports = Text;
+/**
+ * Determine if the ShapeType is colliding with another ShapeType
+ *
+ * @function
+ * @name ShapeType#isCollidingWith
+ * @param {Hitbox} self - The ShapeType's Hitbox
+ * @param {Hitbox} hurtbox - The Hitbox to test against
+ * @returns {boolean} true if the Hitboxes are colliding
+ */
 </code></pre>
         </article>
     </section>

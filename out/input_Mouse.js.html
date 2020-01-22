@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/Text.js</title>
+    <title>JSDoc: Source: input/Mouse.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/Text.js</h1>
+    <h1 class="page-title">Source: input/Mouse.js</h1>
 
     
 
@@ -26,38 +26,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Component = require("../Component");
-
-/**
- * A component for rendering text
- * @extends Component
+            <pre class="prettyprint source linenums"><code>/**
+ * A class to handle mouse inputs
  */
-class Text extends Component {
+class Mouse {
   /**
-   * Create a Text
-   * @param {string} text - The text to be rendered
+   * Create a Mouse object
    */
-  constructor(text) {
-    super();
+  constructor() {
+    this._x = 0;
+    this._y = 0;
 
-    this.text = text;
+    document.addEventListener("mousemove", this._onMouseMove);
   }
 
   /**
-   * Renders the text
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
+   * @type {number}
    */
-  render(ctx) {
-    ctx.font = "12px serif";
-    ctx.fillStyle = "black";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+  get x() {
+    return this._x;
+  }
 
-    ctx.fillText(this.text, 0, 0);
+  /**
+   * @type {number}
+   */
+  get y() {
+    return this._y;
+  }
+
+  _onMouseMove(event) {
+    this._x = event.clientX;
+    this._y = event.clientY;
   }
 }
 
-module.exports = Text;
+module.exports = Mouse;
 </code></pre>
         </article>
     </section>

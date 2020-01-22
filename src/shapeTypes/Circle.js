@@ -1,4 +1,14 @@
+/**
+ * A Circle
+ *
+ * @impliments {ShapeType}
+ */
 class Circle {
+  /**
+   * Create a Circle object
+   *
+   * @param {number} radius - Radius of the circle
+   */
   constructor(radius) {
     this.radius = radius;
   }
@@ -10,10 +20,10 @@ class Circle {
   }
 
   isCollidingWith(self, hurtbox) {
-    return hurtbox.shape.isCollidingWithCircle(hurtbox, self);
+    return hurtbox.shape._isCollidingWithCircle(hurtbox, self);
   }
 
-  isCollidingWithCircle(self, hitbox) {
+  _isCollidingWithCircle(self, hitbox) {
     let distanceBetween = Math.sqrt(
       Math.pow(
         self.gameObject.transform.absoluteX -

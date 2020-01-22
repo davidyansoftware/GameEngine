@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GameLoop</title>
+    <title>JSDoc: Interface: ShapeType</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GameLoop</h1>
+    <h1 class="page-title">Interface: ShapeType</h1>
 
     
 
@@ -28,9 +28,7 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GameLoop<span class="signature">(gameObject)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description">GameLoop is responsible for updating game logic on every frame</div>
+        <h2>ShapeType</h2>
         
     
 </header>
@@ -39,82 +37,11 @@
     <div class="container-overview">
     
         
-
-    
-    <h2>Constructor</h2>
-    
-
-    
-    <h4 class="name" id="GameLoop"><span class="type-signature"></span>new GameLoop<span class="signature">(gameObject)</span><span class="type-signature"></span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    Create a GameLoop
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
+            <div class="description">Interface for types of shapes
+Used in drawing Shapes and determining collisions in Hitboxes</div>
         
 
         
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>gameObject</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The root GameObject to be updated</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
 
 
 <dl class="details">
@@ -146,7 +73,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameLoop.js.html">GameLoop.js</a>, <a href="GameLoop.js.html#line9">line 9</a>
+        <a href="ShapeType.js.html">ShapeType.js</a>, <a href="ShapeType.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -158,24 +85,7 @@
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -202,7 +112,7 @@
     
 
     
-    <h4 class="name" id="gameLoop"><span class="type-signature"></span>gameLoop<span class="signature">(currTime)</span><span class="type-signature"> &rarr; {number}</span></h4>
+    <h4 class="name" id="isCollidingWith"><span class="type-signature"></span>isCollidingWith<span class="signature">(self, hurtbox)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
 
     
@@ -210,8 +120,7 @@
 
 
 <div class="description">
-    gameLoop is responsible for calling the logic in the GameObject via update
-gameLoop requests an animation frame and then recursively calls itself
+    Determine if the ShapeType is colliding with another ShapeType
 </div>
 
 
@@ -247,13 +156,13 @@ gameLoop requests an animation frame and then recursively calls itself
 
         <tr>
             
-                <td class="name"><code>currTime</code></td>
+                <td class="name"><code>self</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">DOMHighResTimeStamp</span>
+<span class="param-type">Hitbox</span>
 
 
             
@@ -263,7 +172,30 @@ gameLoop requests an animation frame and then recursively calls itself
 
             
 
-            <td class="description last">The current time passed by requestAnimationFrame</td>
+            <td class="description last">The ShapeType's Hitbox</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>hurtbox</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Hitbox</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The Hitbox to test against</td>
         </tr>
 
     
@@ -304,7 +236,7 @@ gameLoop requests an animation frame and then recursively calls itself
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameLoop.js.html">GameLoop.js</a>, <a href="GameLoop.js.html#line22">line 22</a>
+        <a href="ShapeType.js.html">ShapeType.js</a>, <a href="ShapeType.js.html#line16">line 16</a>
     </li></ul></dd>
     
 
@@ -333,7 +265,7 @@ gameLoop requests an animation frame and then recursively calls itself
 
         
 <div class="param-desc">
-    The animation frame of the current request
+    true if the Hitboxes are colliding
 </div>
 
 
@@ -344,13 +276,150 @@ gameLoop requests an animation frame and then recursively calls itself
     </dt>
     <dd>
         
-<span class="param-type">number</span>
+<span class="param-type">boolean</span>
 
 
     </dd>
 </dl>
 
     
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="render"><span class="type-signature"></span>render<span class="signature">(ctx)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Render the ShapeType on the given context
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>ctx</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">CanvasRenderingContext2D</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The context to render the ShapeType on</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ShapeType.js.html">ShapeType.js</a>, <a href="ShapeType.js.html#line8">line 8</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
