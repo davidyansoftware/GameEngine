@@ -163,16 +163,17 @@ describe("GameObject render", () => {
   test("render will restore the state of the context", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE);
+    const ROTATION = Math.PI / 4;
+    const gameObject = new GameObject(X_VALUE, Y_VALUE, ROTATION);
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
+    const beforeMatrix = ctx.currentTransform;
+
     gameObject.render(ctx);
 
-    //TODO check this for rotation too
-    const matrix = ctx.currentTransform;
-    expect(matrix.e).toBe(0);
-    expect(matrix.e).toBe(0);
+    const afterMatrix = ctx.currentTransform;
+    expect(afterMatrix).toEqual(beforeMatrix);
   });
 
   test("render will translate canvas based on Transform", () => {
