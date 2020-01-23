@@ -77,7 +77,7 @@ describe("Camera logic", () => {
     const offsetY = root.transform.absoluteY - gameObject.transform.absoluteY;
     const offsetRotation =
       root.transform.absoluteRotation - gameObject.transform.absoluteRotation;
-    expect(ctx.translate).toHaveBeenCalledWith(offsetX, -offsetY);
+    expect(ctx.translate).toHaveBeenCalledWith(offsetX, offsetY);
     expect(ctx.rotate).toHaveBeenCalledWith(offsetRotation);
   });
 
