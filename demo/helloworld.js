@@ -1,15 +1,17 @@
 const canvas = document.getElementById("canvas");
 
-const root = new DNA.GameObject();
+const root = new DNA.GameObject(100, 100, Math.PI / 4);
 
 const cameraGameObject = new DNA.GameObject();
 const camera = new DNA.Components.Camera(canvas, root);
-const text = new DNA.Components.Text("Hello World!");
-
 cameraGameObject.addComponent(camera);
 root.addGameObject(cameraGameObject);
 
-root.addComponent(text);
+const textGameObject = new DNA.GameObject();
+const text = new DNA.Components.Text("Hello World!");
+textGameObject.addComponent(text);
+root.addGameObject(textGameObject);
+
 root.addComponent(new DNA.Components.Shape(new DNA.ShapeTypes.Circle(100)));
 
 class Follow extends DNA.Component {
@@ -29,7 +31,7 @@ class Follow extends DNA.Component {
 
 const mouse = new DNA.Input.Mouse(camera);
 
-const follow = new Follow(mouse);
-cameraGameObject.addComponent(follow);
+//const follow = new Follow(mouse);
+//cameraGameObject.addComponent(follow);
 
 new DNA.GameLoop(root);
