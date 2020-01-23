@@ -20,20 +20,13 @@ describe("Camera logic", () => {
   const WIDTH = 100;
   const HEIGHT = 200;
 
-  let ctx;
-  let gameObject;
-  let camera;
-
-  beforeAll(() => {
-    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
-    ctx = canvas.getContext("2d");
-
-    gameObject = new GameObject();
-    camera = new Camera(canvas, gameObject);
-    gameObject.addComponent(camera);
-  });
-
   test("Camera will render root object on update", () => {
+    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
+    const ctx = canvas.getContext("2d");
+
+    const gameObject = new GameObject();
+    const camera = new Camera(canvas, gameObject);
+    gameObject.addComponent(camera);
     jest.spyOn(gameObject, "render");
 
     gameObject.update();
@@ -42,7 +35,13 @@ describe("Camera logic", () => {
   });
 
   test("Camera will clear before rendering", () => {
+    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
+    const ctx = canvas.getContext("2d");
     jest.spyOn(ctx, "clearRect");
+
+    const gameObject = new GameObject();
+    const camera = new Camera(canvas, gameObject);
+    gameObject.addComponent(camera);
 
     camera.update(ctx);
     expect(ctx.clearRect).toHaveBeenCalledWith(
@@ -51,5 +50,58 @@ describe("Camera logic", () => {
       WIDTH,
       HEIGHT
     );
+  });
+
+  test("Camera will offset based on absolute differences", () => {
+    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
+    const ctx = canvas.getContext("2d");
+    jest.spyOn(ctx, "translate");
+    jest.spyOn(ctx, "rotate");
+
+    const ROOT_X = 300;
+    const ROOT_Y = 400;
+    const ROOT_ROTATION = Math.PI / 4;
+    const root = new GameObject(ROOT_X, ROOT_Y, ROOT_ROTATION);
+
+    const CAMERA_X = 500;
+    const CAMERA_Y = 600;
+    const CAMERA_ROTATION = Math.PI / 2;
+    const gameObject = new GameObject(CAMERA_X, CAMERA_Y, CAMERA_ROTATION);
+    const camera = new Camera(canvas, root);
+    gameObject.addComponent(camera);
+
+    root.addGameObject(gameObject);
+
+    camera.update(ctx);
+    const offsetX = root.transform.absoluteX - gameObject.transform.absoluteX;
+    const offsetY = root.transform.absoluteY - gameObject.transform.absoluteY;
+    const offsetRotation =
+      root.transform.absoluteRotation - gameObject.transform.absoluteRotation;
+    expect(ctx.translate).toHaveBeenCalledWith(offsetX, -offsetY);
+    expect(ctx.rotate).toHaveBeenCalledWith(offsetRotation);
+  });
+
+  test("Camera will restore context", () => {
+    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
+    const ctx = canvas.getContext("2d");
+
+    const ROOT_X = 300;
+    const ROOT_Y = 400;
+    const ROOT_ROTATION = Math.PI / 4;
+    const root = new GameObject(ROOT_X, ROOT_Y, ROOT_ROTATION);
+
+    const CAMERA_X = 500;
+    const CAMERA_Y = 600;
+    const CAMERA_ROTATION = Math.PI / 2;
+    const gameObject = new GameObject(CAMERA_X, CAMERA_Y, CAMERA_ROTATION);
+    const camera = new Camera(canvas, root);
+    gameObject.addComponent(camera);
+
+    const beforeMatrix = ctx.currentTransform;
+
+    camera.update();
+
+    const afterMatrix = ctx.currentTransform;
+    expect(afterMatrix).toEqual(beforeMatrix);
   });
 });

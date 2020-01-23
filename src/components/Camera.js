@@ -29,9 +29,24 @@ class Camera extends Component {
    * @param {number} currTime - The timestamp passed by requestAnimationFrame
    */
   update() {
+    this.ctx.save();
+
+    const offsetX =
+      this.root.transform.absoluteX - this.gameObject.transform.absoluteX;
+    const offsetY =
+      this.root.transform.absoluteY - this.gameObject.transform.absoluteY;
+    const offsetRotation =
+      this.root.transform.absoluteRotation -
+      this.gameObject.transform.absoluteRotation;
+
+    this.ctx.translate(offsetX, -offsetY);
+    this.ctx.rotate(offsetRotation);
+
     this.ctx.clearRect(-this._x, -this._y, this._width, this._height);
 
     this.root.render(this.ctx);
+
+    this.ctx.restore();
   }
 }
 
