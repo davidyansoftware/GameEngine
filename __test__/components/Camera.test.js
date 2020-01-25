@@ -72,13 +72,32 @@ describe("Camera logic", () => {
 
     root.addGameObject(gameObject);
 
-    camera.update(ctx);
+    camera.update();
     const offsetX = root.transform.absoluteX - gameObject.transform.absoluteX;
     const offsetY = root.transform.absoluteY - gameObject.transform.absoluteY;
     const offsetRotation =
       root.transform.absoluteRotation - gameObject.transform.absoluteRotation;
     expect(ctx.translate).toHaveBeenCalledWith(offsetX, offsetY);
     expect(ctx.rotate).toHaveBeenCalledWith(offsetRotation);
+  });
+
+  test("Camera will not transform if it is on the root", () => {
+    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
+    const ctx = canvas.getContext("2d");
+
+    const ROOT_X = 300;
+    const ROOT_Y = 400;
+    const ROOT_ROTATION = Math.PI / 4;
+    const root = new GameObject(ROOT_X, ROOT_Y, ROOT_ROTATION);
+
+    const camera = new Camera(canvas, root);
+    root.addComponent(camera);
+
+    jest.spyOn(ctx, "translate");
+    jest.spyOn(ctx, "rotate");
+    camera.update();
+    expect(ctx.translate).toHaveBeenCalledWith(0, 0);
+    expect(ctx.rotate).toHaveBeenCalledWith(0);
   });
 
   test("Camera will restore context", () => {
