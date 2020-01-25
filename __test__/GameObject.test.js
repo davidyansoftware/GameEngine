@@ -176,7 +176,7 @@ describe("GameObject render", () => {
     expect(afterMatrix).toEqual(beforeMatrix);
   });
 
-  test("render will translate canvas based on Transform", () => {
+  test("render will not translate canvas based on Transform", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
     const ROTATION = Math.PI / 2;
@@ -188,7 +188,42 @@ describe("GameObject render", () => {
     jest.spyOn(ctx, "rotate");
 
     gameObject.render(ctx);
-    expect(ctx.translate).toHaveBeenCalledWith(X_VALUE, -Y_VALUE);
-    expect(ctx.rotate).toHaveBeenCalledWith(ROTATION);
+    expect(ctx.translate).not.toHaveBeenCalled();
+    expect(ctx.rotate).not.toHaveBeenCalled();
+
+    //expect(ctx.translate).toHaveBeenCalledWith(X_VALUE, -Y_VALUE);
+    //expect(ctx.rotate).toHaveBeenCalledWith(ROTATION);
+  });
+
+  test("render will translate canvas based on child GameObject Transforms", () => {
+    const PARENT_X = 100;
+    const PARENT_Y = 200;
+    const PARENT_ROTATION = Math.PI / 2;
+    const parent = new GameObject(PARENT_X, PARENT_Y, PARENT_ROTATION);
+
+    const CHILD1_X = 300;
+    const CHILD1_Y = 400;
+    const CHILD1_ROTATION = Math.PI / 4;
+    const child1 = new GameObject(CHILD1_X, CHILD1_Y, CHILD1_ROTATION);
+    parent.addGameObject(child1);
+
+    const CHILD2_X = 500;
+    const CHILD2_Y = 600;
+    const CHILD2_ROTATION = Math.PI / 8;
+    const child2 = new GameObject(CHILD2_X, CHILD2_Y, CHILD2_ROTATION);
+    parent.addGameObject(child2);
+
+    const canvas = Canvas.createCanvas(100, 100);
+    const ctx = canvas.getContext("2d");
+    jest.spyOn(ctx, "translate");
+    jest.spyOn(ctx, "rotate");
+
+    parent.render(ctx);
+    expect(ctx.translate).toHaveBeenCalledTimes(2);
+    expect(ctx.translate).toHaveBeenNthCalledWith(1, CHILD1_X, -CHILD1_Y);
+    expect(ctx.translate).toHaveBeenNthCalledWith(2, CHILD2_X, -CHILD2_Y);
+    expect(ctx.rotate).toHaveBeenCalledTimes(2);
+    expect(ctx.rotate).toHaveBeenNthCalledWith(1, CHILD1_ROTATION);
+    expect(ctx.rotate).toHaveBeenNthCalledWith(2, CHILD2_ROTATION);
   });
 });

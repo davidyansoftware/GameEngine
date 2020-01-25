@@ -114,18 +114,19 @@ class GameObject {
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
   render(ctx) {
-    ctx.save();
-    ctx.translate(this.transform.x, -this.transform.y);
-    ctx.rotate(this.transform.rotation);
-
     this.components.forEach(component => {
       component.render(ctx);
     });
     this.gameObjects.forEach(gameObject => {
-      gameObject.render(ctx);
-    });
+      // translating transform for each child so we don't have to translate after finding absolute offsets
+      ctx.save();
+      ctx.translate(gameObject.transform.x, -gameObject.transform.y);
+      ctx.rotate(gameObject.transform.rotation);
 
-    ctx.restore();
+      gameObject.render(ctx);
+
+      ctx.restore();
+    });
   }
 }
 
