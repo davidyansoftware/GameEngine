@@ -14,7 +14,7 @@ class Player extends DNA.Component {
   update() {
     const dx = this.mouse.x - this.gameObject.transform.absoluteX;
     const dy = this.mouse.y - this.gameObject.transform.absoluteY;
-    this.gameObject.transform.rotation = Math.atan2(dy, dx) + Math.PI / 2;
+    this.gameObject.transform.rotation = Math.PI / 2 - Math.atan2(dy, dx);
   }
 }
 
