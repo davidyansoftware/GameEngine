@@ -190,9 +190,6 @@ describe("GameObject render", () => {
     gameObject.render(ctx);
     expect(ctx.translate).not.toHaveBeenCalled();
     expect(ctx.rotate).not.toHaveBeenCalled();
-
-    //expect(ctx.translate).toHaveBeenCalledWith(X_VALUE, -Y_VALUE);
-    //expect(ctx.rotate).toHaveBeenCalledWith(ROTATION);
   });
 
   test("render will translate canvas based on child GameObject Transforms", () => {
