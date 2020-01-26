@@ -75,7 +75,7 @@ class GameObject {
    * @param {Component} component - Component to be added
    */
   addComponent(component) {
-    component.gameObject = this;
+    component._gameObject = this;
     this.components.push(component);
   }
 

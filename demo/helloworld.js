@@ -1,9 +1,8 @@
 const canvas = document.getElementById("canvas");
 
-//const root = new DNA.GameObject(100, 100, Math.PI / 4);
 const root = new DNA.GameObject();
 
-const cameraGameObject = new DNA.GameObject(100, 100);
+const cameraGameObject = new DNA.GameObject();
 const camera = new DNA.Components.Camera(canvas, root);
 cameraGameObject.addComponent(camera);
 root.addGameObject(cameraGameObject);

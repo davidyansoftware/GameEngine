@@ -8,6 +8,22 @@ class Component {
   constructor() {}
 
   /**
+   * The GameObject this Component is attached to
+   * @type {GameObject}
+   */
+  get gameObject() {
+    return this._gameObject || null;
+  }
+
+  /**
+   * The Transform of the GameObject this Component is attached to
+   * @type {Transform}
+   */
+  get transform() {
+    return this.gameObject ? this.gameObject.transform : null;
+  }
+
+  /**
    * Runs game logic for this component every frame
    * To be implimented for individual components
    * Called by the GameLoop every frame
