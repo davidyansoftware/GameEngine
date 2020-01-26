@@ -10,7 +10,7 @@ class Transform {
    * @param {number} rotation - The rotation in radians
    */
   constructor(gameObject, x = 0, y = 0, rotation = 0) {
-    this.gameObject = gameObject;
+    this._gameObject = gameObject;
     this._x = x;
     this._y = y;
     this._rotation = rotation;
@@ -19,6 +19,59 @@ class Transform {
   }
 
   /**
+   * The GameObject this Transform is attached to
+   * @type {GameObject}
+   */
+  get gameObject() {
+    return this._gameObject;
+  }
+
+  /**
+   * The Transform of this GameObject
+   * @type {Transform}
+   */
+  get transform() {
+    return this;
+  }
+
+  /**
+   * The x-coordinate of the GameObject
+   * @type {number}
+   */
+  get x() {
+    return this._x;
+  }
+  set x(value) {
+    this._x = value;
+    this._absoluteDirty = true;
+  }
+
+  /**
+   * The y-coordinate of the GameObject
+   * @type {number}
+   */
+  get y() {
+    return this._y;
+  }
+  set y(value) {
+    this._y = value;
+    this._absoluteDirty = true;
+  }
+
+  /**
+   * The rotation of the GameObject
+   * @type {number}
+   */
+  get rotation() {
+    return this._rotation;
+  }
+  set rotation(value) {
+    this._rotation = value;
+    this._absoluteDirty = true;
+  }
+
+  /**
+   * The x-coordinate relative to the root GameObject
    * @type {number}
    */
   get absoluteX() {
@@ -32,6 +85,7 @@ class Transform {
   }
 
   /**
+   * The y-coordinate relative to the root GameObject
    * @type {number}
    */
   get absoluteY() {
@@ -45,6 +99,7 @@ class Transform {
   }
 
   /**
+   * The rotation relative to the root GameObject
    * @type {number}
    */
   get absoluteRotation() {
@@ -55,39 +110,6 @@ class Transform {
   }
   set absoluteRotation(value) {
     this.rotation = value - this.gameObject.parent.transform.absoluteRotation;
-  }
-
-  /**
-   * @type {number}
-   */
-  get x() {
-    return this._x;
-  }
-  set x(value) {
-    this._x = value;
-    this._absoluteDirty = true;
-  }
-
-  /**
-   * @type {number}
-   */
-  get y() {
-    return this._y;
-  }
-  set y(value) {
-    this._y = value;
-    this._absoluteDirty = true;
-  }
-
-  /**
-   * @type {number}
-   */
-  get rotation() {
-    return this._rotation;
-  }
-  set rotation(value) {
-    this._rotation = value;
-    this._absoluteDirty = true;
   }
 
   _cacheAbsolutePosition() {

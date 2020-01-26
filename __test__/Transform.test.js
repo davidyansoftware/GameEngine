@@ -6,6 +6,13 @@ describe("Transform constructor", () => {
     expect(gameObject.transform.gameObject).toBe(gameObject);
   });
 
+  test("Transform references itself", () => {
+    const gameObject = new GameObject();
+    expect(gameObject.transform.transform).toBe(
+      gameObject.transform._gameObject.transform
+    );
+  });
+
   test("Transform constructor defaults to (0,0,0)", () => {
     const defaultGameObject = new GameObject();
     expect(defaultGameObject.transform.x).toBe(0);
