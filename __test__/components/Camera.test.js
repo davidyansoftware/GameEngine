@@ -6,13 +6,18 @@ describe("Camera", () => {
   test("Camera constructor will translate context to center", () => {
     const WIDTH = 100;
     const HEIGHT = 200;
-    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
 
+    const refCanvas = Canvas.createCanvas(WIDTH, HEIGHT);
+    const refCtx = refCanvas.getContext("2d");
+    refCtx.translate(WIDTH / 2, HEIGHT / 2);
+    const refMatrix = refCtx.currentTransform;
+
+    const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
     new Camera(canvas, null);
     const ctx = canvas.getContext("2d");
     const matrix = ctx.currentTransform;
-    expect(matrix.e).toBe(WIDTH / 2);
-    expect(matrix.f).toBe(HEIGHT / 2);
+
+    expect(matrix).toEqual(refMatrix);
   });
 });
 
