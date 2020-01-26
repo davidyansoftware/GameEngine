@@ -34,7 +34,7 @@ class Mouse {
   _onMouseMove(event) {
     const rect = this.camera._canvas.getBoundingClientRect();
     this._x = event.clientX - Math.round(rect.left - 0.5) - this.camera._x;
-    this._y = event.clientY - Math.round(rect.top - 0.5) - this.camera._y;
+    this._y = -(event.clientY - Math.round(rect.top - 0.5) - this.camera._y);
   }
 }
 

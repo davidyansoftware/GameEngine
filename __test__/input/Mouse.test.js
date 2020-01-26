@@ -38,6 +38,6 @@ describe("Mouse", () => {
     mouse._onMouseMove(mouseEvent);
     const rect = canvas.getBoundingClientRect();
     expect(mouse.x).toBe(X - Math.round(rect.left - 0.5) - camera._x);
-    expect(mouse.y).toBe(Y - Math.round(rect.top - 0.5) - camera._y);
+    expect(mouse.y).toBe(-(Y - Math.round(rect.top - 0.5) - camera._y));
   });
 });
