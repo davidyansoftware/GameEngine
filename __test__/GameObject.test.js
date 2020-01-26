@@ -3,9 +3,14 @@ const GameObject = require("../src/GameObject");
 const Component = require("../src/Component");
 
 describe("GameObject", () => {
-  test("GameObject constructor creates a Transform", () => {
-    const defaultGameObject = new GameObject();
-    expect(defaultGameObject.transform).toBeDefined();
+  test("GameObject can reference itself", () => {
+    const gameObject = new GameObject();
+    expect(gameObject.gameObject).toBe(gameObject);
+  });
+
+  test("GameObject can reference it's Transform", () => {
+    const gameObject = new GameObject();
+    expect(gameObject.transform).toBe(gameObject._transform);
   });
 });
 

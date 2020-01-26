@@ -13,10 +13,26 @@ class GameObject {
    * @param {number} rotation - The rotation for the GameObject's Transform
    */
   constructor(x = 0, y = 0, rotation = 0) {
-    this.transform = new Transform(this, x, y, rotation);
+    this._transform = new Transform(this, x, y, rotation);
 
     this.gameObjects = [];
     this.components = [];
+  }
+
+  /**
+   * This GameObject
+   * @type {GameObject}
+   */
+  get gameObject() {
+    return this;
+  }
+
+  /**
+   * The Transform of this GameObject
+   * @type {Transform}
+   */
+  get transform() {
+    return this._transform || null;
   }
 
   /**
