@@ -55,8 +55,6 @@ describe("Camera logic", () => {
   test("Camera will offset based on absolute differences", () => {
     const canvas = Canvas.createCanvas(WIDTH, HEIGHT);
     const ctx = canvas.getContext("2d");
-    jest.spyOn(ctx, "translate");
-    jest.spyOn(ctx, "rotate");
 
     const ROOT_X = 300;
     const ROOT_Y = 400;
@@ -72,6 +70,9 @@ describe("Camera logic", () => {
 
     root.addGameObject(gameObject);
 
+    const translateSpy = jest.spyOn(ctx, "translate");
+    const rotateSpy = jest.spyOn(ctx, "rotate");
+
     camera.update();
     const offsetX = root.transform.absoluteX - gameObject.transform.absoluteX;
     const offsetY = root.transform.absoluteY - gameObject.transform.absoluteY;
@@ -79,6 +80,7 @@ describe("Camera logic", () => {
       root.transform.absoluteRotation - gameObject.transform.absoluteRotation;
     expect(ctx.translate).toHaveBeenCalledWith(offsetX, -offsetY);
     expect(ctx.rotate).toHaveBeenCalledWith(offsetRotation);
+    expect(isFirstCalledBefore(rotateSpy, translateSpy)).toBe(true);
   });
 
   test("Camera will not transform if it is on the root", () => {
@@ -124,3 +126,9 @@ describe("Camera logic", () => {
     expect(afterMatrix).toEqual(beforeMatrix);
   });
 });
+
+function isFirstCalledBefore(spy1, spy2) {
+  const spy1Order = spy1.mock.invocationCallOrder[0];
+  const spy2Order = spy2.mock.invocationCallOrder[0];
+  return spy1Order < spy2Order;
+}
