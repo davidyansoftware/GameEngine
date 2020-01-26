@@ -14,10 +14,10 @@ describe("Transform constructor", () => {
   });
 
   test("Transform constructor defaults to (0,0,0)", () => {
-    const defaultGameObject = new GameObject();
-    expect(defaultGameObject.transform.x).toBe(0);
-    expect(defaultGameObject.transform.y).toBe(0);
-    expect(defaultGameObject.transform.rotation).toBe(0);
+    const gameObject = new GameObject();
+    expect(gameObject.transform.x).toBe(0);
+    expect(gameObject.transform.y).toBe(0);
+    expect(gameObject.transform.rotation).toBe(0);
   });
 
   test("Transform getters match setters", () => {

@@ -33,13 +33,10 @@ class Camera extends Component {
 
     this.ctx.save();
 
-    const offsetX =
-      this.root.transform.absoluteX - this.gameObject.transform.absoluteX;
-    const offsetY =
-      this.root.transform.absoluteY - this.gameObject.transform.absoluteY;
+    const offsetX = this.root.transform.absoluteX - this.transform.absoluteX;
+    const offsetY = this.root.transform.absoluteY - this.transform.absoluteY;
     const offsetRotation =
-      this.root.transform.absoluteRotation -
-      this.gameObject.transform.absoluteRotation;
+      this.root.transform.absoluteRotation - this.transform.absoluteRotation;
 
     this.ctx.rotate(offsetRotation);
     this.ctx.translate(offsetX, -offsetY);

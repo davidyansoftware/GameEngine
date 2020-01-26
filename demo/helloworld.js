@@ -24,8 +24,8 @@ class Follow extends DNA.Component {
   update() {
     const dx = this.mouse.x;
     const dy = this.mouse.y;
-    this.gameObject.transform.x += dx / 100;
-    this.gameObject.transform.y += dy / 100;
+    this.transform.x += dx / 100;
+    this.transform.y += dy / 100;
   }
 }
 
