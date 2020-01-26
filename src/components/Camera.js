@@ -41,7 +41,7 @@ class Camera extends Component {
       this.root.transform.absoluteRotation -
       this.gameObject.transform.absoluteRotation;
 
-    this.ctx.translate(offsetX, offsetY);
+    this.ctx.translate(offsetX, -offsetY);
     this.ctx.rotate(offsetRotation);
 
     this.root.render(this.ctx);

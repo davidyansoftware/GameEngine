@@ -77,7 +77,7 @@ describe("Camera logic", () => {
     const offsetY = root.transform.absoluteY - gameObject.transform.absoluteY;
     const offsetRotation =
       root.transform.absoluteRotation - gameObject.transform.absoluteRotation;
-    expect(ctx.translate).toHaveBeenCalledWith(offsetX, offsetY);
+    expect(ctx.translate).toHaveBeenCalledWith(offsetX, -offsetY);
     expect(ctx.rotate).toHaveBeenCalledWith(offsetRotation);
   });
 
@@ -96,7 +96,7 @@ describe("Camera logic", () => {
     jest.spyOn(ctx, "translate");
     jest.spyOn(ctx, "rotate");
     camera.update();
-    expect(ctx.translate).toHaveBeenCalledWith(0, 0);
+    expect(ctx.translate).toHaveBeenCalledWith(0, -0);
     expect(ctx.rotate).toHaveBeenCalledWith(0);
   });
 
