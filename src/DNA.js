@@ -6,8 +6,10 @@ const Camera = require("./components/Camera");
 const Text = require("./components/Text");
 const Shape = require("./components/Shape");
 const Hitbox = require("./components/Hitbox");
+const Physics = require("./components/Physics");
 
 const Mouse = require("./input/Mouse");
+const Keyboard = require("./input/Keyboard");
 
 const Circle = require("./shapeTypes/Circle");
 
@@ -20,7 +22,8 @@ const DNA = {
     Camera: Camera,
     Text: Text,
     Shape: Shape,
-    Hitbox: Hitbox
+    Hitbox: Hitbox,
+    Physics: Physics
   },
 
   Input: {
