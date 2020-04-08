@@ -1,0 +1,23 @@
+const Coordinate = require("./Coordinate");
+
+/**
+ * Represent polar coordinates
+ * @extends Coordinate
+ */
+class Polar extends Coordinate {
+  /**
+   *
+   * @param {number} magnitude - The magnitude of the Coordinate
+   * @param {number} angle - The angle of the Coordinate
+   */
+  constructor(magnitude, angle) {
+    super();
+
+    this._magnitude = magnitude;
+    this._angle = angle;
+
+    this._dirtyCartesian = true;
+  }
+}
+
+module.exports = Polar;
