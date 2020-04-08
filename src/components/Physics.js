@@ -19,11 +19,11 @@ class Physics extends Component {
 
   /**
    * Updates position every frame
-   * @param {number} currTime - The timestamp passed by requestAnimationFrame
+   * @param {number} deltaTime - The time elapsed since the previous update
    */
-  update() {
-    this.gameObject.transform.x += this.x;
-    this.gameObject.transform.y += this.y;
+  update(elapsedTime) {
+    this.gameObject.transform.x += this.x * elapsedTime;
+    this.gameObject.transform.y += this.y * elapsedTime;
   }
 }
 

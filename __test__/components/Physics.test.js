@@ -19,9 +19,9 @@ describe("Physics", () => {
     const physics = new Physics(X, Y);
     gameObject.addComponent(physics);
 
-    gameObject.update();
+    gameObject.update(ELAPSED_TIME);
 
-    expect(gameObject.transform.x).toEqual(X);
-    expect(gameObject.transform.y).toEqual(Y);
+    expect(gameObject.transform.x).toEqual(X * ELAPSED_TIME);
+    expect(gameObject.transform.y).toEqual(Y * ELAPSED_TIME);
   });
 });

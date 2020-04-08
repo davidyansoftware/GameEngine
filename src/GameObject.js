@@ -111,14 +111,14 @@ class GameObject {
    * Game logic is handled within component updates
    * Called by the GameLoop every frame
    * Can also be called manually
-   * @param {number} currTime - The timestamp passed by requestAnimationFrame
+   * @param {number} deltaTime - The time elapsed since the previous update
    */
-  update(currTime) {
+  update(deltaTime) {
     this.components.forEach(component => {
-      component.update(currTime);
+      component.update(deltaTime);
     });
     this.gameObjects.forEach(gameObject => {
-      gameObject.update(currTime);
+      gameObject.update(deltaTime);
     });
   }
 

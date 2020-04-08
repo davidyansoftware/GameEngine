@@ -9,7 +9,7 @@ const A_KEY_CODE = 65;
 const S_KEY_CODE = 83;
 const D_KEY_CODE = 68;
 
-const SPEED = 10;
+const SPEED = 500;
 
 class Player extends DNA.Component {
   constructor(mouse, physics) {
