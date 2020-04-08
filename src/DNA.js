@@ -29,6 +29,13 @@ const DNA = {
 
   ShapeTypes: {
     Circle: Circle
+  },
+
+  get Keyboard() {
+    if (!this._keyboard) {
+      this._keyboard = new Keyboard();
+    }
+    return this._keyboard;
   }
 };
 
