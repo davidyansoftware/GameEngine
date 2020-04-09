@@ -16,7 +16,7 @@ class Keyboard {
 
       for (const keyCode in this._keys) {
         const key = this._keys[keyCode];
-        for (const callback of key._onKeyDown) {
+        for (const callback of key._onPressDown) {
           callback(event);
         }
       }
@@ -31,7 +31,7 @@ class Keyboard {
 
       for (const keyCode in this._keys) {
         const key = this._keys[keyCode];
-        for (const callback of key._onKeyUp) {
+        for (const callback of key._onPressUp) {
           callback(event);
         }
       }
