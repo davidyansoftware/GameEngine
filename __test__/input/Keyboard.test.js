@@ -1,5 +1,25 @@
 const Keyboard = require("../../src/input/Keyboard");
 
+describe("Keyboard Constructor", () => {
+  const KEYBOARD_EVENT_DOWN = "keydown";
+  const KEYBOARD_EVENT_UP = "keyup";
+
+  test("Keyboard constructor calls addEventListener", () => {
+    jest.spyOn(document, "addEventListener");
+
+    new Keyboard();
+    expect(document.addEventListener).toHaveBeenCalled();
+    expect(document.addEventListener).toHaveBeenCalledWith(
+      KEYBOARD_EVENT_DOWN,
+      expect.any(Function)
+    );
+    expect(document.addEventListener).toHaveBeenCalledWith(
+      KEYBOARD_EVENT_UP,
+      expect.any(Function)
+    );
+  });
+});
+
 describe("Keyboard", () => {
   const A_KEY = 65;
   const B_KEY = 66;
@@ -30,12 +50,12 @@ describe("Keyboard", () => {
     expect(aKey.pressed).toBe(false);
 
     const keyDownEvent = new KeyboardEvent("keydown", { keyCode: A_KEY });
-    dispatchEvent(keyDownEvent);
+    document.dispatchEvent(keyDownEvent);
 
     expect(aKey.pressed).toBe(true);
 
     const keyUpEvent = new KeyboardEvent("keyup", { keyCode: A_KEY });
-    dispatchEvent(keyUpEvent);
+    document.dispatchEvent(keyUpEvent);
 
     expect(aKey.pressed).toBe(false);
   });

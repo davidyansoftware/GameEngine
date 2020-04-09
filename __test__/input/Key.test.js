@@ -18,7 +18,7 @@ describe("Key", () => {
     aKey.addKeyDown(callback);
 
     const keyDownEvent = new KeyboardEvent("keydown", { keyCode: A_KEY });
-    dispatchEvent(keyDownEvent);
+    document.dispatchEvent(keyDownEvent);
 
     expect(callback).toHaveBeenCalledTimes(1);
   });
@@ -31,7 +31,7 @@ describe("Key", () => {
     aKey.addKeyUp(callback);
 
     const keyUpEvent = new KeyboardEvent("keyup", { keyCode: A_KEY });
-    dispatchEvent(keyUpEvent);
+    document.dispatchEvent(keyUpEvent);
 
     expect(callback).toHaveBeenCalledTimes(1);
   });

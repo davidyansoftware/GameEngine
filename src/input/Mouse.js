@@ -1,3 +1,5 @@
+const MouseButton = require("./MouseButton");
+
 /**
  * A class to handle mouse inputs
  */
@@ -11,10 +13,57 @@ class Mouse {
 
     this.camera = camera;
 
+    this._buttons = {};
+
     // this will not call _onMouseMove directly
     document.addEventListener("mousemove", event => {
       this._onMouseMove(event);
     });
+
+    document.addEventListener("onmousedown", event => {
+      const buttonCode = event.button;
+      const button = this._buttons[buttonCode];
+      if (button) {
+        button._pressed = true;
+      }
+
+      for (const buttonCode in this._buttons) {
+        const button = this._buttons[buttonCode];
+        for (const callback of button._onPressDown) {
+          callback(event);
+        }
+      }
+    });
+
+    document.addEventListener("onmouseup", event => {
+      const buttonCode = event.button;
+      const button = this._buttons[buttonCode];
+      if (button) {
+        button._pressed = false;
+      }
+
+      for (const buttonCode in this._buttons) {
+        const button = this._buttons[buttonCode];
+        for (const callback of button._onPressUp) {
+          callback(event);
+        }
+      }
+    });
+  }
+
+  /**
+   * Gets the MouseButton cooresponding to this mouse event
+   * @param {number} mouseButton - The button code for this mouse button
+   */
+  getButton(buttonCode) {
+    let button = this._buttons[buttonCode];
+    if (button) {
+      return button;
+    }
+
+    button = new MouseButton();
+    this._buttons[buttonCode] = button;
+    return button;
   }
 
   /**

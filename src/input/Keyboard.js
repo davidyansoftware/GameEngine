@@ -7,7 +7,7 @@ class Keyboard {
   constructor() {
     this._keys = {};
 
-    addEventListener("keydown", event => {
+    document.addEventListener("keydown", event => {
       const keyCode = event.keyCode;
       const key = this._keys[keyCode];
       if (key) {
@@ -22,7 +22,7 @@ class Keyboard {
       }
     });
 
-    addEventListener("keyup", event => {
+    document.addEventListener("keyup", event => {
       const keyCode = event.keyCode;
       const key = this._keys[keyCode];
       if (key) {

@@ -2,16 +2,26 @@ const Mouse = require("../../src/input/Mouse");
 const Camera = require("../../src/components/Camera");
 const Canvas = require("canvas");
 
-const MOUSE_EVENT_MOVE = "mousemove";
-
 describe("Mouse", () => {
+  const MOUSE_EVENT_MOVE = "mousemove";
+  const MOUSE_EVENT_DOWN = "onmousedown";
+  const MOUSE_EVENT_UP = "onmouseup";
+
   test("Mouse constructor", () => {
     jest.spyOn(document, "addEventListener");
 
     new Mouse();
-    expect(document.addEventListener).toHaveBeenCalledTimes(1);
+    expect(document.addEventListener).toHaveBeenCalled();
     expect(document.addEventListener).toHaveBeenCalledWith(
       MOUSE_EVENT_MOVE,
+      expect.any(Function)
+    );
+    expect(document.addEventListener).toHaveBeenCalledWith(
+      MOUSE_EVENT_DOWN,
+      expect.any(Function)
+    );
+    expect(document.addEventListener).toHaveBeenCalledWith(
+      MOUSE_EVENT_UP,
       expect.any(Function)
     );
   });
