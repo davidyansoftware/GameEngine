@@ -13,6 +13,9 @@ const Keyboard = require("./input/Keyboard");
 
 const Circle = require("./shapeTypes/Circle");
 
+const Cartesian = require("./coordinate/Cartesian");
+const Polar = require("./coordinate/Polar");
+
 const DNA = {
   GameObject: GameObject,
   GameLoop: GameLoop,
@@ -32,6 +35,11 @@ const DNA = {
 
   ShapeTypes: {
     Circle: Circle
+  },
+
+  Coordinate: {
+    Cartesian: Cartesian,
+    Polar: Polar
   },
 
   get Keyboard() {

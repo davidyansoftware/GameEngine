@@ -3,44 +3,92 @@ const Cartesian = require("../../src/coordinate/Cartesian");
 const Polar = require("../../src/coordinate/Polar");
 
 const X = 1;
-const Y = 1;
+const Y = 2;
 const MAGNITUDE = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
-const ANGLE = Math.atan2(X, Y);
+const ANGLE = Math.atan2(Y, X) + Math.PI / 2;
 
-describe("Cartesian", () => {
+describe("Cartesian getters", () => {
   let cartesian;
 
   beforeEach(() => {
     cartesian = new Cartesian(X, Y);
   });
 
-  test("Cartesian constructs a Coordinate", () => {
-    expect(cartesian.x).toBe(X);
-    expect(cartesian.y).toBe(Y);
+  test("Cartesian get x y", () => {
+    expect(cartesian.x).toBeCloseTo(X);
+    expect(cartesian.y).toBeCloseTo(Y);
   });
 
   test("Cartesian get magnitude angle", () => {
-    expect(cartesian.magnitude).toBe(MAGNITUDE);
-    expect(cartesian.angle).toBe(ANGLE);
+    expect(cartesian.magnitude).toBeCloseTo(MAGNITUDE);
+    expect(cartesian.angle).toBeCloseTo(ANGLE);
   });
 });
 
-describe("Polar", () => {
+describe("Cartesian setters", () => {
+  let cartesian;
+
+  beforeEach(() => {
+    cartesian = new Cartesian(0, 0);
+  });
+
+  test("Cartesian set x y", () => {
+    cartesian.x = X;
+    cartesian.y = Y;
+
+    expect(cartesian.magnitude).toBeCloseTo(MAGNITUDE);
+    expect(cartesian.angle).toBeCloseTo(ANGLE);
+  });
+
+  test("Cartesian set magnitude angle", () => {
+    cartesian.magnitude = MAGNITUDE;
+    cartesian.angle = ANGLE;
+
+    expect(cartesian.x).toBeCloseTo(X);
+    expect(cartesian.y).toBeCloseTo(Y);
+  });
+});
+
+describe("Polar getters", () => {
   let polar;
 
   beforeEach(() => {
     polar = new Polar(MAGNITUDE, ANGLE);
   });
 
-  test("Polar constructs a Coordinate", () => {
+  test("Polar get magnitude angle", () => {
     const polar = new Polar(MAGNITUDE, ANGLE);
 
-    expect(polar.magnitude).toBe(MAGNITUDE);
-    expect(polar.angle).toBe(ANGLE);
+    expect(polar.magnitude).toBeCloseTo(MAGNITUDE);
+    expect(polar.angle).toBeCloseTo(ANGLE);
   });
 
   test("Polar get x y", () => {
-    expect(polar.x).toBe(X);
-    expect(polar.y).toBe(Y);
+    expect(polar.x).toBeCloseTo(X);
+    expect(polar.y).toBeCloseTo(Y);
+  });
+
+  describe("Polar setters", () => {
+    let polar;
+
+    beforeEach(() => {
+      polar = new Polar(0, 0);
+    });
+
+    test("Polar set magnitude angle", () => {
+      polar.magnitude = MAGNITUDE;
+      polar.angle = ANGLE;
+
+      expect(polar.x).toBeCloseTo(X);
+      expect(polar.y).toBeCloseTo(Y);
+    });
+
+    test("Polar set x y", () => {
+      polar.x = X;
+      polar.y = Y;
+
+      expect(polar.magnitude).toBeCloseTo(MAGNITUDE);
+      expect(polar.angle).toBeCloseTo(ANGLE);
+    });
   });
 });

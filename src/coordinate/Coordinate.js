@@ -9,7 +9,7 @@ function recalculatePolar(coordinate) {
   coordinate._magnitude = Math.sqrt(
     Math.pow(coordinate._x, 2) + Math.pow(coordinate._y, 2)
   );
-  coordinate._angle = Math.atan2(coordinate._y, coordinate._x);
+  coordinate._angle = Math.atan2(coordinate._y, coordinate._x) + Math.PI / 2;
   coordinate._dirtyPolar = false;
 }
 
@@ -35,12 +35,22 @@ class Coordinate {
 
     return this._x;
   }
+  set x(x) {
+    this._x = x;
+
+    this._dirtyPolar = true;
+  }
   get y() {
     if (this._dirtyCartesian) {
       recalculateCartesian(this);
     }
 
-    return this._x;
+    return this._y;
+  }
+  set y(y) {
+    this._y = y;
+
+    this._dirtyPolar = true;
   }
 
   get magnitude() {
@@ -50,12 +60,22 @@ class Coordinate {
 
     return this._magnitude;
   }
+  set magnitude(magnitude) {
+    this._magnitude = magnitude;
+
+    this._dirtyCartesian = true;
+  }
   get angle() {
     if (this._dirtyPolar) {
       recalculatePolar(this);
     }
 
     return this._angle;
+  }
+  set angle(angle) {
+    this._angle = angle;
+
+    this._dirtyCartesian = true;
   }
 }
 
