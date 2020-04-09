@@ -1,41 +1,16 @@
+const Input = require("./Input");
 const Key = require("./Key");
 
 /**
  * Represents keys on the user's keyboard
+ * @extends Input
  */
-class Keyboard {
+class Keyboard extends Input {
+  /**
+   * Create a Keyboard object
+   */
   constructor() {
-    this._keys = {};
-
-    document.addEventListener("keydown", event => {
-      const keyCode = event.keyCode;
-      const key = this._keys[keyCode];
-      if (key) {
-        key._pressed = true;
-      }
-
-      for (const keyCode in this._keys) {
-        const key = this._keys[keyCode];
-        for (const callback of key._onPressDown) {
-          callback(event);
-        }
-      }
-    });
-
-    document.addEventListener("keyup", event => {
-      const keyCode = event.keyCode;
-      const key = this._keys[keyCode];
-      if (key) {
-        key._pressed = false;
-      }
-
-      for (const keyCode in this._keys) {
-        const key = this._keys[keyCode];
-        for (const callback of key._onPressUp) {
-          callback(event);
-        }
-      }
-    });
+    super("keydown", "keyup", "keyCode");
   }
 
   /**
@@ -43,13 +18,13 @@ class Keyboard {
    * @param {number} keyCode - The javascript keycode for this Key
    */
   getKey(keyCode) {
-    let key = this._keys[keyCode];
+    let key = this._pressables[keyCode];
     if (key) {
       return key;
     }
 
     key = new Key();
-    this._keys[keyCode] = key;
+    this._pressables[keyCode] = key;
     return key;
   }
 }

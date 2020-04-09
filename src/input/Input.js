@@ -5,7 +5,7 @@ class Input {
   constructor(pressDown, pressUp, eventPressable) {
     this._pressables = {};
 
-    addEventListener(pressDown, event => {
+    document.addEventListener(pressDown, event => {
       const pressableCode = event[eventPressable];
       const pressable = this._pressables[pressableCode];
       if (pressable) {
@@ -20,7 +20,7 @@ class Input {
       }
     });
 
-    addEventListener(pressUp, event => {
+    document.addEventListener(pressUp, event => {
       const pressableCode = event[eventPressable];
       const pressable = this._pressables[pressableCode];
       if (pressable) {
