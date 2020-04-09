@@ -4,6 +4,8 @@ const root = new DNA.GameObject();
 const camera = new DNA.Components.Camera(canvas, root);
 root.addComponent(camera);
 
+const LEFT_MOUSE_BUTTON = 0;
+
 const W_KEY_CODE = 87;
 const A_KEY_CODE = 65;
 const S_KEY_CODE = 83;
@@ -17,9 +19,18 @@ class Player extends DNA.Component {
 
     this.mouse = mouse;
     this.physics = physics;
+
+    document.addEventListener("mousedown", event => {
+      console.log(event);
+    });
   }
 
   update() {
+    const leftMouseButton = this.mouse.getButton(LEFT_MOUSE_BUTTON);
+    if (leftMouseButton.pressed) {
+      console.log("firing!");
+    }
+
     const dx = this.mouse.x - this.transform.absoluteX;
     const dy = this.mouse.y - this.transform.absoluteY;
     this.transform.rotation = Math.atan2(dx, dy);

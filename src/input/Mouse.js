@@ -10,7 +10,7 @@ class Mouse extends Input {
    * Create a Mouse object
    */
   constructor(camera) {
-    super("onmousedown", "onmouseup", "button");
+    super("mousedown", "mouseup", "button");
 
     this._x = 0;
     this._y = 0;

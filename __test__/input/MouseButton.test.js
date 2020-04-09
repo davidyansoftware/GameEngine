@@ -17,7 +17,7 @@ describe("MouseButton", () => {
     const callback = jest.fn();
     leftMouseButton.addMouseDown(callback);
 
-    const mouseDownEvent = new MouseEvent("onmousedown", {
+    const mouseDownEvent = new MouseEvent("mousedown", {
       button: LEFT_CLICK
     });
     document.dispatchEvent(mouseDownEvent);
@@ -32,7 +32,7 @@ describe("MouseButton", () => {
     const callback = jest.fn();
     leftMouseButton.addMouseUp(callback);
 
-    const mouseUpEvent = new MouseEvent("onmouseup", {
+    const mouseUpEvent = new MouseEvent("mouseup", {
       button: LEFT_CLICK
     });
     document.dispatchEvent(mouseUpEvent);

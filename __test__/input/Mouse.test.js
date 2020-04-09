@@ -4,8 +4,8 @@ const Canvas = require("canvas");
 
 describe("Mouse", () => {
   const MOUSE_EVENT_MOVE = "mousemove";
-  const MOUSE_EVENT_DOWN = "onmousedown";
-  const MOUSE_EVENT_UP = "onmouseup";
+  const MOUSE_EVENT_DOWN = "mousedown";
+  const MOUSE_EVENT_UP = "mouseup";
 
   test("Mouse constructor", () => {
     jest.spyOn(document, "addEventListener");
