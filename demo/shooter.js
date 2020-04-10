@@ -30,6 +30,24 @@ const D_KEY_CODE = 68;
 
 const SPEED = 500;
 
+class Hurtbox extends DNA.Component {
+  constructor(hitboxes) {
+    super();
+
+    this.hitboxes = hitboxes;
+
+    this.alreadyHit = {};
+  }
+
+  update() {
+    for (const hitbox in this.hitboxes) {
+      if (this.isCollidingWith(hitbox)) {
+        console.log("HIT");
+      }
+    }
+  }
+}
+
 class Player extends DNA.Component {
   constructor(root, mouse, physics) {
     super();
