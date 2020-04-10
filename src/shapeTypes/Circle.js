@@ -19,16 +19,16 @@ class Circle {
     ctx.stroke();
   }
 
-  isCollidingWith(self, hurtbox) {
-    return hurtbox.shapeType._isCollidingWithCircle(hurtbox, self);
+  isHitting(self, hurtbox) {
+    return hurtbox.shapeType._isHittingCircle(hurtbox, self);
   }
 
-  _isCollidingWithCircle(self, hitbox) {
+  _isHittingCircle(hitbox, self) {
     let distanceBetween = Math.sqrt(
-      Math.pow(self.transform.absoluteX - hitbox.transform.absoluteX, 2) +
-        Math.pow(self.transform.absoluteY - hitbox.transform.absoluteY, 2)
+      Math.pow(hitbox.transform.absoluteX - self.transform.absoluteX, 2) +
+        Math.pow(hitbox.transform.absoluteY - self.transform.absoluteY, 2)
     );
-    return distanceBetween <= self.shapeType.radius + hitbox.shapeType.radius;
+    return distanceBetween <= hitbox.shapeType.radius + self.shapeType.radius;
   }
 }
 

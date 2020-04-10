@@ -6,7 +6,7 @@ root.addComponent(camera);
 
 const coordinate = new DNA.Coordinate.Cartesian(0, 0);
 function createBullet(x, y, angle) {
-  const BULLET_SPEED = 100;
+  const BULLET_SPEED = 1000;
 
   const bullet = new DNA.GameObject(x, y);
 
@@ -30,24 +30,6 @@ const D_KEY_CODE = 68;
 
 const SPEED = 500;
 
-class Hurtbox extends DNA.Component {
-  constructor(hitboxes) {
-    super();
-
-    this.hitboxes = hitboxes;
-
-    this.alreadyHit = {};
-  }
-
-  update() {
-    for (const hitbox in this.hitboxes) {
-      if (this.isCollidingWith(hitbox)) {
-        console.log("HIT");
-      }
-    }
-  }
-}
-
 class Player extends DNA.Component {
   constructor(root, mouse, physics) {
     super();
@@ -58,10 +40,6 @@ class Player extends DNA.Component {
     this.physics = physics;
 
     this.mouseOffset = new DNA.Coordinate.Cartesian(0, 0);
-
-    document.addEventListener("mousedown", event => {
-      console.log(event);
-    });
   }
 
   update() {
@@ -74,7 +52,7 @@ class Player extends DNA.Component {
 
       const bullet = createBullet(
         this.transform.x,
-        this.transform.x,
+        this.transform.y,
         this.mouseOffset.angle
       );
 

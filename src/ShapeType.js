@@ -17,7 +17,7 @@
  * Determine if the ShapeType is colliding with another ShapeType
  *
  * @function
- * @name ShapeType#isCollidingWith
+ * @name ShapeType#isHitting
  * @param {Hitbox} self - The ShapeType's Hitbox
  * @param {Hitbox} hurtbox - The Hitbox to test against
  * @returns {boolean} true if the Hitboxes are colliding

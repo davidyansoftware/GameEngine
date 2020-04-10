@@ -10,7 +10,7 @@ class Hitbox extends Component {
    * The shape of this Hitbox
    * @param {ShapeType} shapeType
    */
-  constructor(shapeType, hurtboxes) {
+  constructor(shapeType, hurtboxes = []) {
     super();
 
     this.shapeType = shapeType;
@@ -18,7 +18,7 @@ class Hitbox extends Component {
 
     this._onHit = [];
 
-    //this._currentlyHitting = {};
+    this._isHitting = {};
   }
 
   /**
@@ -26,11 +26,17 @@ class Hitbox extends Component {
    * @param {*} hurtbox
    */
   update(deltaTime) {
-    for (const hurtbox in this._hurtboxes) {
-      if (this.isCollidingWith(this, hurtbox)) {
+    for (const hurtbox of this._hurtboxes) {
+      const isHitting = this.shapeType.isHitting(this, hurtbox);
+      if (isHitting) {
+        this._isHitting[hurtbox] = true;
+        hurtbox._isHitting[this] = true;
         for (const callback of this._onHit) {
           callback(this, hurtbox);
         }
+      } else {
+        this._isHitting[hurtbox] = false;
+        hurtbox._isHitting[this] = false;
       }
     }
   }
@@ -54,8 +60,8 @@ class Hitbox extends Component {
    * Is this colliding with another Hitbox
    * @param {Hitbox} hurtbox
    */
-  isCollidingWith(hurtbox) {
-    return this.shapeType.isCollidingWith(this, hurtbox);
+  isHitting(hurtbox) {
+    return this._isHitting[hurtbox];
   }
 }
 

@@ -34,7 +34,7 @@ describe("Circle hit detection", () => {
     const hurtboxGameObject = new GameObject(X, Y);
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxCircle.isCollidingWith(hitbox, hurtbox)).toBe(true);
+    expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(true);
   });
 
   test("Circles touching", () => {
@@ -53,7 +53,7 @@ describe("Circle hit detection", () => {
     const hurtboxGameObject = new GameObject(X + X_OFFSET, Y);
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxCircle.isCollidingWith(hitbox, hurtbox)).toBe(true);
+    expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(true);
   });
 
   test("Circles off-by-one", () => {
@@ -72,6 +72,6 @@ describe("Circle hit detection", () => {
     const hurtboxGameObject = new GameObject(X + X_OFFSET, Y);
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxCircle.isCollidingWith(hitbox, hurtbox)).toBe(false);
+    expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(false);
   });
 });
