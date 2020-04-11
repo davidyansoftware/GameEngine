@@ -120,6 +120,11 @@ class GameObject {
     this.gameObjects.forEach(gameObject => {
       gameObject.update(deltaTime);
     });
+    this.gameObjects.forEach(gameObject => {
+      if (gameObject._dead) {
+        gameObject._destroyNow();
+      }
+    });
   }
 
   /**
@@ -143,6 +148,18 @@ class GameObject {
 
       ctx.restore();
     });
+  }
+
+  /**
+   * Destroys the GameObject by removing itself from its parent.
+   * Will delay until next update so this object will exist for the rest of the update cycle
+   */
+  destroy() {
+    this._dead = true;
+  }
+
+  _destroyNow() {
+    this.parent.removeGameObject(this);
   }
 }
 

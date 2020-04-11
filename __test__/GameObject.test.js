@@ -229,3 +229,26 @@ describe("GameObject render", () => {
     expect(ctx.rotate).toHaveBeenNthCalledWith(2, CHILD2_ROTATION);
   });
 });
+
+describe("GameObject destroy", () => {
+  test("Destroy removes GameObject from parent", () => {
+    const parent = new GameObject();
+    const child = new GameObject();
+    parent.addGameObject(child);
+
+    child.destroy();
+    parent.update();
+
+    expect(parent.gameObjects).not.toContain(child);
+  });
+
+  test("Destroy waits for an update before destroying", () => {
+    const parent = new GameObject();
+    const child = new GameObject();
+    parent.addGameObject(child);
+
+    child.destroy();
+
+    expect(parent.gameObjects).toContain(child);
+  });
+});

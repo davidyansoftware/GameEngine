@@ -15,8 +15,11 @@ function createBullet(x, y, angle) {
   const physics = new DNA.Components.Physics(coordinate.x, coordinate.y);
   bullet.addComponent(physics);
 
-  const shape = new DNA.Components.Shape(new DNA.ShapeTypes.Circle(2));
+  const shapeType = new DNA.ShapeTypes.Circle(2);
+  const shape = new DNA.Components.Shape(shapeType);
+  const hitbox = new DNA.Components.Hitbox(shapeType);
   bullet.addComponent(shape);
+  bullet.addComponent(hitbox);
 
   return bullet;
 }
@@ -39,7 +42,20 @@ class Player extends DNA.Component {
     this.mouse = mouse;
     this.physics = physics;
 
+    this.bullets = [];
+
     this.mouseOffset = new DNA.Coordinate.Cartesian(0, 0);
+
+    const shapeType = new DNA.ShapeTypes.Circle(5);
+    this.hitbox = new DNA.Components.Hitbox(shapeType);
+
+    const self = this;
+    this.hitbox.addOnHit((player, bullet) => {
+      //TODO destroy bullet
+
+      const index = this.bullets.indexOf(bullet);
+      self.bullets.splice(index, 1);
+    });
   }
 
   update() {
@@ -56,6 +72,8 @@ class Player extends DNA.Component {
         this.mouseOffset.angle
       );
 
+      this.bullets.push(bullet);
+      console.log(this.bullets.length);
       this.root.addGameObject(bullet);
     }
 
