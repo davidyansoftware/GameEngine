@@ -13,7 +13,9 @@ function createBullet(x, y, angle) {
   coordinate.magnitude = BULLET_SPEED;
   coordinate.angle = angle;
   const physics = new DNA.Components.Physics(coordinate.x, coordinate.y);
+  const bulletComponent = new Bullet(physics);
   bullet.addComponent(physics);
+  bullet.addComponent(bulletComponent);
 
   const shapeType = new DNA.ShapeTypes.Circle(2);
   const shape = new DNA.Components.Shape(shapeType);
@@ -51,7 +53,7 @@ class Player extends DNA.Component {
 
     const self = this;
     this.hitbox.addOnHit((player, bullet) => {
-      //TODO destroy bullet
+      bullet.gameObject.destroy();
 
       const index = this.bullets.indexOf(bullet);
       self.bullets.splice(index, 1);
