@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Component.js</title>
+    <title>JSDoc: Source: components/Physics.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Component.js</h1>
+    <h1 class="page-title">Source: components/Physics.js</h1>
 
     
 
@@ -26,51 +26,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * A base class for components of GameObjects
+            <pre class="prettyprint source linenums"><code>const Component = require("../Component");
+
+/**
+ * A component for handling movement of GameObjects
+ * @extends Component
  */
-class Component {
+class Physics extends Component {
   /**
-   * Create a component
+   *
+   * @param {number} x - Pixels to move horizontally every second
+   * @param {number} y - Pixels to move vertically every second
    */
-  constructor() {}
+  constructor(x, y) {
+    super();
 
-  /**
-   * The GameObject this Component is attached to
-   * @type {GameObject}
-   */
-  get gameObject() {
-    return this._gameObject || null;
+    this.x = x;
+    this.y = y;
   }
 
   /**
-   * The Transform of the GameObject this Component is attached to
-   * @type {Transform}
-   */
-  get transform() {
-    return this.gameObject ? this.gameObject.transform : null;
-  }
-
-  /**
-   * Runs game logic for this component every frame
-   * To be implimented for individual components
-   * Called by the GameLoop every frame
-   * Can also be called manually
+   * Updates position every frame
    * @param {number} deltaTime - The time elapsed since the previous update
    */
-  update(deltaTime) {}
-
-  /**
-   * Renders the component every frame
-   * To be implimented for individual components
-   * Called by Cameras every frame
-   * Can also be called manually
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
-  render(ctx) {}
+  update(elapsedTime) {
+    this.gameObject.transform.x += this.x * elapsedTime;
+    this.gameObject.transform.y += this.y * elapsedTime;
+  }
 }
 
-module.exports = Component;
+module.exports = Physics;
 </code></pre>
         </article>
     </section>

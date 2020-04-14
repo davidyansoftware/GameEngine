@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Component.js</title>
+    <title>JSDoc: Source: input/MouseButton.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Component.js</h1>
+    <h1 class="page-title">Source: input/MouseButton.js</h1>
 
     
 
@@ -26,51 +26,42 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * A base class for components of GameObjects
+            <pre class="prettyprint source linenums"><code>const Pressable = require("./Pressable");
+
+/**
+ * Handles logic for a mouse button
+ * @extends Pressable
  */
-class Component {
-  /**
-   * Create a component
-   */
-  constructor() {}
-
-  /**
-   * The GameObject this Component is attached to
-   * @type {GameObject}
-   */
-  get gameObject() {
-    return this._gameObject || null;
+class MouseButton extends Pressable {
+  constructor() {
+    super();
   }
 
   /**
-   * The Transform of the GameObject this Component is attached to
-   * @type {Transform}
+   * This callback type is for key event callbacks
+   *
+   * @callback mouseCallback
+   * @param{MouseEvent} event
    */
-  get transform() {
-    return this.gameObject ? this.gameObject.transform : null;
+
+  /**
+   * Add a function to call on keydown event
+   * @param {mouseCallback} onMouseDown - Function to be called on keydown event
+   */
+  addMouseDown(onMouseDown) {
+    this._onPressDown.push(onMouseDown);
   }
 
   /**
-   * Runs game logic for this component every frame
-   * To be implimented for individual components
-   * Called by the GameLoop every frame
-   * Can also be called manually
-   * @param {number} deltaTime - The time elapsed since the previous update
+   * Add a function to call on keyup event
+   * @param {mouseCallback} onMouseUp - Function to be called on keyup event
    */
-  update(deltaTime) {}
-
-  /**
-   * Renders the component every frame
-   * To be implimented for individual components
-   * Called by Cameras every frame
-   * Can also be called manually
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
-  render(ctx) {}
+  addMouseUp(onMouseUp) {
+    this._onPressUp.push(onMouseUp);
+  }
 }
 
-module.exports = Component;
+module.exports = MouseButton;
 </code></pre>
         </article>
     </section>

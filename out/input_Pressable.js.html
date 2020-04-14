@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Component.js</title>
+    <title>JSDoc: Source: input/Pressable.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Component.js</h1>
+    <h1 class="page-title">Source: input/Pressable.js</h1>
 
     
 
@@ -27,50 +27,26 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * A base class for components of GameObjects
+ * Handles logic for oressable input
  */
-class Component {
-  /**
-   * Create a component
-   */
-  constructor() {}
+class Pressable {
+  constructor() {
+    this._pressed = false;
 
-  /**
-   * The GameObject this Component is attached to
-   * @type {GameObject}
-   */
-  get gameObject() {
-    return this._gameObject || null;
+    this._onPressDown = [];
+    this._onPressUp = [];
   }
 
   /**
-   * The Transform of the GameObject this Component is attached to
-   * @type {Transform}
+   * If this key is currently pressed
+   * @type {boolean}
    */
-  get transform() {
-    return this.gameObject ? this.gameObject.transform : null;
+  get pressed() {
+    return this._pressed;
   }
-
-  /**
-   * Runs game logic for this component every frame
-   * To be implimented for individual components
-   * Called by the GameLoop every frame
-   * Can also be called manually
-   * @param {number} deltaTime - The time elapsed since the previous update
-   */
-  update(deltaTime) {}
-
-  /**
-   * Renders the component every frame
-   * To be implimented for individual components
-   * Called by Cameras every frame
-   * Can also be called manually
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
-  render(ctx) {}
 }
 
-module.exports = Component;
+module.exports = Pressable;
 </code></pre>
         </article>
     </section>

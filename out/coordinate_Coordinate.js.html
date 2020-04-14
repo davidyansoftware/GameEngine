@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Component.js</title>
+    <title>JSDoc: Source: coordinate/Coordinate.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Component.js</h1>
+    <h1 class="page-title">Source: coordinate/Coordinate.js</h1>
 
     
 
@@ -26,51 +26,88 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * A base class for components of GameObjects
- */
-class Component {
-  /**
-   * Create a component
-   */
-  constructor() {}
-
-  /**
-   * The GameObject this Component is attached to
-   * @type {GameObject}
-   */
-  get gameObject() {
-    return this._gameObject || null;
-  }
-
-  /**
-   * The Transform of the GameObject this Component is attached to
-   * @type {Transform}
-   */
-  get transform() {
-    return this.gameObject ? this.gameObject.transform : null;
-  }
-
-  /**
-   * Runs game logic for this component every frame
-   * To be implimented for individual components
-   * Called by the GameLoop every frame
-   * Can also be called manually
-   * @param {number} deltaTime - The time elapsed since the previous update
-   */
-  update(deltaTime) {}
-
-  /**
-   * Renders the component every frame
-   * To be implimented for individual components
-   * Called by Cameras every frame
-   * Can also be called manually
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
-  render(ctx) {}
+            <pre class="prettyprint source linenums"><code>function recalculateCartesian(coordinate) {
+  coordinate._x = Math.sin(coordinate._angle) * coordinate._magnitude;
+  coordinate._y = -Math.cos(coordinate._angle) * coordinate._magnitude;
+  coordinate._dirtyCartesian = false;
 }
 
-module.exports = Component;
+//TODO can recalculate angle and magnitude seperately
+function recalculatePolar(coordinate) {
+  coordinate._magnitude = Math.sqrt(
+    Math.pow(coordinate._x, 2) + Math.pow(coordinate._y, 2)
+  );
+  coordinate._angle = Math.atan2(coordinate._y, coordinate._x) + Math.PI / 2;
+  coordinate._dirtyPolar = false;
+}
+
+/**
+ * Represent coordinates
+ */
+class Coordinate {
+  constructor() {
+    this._x;
+    this._y;
+
+    this._magnitude;
+    this._angle;
+
+    this._dirtyCartesian;
+    this._dirtyPolar;
+  }
+
+  get x() {
+    if (this._dirtyCartesian) {
+      recalculateCartesian(this);
+    }
+
+    return this._x;
+  }
+  set x(x) {
+    this._x = x;
+
+    this._dirtyPolar = true;
+  }
+  get y() {
+    if (this._dirtyCartesian) {
+      recalculateCartesian(this);
+    }
+
+    return this._y;
+  }
+  set y(y) {
+    this._y = y;
+
+    this._dirtyPolar = true;
+  }
+
+  get magnitude() {
+    if (this._dirtyPolar) {
+      recalculatePolar(this);
+    }
+
+    return this._magnitude;
+  }
+  set magnitude(magnitude) {
+    this._magnitude = magnitude;
+
+    this._dirtyCartesian = true;
+  }
+  get angle() {
+    if (this._dirtyPolar) {
+      recalculatePolar(this);
+    }
+
+    return this._angle;
+  }
+  set angle(angle) {
+    this._angle = angle;
+
+    this._dirtyCartesian = true;
+  }
+}
+
+module.exports = Coordinate;
 </code></pre>
         </article>
     </section>

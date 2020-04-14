@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: GameLoop</title>
+    <title>JSDoc: Class: Polar</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: GameLoop</h1>
+    <h1 class="page-title">Class: Polar</h1>
 
     
 
@@ -28,9 +28,9 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>GameLoop<span class="signature">(gameObject)</span><span class="type-signature"></span></h2>
+        <h2><span class="attribs"><span class="type-signature"></span></span>Polar<span class="signature">(magnitude, angle)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description">GameLoop is responsible for updating game logic on every frame</div>
+            <div class="class-description">Represent polar coordinates</div>
         
     
 </header>
@@ -45,16 +45,12 @@
     
 
     
-    <h4 class="name" id="GameLoop"><span class="type-signature"></span>new GameLoop<span class="signature">(gameObject)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="Polar"><span class="type-signature"></span>new Polar<span class="signature">(magnitude, angle)</span><span class="type-signature"></span></h4>
     
 
     
 
 
-
-<div class="description">
-    Create a GameLoop
-</div>
 
 
 
@@ -89,13 +85,13 @@
 
         <tr>
             
-                <td class="name"><code>gameObject</code></td>
+                <td class="name"><code>magnitude</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="GameObject.html">GameObject</a></span>
+<span class="param-type">number</span>
 
 
             
@@ -105,7 +101,30 @@
 
             
 
-            <td class="description last">The root GameObject to be updated</td>
+            <td class="description last">The magnitude of the Coordinate</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>angle</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The angle of the Coordinate</td>
         </tr>
 
     
@@ -146,7 +165,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameLoop.js.html">GameLoop.js</a>, <a href="GameLoop.js.html#line9">line 9</a>
+        <a href="coordinate_Polar.js.html">coordinate/Polar.js</a>, <a href="coordinate_Polar.js.html#line13">line 13</a>
     </li></ul></dd>
     
 
@@ -180,102 +199,15 @@
     </div>
 
     
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-        <h3 class="subsection-title">Methods</h3>
-
-        
-            
-
-    
-
-    
-    <h4 class="name" id="gameLoop"><span class="type-signature"></span>gameLoop<span class="signature">(currTime)</span><span class="type-signature"> &rarr; {number}</span></h4>
-    
-
-    
-
-
-
-<div class="description">
-    gameLoop is responsible for calling the logic in the GameObject via update
-gameLoop requests an animation frame and then recursively calls itself
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
+        <h3 class="subsection-title">Extends</h3>
 
         
 
-        
 
-        <th class="last">Description</th>
-    </tr>
-    </thead>
+    <ul>
+        <li><a href="Coordinate.html">Coordinate</a></li>
+    </ul>
 
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>currTime</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">DOMHighResTimeStamp</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">The current time passed by requestAnimationFrame</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
 
     
 
@@ -291,72 +223,6 @@ gameLoop requests an animation frame and then recursively calls itself
 
     
 
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="GameLoop.js.html">GameLoop.js</a>, <a href="GameLoop.js.html#line22">line 22</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    The animation frame of the current request
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">number</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-
-
-        
     
 
     

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Component.js</title>
+    <title>JSDoc: Source: input/Input.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Component.js</h1>
+    <h1 class="page-title">Source: input/Input.js</h1>
 
     
 
@@ -27,50 +27,45 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * A base class for components of GameObjects
+ * Represents a type of input
  */
-class Component {
-  /**
-   * Create a component
-   */
-  constructor() {}
+class Input {
+  constructor(pressDown, pressUp, eventPressable) {
+    this._pressables = {};
 
-  /**
-   * The GameObject this Component is attached to
-   * @type {GameObject}
-   */
-  get gameObject() {
-    return this._gameObject || null;
+    document.addEventListener(pressDown, event => {
+      const pressableCode = event[eventPressable];
+      const pressable = this._pressables[pressableCode];
+      if (pressable) {
+        pressable._pressed = true;
+      }
+
+      for (const pressableCode in this._pressables) {
+        const pressable = this._pressables[pressableCode];
+        for (const callback of pressable._onPressDown) {
+          callback(event);
+        }
+      }
+    });
+
+    document.addEventListener(pressUp, event => {
+      const pressableCode = event[eventPressable];
+      const pressable = this._pressables[pressableCode];
+      if (pressable) {
+        pressable._pressed = false;
+      }
+
+      for (const pressableCode in this._pressables) {
+        const pressable = this._pressables[pressableCode];
+        for (const callback of pressable._onPressUp) {
+          callback(event);
+        }
+      }
+    });
   }
-
-  /**
-   * The Transform of the GameObject this Component is attached to
-   * @type {Transform}
-   */
-  get transform() {
-    return this.gameObject ? this.gameObject.transform : null;
-  }
-
-  /**
-   * Runs game logic for this component every frame
-   * To be implimented for individual components
-   * Called by the GameLoop every frame
-   * Can also be called manually
-   * @param {number} deltaTime - The time elapsed since the previous update
-   */
-  update(deltaTime) {}
-
-  /**
-   * Renders the component every frame
-   * To be implimented for individual components
-   * Called by Cameras every frame
-   * Can also be called manually
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
-  render(ctx) {}
 }
 
-module.exports = Component;
+module.exports = Input;
 </code></pre>
         </article>
     </section>

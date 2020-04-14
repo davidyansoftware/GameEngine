@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: Component.js</title>
+    <title>JSDoc: Source: input/Keyboard.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: Component.js</h1>
+    <h1 class="page-title">Source: input/Keyboard.js</h1>
 
     
 
@@ -26,51 +26,38 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * A base class for components of GameObjects
+            <pre class="prettyprint source linenums"><code>const Input = require("./Input");
+const Key = require("./Key");
+
+/**
+ * Represents keys on the user's keyboard
+ * @extends Input
  */
-class Component {
+class Keyboard extends Input {
   /**
-   * Create a component
+   * Create a Keyboard object
    */
-  constructor() {}
-
-  /**
-   * The GameObject this Component is attached to
-   * @type {GameObject}
-   */
-  get gameObject() {
-    return this._gameObject || null;
+  constructor() {
+    super("keydown", "keyup", "keyCode");
   }
 
   /**
-   * The Transform of the GameObject this Component is attached to
-   * @type {Transform}
+   * Gets the Key cooresponding to this keycode
+   * @param {number} keyCode - The javascript keycode for this Key
    */
-  get transform() {
-    return this.gameObject ? this.gameObject.transform : null;
+  getKey(keyCode) {
+    let key = this._pressables[keyCode];
+    if (key) {
+      return key;
+    }
+
+    key = new Key();
+    this._pressables[keyCode] = key;
+    return key;
   }
-
-  /**
-   * Runs game logic for this component every frame
-   * To be implimented for individual components
-   * Called by the GameLoop every frame
-   * Can also be called manually
-   * @param {number} deltaTime - The time elapsed since the previous update
-   */
-  update(deltaTime) {}
-
-  /**
-   * Renders the component every frame
-   * To be implimented for individual components
-   * Called by Cameras every frame
-   * Can also be called manually
-   * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
-   */
-  render(ctx) {}
 }
 
-module.exports = Component;
+module.exports = Keyboard;
 </code></pre>
         </article>
     </section>
