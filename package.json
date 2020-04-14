@@ -1,6 +1,6 @@
 {
   "name": "@davidyansoftware/dna-game-engine",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "HTML5 Canvas Game Engine",
   "main": "dist/DNA.js",
   "scripts": {
@@ -8,7 +8,7 @@
     "docs": "jsdoc -r src",
     "build": "webpack",
     "preversion": "npm test",
-    "version": "npm run build && npm run docs && git add -A",
+    "version": "npm run build && npm run docs && git add -A && git commit --amend --no-edit",
     "postversion": "git push"
   },
   "jest": {

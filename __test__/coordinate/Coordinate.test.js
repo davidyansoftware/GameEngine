@@ -47,6 +47,15 @@ describe("Cartesian setters", () => {
     expect(cartesian.x).toBeCloseTo(X);
     expect(cartesian.y).toBeCloseTo(Y);
   });
+
+  test("Cartesian setter recalculates when needed", () => {
+    cartesian.angle = ANGLE;
+    cartesian.magnitude = MAGNITUDE;
+    cartesian.x = X;
+
+    expect(cartesian.angle).toBeCloseTo(ANGLE);
+    expect(cartesian.magnitude).toBeCloseTo(MAGNITUDE);
+  });
 });
 
 describe("Polar getters", () => {
@@ -89,6 +98,15 @@ describe("Polar getters", () => {
 
       expect(polar.magnitude).toBeCloseTo(MAGNITUDE);
       expect(polar.angle).toBeCloseTo(ANGLE);
+    });
+
+    test("Polar setter recalculates when needed", () => {
+      polar.x = X;
+      polar.y = Y;
+      polar.magnitude = MAGNITUDE;
+
+      expect(polar.x).toBeCloseTo(X);
+      expect(polar.y).toBeCloseTo(Y);
     });
   });
 });

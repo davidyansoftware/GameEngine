@@ -36,8 +36,11 @@ class Coordinate {
     return this._x;
   }
   set x(x) {
-    this._x = x;
+    if (this._dirtyCartesian) {
+      recalculateCartesian(this);
+    }
 
+    this._x = x;
     this._dirtyPolar = true;
   }
   get y() {
@@ -48,8 +51,11 @@ class Coordinate {
     return this._y;
   }
   set y(y) {
-    this._y = y;
+    if (this._dirtyCartesian) {
+      recalculateCartesian(this);
+    }
 
+    this._y = y;
     this._dirtyPolar = true;
   }
 
@@ -61,8 +67,11 @@ class Coordinate {
     return this._magnitude;
   }
   set magnitude(magnitude) {
-    this._magnitude = magnitude;
+    if (this._dirtyPolar) {
+      recalculatePolar(this);
+    }
 
+    this._magnitude = magnitude;
     this._dirtyCartesian = true;
   }
   get angle() {
@@ -73,8 +82,11 @@ class Coordinate {
     return this._angle;
   }
   set angle(angle) {
-    this._angle = angle;
+    if (this._dirtyPolar) {
+      recalculatePolar(this);
+    }
 
+    this._angle = angle;
     this._dirtyCartesian = true;
   }
 }
