@@ -50,4 +50,4 @@ const DNA = {
   }
 };
 
-window.DNA = DNA;
+module.exports = DNA;
