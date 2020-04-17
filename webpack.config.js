@@ -6,6 +6,7 @@ module.exports = {
     library: "DNA",
     libraryTarget: "umd",
     path: path.resolve(__dirname, "dist"),
-    filename: "DNA.js"
+    filename: "DNA.js",
+    globalObject: "typeof self !== 'undefined' ? self : this"
   }
 };

@@ -8,7 +8,7 @@
     "docs": "jsdoc -r src",
     "build": "webpack",
     "preversion": "npm test",
-    "version": "npm run build && npm run docs && git add -A && git commit --amend --no-edit",
+    "version": "npm run build && npm run docs && git add -A",
     "postversion": "git push"
   },
   "jest": {
