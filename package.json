@@ -1,6 +1,6 @@
 {
   "name": "@davidyansoftware/dna-game-engine",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "HTML5 Canvas Game Engine",
   "main": "dist/DNA.js",
   "scripts": {
