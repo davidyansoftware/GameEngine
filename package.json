@@ -5,7 +5,7 @@
   "main": "dist/DNA.js",
   "scripts": {
     "test": "jest",
-    "docs": "jsdoc -r src",
+    "docs": "jsdoc -r src -d docs",
     "build": "webpack",
     "preversion": "npm test",
     "version": "npm run build && npm run docs && git add -A",
