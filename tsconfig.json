@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+      "outDir": "./built",
+      "allowJs": true,
+      "target": "ES2015",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "noEmitOnError": true,
+      "noImplicitAny": true
+    },
+    "include": ["./src/**/*"]
+  }
