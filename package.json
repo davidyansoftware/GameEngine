@@ -30,6 +30,7 @@
   "homepage": "https://github.com/davidyansoftware/GameEngine#readme",
   "devDependencies": {
     "canvas": "^2.6.1",
+    "http-server": "^0.12.3",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
     "source-map-loader": "^1.1.0",

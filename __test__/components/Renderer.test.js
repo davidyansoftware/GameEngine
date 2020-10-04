@@ -1,17 +1,17 @@
-const Shape = require("../../src/components/Shape");
-const Circle = require("../../src/shapeTypes/Circle");
+const Renderer = require("../../src/components/Renderer");
+const Circle = require("../../src/shapes/Circle");
 const Canvas = require("canvas");
 
-describe("Shape", () => {
-  test("Shape will draw a shape", () => {
+describe("Renderer", () => {
+  test("Renderer will render a shape", () => {
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
 
     const circle = new Circle(5);
-    const shape = new Shape(circle);
+    const renderer = new Renderer(circle);
 
     jest.spyOn(circle, "render");
-    shape.render(ctx);
+    renderer.render(ctx);
     expect(circle.render).toHaveBeenCalledTimes(1);
   });
 });

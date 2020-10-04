@@ -8,12 +8,12 @@ const GameObject = require("../GameObject");
 class Hitbox extends Component {
   /**
    * The shape of this Hitbox
-   * @param {ShapeType} shapeType
+   * @param {Shape} shape
    */
-  constructor(shapeType, hurtboxes = []) {
+  constructor(shape, hurtboxes = []) {
     super();
 
-    this.shapeType = shapeType;
+    this.shape = shape;
     this._hurtboxes = hurtboxes;
 
     this._onHit = [];
@@ -27,7 +27,7 @@ class Hitbox extends Component {
    */
   update(deltaTime) {
     for (const hurtbox of this._hurtboxes) {
-      const isHitting = this.shapeType.isHitting(this, hurtbox);
+      const isHitting = this.shape.isHitting(this, hurtbox);
       if (isHitting) {
         this._isHitting[hurtbox] = true;
         hurtbox._isHitting[this] = true;

@@ -12,7 +12,7 @@ const text = new DNA.Components.Text("Hello World!");
 textGameObject.addComponent(text);
 root.addGameObject(textGameObject);
 
-root.addComponent(new DNA.Components.Shape(new DNA.ShapeTypes.Circle(100)));
+root.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(100)));
 
 class Follow extends DNA.Component {
   constructor(mouse) {

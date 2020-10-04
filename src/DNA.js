@@ -4,14 +4,14 @@ const Component = require("./Component");
 
 const Camera = require("./components/Camera");
 const Text = require("./components/Text");
-const Shape = require("./components/Shape");
+const Renderer = require("./components/Renderer");
 const Hitbox = require("./components/Hitbox");
 const Physics = require("./components/Physics");
 
 const Mouse = require("./input/Mouse");
 const Keyboard = require("./input/Keyboard");
 
-const Circle = require("./shapeTypes/Circle");
+const Circle = require("./shapes/Circle");
 
 const Cartesian = require("./coordinate/Cartesian");
 const Polar = require("./coordinate/Polar");
@@ -24,7 +24,7 @@ const DNA = {
   Components: {
     Camera: Camera,
     Text: Text,
-    Shape: Shape,
+    Renderer: Renderer,
     Hitbox: Hitbox,
     Physics: Physics
   },
@@ -33,7 +33,7 @@ const DNA = {
     Mouse: Mouse
   },
 
-  ShapeTypes: {
+  Shapes: {
     Circle: Circle
   },
 

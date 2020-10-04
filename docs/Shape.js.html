@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: coordinate/Polar.js</title>
+    <title>JSDoc: Source: Shape.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: coordinate/Polar.js</h1>
+    <h1 class="page-title">Source: Shape.js</h1>
 
     
 
@@ -26,29 +26,30 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Coordinate = require("./Coordinate");
+            <pre class="prettyprint source linenums"><code>/**
+ * Interface for types of shapes
+ * Used in drawing Shapes and determining collisions in Hitboxes
+ *
+ * @interface Shape
+ */
 
 /**
- * Represent polar coordinates
- * @extends Coordinate
+ * Render the Shape on the given context
+ *
+ * @function
+ * @name Shape#render
+ * @param {CanvasRenderingContext2D} ctx - The context to render the Shape on
  */
-class Polar extends Coordinate {
-  /**
-   *
-   * @param {number} magnitude - The magnitude of the Coordinate
-   * @param {number} angle - The angle of the Coordinate
-   */
-  constructor(magnitude, angle) {
-    super();
 
-    this._magnitude = magnitude;
-    this._angle = angle;
-
-    this._dirtyCartesian = true;
-  }
-}
-
-module.exports = Polar;
+/**
+ * Determine if the Shape is colliding with another Shape
+ *
+ * @function
+ * @name Shape#isHitting
+ * @param {Hitbox} self - The Shape's Hitbox
+ * @param {Hitbox} hurtbox - The Hitbox to test against
+ * @returns {boolean} true if the Hitboxes are colliding
+ */
 </code></pre>
         </article>
     </section>

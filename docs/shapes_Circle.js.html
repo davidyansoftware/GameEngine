@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: coordinate/Polar.js</title>
+    <title>JSDoc: Source: shapes/Circle.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: coordinate/Polar.js</h1>
+    <h1 class="page-title">Source: shapes/Circle.js</h1>
 
     
 
@@ -26,29 +26,41 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const Coordinate = require("./Coordinate");
-
-/**
- * Represent polar coordinates
- * @extends Coordinate
+            <pre class="prettyprint source linenums"><code>/**
+ * A Circle
+ *
+ * @impliments {Shape}
  */
-class Polar extends Coordinate {
+class Circle {
   /**
+   * Create a Circle object
    *
-   * @param {number} magnitude - The magnitude of the Coordinate
-   * @param {number} angle - The angle of the Coordinate
+   * @param {number} radius - Radius of the circle
    */
-  constructor(magnitude, angle) {
-    super();
+  constructor(radius) {
+    this.radius = radius;
+  }
 
-    this._magnitude = magnitude;
-    this._angle = angle;
+  render(ctx) {
+    ctx.beginPath();
+    ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
+    ctx.stroke();
+  }
 
-    this._dirtyCartesian = true;
+  isHitting(self, hurtbox) {
+    return hurtbox.shape._isHittingCircle(hurtbox, self);
+  }
+
+  _isHittingCircle(hitbox, self) {
+    let distanceBetween = Math.sqrt(
+      Math.pow(hitbox.transform.absoluteX - self.transform.absoluteX, 2) +
+        Math.pow(hitbox.transform.absoluteY - self.transform.absoluteY, 2)
+    );
+    return distanceBetween &lt;= hitbox.shape.radius + self.shape.radius;
   }
 }
 
-module.exports = Polar;
+module.exports = Circle;
 </code></pre>
         </article>
     </section>

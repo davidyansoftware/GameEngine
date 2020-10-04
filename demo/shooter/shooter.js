@@ -17,10 +17,10 @@ function createBullet(x, y, angle) {
   bullet.addComponent(physics);
   bullet.addComponent(bulletComponent);
 
-  const shapeType = new DNA.ShapeTypes.Circle(2);
-  const shape = new DNA.Components.Shape(shapeType);
-  const hitbox = new DNA.Components.Hitbox(shapeType);
-  bullet.addComponent(shape);
+  const circle = new DNA.Shapes.Circle(2);
+  const renderer = new DNA.Components.Renderer(circle);
+  const hitbox = new DNA.Components.Hitbox(circle);
+  bullet.addComponent(renderer);
   bullet.addComponent(hitbox);
 
   return bullet;
@@ -48,8 +48,8 @@ class Player extends DNA.Component {
 
     this.mouseOffset = new DNA.Coordinate.Cartesian(0, 0);
 
-    const shapeType = new DNA.ShapeTypes.Circle(5);
-    this.hitbox = new DNA.Components.Hitbox(shapeType);
+    const circle = new DNA.Shapes.Circle(5);
+    this.hitbox = new DNA.Components.Hitbox(circle);
 
     const self = this;
     this.hitbox.addOnHit((player, bullet) => {
@@ -104,12 +104,12 @@ class Player extends DNA.Component {
 const mouse = new DNA.Input.Mouse(camera);
 
 const player = new DNA.GameObject();
-player.addComponent(new DNA.Components.Shape(new DNA.ShapeTypes.Circle(20)));
+player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
 const physics = new DNA.Components.Physics(0, 0);
 player.addComponent(physics);
 player.addComponent(new Player(root, mouse, physics));
 const gun = new DNA.GameObject(0, 20);
-gun.addComponent(new DNA.Components.Shape(new DNA.ShapeTypes.Circle(10)));
+gun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
 player.addGameObject(gun);
 
 root.addGameObject(player);

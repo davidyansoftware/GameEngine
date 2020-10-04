@@ -1,7 +1,7 @@
 /**
  * A Circle
  *
- * @impliments {ShapeType}
+ * @impliments {Shape}
  */
 class Circle {
   /**
@@ -20,7 +20,7 @@ class Circle {
   }
 
   isHitting(self, hurtbox) {
-    return hurtbox.shapeType._isHittingCircle(hurtbox, self);
+    return hurtbox.shape._isHittingCircle(hurtbox, self);
   }
 
   _isHittingCircle(hitbox, self) {
@@ -28,7 +28,7 @@ class Circle {
       Math.pow(hitbox.transform.absoluteX - self.transform.absoluteX, 2) +
         Math.pow(hitbox.transform.absoluteY - self.transform.absoluteY, 2)
     );
-    return distanceBetween <= hitbox.shapeType.radius + self.shapeType.radius;
+    return distanceBetween <= hitbox.shape.radius + self.shape.radius;
   }
 }
 
