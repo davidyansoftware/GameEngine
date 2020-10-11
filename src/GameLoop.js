@@ -1,7 +1,7 @@
 /**
  * GameLoop is responsible for updating game logic on every frame
  */
-class GameLoop {
+export default class GameLoop {
   /**
    * Create a GameLoop
    * @param {GameObject} gameObject - The root GameObject to be updated
@@ -31,5 +31,3 @@ class GameLoop {
     });
   }
 }
-
-module.exports = GameLoop;

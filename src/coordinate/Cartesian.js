@@ -1,10 +1,10 @@
-const Coordinate = require("./Coordinate");
+import Coordinate from "./Coordinate";
 
 /**
  * Represent cartesian coordinates
  * @extends Coordinate
  */
-class Cartesian extends Coordinate {
+export default class Cartesian extends Coordinate {
   /**
    *
    * @param {number} x - The x value of the Coordinate
@@ -19,5 +19,3 @@ class Cartesian extends Coordinate {
     this._dirtyPolar = true;
   }
 }
-
-module.exports = Cartesian;

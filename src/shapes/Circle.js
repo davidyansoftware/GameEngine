@@ -3,7 +3,7 @@
  *
  * @impliments {Shape}
  */
-class Circle {
+export default class Circle {
   /**
    * Create a Circle object
    *
@@ -31,5 +31,3 @@ class Circle {
     return distanceBetween <= hitbox.shape.radius + self.shape.radius;
   }
 }
-
-module.exports = Circle;

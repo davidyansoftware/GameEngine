@@ -1,10 +1,10 @@
-const Component = require("../Component");
+import Component from "../Component";
 
 /**
  * A component for rendering text
  * @extends Component
  */
-class Text extends Component {
+export default class Text extends Component {
   /**
    * Create a Text
    * @param {string} text - The text to be rendered
@@ -28,5 +28,3 @@ class Text extends Component {
     ctx.fillText(this.text, 0, 0);
   }
 }
-
-module.exports = Text;

@@ -1,10 +1,10 @@
-const Component = require("../Component");
+import Component from "../Component";
 
 /**
  * A component for rendering GameObjects to canvas context
  * @extends Component
  */
-class Camera extends Component {
+export default class Camera extends Component {
   /**
    *
    * @param {HTMLCanvasElement} canvas - The canvas to render to
@@ -46,5 +46,3 @@ class Camera extends Component {
     this.ctx.restore();
   }
 }
-
-module.exports = Camera;

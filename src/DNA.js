@@ -1,22 +1,22 @@
-const GameObject = require("./GameObject");
-const GameLoop = require("./GameLoop");
-const Component = require("./Component");
+import GameObject from "./GameObject";
+import GameLoop from "./GameLoop";
+import Component from "./Component";
 
-const Camera = require("./components/Camera");
-const Text = require("./components/Text");
-const Renderer = require("./components/Renderer");
-const Hitbox = require("./components/Hitbox");
-const Physics = require("./components/Physics");
+import Camera from "./components/Camera";
+import Text from "./components/Text";
+import Renderer from "./components/Renderer";
+import Hitbox from "./components/Hitbox";
+import Physics from "./components/Physics";
 
-const Mouse = require("./input/Mouse");
-const Keyboard = require("./input/Keyboard");
+import Mouse from "./input/Mouse";
+import Keyboard from "./input/Keyboard";
 
-const Circle = require("./shapes/Circle");
+import Circle from "./shapes/Circle";
 
-const Cartesian = require("./coordinate/Cartesian");
-const Polar = require("./coordinate/Polar");
+import Cartesian from "./coordinate/Cartesian";
+import Polar from "./coordinate/Polar";
 
-const DNA = {
+export default DNA = {
   GameObject: GameObject,
   GameLoop: GameLoop,
   Component: Component,
@@ -48,6 +48,4 @@ const DNA = {
     }
     return this._keyboard;
   }
-};
-
-module.exports = DNA;
+}

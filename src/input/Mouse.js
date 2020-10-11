@@ -1,11 +1,11 @@
-const Input = require("./Input");
-const MouseButton = require("./MouseButton");
+import Input from "./Input";
+import MouseButton from "./MouseButton";
 
 /**
  * A class to handle mouse inputs
  * @extends Input
  */
-class Mouse extends Input {
+export default class Mouse extends Input {
   /**
    * Create a Mouse object
    */
@@ -58,5 +58,3 @@ class Mouse extends Input {
     this._y = -(event.clientY - Math.round(rect.top - 0.5) - this.camera._y);
   }
 }
-
-module.exports = Mouse;

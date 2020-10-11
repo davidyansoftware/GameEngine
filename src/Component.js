@@ -1,7 +1,7 @@
 /**
  * A base class for components of GameObjects
  */
-class Component {
+export default class Component {
   /**
    * Create a component
    */
@@ -41,5 +41,3 @@ class Component {
    */
   render(ctx) {}
 }
-
-module.exports = Component;

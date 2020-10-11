@@ -16,7 +16,7 @@ function recalculatePolar(coordinate) {
 /**
  * Represent coordinates
  */
-class Coordinate {
+export default class Coordinate {
   constructor() {
     this._x;
     this._y;
@@ -90,5 +90,3 @@ class Coordinate {
     this._dirtyCartesian = true;
   }
 }
-
-module.exports = Coordinate;

@@ -1,10 +1,10 @@
-const Component = require("../Component");
+import Component from "../Component";
 
 /**
  * A component for handling movement of GameObjects
  * @extends Component
  */
-class Physics extends Component {
+export default class Physics extends Component {
   /**
    *
    * @param {number} x - Pixels to move horizontally every second
@@ -26,5 +26,3 @@ class Physics extends Component {
     this.gameObject.transform.y += this.y * elapsedTime;
   }
 }
-
-module.exports = Physics;

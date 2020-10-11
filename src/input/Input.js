@@ -1,7 +1,7 @@
 /**
  * Represents a type of input
  */
-class Input {
+export default class Input {
   constructor(pressDown, pressUp, eventPressable) {
     this._pressables = {};
 
@@ -36,5 +36,3 @@ class Input {
     });
   }
 }
-
-module.exports = Input;

@@ -1,11 +1,11 @@
-const Transform = require("./Transform");
+import Transform from "./Transform";
 
 /**
  * GameObjects store game entities and logic
  * GameObjects are composites that propagate call to children GameObjects
  * GameObjects hold Components which handle game logic
  */
-class GameObject {
+export default class GameObject {
   /**
    * Create a GameObject
    * @param {number} x - The x-coordinate for the GameObject's Transform
@@ -162,5 +162,3 @@ class GameObject {
     this.parent.removeGameObject(this);
   }
 }
-
-module.exports = GameObject;

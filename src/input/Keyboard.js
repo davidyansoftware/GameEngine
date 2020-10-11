@@ -1,11 +1,11 @@
-const Input = require("./Input");
-const Key = require("./Key");
+import Input from "./Input";
+import Key from "./Key";
 
 /**
  * Represents keys on the user's keyboard
  * @extends Input
  */
-class Keyboard extends Input {
+export default class Keyboard extends Input {
   /**
    * Create a Keyboard object
    */
@@ -28,5 +28,3 @@ class Keyboard extends Input {
     return key;
   }
 }
-
-module.exports = Keyboard;

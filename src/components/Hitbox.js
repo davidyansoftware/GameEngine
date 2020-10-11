@@ -1,11 +1,10 @@
-const Component = require("../Component");
-const GameObject = require("../GameObject");
+import Component from "../Component";
 
 /**
  * A component for determining if GameObjects are colliding
  * @extends Component
  */
-class Hitbox extends Component {
+export default class Hitbox extends Component {
   /**
    * The shape of this Hitbox
    * @param {Shape} shape
@@ -64,5 +63,3 @@ class Hitbox extends Component {
     return this._isHitting[hurtbox];
   }
 }
-
-module.exports = Hitbox;

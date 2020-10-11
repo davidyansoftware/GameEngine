@@ -1,10 +1,10 @@
-const Pressable = require("./Pressable");
+import Pressable from "./Pressable";
 
 /**
  * Handles logic for a key on the Keyboard
  * @extends Pressable
  */
-class Key extends Pressable {
+export default class Key extends Pressable {
   constructor() {
     super();
   }
@@ -32,5 +32,3 @@ class Key extends Pressable {
     this._onPressUp.push(onKeyUp);
   }
 }
-
-module.exports = Key;

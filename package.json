@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "docs": "jsdoc -r src -d docs",
-    "build": "webpack",
+    "build": "rollup -c",
     "preversion": "npm test",
     "version": "npm run build && npm run docs && git add -A",
     "postversion": "git push"
@@ -33,6 +33,8 @@
     "http-server": "^0.12.3",
     "jest": "^24.9.0",
     "jsdoc": "^3.6.3",
+    "rollup": "^2.29.0",
+    "rollup-plugin-typescript2": "^0.27.3",
     "source-map-loader": "^1.1.0",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",

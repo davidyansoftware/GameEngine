@@ -1,10 +1,10 @@
-const Component = require("../Component");
+import Component from "../Component";
 
 /**
  * A component that renders a shape
  * @extends Component
  */
-class Renderer extends Component {
+export default class Renderer extends Component {
   /**
    * The type of shape to render
    * @param {Shape} shape
@@ -20,5 +20,3 @@ class Renderer extends Component {
     this.shape.render(ctx);
   }
 }
-
-module.exports = Renderer;

@@ -1,7 +1,7 @@
 /**
  * Transform store positional information about GameObjects
  */
-class Transform {
+export default class Transform {
   /**
    * Create a Transform
    * @param {GameObject} gameObject - The GameObject this Transform is attached to
@@ -154,5 +154,3 @@ class Transform {
     this.y = offsetX * sin + offsetY * cos;
   }
 }
-
-module.exports = Transform;

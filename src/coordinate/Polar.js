@@ -1,10 +1,10 @@
-const Coordinate = require("./Coordinate");
+import Coordinate from "./Coordinate";
 
 /**
  * Represent polar coordinates
  * @extends Coordinate
  */
-class Polar extends Coordinate {
+export default class Polar extends Coordinate {
   /**
    *
    * @param {number} magnitude - The magnitude of the Coordinate
@@ -19,5 +19,3 @@ class Polar extends Coordinate {
     this._dirtyCartesian = true;
   }
 }
-
-module.exports = Polar;

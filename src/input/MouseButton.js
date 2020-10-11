@@ -1,10 +1,10 @@
-const Pressable = require("./Pressable");
+import Pressable from "./Pressable";
 
 /**
  * Handles logic for a mouse button
  * @extends Pressable
  */
-class MouseButton extends Pressable {
+export default class MouseButton extends Pressable {
   constructor() {
     super();
   }
@@ -32,5 +32,3 @@ class MouseButton extends Pressable {
     this._onPressUp.push(onMouseUp);
   }
 }
-
-module.exports = MouseButton;

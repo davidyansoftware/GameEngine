@@ -1,7 +1,7 @@
 /**
  * Handles logic for oressable input
  */
-class Pressable {
+export default class Pressable {
   constructor() {
     this._pressed = false;
 
@@ -17,5 +17,3 @@ class Pressable {
     return this._pressed;
   }
 }
-
-module.exports = Pressable;
