@@ -5,11 +5,12 @@ import Component from "../Component";
  * @extends Component
  */
 export default class Text extends Component {
+  text: string;
   /**
    * Create a Text
    * @param {string} text - The text to be rendered
    */
-  constructor(text) {
+  constructor(text: string) {
     super();
 
     this.text = text;
@@ -19,7 +20,7 @@ export default class Text extends Component {
    * Renders the text
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D) {
     ctx.font = "12px serif";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";
