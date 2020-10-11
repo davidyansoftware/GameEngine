@@ -1,5 +1,6 @@
-const Canvas = require("canvas");
-const Text = require("../../src/components/Text");
+//const Canvas = require("canvas");
+import Canvas from "canvas";
+import Text from "../../src/components/Text";
 
 describe("Text logic", () => {
   const TEST = "test";

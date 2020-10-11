@@ -1,6 +1,5 @@
-const Coordinate = require("../../src/coordinate/Coordinate");
-const Cartesian = require("../../src/coordinate/Cartesian");
-const Polar = require("../../src/coordinate/Polar");
+import Cartesian from "../../src/coordinate/Cartesian";
+import Polar from "../../src/coordinate/Polar";
 
 const X = 1;
 const Y = 2;

@@ -1,6 +1,7 @@
-const Renderer = require("../../src/components/Renderer");
-const Circle = require("../../src/shapes/Circle");
-const Canvas = require("canvas");
+//const Canvas = require("canvas");
+import Renderer from "../../src/components/Renderer";
+import Circle from "../../src/shapes/Circle";
+import Canvas from "canvas";
 
 describe("Renderer", () => {
   test("Renderer will render a shape", () => {

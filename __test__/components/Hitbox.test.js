@@ -1,6 +1,6 @@
-const Circle = require("../../src/shapes/Circle");
-const Hitbox = require("../../src/components/Hitbox");
-const GameObject = require("../../src/GameObject");
+import Circle from "../../src/shapes/Circle";
+import Hitbox from "../../src/components/Hitbox";
+import GameObject from "../../src/GameObject";
 
 const Y = 0;
 const RADIUS = 5;

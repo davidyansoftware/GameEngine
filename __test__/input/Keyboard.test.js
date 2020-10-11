@@ -1,4 +1,4 @@
-const Keyboard = require("../../src/input/Keyboard");
+import Keyboard from "../../src/input/Keyboard";
 
 describe("Keyboard Constructor", () => {
   const KEYBOARD_EVENT_DOWN = "keydown";

@@ -1,5 +1,5 @@
-const GameObject = require("../src/GameObject");
-const Component = require("../src/Component");
+import GameObject from "../src/GameObject";
+import Component from "../src/Component";
 
 describe("Component", () => {
   test("Components reference the GameObject they're attached to", () => {

@@ -1,6 +1,7 @@
-const Canvas = require("canvas");
-const GameObject = require("../src/GameObject");
-const Component = require("../src/Component");
+//const Canvas = require("canvas");
+import Canvas from "canvas";
+import GameObject from "../src/GameObject";
+import Component from "../src/GameObject";
 
 describe("GameObject", () => {
   test("GameObject can reference itself", () => {

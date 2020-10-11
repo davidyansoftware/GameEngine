@@ -1,4 +1,4 @@
-const GameObject = require("../src/GameObject");
+import GameObject from "../src/GameObject";
 
 describe("Transform constructor", () => {
   test("GameObject is tied to its Tranform", () => {

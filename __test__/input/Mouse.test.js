@@ -1,6 +1,7 @@
-const Mouse = require("../../src/input/Mouse");
-const Camera = require("../../src/components/Camera");
-const Canvas = require("canvas");
+//const Canvas = require("canvas");
+import Mouse from "../../src/input/Mouse";
+import Camera from "../../src/components/Camera";
+import Canvas from "canvas";
 
 describe("Mouse", () => {
   const MOUSE_EVENT_MOVE = "mousemove";

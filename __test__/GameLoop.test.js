@@ -1,5 +1,5 @@
-const GameLoop = require("../src/GameLoop");
-const GameObject = require("../src/GameObject");
+import GameLoop from "../src/GameLoop";
+import GameObject from "../src/GameObject";
 
 describe("GameLoop", () => {
   test("GameLoop creates an animation frame", () => {

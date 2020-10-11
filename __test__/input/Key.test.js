@@ -1,5 +1,5 @@
-const Key = require("../../src/input/Key");
-const Keyboard = require("../../src/input/Keyboard");
+import Key from "../../src/input/Key";
+import Keyboard from "../../src/input/Keyboard";
 
 describe("Key", () => {
   const A_KEY = 65;

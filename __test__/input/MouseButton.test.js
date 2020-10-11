@@ -1,5 +1,5 @@
-const MouseButton = require("../../src/input/MouseButton");
-const Mouse = require("../../src/input/Mouse");
+import MouseButton from "../../src/input/MouseButton";
+import Mouse from "../../src/input/Mouse";
 
 describe("MouseButton", () => {
   const LEFT_CLICK = 0;

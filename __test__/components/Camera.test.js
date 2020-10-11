@@ -1,6 +1,7 @@
-const Canvas = require("canvas");
-const GameObject = require("../../src/GameObject");
-const Camera = require("../../src/components/Camera");
+//const Canvas = require("canvas");
+import Canvas from "canvas";
+import GameObject from "../../src/GameObject";
+import Camera from "../../src/components/Camera";
 
 describe("Camera", () => {
   test("Camera constructor will translate context to center", () => {

@@ -1,7 +1,8 @@
-const Circle = require("../../src/shapes/Circle");
-const Hitbox = require("../../src/components/Hitbox");
-const GameObject = require("../../src/GameObject");
-const Canvas = require("canvas");
+//const Canvas = require("canvas");
+import Circle from "../../src/shapes/Circle";
+import Hitbox from "../../src/components/Hitbox";
+import GameObject from "../../src/GameObject";
+import Canvas from "canvas";
 
 describe("Circle render", () => {
   test("render renders a circle", () => {

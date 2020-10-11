@@ -1,5 +1,5 @@
-const GameObject = require("../../src/GameObject");
-const Physics = require("../../src/components/Physics");
+import GameObject from "../../src/GameObject";
+import Physics from "../../src/components/Physics";
 
 const X = 100;
 const Y = 200;
