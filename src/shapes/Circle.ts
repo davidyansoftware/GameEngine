@@ -29,6 +29,11 @@ export default class Circle implements Shape {
   }
 
   _isHittingCircle(hitbox: Hitbox, self: Hitbox): boolean {
+    if (self.transform == null || hitbox.transform == null) {
+      //TODO test this
+      return false;
+    }
+
     let distanceBetween = Math.sqrt(
       Math.pow(hitbox.transform.absoluteX - self.transform.absoluteX, 2) +
         Math.pow(hitbox.transform.absoluteY - self.transform.absoluteY, 2)

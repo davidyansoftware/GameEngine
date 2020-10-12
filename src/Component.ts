@@ -1,7 +1,12 @@
+import GameObject from "./GameObject";
+import Transform from "./Transform";
+
 /**
  * A base class for components of GameObjects
  */
 export default class Component {
+  _gameObject?: GameObject;
+
   /**
    * Create a component
    */
@@ -11,7 +16,7 @@ export default class Component {
    * The GameObject this Component is attached to
    * @type {GameObject}
    */
-  get gameObject() {
+  get gameObject(): GameObject | null {
     return this._gameObject || null;
   }
 
@@ -19,7 +24,7 @@ export default class Component {
    * The Transform of the GameObject this Component is attached to
    * @type {Transform}
    */
-  get transform() {
+  get transform(): Transform | null {
     return this.gameObject ? this.gameObject.transform : null;
   }
 
@@ -30,7 +35,7 @@ export default class Component {
    * Can also be called manually
    * @param {number} deltaTime - The time elapsed since the previous update
    */
-  update(deltaTime) {}
+  update(deltaTime: number): void {}
 
   /**
    * Renders the component every frame
@@ -39,5 +44,5 @@ export default class Component {
    * Can also be called manually
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  render(ctx) {}
+  render(ctx: CanvasRenderingContext2D): void {}
 }

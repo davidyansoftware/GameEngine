@@ -44,6 +44,11 @@ export default class Camera extends Component {
    * @param {number} deltaTime - The time elapsed since the previous update
    */
   update(deltaTime: number): void {
+    if (this.transform == null) {
+      //TODO test this
+      return;
+    }
+
     this.ctx.clearRect(-this._x, -this._y, this._width, this._height);
 
     this.ctx.save();

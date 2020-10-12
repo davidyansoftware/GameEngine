@@ -95,6 +95,14 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_gameloop_.gameloop.html#_curranimationframe" class="tsd-kind-icon">_curr<wbr>Animation<wbr>Frame</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_gameloop_.gameloop.html#gameobject" class="tsd-kind-icon">game<wbr>Object</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_gameloop_.gameloop.html#prevtime" class="tsd-kind-icon">prev<wbr>Time</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_gameloop_.gameloop.html#gameloop" class="tsd-kind-icon">game<wbr>Loop</a></li>
@@ -109,13 +117,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Game<wbr>Loop<span class="tsd-signature-symbol">(</span>gameObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_gameloop_.gameloop.html" class="tsd-signature-type">GameLoop</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Game<wbr>Loop<span class="tsd-signature-symbol">(</span>gameObject<span class="tsd-signature-symbol">: </span><a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_gameloop_.gameloop.html" class="tsd-signature-type">GameLoop</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/fc7c9af/src/GameLoop.js#L4">GameLoop.js:4</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/GameLoop.ts#L9">GameLoop.ts:9</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -126,7 +134,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>gameObject: <span class="tsd-signature-type">any</span></h5>
+									<h5>gameObject: <a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The root GameObject to be updated</p>
@@ -140,18 +148,51 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_curranimationframe" class="tsd-anchor"></a>
+					<h3>_curr<wbr>Animation<wbr>Frame</h3>
+					<div class="tsd-signature tsd-kind-icon">_curr<wbr>Animation<wbr>Frame<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/GameLoop.ts#L9">GameLoop.ts:9</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="gameobject" class="tsd-anchor"></a>
+					<h3>game<wbr>Object</h3>
+					<div class="tsd-signature tsd-kind-icon">game<wbr>Object<span class="tsd-signature-symbol">:</span> <a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/GameLoop.ts#L7">GameLoop.ts:7</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="prevtime" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> prev<wbr>Time</h3>
+					<div class="tsd-signature tsd-kind-icon">prev<wbr>Time<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DOMHighResTimeStamp</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/GameLoop.ts#L8">GameLoop.ts:8</a></li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="gameloop" class="tsd-anchor"></a>
 					<h3>game<wbr>Loop</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">game<wbr>Loop<span class="tsd-signature-symbol">(</span>currTime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+						<li class="tsd-signature tsd-kind-icon">game<wbr>Loop<span class="tsd-signature-symbol">(</span>currTime<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">DOMHighResTimeStamp</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/fc7c9af/src/GameLoop.js#L22">GameLoop.js:22</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/GameLoop.ts#L28">GameLoop.ts:28</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -163,7 +204,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>currTime: <span class="tsd-signature-type">any</span></h5>
+									<h5>currTime: <span class="tsd-signature-type">DOMHighResTimeStamp</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
@@ -254,6 +295,15 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_gameloop_.gameloop.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_gameloop_.gameloop.html#_curranimationframe" class="tsd-kind-icon">_curr<wbr>Animation<wbr>Frame</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_gameloop_.gameloop.html#gameobject" class="tsd-kind-icon">game<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_gameloop_.gameloop.html#prevtime" class="tsd-kind-icon">prev<wbr>Time</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_gameloop_.gameloop.html#gameloop" class="tsd-kind-icon">game<wbr>Loop</a>
 							</li>
@@ -273,6 +323,7 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">

@@ -25,6 +25,10 @@ export default class Physics extends Component {
    * @param {number} deltaTime - The time elapsed since the previous update
    */
   update(deltaTime: number): void {
+    if (this.gameObject == null) {
+      return;
+    }
+
     this.gameObject.transform.x += this.x * deltaTime;
     this.gameObject.transform.y += this.y * deltaTime;
   }

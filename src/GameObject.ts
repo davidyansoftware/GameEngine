@@ -1,3 +1,4 @@
+import Component from "./Component";
 import Transform from "./Transform";
 
 /**
@@ -6,13 +7,20 @@ import Transform from "./Transform";
  * GameObjects hold Components which handle game logic
  */
 export default class GameObject {
+  _transform: Transform;
+  parent?: GameObject;
+  gameObjects: Array<GameObject>;
+  components: Array<Component>;
+
+  _dead: boolean = false;
+
   /**
    * Create a GameObject
    * @param {number} x - The x-coordinate for the GameObject's Transform
    * @param {number} y - The y-coordinate for the GameObject's Transform
    * @param {number} rotation - The rotation for the GameObject's Transform
    */
-  constructor(x = 0, y = 0, rotation = 0) {
+  constructor(x: number = 0, y: number = 0, rotation: number = 0) {
     this._transform = new Transform(this, x, y, rotation);
 
     this.gameObjects = [];
@@ -23,7 +31,7 @@ export default class GameObject {
    * This GameObject
    * @type {GameObject}
    */
-  get gameObject() {
+  get gameObject(): GameObject {
     return this;
   }
 
@@ -31,7 +39,7 @@ export default class GameObject {
    * The Transform of this GameObject
    * @type {Transform}
    */
-  get transform() {
+  get transform(): Transform {
     return this._transform || null;
   }
 
@@ -42,13 +50,13 @@ export default class GameObject {
    * @param {boolean} maintainAbsoluteRotation  - Gamebject should maintain its absolute rotation
    */
   addGameObject(
-    gameObject,
-    maintainAbsolutePosition = false,
-    maintainAbsoluteRotation = false
+    gameObject: GameObject,
+    maintainAbsolutePosition: boolean = false,
+    maintainAbsoluteRotation: boolean = false
   ) {
-    let prevAbsoluteX;
-    let prevAbsoluteY;
-    let prevAbsoluteRotation;
+    let prevAbsoluteX = 0;
+    let prevAbsoluteY = 0;
+    let prevAbsoluteRotation = 0;
     if (gameObject.parent) {
       if (maintainAbsolutePosition) {
         prevAbsoluteX = gameObject.transform.absoluteX;
@@ -77,7 +85,7 @@ export default class GameObject {
    * Remove a child GameObject if it exists
    * @param {GameObject} gameObject
    */
-  removeGameObject(gameObject) {
+  removeGameObject(gameObject: GameObject): void {
     let index = this.gameObjects.indexOf(gameObject);
     if (index >= 0) {
       this.gameObjects.splice(index, 1);
@@ -90,7 +98,7 @@ export default class GameObject {
    * Add a Component
    * @param {Component} component - Component to be added
    */
-  addComponent(component) {
+  addComponent(component: Component): void {
     component._gameObject = this;
     this.components.push(component);
   }
@@ -99,7 +107,7 @@ export default class GameObject {
    * Remove a Component if it exists
    * @param {Component} component - Component to be removed
    */
-  removeComponent(component) {
+  removeComponent(component: Component): void {
     let index = this.components.indexOf(component);
     if (index >= 0) {
       this.components.splice(index, 1);
@@ -113,7 +121,7 @@ export default class GameObject {
    * Can also be called manually
    * @param {number} deltaTime - The time elapsed since the previous update
    */
-  update(deltaTime) {
+  update(deltaTime: number): void {
     this.components.forEach(component => {
       component.update(deltaTime);
     });
@@ -134,7 +142,7 @@ export default class GameObject {
    * Can also be called manually
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D): void {
     this.components.forEach(component => {
       component.render(ctx);
     });
@@ -154,11 +162,11 @@ export default class GameObject {
    * Destroys the GameObject by removing itself from its parent.
    * Will delay until next update so this object will exist for the rest of the update cycle
    */
-  destroy() {
+  destroy(): void {
     this._dead = true;
   }
 
-  _destroyNow() {
-    this.parent.removeGameObject(this);
+  _destroyNow(): void {
+    this.parent?.removeGameObject(this);
   }
 }
