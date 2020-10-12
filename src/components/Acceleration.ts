@@ -9,6 +9,7 @@ import Cartesian from "../coordinate/Cartesian";
 export default class Acceleration extends Component {
   acceleration: Coordinate;
   maxSpeed: number;
+  drag: number;
 
   private velocity: Coordinate = new Cartesian(0, 0);
 
@@ -16,12 +17,14 @@ export default class Acceleration extends Component {
    *
    * @param {Coordinate} acceleration - Pixels to accelerate every second
    * @param {number} maxSpeed - The maximum magnitude of velocity
+   * @param {number} drag - Factor to decrease speed when not accelerating
    */
-  constructor(acceleration: Coordinate, maxSpeed: number = -1) {
+  constructor(acceleration: Coordinate, maxSpeed: number = -1, drag: number = 0) {
     super();
 
     this.acceleration = acceleration;
     this.maxSpeed = maxSpeed;
+    this.drag = drag;
   }
 
   /**
@@ -43,6 +46,11 @@ export default class Acceleration extends Component {
     const isExceedingMaxSpeed = this.velocity.magnitude > this.maxSpeed;
     if (hasMaxSpeed && isExceedingMaxSpeed) {
         this.velocity.magnitude = this.maxSpeed
+    }
+
+    const isAccelerating = this.acceleration.magnitude > 0;
+    if (!isAccelerating) {
+        this.velocity.magnitude *= this.drag * deltaTime;
     }
 
     this.gameObject.transform.x += this.velocity.x * deltaTime;

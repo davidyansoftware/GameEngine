@@ -104,6 +104,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><a href="_components_acceleration_.acceleration.html#_gameobject" class="tsd-kind-icon">_game<wbr>Object</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_components_acceleration_.acceleration.html#acceleration" class="tsd-kind-icon">acceleration</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_components_acceleration_.acceleration.html#drag" class="tsd-kind-icon">drag</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_components_acceleration_.acceleration.html#maxspeed" class="tsd-kind-icon">max<wbr>Speed</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_components_acceleration_.acceleration.html#velocity" class="tsd-kind-icon">velocity</a></li>
 							</ul>
@@ -131,14 +132,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Acceleration<span class="tsd-signature-symbol">(</span>acceleration<span class="tsd-signature-symbol">: </span><a href="_coordinate_coordinate_.coordinate.html" class="tsd-signature-type">Coordinate</a>, maxSpeed<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_components_acceleration_.acceleration.html" class="tsd-signature-type">Acceleration</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Acceleration<span class="tsd-signature-symbol">(</span>acceleration<span class="tsd-signature-symbol">: </span><a href="_coordinate_coordinate_.coordinate.html" class="tsd-signature-type">Coordinate</a>, maxSpeed<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, drag<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_components_acceleration_.acceleration.html" class="tsd-signature-type">Acceleration</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/components/Acceleration.ts#L13">components/Acceleration.ts:13</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/components/Acceleration.ts#L14">components/Acceleration.ts:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -161,6 +162,14 @@
 										</div>
 									</div>
 								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> drag: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<div class="lead">
+											<p>Factor to decrease speed when not accelerating</p>
+										</div>
+									</div>
+								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="_components_acceleration_.acceleration.html" class="tsd-signature-type">Acceleration</a></h4>
 						</li>
@@ -176,7 +185,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#_gameobject">_gameObject</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/Component.ts#L8">Component.ts:8</a></li>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/Component.ts#L8">Component.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,7 +195,17 @@
 					<div class="tsd-signature tsd-kind-icon">acceleration<span class="tsd-signature-symbol">:</span> <a href="_coordinate_coordinate_.coordinate.html" class="tsd-signature-type">Coordinate</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/components/Acceleration.ts#L10">components/Acceleration.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/components/Acceleration.ts#L10">components/Acceleration.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="drag" class="tsd-anchor"></a>
+					<h3>drag</h3>
+					<div class="tsd-signature tsd-kind-icon">drag<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/components/Acceleration.ts#L12">components/Acceleration.ts:12</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -196,7 +215,7 @@
 					<div class="tsd-signature tsd-kind-icon">max<wbr>Speed<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/components/Acceleration.ts#L11">components/Acceleration.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/components/Acceleration.ts#L11">components/Acceleration.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,7 +225,7 @@
 					<div class="tsd-signature tsd-kind-icon">velocity<span class="tsd-signature-symbol">:</span> <a href="_coordinate_coordinate_.coordinate.html" class="tsd-signature-type">Coordinate</a><span class="tsd-signature-symbol"> = new Cartesian(0, 0)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/components/Acceleration.ts#L13">components/Acceleration.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/components/Acceleration.ts#L14">components/Acceleration.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -224,7 +243,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#gameobject">gameObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/Component.ts#L19">Component.ts:19</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/Component.ts#L19">Component.ts:19</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -247,7 +266,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#transform">transform</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/Component.ts#L27">Component.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/Component.ts#L27">Component.ts:27</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -273,7 +292,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#render">render</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/Component.ts#L47">Component.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/Component.ts#L47">Component.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -308,7 +327,7 @@
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/1a62580/src/components/Acceleration.ts#L34">components/Acceleration.ts:34</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/f7f3b9f/src/components/Acceleration.ts#L37">components/Acceleration.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -422,6 +441,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_components_acceleration_.acceleration.html#acceleration" class="tsd-kind-icon">acceleration</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_components_acceleration_.acceleration.html#drag" class="tsd-kind-icon">drag</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="_components_acceleration_.acceleration.html#maxspeed" class="tsd-kind-icon">max<wbr>Speed</a>
