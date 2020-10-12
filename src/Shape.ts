@@ -28,4 +28,6 @@ import Hitbox from "./components/Hitbox";
  export default interface Shape {
     render(ctx: CanvasRenderingContext2D): void;
     isHitting(self: Hitbox, hurtbox: Hitbox): boolean;
+
+    _isHittingCircle(self: Hitbox, hurtbox: Hitbox): boolean;
  }

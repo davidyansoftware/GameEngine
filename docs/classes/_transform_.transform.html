@@ -95,6 +95,19 @@
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_absolutedirty" class="tsd-kind-icon">_absolute<wbr>Dirty</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_absoluterotation" class="tsd-kind-icon">_absolute<wbr>Rotation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_absolutex" class="tsd-kind-icon">_absoluteX</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_absolutey" class="tsd-kind-icon">_absoluteY</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_gameobject" class="tsd-kind-icon">_game<wbr>Object</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_rotation" class="tsd-kind-icon">_rotation</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_x" class="tsd-kind-icon">_x</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_transform_.transform.html#_y" class="tsd-kind-icon">_y</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-accessor tsd-parent-kind-class"><a href="_transform_.transform.html#absoluterotation" class="tsd-kind-icon">absolute<wbr>Rotation</a></li>
@@ -112,6 +125,7 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_transform_.transform.html#_cacheabsoluteposition" class="tsd-kind-icon">_cache<wbr>Absolute<wbr>Position</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_transform_.transform.html#_setabsoluteposition" class="tsd-kind-icon">_set<wbr>Absolute<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_transform_.transform.html#_setabsoluterotation" class="tsd-kind-icon">_set<wbr>Absolute<wbr>Rotation</a></li>
 							</ul>
 						</section>
 					</div>
@@ -123,13 +137,13 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Transform<span class="tsd-signature-symbol">(</span>gameObject<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, x<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rotation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transform_.transform.html" class="tsd-signature-type">Transform</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Transform<span class="tsd-signature-symbol">(</span>gameObject<span class="tsd-signature-symbol">: </span><a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a>, x<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, rotation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_transform_.transform.html" class="tsd-signature-type">Transform</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L4">Transform.js:4</a></li>
+									<li>Defined in Transform.ts:15</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -140,7 +154,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>gameObject: <span class="tsd-signature-type">any</span></h5>
+									<h5>gameObject: <a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 											<p>The GameObject this Transform is attached to</p>
@@ -178,6 +192,89 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_absolutedirty" class="tsd-anchor"></a>
+					<h3>_absolute<wbr>Dirty</h3>
+					<div class="tsd-signature tsd-kind-icon">_absolute<wbr>Dirty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> = true</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:12</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_absoluterotation" class="tsd-anchor"></a>
+					<h3>_absolute<wbr>Rotation</h3>
+					<div class="tsd-signature tsd-kind-icon">_absolute<wbr>Rotation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:15</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_absolutex" class="tsd-anchor"></a>
+					<h3>_absoluteX</h3>
+					<div class="tsd-signature tsd-kind-icon">_absoluteX<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:13</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_absolutey" class="tsd-anchor"></a>
+					<h3>_absoluteY</h3>
+					<div class="tsd-signature tsd-kind-icon">_absoluteY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:14</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_gameobject" class="tsd-anchor"></a>
+					<h3>_game<wbr>Object</h3>
+					<div class="tsd-signature tsd-kind-icon">_game<wbr>Object<span class="tsd-signature-symbol">:</span> <a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:7</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_rotation" class="tsd-anchor"></a>
+					<h3>_rotation</h3>
+					<div class="tsd-signature tsd-kind-icon">_rotation<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_x" class="tsd-anchor"></a>
+					<h3>_x</h3>
+					<div class="tsd-signature tsd-kind-icon">_x<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:8</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="_y" class="tsd-anchor"></a>
+					<h3>_y</h3>
+					<div class="tsd-signature tsd-kind-icon">_y<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in Transform.ts:9</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Accessors</h2>
 				<section class="tsd-panel tsd-member tsd-kind-accessor tsd-parent-kind-class">
 					<a name="absoluterotation" class="tsd-anchor"></a>
@@ -190,7 +287,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L105">Transform.js:105</a></li>
+									<li>Defined in Transform.ts:117</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -203,7 +300,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L111">Transform.js:111</a></li>
+									<li>Defined in Transform.ts:123</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -232,7 +329,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L77">Transform.js:77</a></li>
+									<li>Defined in Transform.ts:89</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +342,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L83">Transform.js:83</a></li>
+									<li>Defined in Transform.ts:95</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -274,7 +371,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L91">Transform.js:91</a></li>
+									<li>Defined in Transform.ts:103</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -287,7 +384,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L97">Transform.js:97</a></li>
+									<li>Defined in Transform.ts:109</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -309,13 +406,13 @@
 					<a name="gameobject" class="tsd-anchor"></a>
 					<h3>game<wbr>Object</h3>
 					<ul class="tsd-signatures tsd-kind-get-signature tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> gameObject<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">get</span> gameObject<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L25">Transform.js:25</a></li>
+									<li>Defined in Transform.ts:37</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -323,7 +420,7 @@
 									<p>The GameObject this Transform is attached to</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_gameobject_.gameobject.html" class="tsd-signature-type">GameObject</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -338,7 +435,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L65">Transform.js:65</a></li>
+									<li>Defined in Transform.ts:77</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -351,7 +448,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L68">Transform.js:68</a></li>
+									<li>Defined in Transform.ts:80</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -379,7 +476,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L33">Transform.js:33</a></li>
+									<li>Defined in Transform.ts:45</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -402,7 +499,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L41">Transform.js:41</a></li>
+									<li>Defined in Transform.ts:53</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -415,7 +512,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L44">Transform.js:44</a></li>
+									<li>Defined in Transform.ts:56</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -444,7 +541,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L53">Transform.js:53</a></li>
+									<li>Defined in Transform.ts:65</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -457,7 +554,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L56">Transform.js:56</a></li>
+									<li>Defined in Transform.ts:68</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -488,7 +585,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L115">Transform.js:115</a></li>
+									<li>Defined in Transform.ts:127</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -499,22 +596,45 @@
 					<a name="_setabsoluteposition" class="tsd-anchor"></a>
 					<h3>_set<wbr>Absolute<wbr>Position</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_set<wbr>Absolute<wbr>Position<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">_set<wbr>Absolute<wbr>Position<span class="tsd-signature-symbol">(</span>x<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, y<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/6a2acb2/src/Transform.js#L137">Transform.js:137</a></li>
+									<li>Defined in Transform.ts:149</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>x: <span class="tsd-signature-type">any</span></h5>
+									<h5>x: <span class="tsd-signature-type">number</span></h5>
 								</li>
 								<li>
-									<h5>y: <span class="tsd-signature-type">any</span></h5>
+									<h5>y: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+					<a name="_setabsoluterotation" class="tsd-anchor"></a>
+					<h3>_set<wbr>Absolute<wbr>Rotation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">_set<wbr>Absolute<wbr>Rotation<span class="tsd-signature-symbol">(</span>rotation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in Transform.ts:170</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>rotation: <span class="tsd-signature-type">number</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -604,6 +724,30 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_transform_.transform.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_absolutedirty" class="tsd-kind-icon">_absolute<wbr>Dirty</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_absoluterotation" class="tsd-kind-icon">_absolute<wbr>Rotation</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_absolutex" class="tsd-kind-icon">_absoluteX</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_absolutey" class="tsd-kind-icon">_absoluteY</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_gameobject" class="tsd-kind-icon">_game<wbr>Object</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_rotation" class="tsd-kind-icon">_rotation</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_x" class="tsd-kind-icon">_x</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_y" class="tsd-kind-icon">_y</a>
+							</li>
 							<li class=" tsd-kind-accessor tsd-parent-kind-class">
 								<a href="_transform_.transform.html#absoluterotation" class="tsd-kind-icon">absolute<wbr>Rotation</a>
 							</li>
@@ -634,6 +778,9 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_transform_.transform.html#_setabsoluteposition" class="tsd-kind-icon">_set<wbr>Absolute<wbr>Position</a>
 							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class">
+								<a href="_transform_.transform.html#_setabsoluterotation" class="tsd-kind-icon">_set<wbr>Absolute<wbr>Rotation</a>
+							</li>
 						</ul>
 					</li>
 				</ul>
@@ -650,11 +797,13 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>

@@ -28,16 +28,19 @@ export default class Circle implements Shape {
     return hurtbox.shape._isHittingCircle(hurtbox, self);
   }
 
-  _isHittingCircle(hitbox: Hitbox, self: Hitbox): boolean {
-    if (self.transform == null || hitbox.transform == null) {
+  _isHittingCircle(self: Hitbox, hurtbox: Hitbox): boolean {
+    if (self.transform == null || hurtbox.transform == null) {
       //TODO test this
       return false;
     }
 
     let distanceBetween = Math.sqrt(
-      Math.pow(hitbox.transform.absoluteX - self.transform.absoluteX, 2) +
-        Math.pow(hitbox.transform.absoluteY - self.transform.absoluteY, 2)
+      Math.pow(self.transform.absoluteX - hurtbox.transform.absoluteX, 2) +
+        Math.pow(self.transform.absoluteY - hurtbox.transform.absoluteY, 2)
     );
-    return distanceBetween <= hitbox.shape.radius + self.shape.radius;
+
+    // we know this will be a Circle because it's called from Circle's isHitting()
+    const hurtBoxCircle: Circle = <Circle>hurtbox.shape;
+    return distanceBetween <= this.radius + hurtBoxCircle.radius;
   }
 }

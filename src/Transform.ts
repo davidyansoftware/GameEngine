@@ -1,7 +1,19 @@
+import GameObject from "./GameObject";
+
 /**
  * Transform store positional information about GameObjects
  */
 export default class Transform {
+  _gameObject: GameObject;
+  _x: number;
+  _y: number;
+  _rotation: number;
+
+  _absoluteDirty: boolean = true;
+  _absoluteX: number = 0;
+  _absoluteY: number = 0;
+  _absoluteRotation: number = 0;
+
   /**
    * Create a Transform
    * @param {GameObject} gameObject - The GameObject this Transform is attached to
@@ -9,7 +21,7 @@ export default class Transform {
    * @param {number} y - The y-coordinate
    * @param {number} rotation - The rotation in radians
    */
-  constructor(gameObject, x = 0, y = 0, rotation = 0) {
+  constructor(gameObject: GameObject, x: number = 0, y: number = 0, rotation: number = 0) {
     this._gameObject = gameObject;
     this._x = x;
     this._y = y;
@@ -22,7 +34,7 @@ export default class Transform {
    * The GameObject this Transform is attached to
    * @type {GameObject}
    */
-  get gameObject() {
+  get gameObject(): GameObject {
     return this._gameObject;
   }
 
@@ -30,7 +42,7 @@ export default class Transform {
    * The Transform of this GameObject
    * @type {Transform}
    */
-  get transform() {
+  get transform(): Transform {
     return this;
   }
 
@@ -38,10 +50,10 @@ export default class Transform {
    * The x-coordinate of the GameObject
    * @type {number}
    */
-  get x() {
+  get x(): number {
     return this._x;
   }
-  set x(value) {
+  set x(value: number) {
     this._x = value;
     this._absoluteDirty = true;
   }
@@ -50,10 +62,10 @@ export default class Transform {
    * The y-coordinate of the GameObject
    * @type {number}
    */
-  get y() {
+  get y(): number {
     return this._y;
   }
-  set y(value) {
+  set y(value: number) {
     this._y = value;
     this._absoluteDirty = true;
   }
@@ -62,10 +74,10 @@ export default class Transform {
    * The rotation of the GameObject
    * @type {number}
    */
-  get rotation() {
+  get rotation(): number {
     return this._rotation;
   }
-  set rotation(value) {
+  set rotation(value: number) {
     this._rotation = value;
     this._absoluteDirty = true;
   }
@@ -74,13 +86,13 @@ export default class Transform {
    * The x-coordinate relative to the root GameObject
    * @type {number}
    */
-  get absoluteX() {
+  get absoluteX(): number {
     if (this._absoluteDirty) {
       this._cacheAbsolutePosition();
     }
     return this._absoluteX;
   }
-  set absoluteX(value) {
+  set absoluteX(value: number) {
     this._setAbsolutePosition(value, this.absoluteY);
   }
 
@@ -88,13 +100,13 @@ export default class Transform {
    * The y-coordinate relative to the root GameObject
    * @type {number}
    */
-  get absoluteY() {
+  get absoluteY(): number {
     if (this._absoluteDirty) {
       this._cacheAbsolutePosition();
     }
     return this._absoluteY;
   }
-  set absoluteY(value) {
+  set absoluteY(value: number) {
     this._setAbsolutePosition(this.absoluteX, value);
   }
 
@@ -102,17 +114,17 @@ export default class Transform {
    * The rotation relative to the root GameObject
    * @type {number}
    */
-  get absoluteRotation() {
+  get absoluteRotation(): number {
     if (this._absoluteDirty) {
       this._cacheAbsolutePosition();
     }
     return this._absoluteRotation;
   }
-  set absoluteRotation(value) {
-    this.rotation = value - this.gameObject.parent.transform.absoluteRotation;
+  set absoluteRotation(value: number) {
+    this._setAbsoluteRotation(value);
   }
 
-  _cacheAbsolutePosition() {
+  _cacheAbsolutePosition(): void {
     const parentAbsoluteX = this.gameObject.parent
       ? this.gameObject.parent.transform.absoluteX
       : 0;
@@ -134,7 +146,8 @@ export default class Transform {
     this._absoluteDirty = false;
   }
 
-  _setAbsolutePosition(x, y) {
+  _setAbsolutePosition(x: number, y: number): void {
+    //TODO simplify this by using a null gameobject/transform object pattern
     const parentAbsoluteX = this.gameObject.parent
       ? this.gameObject.parent.transform.absoluteX
       : 0;
@@ -152,5 +165,13 @@ export default class Transform {
 
     this.x = offsetX * cos - offsetY * sin;
     this.y = offsetX * sin + offsetY * cos;
+  }
+
+  _setAbsoluteRotation(rotation: number): void {
+    //TODO simplify this by using a null gameobject/transform object pattern
+    const parentAbsoluteRotation = this.gameObject.parent
+      ? this.gameObject.parent.transform.absoluteRotation
+      : 0;
+    this.rotation = rotation - parentAbsoluteRotation;
   }
 }
