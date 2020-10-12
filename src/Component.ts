@@ -4,7 +4,7 @@ import Transform from "./Transform";
 /**
  * A base class for components of GameObjects
  */
-export default class Component {
+export default abstract class Component {
   _gameObject?: GameObject;
 
   /**

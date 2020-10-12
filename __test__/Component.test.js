@@ -1,9 +1,9 @@
 import GameObject from "../src/GameObject";
-import Component from "../src/Component";
+import TestComponent from "./TestComponent";
 
 describe("Component", () => {
   test("Components reference the GameObject they're attached to", () => {
-    const component = new Component();
+    const component = new TestComponent();
     expect(component.gameObject).toBeNull();
 
     const gameObject = new GameObject();
@@ -12,7 +12,7 @@ describe("Component", () => {
   });
 
   test("Components reference the Transform they're attached to", () => {
-    const component = new Component();
+    const component = new TestComponent();
     expect(component.transform).toBeNull();
 
     const gameObject = new GameObject();
