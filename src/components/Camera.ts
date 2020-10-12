@@ -1,20 +1,35 @@
 import Component from "../Component";
+import GameObject from "../GameObject";
 
 /**
  * A component for rendering GameObjects to canvas context
  * @extends Component
  */
 export default class Camera extends Component {
+  _canvas: HTMLCanvasElement;
+  ctx: CanvasRenderingContext2D;
+  root: GameObject;
+
+  _width: number;
+  _height: number;
+  _x: number;
+  _y: number;
+
   /**
    *
    * @param {HTMLCanvasElement} canvas - The canvas to render to
    * @param {GameObject} root - The GameObject to be rendered
    */
-  constructor(canvas, root) {
+  constructor(canvas: HTMLCanvasElement, root: GameObject) {
     super();
 
     this._canvas = canvas;
-    this.ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d");
+    if (ctx == null) {
+      //TODO test this
+      throw new Error("Canvas does not have CanvasRenderingContext2D");
+    }
+    this.ctx = ctx;
     this.root = root;
 
     this._width = canvas.width;
@@ -26,9 +41,9 @@ export default class Camera extends Component {
 
   /**
    * Renders to context every frame
-   * @param {number} currTime - The timestamp passed by requestAnimationFrame
+   * @param {number} deltaTime - The time elapsed since the previous update
    */
-  update() {
+  update(deltaTime: number): void {
     this.ctx.clearRect(-this._x, -this._y, this._width, this._height);
 
     this.ctx.save();

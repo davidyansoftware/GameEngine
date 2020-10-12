@@ -99,6 +99,12 @@
 								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="_components_renderer_.renderer.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_components_renderer_.renderer.html#shape" class="tsd-kind-icon">shape</a></li>
+							</ul>
+						</section>
 						<section class="tsd-index-section tsd-is-inherited">
 							<h3>Accessors</h3>
 							<ul class="tsd-index-list">
@@ -122,14 +128,14 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Renderer<span class="tsd-signature-symbol">(</span>shape<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_components_renderer_.renderer.html" class="tsd-signature-type">Renderer</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Renderer<span class="tsd-signature-symbol">(</span>shape<span class="tsd-signature-symbol">: </span><a href="../interfaces/_shape_.shape.html" class="tsd-signature-type">Shape</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_components_renderer_.renderer.html" class="tsd-signature-type">Renderer</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/components/Renderer.js#L7">components/Renderer.js:7</a></li>
+									<li>Defined in components/Renderer.ts:9</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -140,7 +146,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>shape: <span class="tsd-signature-type">any</span></h5>
+									<h5>shape: <a href="../interfaces/_shape_.shape.html" class="tsd-signature-type">Shape</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<div class="lead">
 										</div>
@@ -150,6 +156,19 @@
 							<h4 class="tsd-returns-title">Returns <a href="_components_renderer_.renderer.html" class="tsd-signature-type">Renderer</a></h4>
 						</li>
 					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="shape" class="tsd-anchor"></a>
+					<h3>shape</h3>
+					<div class="tsd-signature tsd-kind-icon">shape<span class="tsd-signature-symbol">:</span> <a href="../interfaces/_shape_.shape.html" class="tsd-signature-type">Shape</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in components/Renderer.ts:9</li>
+						</ul>
+					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
@@ -165,7 +184,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#gameobject">gameObject</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/Component.js#L14">Component.js:14</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/fc7c9af/src/Component.js#L14">Component.js:14</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -188,7 +207,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#transform">transform</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/Component.js#L22">Component.js:22</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/fc7c9af/src/Component.js#L22">Component.js:22</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -207,20 +226,20 @@
 					<a name="render" class="tsd-anchor"></a>
 					<h3>render</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite">
-						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CanvasRenderingContext2D</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<p>Overrides <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#render">render</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/components/Renderer.js#L18">components/Renderer.js:18</a></li>
+									<li>Defined in components/Renderer.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ctx: <span class="tsd-signature-type">any</span></h5>
+									<h5>ctx: <span class="tsd-signature-type">CanvasRenderingContext2D</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -238,7 +257,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="_component_.component.html">Component</a>.<a href="_component_.component.html#update">update</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/Component.js#L33">Component.js:33</a></li>
+									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/fc7c9af/src/Component.js#L33">Component.js:33</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -345,6 +364,9 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="_components_renderer_.renderer.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_components_renderer_.renderer.html#shape" class="tsd-kind-icon">shape</a>
+							</li>
 							<li class=" tsd-kind-get-signature tsd-parent-kind-class tsd-is-inherited">
 								<a href="_components_renderer_.renderer.html#gameobject" class="tsd-kind-icon">game<wbr>Object</a>
 							</li>
@@ -373,10 +395,14 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>

@@ -1,29 +1,34 @@
+import Hitbox from "../components/Hitbox";
+import Shape from "../Shape";
+
 /**
  * A Circle
  *
  * @impliments {Shape}
  */
-export default class Circle {
+export default class Circle implements Shape {
+  radius: number;
+
   /**
    * Create a Circle object
    *
    * @param {number} radius - Radius of the circle
    */
-  constructor(radius) {
+  constructor(radius: number) {
     this.radius = radius;
   }
 
-  render(ctx) {
+  render(ctx: CanvasRenderingContext2D): void {
     ctx.beginPath();
     ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
     ctx.stroke();
   }
 
-  isHitting(self, hurtbox) {
+  isHitting(self: Hitbox, hurtbox: Hitbox): boolean {
     return hurtbox.shape._isHittingCircle(hurtbox, self);
   }
 
-  _isHittingCircle(hitbox, self) {
+  _isHittingCircle(hitbox: Hitbox, self: Hitbox): boolean {
     let distanceBetween = Math.sqrt(
       Math.pow(hitbox.transform.absoluteX - self.transform.absoluteX, 2) +
         Math.pow(hitbox.transform.absoluteY - self.transform.absoluteY, 2)

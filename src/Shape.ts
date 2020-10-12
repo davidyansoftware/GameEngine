@@ -1,3 +1,5 @@
+import Hitbox from "./components/Hitbox";
+
 /**
  * Interface for types of shapes
  * Used in drawing Shapes and determining collisions in Hitboxes
@@ -22,3 +24,8 @@
  * @param {Hitbox} hurtbox - The Hitbox to test against
  * @returns {boolean} true if the Hitboxes are colliding
  */
+
+ export default interface Shape {
+    render(ctx: CanvasRenderingContext2D): void;
+    isHitting(self: Hitbox, hurtbox: Hitbox): boolean;
+ }

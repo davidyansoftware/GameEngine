@@ -89,6 +89,12 @@
 					</li>
 				</ul>
 			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/_shape_.shape.html" class="tsd-signature-type">Shape</a></li>
+				</ul>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -97,6 +103,12 @@
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_shapes_circle_.circle.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_shapes_circle_.circle.html#radius" class="tsd-kind-icon">radius</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -122,7 +134,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/shapes/Circle.js#L6">shapes/Circle.js:6</a></li>
+									<li>Defined in shapes/Circle.ts:10</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -147,27 +159,40 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="radius" class="tsd-anchor"></a>
+					<h3>radius</h3>
+					<div class="tsd-signature tsd-kind-icon">radius<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in shapes/Circle.ts:10</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="_ishittingcircle" class="tsd-anchor"></a>
 					<h3>_is<wbr>Hitting<wbr>Circle</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">_is<wbr>Hitting<wbr>Circle<span class="tsd-signature-symbol">(</span>hitbox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, self<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">_is<wbr>Hitting<wbr>Circle<span class="tsd-signature-symbol">(</span>hitbox<span class="tsd-signature-symbol">: </span><a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a>, self<span class="tsd-signature-symbol">: </span><a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/shapes/Circle.js#L26">shapes/Circle.js:26</a></li>
+									<li>Defined in shapes/Circle.ts:31</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>hitbox: <span class="tsd-signature-type">any</span></h5>
+									<h5>hitbox: <a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a></h5>
 								</li>
 								<li>
-									<h5>self: <span class="tsd-signature-type">any</span></h5>
+									<h5>self: <a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -178,25 +203,26 @@
 					<a name="ishitting" class="tsd-anchor"></a>
 					<h3>is<wbr>Hitting</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">is<wbr>Hitting<span class="tsd-signature-symbol">(</span>self<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, hurtbox<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span></li>
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Hitting<span class="tsd-signature-symbol">(</span>self<span class="tsd-signature-symbol">: </span><a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a>, hurtbox<span class="tsd-signature-symbol">: </span><a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_shape_.shape.html">Shape</a>.<a href="../interfaces/_shape_.shape.html#ishitting">isHitting</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/shapes/Circle.js#L22">shapes/Circle.js:22</a></li>
+									<li>Defined in shapes/Circle.ts:27</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>self: <span class="tsd-signature-type">any</span></h5>
+									<h5>self: <a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a></h5>
 								</li>
 								<li>
-									<h5>hurtbox: <span class="tsd-signature-type">any</span></h5>
+									<h5>hurtbox: <a href="_components_hitbox_.hitbox.html" class="tsd-signature-type">Hitbox</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">any</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -204,19 +230,20 @@
 					<a name="render" class="tsd-anchor"></a>
 					<h3>render</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">render<span class="tsd-signature-symbol">(</span>ctx<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CanvasRenderingContext2D</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Implementation of <a href="../interfaces/_shape_.shape.html">Shape</a>.<a href="../interfaces/_shape_.shape.html#render">render</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/davidyansoftware/GameEngine/blob/e4c1fcc/src/shapes/Circle.js#L16">shapes/Circle.js:16</a></li>
+									<li>Defined in shapes/Circle.ts:21</li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>ctx: <span class="tsd-signature-type">any</span></h5>
+									<h5>ctx: <span class="tsd-signature-type">CanvasRenderingContext2D</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -306,6 +333,9 @@
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
 								<a href="_shapes_circle_.circle.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="_shapes_circle_.circle.html#radius" class="tsd-kind-icon">radius</a>
+							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="_shapes_circle_.circle.html#_ishittingcircle" class="tsd-kind-icon">_is<wbr>Hitting<wbr>Circle</a>
 							</li>
@@ -331,10 +361,14 @@
 			<ul class="tsd-legend">
 				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
 				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
 				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
 			</ul>
 			<ul class="tsd-legend">
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
 			</ul>
 		</div>
 	</div>

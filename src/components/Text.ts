@@ -20,7 +20,7 @@ export default class Text extends Component {
    * Renders the text
    * @param {CanvasRenderingContext2D} ctx - The context to be rendered on
    */
-  render(ctx: CanvasRenderingContext2D) {
+  render(ctx: CanvasRenderingContext2D): void {
     ctx.font = "12px serif";
     ctx.fillStyle = "black";
     ctx.textAlign = "center";

@@ -5,12 +5,15 @@ import Component from "../Component";
  * @extends Component
  */
 export default class Physics extends Component {
+  x: number;
+  y: number;
+
   /**
    *
    * @param {number} x - Pixels to move horizontally every second
    * @param {number} y - Pixels to move vertically every second
    */
-  constructor(x, y) {
+  constructor(x: number, y: number) {
     super();
 
     this.x = x;
@@ -21,8 +24,8 @@ export default class Physics extends Component {
    * Updates position every frame
    * @param {number} deltaTime - The time elapsed since the previous update
    */
-  update(elapsedTime) {
-    this.gameObject.transform.x += this.x * elapsedTime;
-    this.gameObject.transform.y += this.y * elapsedTime;
+  update(deltaTime: number): void {
+    this.gameObject.transform.x += this.x * deltaTime;
+    this.gameObject.transform.y += this.y * deltaTime;
   }
 }
