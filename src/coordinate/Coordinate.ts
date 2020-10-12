@@ -1,11 +1,11 @@
-function recalculateCartesian(coordinate) {
+function recalculateCartesian(coordinate: Coordinate) {
   coordinate._x = Math.sin(coordinate._angle) * coordinate._magnitude;
   coordinate._y = -Math.cos(coordinate._angle) * coordinate._magnitude;
   coordinate._dirtyCartesian = false;
 }
 
 //TODO can recalculate angle and magnitude seperately
-function recalculatePolar(coordinate) {
+function recalculatePolar(coordinate: Coordinate) {
   coordinate._magnitude = Math.sqrt(
     Math.pow(coordinate._x, 2) + Math.pow(coordinate._y, 2)
   );
@@ -16,26 +16,27 @@ function recalculatePolar(coordinate) {
 /**
  * Represent coordinates
  */
-export default class Coordinate {
+export default abstract class Coordinate {
+  _x: number = 0;
+  _y: number = 0;
+
+  _magnitude: number = 0;
+  _angle: number = 0;
+
+  _dirtyCartesian: boolean = false;
+  _dirtyPolar: boolean = false;
+
   constructor() {
-    this._x;
-    this._y;
-
-    this._magnitude;
-    this._angle;
-
-    this._dirtyCartesian;
-    this._dirtyPolar;
   }
 
-  get x() {
+  get x(): number {
     if (this._dirtyCartesian) {
       recalculateCartesian(this);
     }
 
     return this._x;
   }
-  set x(x) {
+  set x(x: number) {
     if (this._dirtyCartesian) {
       recalculateCartesian(this);
     }
@@ -43,14 +44,14 @@ export default class Coordinate {
     this._x = x;
     this._dirtyPolar = true;
   }
-  get y() {
+  get y(): number {
     if (this._dirtyCartesian) {
       recalculateCartesian(this);
     }
 
     return this._y;
   }
-  set y(y) {
+  set y(y: number) {
     if (this._dirtyCartesian) {
       recalculateCartesian(this);
     }
@@ -59,14 +60,14 @@ export default class Coordinate {
     this._dirtyPolar = true;
   }
 
-  get magnitude() {
+  get magnitude(): number {
     if (this._dirtyPolar) {
       recalculatePolar(this);
     }
 
     return this._magnitude;
   }
-  set magnitude(magnitude) {
+  set magnitude(magnitude: number) {
     if (this._dirtyPolar) {
       recalculatePolar(this);
     }
@@ -74,14 +75,14 @@ export default class Coordinate {
     this._magnitude = magnitude;
     this._dirtyCartesian = true;
   }
-  get angle() {
+  get angle(): number {
     if (this._dirtyPolar) {
       recalculatePolar(this);
     }
 
     return this._angle;
   }
-  set angle(angle) {
+  set angle(angle: number) {
     if (this._dirtyPolar) {
       recalculatePolar(this);
     }

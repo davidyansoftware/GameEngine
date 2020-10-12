@@ -10,7 +10,7 @@ export default class Polar extends Coordinate {
    * @param {number} magnitude - The magnitude of the Coordinate
    * @param {number} angle - The angle of the Coordinate
    */
-  constructor(magnitude, angle) {
+  constructor(magnitude: number, angle: number) {
     super();
 
     this._magnitude = magnitude;
