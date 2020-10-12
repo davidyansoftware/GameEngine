@@ -29,8 +29,8 @@ export default class Acceleration extends Component {
 
   /**
    * Recalculates velocity on every frame, then updates position
-   * This acceleration will not scale directly with delta time,
-   * as framerate can affect the velocity
+   * This acceleration will not scale directly with deltaTime,
+   * as acceleration and drag get applied on every tick
    * 
    * @param {number} deltaTime - The time elapsed since the previous update
    */
@@ -50,7 +50,7 @@ export default class Acceleration extends Component {
 
     const isAccelerating = this.acceleration.magnitude > 0;
     if (!isAccelerating) {
-        this.velocity.magnitude *= this.drag * deltaTime;
+        this.velocity.magnitude -= this.velocity.magnitude * this.drag;
     }
 
     this.gameObject.transform.x += this.velocity.x * deltaTime;

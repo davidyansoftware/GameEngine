@@ -33,16 +33,18 @@ const A_KEY_CODE = 65;
 const S_KEY_CODE = 83;
 const D_KEY_CODE = 68;
 
-const SPEED = 500;
+const ACCEL = 20;
+const MAX_SPEED = 400;
+const DRAG = .1;
 
 class Player extends DNA.Component {
-  constructor(root, mouse, physics) {
+  constructor(root, mouse, acceleration) {
     super();
 
     this.root = root;
 
     this.mouse = mouse;
-    this.physics = physics;
+    this.acceleration = acceleration;
 
     this.bullets = [];
 
@@ -85,19 +87,20 @@ class Player extends DNA.Component {
 
     let x_movement = 0;
     const leftKey = DNA.Keyboard.getKey(A_KEY_CODE);
-    if (leftKey.pressed) x_movement -= SPEED;
+    if (leftKey.pressed) x_movement -= 1;
     const rightKey = DNA.Keyboard.getKey(D_KEY_CODE);
-    if (rightKey.pressed) x_movement += SPEED;
+    if (rightKey.pressed) x_movement += 1;
 
     let y_movement = 0;
     const upKey = DNA.Keyboard.getKey(W_KEY_CODE);
-    if (upKey.pressed) y_movement += SPEED;
+    if (upKey.pressed) y_movement += 1;
     const downKey = DNA.Keyboard.getKey(S_KEY_CODE);
-    if (downKey.pressed) y_movement -= SPEED;
+    if (downKey.pressed) y_movement -= 1;
 
-    //TODO account for diagonal speed
-    this.physics.x = x_movement;
-    this.physics.y = y_movement;
+    this.acceleration.acceleration.x = x_movement;
+    this.acceleration.acceleration.y = y_movement;
+    const isMoving = x_movement != 0 || y_movement != 0;
+    this.acceleration.acceleration.magnitude = isMoving ? ACCEL : 0;
   }
 }
 
@@ -105,9 +108,10 @@ const mouse = new DNA.Input.Mouse(camera);
 
 const player = new DNA.GameObject();
 player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
-const physics = new DNA.Components.Physics(0, 0);
-player.addComponent(physics);
-player.addComponent(new Player(root, mouse, physics));
+const accel = new DNA.Coordinate.Cartesian(0, 0);
+const acceleration = new DNA.Components.Acceleration(accel, MAX_SPEED, DRAG);
+player.addComponent(acceleration);
+player.addComponent(new Player(root, mouse, acceleration));
 const gun = new DNA.GameObject(0, 20);
 gun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
 player.addGameObject(gun);
