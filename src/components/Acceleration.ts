@@ -1,0 +1,51 @@
+import Component from "../Component";
+import Coordinate from "../coordinate/Coordinate";
+import Cartesian from "../coordinate/Cartesian";
+
+/**
+ * A component for handling movement of GameObjects
+ * @extends Component
+ */
+export default class Acceleration extends Component {
+  acceleration: Coordinate;
+  maxSpeed: number;
+
+  private velocity: Coordinate = new Cartesian(0, 0);
+
+  /**
+   *
+   * @param {Coordinate} acceleration - Pixels to accelerate every second
+   * @param {number} maxSpeed - The maximum magnitude of velocity
+   */
+  constructor(acceleration: Coordinate, maxSpeed: number = -1) {
+    super();
+
+    this.acceleration = acceleration;
+    this.maxSpeed = maxSpeed;
+  }
+
+  /**
+   * Recalculates velocity on every frame, then updates position
+   * This acceleration will not scale directly with delta time,
+   * as framerate can affect the velocity
+   * 
+   * @param {number} deltaTime - The time elapsed since the previous update
+   */
+  update(deltaTime: number): void {
+    if (this.gameObject == null) {
+      return;
+    }
+
+    this.velocity.x += this.acceleration.x;
+    this.velocity.y += this.acceleration.y;
+
+    const hasMaxSpeed = this.maxSpeed > 0;
+    const isExceedingMaxSpeed = this.velocity.magnitude > this.maxSpeed;
+    if (hasMaxSpeed && isExceedingMaxSpeed) {
+        this.velocity.magnitude = this.maxSpeed
+    }
+
+    this.gameObject.transform.x += this.velocity.x * deltaTime;
+    this.gameObject.transform.y += this.velocity.y * deltaTime;
+  }
+}
