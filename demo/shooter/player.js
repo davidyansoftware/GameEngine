@@ -1,4 +1,5 @@
 const LEFT_MOUSE_BUTTON = 0;
+const RIGHT_MOUSE_BUTTON = 2;
 
 const W_KEY_CODE = 87;
 const A_KEY_CODE = 65;
@@ -37,20 +38,16 @@ class Player extends DNA.Component {
   update() {
     const leftMouseButton = this.mouse.getButton(LEFT_MOUSE_BUTTON);
     if (leftMouseButton.pressed) {
-      console.log("firing!");
+      console.log("left firing!");
 
-      this.mouseOffset.x = this.mouse.x - this.transform.x;
-      this.mouseOffset.y = this.mouse.y - this.transform.y;
+      this.shoot();
+    }
 
-      const bullet = createBullet(
-        this.transform.x,
-        this.transform.y,
-        this.mouseOffset.angle
-      );
+    const rightMouseButton = this.mouse.getButton(RIGHT_MOUSE_BUTTON);
+    if (rightMouseButton.pressed) {
+        console.log("right firing!");
 
-      this.bullets.push(bullet);
-      console.log(this.bullets.length);
-      this.root.addGameObject(bullet);
+        this.shoot();
     }
 
     const dx = this.mouse.x - this.transform.absoluteX;
@@ -74,5 +71,20 @@ class Player extends DNA.Component {
     this.acceleration.acceleration.y = y_movement;
     const isMoving = x_movement != 0 || y_movement != 0;
     this.acceleration.acceleration.magnitude = isMoving ? ACCEL : 0;
+  }
+
+  shoot() {
+    this.mouseOffset.x = this.mouse.x - this.transform.x;
+    this.mouseOffset.y = this.mouse.y - this.transform.y;
+
+    const bullet = createBullet(
+      this.transform.x,
+      this.transform.y,
+      this.mouseOffset.angle
+    );
+
+    this.bullets.push(bullet);
+    console.log(this.bullets.length);
+    this.root.addGameObject(bullet);
   }
 }
