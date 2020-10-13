@@ -26,7 +26,7 @@ function createBullet(x, y, angle) {
   return bullet;
 }
 
-const mouse = new DNA.Input.Mouse(camera);
+const mouse = new DNA.Input.Mouse(camera, true);
 
 const player = new DNA.GameObject();
 player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
