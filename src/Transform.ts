@@ -9,7 +9,7 @@ export default class Transform {
   _y: number;
   _rotation: number;
 
-  _absoluteDirty: boolean = true;
+  _absoluteDirty: boolean = false;
   _absoluteX: number = 0;
   _absoluteY: number = 0;
   _absoluteRotation: number = 0;
@@ -55,7 +55,7 @@ export default class Transform {
   }
   set x(value: number) {
     this._x = value;
-    this._absoluteDirty = true;
+    this.markAbsoluteDirty();
   }
 
   /**
@@ -67,7 +67,7 @@ export default class Transform {
   }
   set y(value: number) {
     this._y = value;
-    this._absoluteDirty = true;
+    this.markAbsoluteDirty();
   }
 
   /**
@@ -79,7 +79,7 @@ export default class Transform {
   }
   set rotation(value: number) {
     this._rotation = value;
-    this._absoluteDirty = true;
+    this.markAbsoluteDirty();
   }
 
   /**
@@ -174,4 +174,12 @@ export default class Transform {
       : 0;
     this.rotation = rotation - parentAbsoluteRotation;
   }
+
+  private markAbsoluteDirty() {
+    this._absoluteDirty = true;
+    this.gameObject.gameObjects.forEach((gameObject: GameObject) => {
+      gameObject.transform.markAbsoluteDirty();
+    });
+  }
+  
 }
