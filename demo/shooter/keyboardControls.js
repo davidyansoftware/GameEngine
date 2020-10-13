@@ -3,15 +3,27 @@ const A_KEY_CODE = 65;
 const S_KEY_CODE = 83;
 const D_KEY_CODE = 68;
 
-const ACCEL = 20;
+const Q_KEY_CODE = 81;
+const E_KEY_CODE = 69;
+
+const ACCEL = 40;
 const MAX_SPEED = 400;
 const DRAG = .1;
 
 class KeyboardControls extends DNA.Component {
-  constructor(acceleration) {
+  constructor(acceleration, player) {
     super();
 
     this.acceleration = acceleration;
+    this.player = player;
+
+    DNA.Keyboard.getKey(Q_KEY_CODE).addKeyDown(() => {
+      this.player.swapLeftWeapon();
+    });
+
+    DNA.Keyboard.getKey(E_KEY_CODE).addKeyDown(() => {
+      this.player.swapRightWeapon();
+    });
   }
 
   update() {
