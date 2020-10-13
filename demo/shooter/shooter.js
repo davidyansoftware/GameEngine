@@ -40,14 +40,33 @@ rightGun.addComponent(rightGunComponent);
 
 const player = new DNA.GameObject();
 player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
+
 const accel = new DNA.Coordinate.Cartesian(0, 0);
 const acceleration = new DNA.Components.Acceleration(accel, MAX_SPEED, DRAG);
 player.addComponent(acceleration);
-player.addComponent(new MouseControls(mouse, leftGunComponent, rightGunComponent));
+
+const leftHandPosition = new DNA.GameObject(-12.5, 12.5);
+const leftHand = new DNA.GameObject(-12.5, 12.5);
+leftHand.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+const leftHandComponent = new Hand(root, player, leftHandPosition);
+leftHand.addComponent(leftHandComponent);
+
+const rightHandPosition = new DNA.GameObject(12.5, 12.5);
+const rightHand = new DNA.GameObject(12.5, 12.5);
+rightHand.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+const rightHandComponent = new Hand(root, player, rightHandPosition);
+rightHand.addComponent(rightHandComponent);
+
+player.addComponent(new MouseControls(mouse, leftGunComponent, rightGunComponent, leftHandComponent, rightHandComponent));
 player.addComponent(new KeyboardControls(acceleration));
 
 player.addGameObject(leftGun);
 player.addGameObject(rightGun);
+
+player.addGameObject(leftHandPosition);
+player.addGameObject(leftHand);
+player.addGameObject(rightHandPosition);
+player.addGameObject(rightHand);
 
 root.addGameObject(player);
 

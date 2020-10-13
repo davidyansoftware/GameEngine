@@ -2,12 +2,16 @@ const LEFT_MOUSE_BUTTON = 0;
 const RIGHT_MOUSE_BUTTON = 2;
 
 class MouseControls extends DNA.Component {
-  constructor(mouse, leftGun, rightGun) {
+  constructor(mouse, leftGun, rightGun, leftHand, rightHand) {
     super();
 
     this.mouse = mouse;
+
     this.leftGun = leftGun;
     this.rightGun = rightGun;
+    
+    this.leftHand = leftHand;
+    this.rightHand = rightHand;
 
     this.mouseOffset = new DNA.Coordinate.Cartesian(0, 0);
   }
@@ -15,12 +19,14 @@ class MouseControls extends DNA.Component {
   update() {
     const leftMouseButton = this.mouse.getButton(LEFT_MOUSE_BUTTON);
     if (leftMouseButton.pressed) {
-      this.leftGun.shoot(this.getAngle());
+      //this.leftGun.shoot(this.getAngle());
+      this.leftHand.attack(this.mouse);
     }
 
     const rightMouseButton = this.mouse.getButton(RIGHT_MOUSE_BUTTON);
     if (rightMouseButton.pressed) {
-        this.rightGun.shoot(this.getAngle());
+      //this.rightGun.shoot(this.getAngle());
+      this.rightHand.attack(this.mouse);
     }
 
     const dx = this.mouse.x - this.transform.absoluteX;
