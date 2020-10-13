@@ -13,7 +13,7 @@ class Hand extends DNA.Component {
   attack(mouse) {
     if (this.attached) {
         this.attached = false;
-        root.addGameObject(this.gameObject, true);
+        this.root.addGameObject(this.gameObject, true);
 
         this.target = new DNA.GameObject(mouse.x, mouse.y);
         this.root.addGameObject(this.target);

@@ -10,10 +10,7 @@ export default class Input {
       const pressable = this._pressables[pressableCode];
       if (pressable) {
         pressable._pressed = true;
-      }
 
-      for (const pressableCode in this._pressables) {
-        const pressable = this._pressables[pressableCode];
         for (const callback of pressable._onPressDown) {
           callback(event);
         }
@@ -25,10 +22,7 @@ export default class Input {
       const pressable = this._pressables[pressableCode];
       if (pressable) {
         pressable._pressed = false;
-      }
 
-      for (const pressableCode in this._pressables) {
-        const pressable = this._pressables[pressableCode];
         for (const callback of pressable._onPressUp) {
           callback(event);
         }
