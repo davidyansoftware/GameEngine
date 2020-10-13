@@ -28,20 +28,26 @@ function createBullet(x, y, angle) {
 
 const mouse = new DNA.Input.Mouse(camera, true);
 
-const leftGun = new DNA.GameObject(0, 20);
+const leftGun = new DNA.GameObject(-12.5, 12.5);
 leftGun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
 const leftGunComponent = new Gun(root);
 leftGun.addComponent(leftGunComponent);
+
+const rightGun = new DNA.GameObject(12.5, 12.5);
+rightGun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+const rightGunComponent = new Gun(root);
+rightGun.addComponent(rightGunComponent);
 
 const player = new DNA.GameObject();
 player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
 const accel = new DNA.Coordinate.Cartesian(0, 0);
 const acceleration = new DNA.Components.Acceleration(accel, MAX_SPEED, DRAG);
 player.addComponent(acceleration);
-player.addComponent(new MouseControls(mouse, leftGunComponent));
+player.addComponent(new MouseControls(mouse, leftGunComponent, rightGunComponent));
 player.addComponent(new KeyboardControls(acceleration));
 
 player.addGameObject(leftGun);
+player.addGameObject(rightGun);
 
 root.addGameObject(player);
 
