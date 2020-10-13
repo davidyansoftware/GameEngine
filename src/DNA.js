@@ -44,6 +44,7 @@ export default DNA = {
     Polar: Polar
   },
 
+  //TODO this shouldn't be a singleton. can support multiple keyboard contexts
   get Keyboard() {
     if (!this._keyboard) {
       this._keyboard = new Keyboard();
