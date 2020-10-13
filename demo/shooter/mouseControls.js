@@ -26,11 +26,5 @@ class MouseControls extends DNA.Component {
     const dy = this.mouse.y - this.transform.absoluteY;
     this.transform.rotation = Math.atan2(dx, dy);
   }
-
-  getAngle() {
-    this.mouseOffset.x = this.mouse.x - this.transform.x;
-    this.mouseOffset.y = this.mouse.y - this.transform.y;
-
-    return this.mouseOffset.angle;
-  }
+  
 }

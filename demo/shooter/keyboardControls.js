@@ -27,7 +27,6 @@ class KeyboardControls extends DNA.Component {
   }
 
   update() {
-    //TODO create a WASD template
     let x_movement = 0;
     const leftKey = DNA.Keyboard.getKey(A_KEY_CODE);
     if (leftKey.pressed) x_movement -= 1;

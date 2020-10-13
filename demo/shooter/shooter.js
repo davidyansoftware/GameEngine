@@ -28,16 +28,6 @@ function createBullet(x, y, angle) {
 
 const mouse = new DNA.Input.Mouse(camera, true);
 
-const leftGun = new DNA.GameObject(-12.5, 12.5);
-//leftGun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const leftGunComponent = new Gun(root);
-leftGun.addComponent(leftGunComponent);
-
-const rightGun = new DNA.GameObject(12.5, 12.5);
-//rightGun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const rightGunComponent = new Gun(root);
-rightGun.addComponent(rightGunComponent);
-
 const player = new DNA.GameObject();
 player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
 
@@ -45,68 +35,45 @@ const accel = new DNA.Coordinate.Cartesian(0, 0);
 const acceleration = new DNA.Components.Acceleration(accel, MAX_SPEED, DRAG);
 player.addComponent(acceleration);
 
+//TODO should pass in a gun config file (radius, speed, cooldown, etc)
+const gun1 = new DNA.GameObject();
+gun1.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+const gunComponent1 = new Gun(root);
+gun1.addComponent(gunComponent1);
+
+const gun2 = new DNA.GameObject();
+gun2.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+const gunComponent2 = new Gun(root);
+gun2.addComponent(gunComponent2);
+
+const hand1 = new DNA.GameObject();
+hand1.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+const handComponent1 = new Hand(root);
+hand1.addComponent(handComponent1);
+
+const hand2 = new DNA.GameObject();
+hand2.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+const handComponent2 = new Hand(root);
+hand2.addComponent(handComponent2);
+
 const leftHandPosition = new DNA.GameObject(-12.5, 12.5);
 const rightHandPosition = new DNA.GameObject(12.5, 12.5);
-
-const leftHand1 = new DNA.GameObject(-12.5, 12.5);
-leftHand1.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const leftHandComponent1 = new Hand(root, player, leftHandPosition);
-leftHand1.addComponent(leftHandComponent1);
-
-const leftHand2 = new DNA.GameObject(-12.5, 12.5);
-leftHand2.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const leftHandComponent2 = new Hand(root, player, leftHandPosition);
-leftHand2.addComponent(leftHandComponent2);
-
-const leftHand3 = new DNA.GameObject(-12.5, 12.5);
-leftHand3.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const leftHandComponent3 = new Hand(root, player, leftHandPosition);
-leftHand3.addComponent(leftHandComponent3);
-
-const rightHand1 = new DNA.GameObject(12.5, 12.5);
-rightHand1.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const rightHandComponent1 = new Hand(root, player, rightHandPosition);
-rightHand1.addComponent(rightHandComponent1);
-
-const rightHand2 = new DNA.GameObject(12.5, 12.5);
-rightHand2.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const rightHandComponent2 = new Hand(root, player, rightHandPosition);
-rightHand2.addComponent(rightHandComponent2);
-
-const rightHand3 = new DNA.GameObject(12.5, 12.5);
-rightHand3.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const rightHandComponent3 = new Hand(root, player, rightHandPosition);
-rightHand3.addComponent(rightHandComponent3);
-
 const leftWeapons = [
-  leftHandComponent1,
-  leftHandComponent2,
-  leftHandComponent3
+  handComponent1,
+  handComponent2
 ];
-
 const rightWeapons = [
-  rightHandComponent1,
-  rightHandComponent2,
-  rightHandComponent3
-]
-
-const playerComponent = new Player(leftWeapons, rightWeapons);
+  gunComponent1,
+  gunComponent2
+];
+const playerComponent = new Player(leftHandPosition, rightHandPosition, leftWeapons, rightWeapons);
 player.addComponent(playerComponent);
 
 player.addComponent(new MouseControls(mouse, playerComponent));
 player.addComponent(new KeyboardControls(acceleration, playerComponent));
 
-player.addGameObject(leftGun);
-player.addGameObject(rightGun);
-
 player.addGameObject(leftHandPosition);
-player.addGameObject(leftHand1);
-player.addGameObject(leftHand2);
-player.addGameObject(leftHand3);
 player.addGameObject(rightHandPosition);
-player.addGameObject(rightHand1);
-player.addGameObject(rightHand2);
-player.addGameObject(rightHand3);
 
 root.addGameObject(player);
 

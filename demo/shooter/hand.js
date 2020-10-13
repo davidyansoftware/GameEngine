@@ -1,12 +1,10 @@
 class Hand extends DNA.Component {
-  constructor(root, player, handPosition) {
+  constructor(root) {
     super();
 
     this.root = root;
-    this.handPosition = handPosition;
 
     this.target;
-    this.player = player;
     this.attached = true;
   }
 
@@ -25,6 +23,10 @@ class Hand extends DNA.Component {
     }
   }
 
+  setPosition(position) {
+    this.handPosition = position;
+  }
+
   comeBack() {
     this.target.destroy();
 
@@ -35,9 +37,9 @@ class Hand extends DNA.Component {
   }
 
   reattach() {
-    this.player.gameObject.addGameObject(this.gameObject);
-    this.transform.x = this.handPosition.transform.x;
-    this.transform.y = this.handPosition.transform.y;
+    this.handPosition.gameObject.addGameObject(this.gameObject);
+    this.transform.x = 0;
+    this.transform.y = 0;
     this.attached = true;
   }
 }

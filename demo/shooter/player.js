@@ -1,7 +1,15 @@
 class Player extends DNA.Component {
-  constructor(leftWeapons, rightWeapons) {
+  constructor(leftHandPosition, rightHandPosition, leftWeapons, rightWeapons) {
     super();
 
+    leftWeapons.forEach(weapon => {
+        leftHandPosition.gameObject.addGameObject(weapon.gameObject);
+        weapon.setPosition(leftHandPosition)
+    });
+    rightWeapons.forEach(weapon => {
+        rightHandPosition.gameObject.addGameObject(weapon.gameObject);
+        weapon.setPosition(rightHandPosition)
+    });
     this.leftWeapons = leftWeapons;
     this.rightWeapons = rightWeapons;
     
