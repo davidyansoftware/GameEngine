@@ -1,9 +1,22 @@
 //TODO these should be frozen
 
-const normalGun = {
+const fastGun = {
     bulletRadius: 2,
     bulletSpeed: 1000,
-    bulletMaxDistance: 20000
+    bulletMaxDistance: 20000,
+
+    cooldown: .25
+
+    //TODO
+    // Knockback
+}
+
+const normalGun = {
+    bulletRadius: 5,
+    bulletSpeed: 700,
+    bulletMaxDistance: 20000,
+
+    cooldown: .5
 
     //TODO
     // Cooldown
@@ -12,6 +25,8 @@ const normalGun = {
 
 const slowGun = {
     bulletRadius: 10,
-    bulletSpeed: 100,
-    bulletMaxDistance: 20000
+    bulletSpeed: 500,
+    bulletMaxDistance: 20000,
+
+    cooldown: 1
 }

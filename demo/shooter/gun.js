@@ -7,9 +7,19 @@ class Gun extends DNA.Component {
 
     this.bullets = [];
     this.mouseOffset = new DNA.Coordinate.Cartesian(0, 0);
+
+    this.cooldown = 0;
+  }
+
+  update(deltaTime) {
+    this.cooldown -= deltaTime;
   }
 
   attack(mouse) {
+    if (this.cooldown > 0) {
+      return;
+    }
+
     const bullet = createBullet(
       this.transform.absoluteX,
       this.transform.absoluteY,
@@ -19,6 +29,8 @@ class Gun extends DNA.Component {
 
     this.bullets.push(bullet);
     this.root.addGameObject(bullet);
+
+    this.cooldown = this.gunType.cooldown;
   }
 
   setPosition(position) {
