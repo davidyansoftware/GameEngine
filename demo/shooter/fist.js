@@ -1,8 +1,9 @@
-class Hand extends DNA.Component {
-  constructor(root) {
+class Fist extends DNA.Component {
+  constructor(root, fistType) {
     super();
 
     this.root = root;
+    this.fistType = fistType;
 
     this.target;
     this.attached = true;
@@ -16,7 +17,7 @@ class Hand extends DNA.Component {
         this.target = new DNA.GameObject(mouse.x, mouse.y);
         this.root.addGameObject(this.target);
 
-        const moveTo = new MoveTo(this.target, () => {
+        const moveTo = new MoveTo(this.target, this.fistType.speed, () => {
             this.comeBack();
         });
         this.gameObject.addComponent(moveTo);
@@ -30,7 +31,7 @@ class Hand extends DNA.Component {
   comeBack() {
     this.target.destroy();
 
-    const moveTo = new MoveTo(this.handPosition, () => {
+    const moveTo = new MoveTo(this.handPosition, this.fistType.speed, () => {
         this.reattach();
     });
     this.gameObject.addComponent(moveTo);
@@ -42,4 +43,13 @@ class Hand extends DNA.Component {
     this.transform.y = 0;
     this.attached = true;
   }
+}
+
+function createFist(root, fistType) {
+  const fist = new DNA.GameObject();
+  fist.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(fistType.radius)));
+  const fistComponent = new Fist(root, fistType);
+  fist.addComponent(fistComponent);
+
+  return fistComponent;
 }

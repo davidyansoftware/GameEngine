@@ -1,17 +1,16 @@
-const SPEED = 500;
-
 class MoveTo extends DNA.Component {
-    constructor(target, callback) {
+    constructor(target, speed, callback) {
         super();
 
         this.target = target;
+        this.speed = speed;
         this.callback = callback;
 
         this.coordinate = new DNA.Coordinate.Cartesian(0, 0);
     }
 
     update(deltaTime) {
-        if (this.move(deltaTime * SPEED)) {
+        if (this.move(deltaTime * this.speed)) {
             this.callback();
             this.gameObject.removeComponent(this);
         }

@@ -13,21 +13,11 @@ const accel = new DNA.Coordinate.Cartesian(0, 0);
 const acceleration = new DNA.Components.Acceleration(accel, MAX_SPEED, DRAG);
 player.addComponent(acceleration);
 
-const hand1 = new DNA.GameObject();
-hand1.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const handComponent1 = new Hand(root);
-hand1.addComponent(handComponent1);
-
-const hand2 = new DNA.GameObject();
-hand2.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-const handComponent2 = new Hand(root);
-hand2.addComponent(handComponent2);
-
 const leftHandPosition = new DNA.GameObject(-12.5, 12.5);
 const rightHandPosition = new DNA.GameObject(12.5, 12.5);
 const leftWeapons = [
-  handComponent1,
-  handComponent2
+  createFist(root, normalFist),
+  createFist(root, slowFist)
 ];
 const rightWeapons = [
   createGun(root, normalGun),
