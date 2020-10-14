@@ -15,15 +15,17 @@ class Gun extends DNA.Component {
     this.cooldown -= deltaTime;
   }
 
-  attack(mouse) {
+  attack(attacker, mouse) {
     if (this.cooldown > 0) {
       return;
     }
 
+    const angleToMouse = this.getAngleToMouse(mouse);
+
     const bullet = createBullet(
       this.transform.absoluteX,
       this.transform.absoluteY,
-      this.getAngleToMouse(mouse),
+      angleToMouse,
       this.gunType
     );
 
@@ -31,6 +33,10 @@ class Gun extends DNA.Component {
     this.root.addGameObject(bullet);
 
     this.cooldown = this.gunType.cooldown;
+
+    const recoilVelocity = new DNA.Coordinate.Polar(this.gunType.recoilSpeed, angleToMouse + Math.PI);
+    const recoil = new Knockback(recoilVelocity, this.gunType.recoilDistance);
+    attacker.gameObject.addComponent(recoil);
   }
 
   setPosition(position) {

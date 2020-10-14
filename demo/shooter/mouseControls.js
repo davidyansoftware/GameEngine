@@ -14,12 +14,12 @@ class MouseControls extends DNA.Component {
   update() {
     const leftMouseButton = this.mouse.getButton(LEFT_MOUSE_BUTTON);
     if (leftMouseButton.pressed) {
-      this.player.currLeftWeapon.attack(this.mouse);
+      this.player.currLeftWeapon.attack(this.player, this.mouse);
     }
 
     const rightMouseButton = this.mouse.getButton(RIGHT_MOUSE_BUTTON);
     if (rightMouseButton.pressed) {
-      this.player.currRightWeapon.attack(this.mouse);
+      this.player.currRightWeapon.attack(this.player, this.mouse);
     }
 
     const dx = this.mouse.x - this.transform.absoluteX;

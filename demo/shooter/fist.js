@@ -9,7 +9,7 @@ class Fist extends DNA.Component {
     this.attached = true;
   }
 
-  attack(mouse) {
+  attack(attacker, mouse) {
     if (this.attached) {
         this.attached = false;
         this.root.addGameObject(this.gameObject, true);

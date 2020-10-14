@@ -55,7 +55,7 @@ function createPlayer(root, mouse) {
   const rightWeapons = [
     createGun(root, fastGun),
     createGun(root, normalGun),
-    createGun(root, slowGun)
+    createGun(root, rocketEngine)
   ];
   const playerComponent = new Player(leftHandPosition, rightHandPosition, leftWeapons, rightWeapons);
   player.addComponent(playerComponent);
