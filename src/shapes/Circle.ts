@@ -24,23 +24,22 @@ export default class Circle implements Shape {
     ctx.stroke();
   }
 
-  isHitting(self: Hitbox, hurtbox: Hitbox): boolean {
-    return hurtbox.shape._isHittingCircle(hurtbox, self);
+  isHitting(self: Hitbox<Circle>, other: Hitbox<any>): boolean {
+    return other.shape._isHittingCircle(other, self);
   }
 
-  _isHittingCircle(self: Hitbox, hurtbox: Hitbox): boolean {
-    if (self.transform == null || hurtbox.transform == null) {
+  _isHittingCircle(self: Hitbox<Circle>, other: Hitbox<Circle>): boolean {
+    if (self.transform == null || other.transform == null) {
       //TODO test this
       return false;
     }
 
     let distanceBetween = Math.sqrt(
-      Math.pow(self.transform.absoluteX - hurtbox.transform.absoluteX, 2) +
-        Math.pow(self.transform.absoluteY - hurtbox.transform.absoluteY, 2)
+      Math.pow(self.transform.absoluteX - other.transform.absoluteX, 2) +
+        Math.pow(self.transform.absoluteY - other.transform.absoluteY, 2)
     );
 
-    // we know this will be a Circle because it's called from Circle's isHitting()
-    const hurtBoxCircle: Circle = <Circle>hurtbox.shape;
-    return distanceBetween <= this.radius + hurtBoxCircle.radius;
+    const otherCircle: Circle = other.shape;
+    return distanceBetween <= this.radius + otherCircle.radius;
   }
 }

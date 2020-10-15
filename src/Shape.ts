@@ -1,5 +1,7 @@
 import Hitbox from "./components/Hitbox";
 
+import Circle from "./shapes/Circle";
+
 /**
  * Interface for types of shapes
  * Used in drawing Shapes and determining collisions in Hitboxes
@@ -21,13 +23,13 @@ import Hitbox from "./components/Hitbox";
  * @function
  * @name Shape#isHitting
  * @param {Hitbox} self - The Shape's Hitbox
- * @param {Hitbox} hurtbox - The Hitbox to test against
+ * @param {Hitbox} other - The Hitbox to test against
  * @returns {boolean} true if the Hitboxes are colliding
  */
 
  export default interface Shape {
     render(ctx: CanvasRenderingContext2D): void;
-    isHitting(self: Hitbox, hurtbox: Hitbox): boolean;
+    isHitting(self: Hitbox<any>, other: Hitbox<any>): boolean;
 
-    _isHittingCircle(self: Hitbox, hurtbox: Hitbox): boolean;
+    _isHittingCircle(self: Hitbox<any>, other: Hitbox<Circle>): boolean;
  }
