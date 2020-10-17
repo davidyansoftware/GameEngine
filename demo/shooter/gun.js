@@ -53,8 +53,8 @@ class Gun extends DNA.Component {
 }
 
 function createGun(root, physicalBody, gunType) {
-  const gun = new DNA.GameObject();
-  gun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
+  const gun = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(10));
+  gun.addComponent(new DNA.Components.Renderer());
   const gunComponent = new Gun(root, physicalBody, gunType);
   gun.addComponent(gunComponent);
 

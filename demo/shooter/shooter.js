@@ -6,8 +6,8 @@ const camera = new DNA.GameObject();
 const cameraComponent = new DNA.Components.Camera(canvas, root);
 camera.addComponent(cameraComponent);
 
-const ring = new DNA.GameObject();
-const circle = new DNA.Components.Renderer(new DNA.Shapes.Circle(500));
+const ring = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(500));
+const circle = new DNA.Components.Renderer();
 ring.addComponent(circle);
 
 const mouse = new DNA.Input.Mouse(cameraComponent, true);

@@ -19,13 +19,13 @@ describe("Non-colliding Hitboxes", () => {
     const circle = new Circle(RADIUS);
 
     const hurtboxes = [];
-    notColliding1 = new Hitbox(circle, hurtboxes);
-    notColliding2 = new Hitbox(circle);
+    notColliding1 = new Hitbox(hurtboxes);
+    notColliding2 = new Hitbox();
     hurtboxes.push(notColliding2);
 
-    gameObject1 = new GameObject(NOT_COLLIDING_X_1, Y);
+    gameObject1 = new GameObject(NOT_COLLIDING_X_1, Y, 0, circle);
     gameObject1.addComponent(notColliding1);
-    gameObject2 = new GameObject(NOT_COLLIDING_X_2, Y);
+    gameObject2 = new GameObject(NOT_COLLIDING_X_2, Y, 0, circle);
     gameObject2.addComponent(notColliding2);
   });
 
@@ -59,13 +59,13 @@ describe("Colliding Hitboxes", () => {
 
   beforeEach(() => {
     const hurtboxes = [];
-    colliding1 = new Hitbox(circle, hurtboxes);
-    colliding2 = new Hitbox(circle);
+    colliding1 = new Hitbox(hurtboxes);
+    colliding2 = new Hitbox();
     hurtboxes.push(colliding2);
 
-    gameObject1 = new GameObject(COLLIDING_X, Y);
+    gameObject1 = new GameObject(COLLIDING_X, Y, 0, circle);
     gameObject1.addComponent(colliding1);
-    gameObject2 = new GameObject(COLLIDING_X, Y);
+    gameObject2 = new GameObject(COLLIDING_X, Y, 0, circle);
     gameObject2.addComponent(colliding2);
   });
 

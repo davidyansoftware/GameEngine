@@ -46,8 +46,8 @@ class Fist extends DNA.Component {
 }
 
 function createFist(root, fistType) {
-  const fist = new DNA.GameObject();
-  fist.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(fistType.radius)));
+  const fist = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(fistType.radius));
+  fist.addComponent(new DNA.Components.Renderer());
   const fistComponent = new Fist(root, fistType);
   fist.addComponent(fistComponent);
 

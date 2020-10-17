@@ -8,32 +8,30 @@ import Shape from "../Shape";
  * @param {GameObject} self
  * @param {GameObject} other
  */
-type HitCallback = (self: Hitbox<any>, other: Hitbox<any>) => void;
+type HitCallback = (self: Hitbox, other: Hitbox) => void;
 
 /**
  * A component for determining if GameObjects are colliding
  * @extends Component
  */
-export default class Hitbox<ShapeType extends Shape> extends Component {
-  shape: ShapeType;
-  _hurtboxes: Array<Hitbox<any>>;
+export default class Hitbox extends Component {
+  _hurtboxes: Array<Hitbox>;
   _onHit: Array<HitCallback>;
 
-  _isHitting: Set<Hitbox<any>>;
+  _isHitting: Set<Hitbox>;
 
   /**
    * The shape of this Hitbox
    * @param {ShapeType} shape
    */
-  constructor(shape: ShapeType, hurtboxes: Array<Hitbox<any>> = []) {
+  constructor(hurtboxes: Array<Hitbox> = []) {
     super();
 
-    this.shape = shape;
     this._hurtboxes = hurtboxes;
 
     this._onHit = [];
 
-    this._isHitting = new Set<Hitbox<any>>();
+    this._isHitting = new Set<Hitbox>();
   }
 
   /**
@@ -42,7 +40,7 @@ export default class Hitbox<ShapeType extends Shape> extends Component {
    */
   update(deltaTime: number) {
     for (const hurtbox of this._hurtboxes) {
-      const isHitting = this.shape.isHitting(this, hurtbox);
+      const isHitting = this.transform?.shape.isHitting(this, hurtbox);
       if (isHitting) {
         this._isHitting.add(hurtbox);
         hurtbox._isHitting.add(this);
@@ -68,7 +66,7 @@ export default class Hitbox<ShapeType extends Shape> extends Component {
    * Is this colliding with another Hitbox
    * @param {Hitbox} other
    */
-  isHitting(other: Hitbox<any>) {
+  isHitting(other: Hitbox) {
     return this._isHitting.has(other);
   }
 }

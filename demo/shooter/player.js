@@ -38,8 +38,8 @@ class Player extends DNA.Component {
 }
 
 function createPlayer(root, mouse) {
-  const player = new DNA.GameObject();
-  player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
+  const player = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(20));
+  player.addComponent(new DNA.Components.Renderer());
 
   const physicalBody = new DNA.Components.PhysicalBody(.05);
   player.addComponent(physicalBody);

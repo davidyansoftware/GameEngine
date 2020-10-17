@@ -22,7 +22,7 @@ class Bullet extends DNA.Component {
 
 const coordinate = new DNA.Coordinate.Cartesian(0, 0);
 function createBullet(x, y, angle, gunType) {
-  const bullet = new DNA.GameObject(x, y);
+  const bullet = new DNA.GameObject(x, y, 0, new DNA.Shapes.Circle(gunType.bulletRadius));
 
   coordinate.magnitude = gunType.bulletSpeed;
   coordinate.angle = angle;
@@ -31,9 +31,8 @@ function createBullet(x, y, angle, gunType) {
   bullet.addComponent(physics);
   bullet.addComponent(bulletComponent);
 
-  const circle = new DNA.Shapes.Circle(gunType.bulletRadius);
-  const renderer = new DNA.Components.Renderer(circle);
-  const hitbox = new DNA.Components.Hitbox(circle);
+  const renderer = new DNA.Components.Renderer();
+  const hitbox = new DNA.Components.Hitbox();
   bullet.addComponent(renderer);
   bullet.addComponent(hitbox);
 

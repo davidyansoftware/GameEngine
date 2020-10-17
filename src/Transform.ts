@@ -1,9 +1,12 @@
 import GameObject from "./GameObject";
+import Shape from "./Shape";
 
 /**
  * Transform store positional information about GameObjects
  */
 export default class Transform {
+  shape: Shape;
+
   _gameObject: GameObject;
   _x: number;
   _y: number;
@@ -21,11 +24,12 @@ export default class Transform {
    * @param {number} y - The y-coordinate
    * @param {number} rotation - The rotation in radians
    */
-  constructor(gameObject: GameObject, x: number = 0, y: number = 0, rotation: number = 0) {
+  constructor(gameObject: GameObject, x: number = 0, y: number = 0, rotation: number = 0, shape: Shape) {
     this._gameObject = gameObject;
     this._x = x;
     this._y = y;
     this._rotation = rotation;
+    this.shape = shape;
 
     this._cacheAbsolutePosition();
   }

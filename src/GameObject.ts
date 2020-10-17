@@ -1,5 +1,7 @@
 import Component from "./Component";
 import Transform from "./Transform";
+import Shape from "./Shape";
+import Circle from "./shapes/Circle";
 
 /**
  * GameObjects store game entities and logic
@@ -20,8 +22,8 @@ export default class GameObject {
    * @param {number} y - The y-coordinate for the GameObject's Transform
    * @param {number} rotation - The rotation for the GameObject's Transform
    */
-  constructor(x: number = 0, y: number = 0, rotation: number = 0) {
-    this._transform = new Transform(this, x, y, rotation);
+  constructor(x: number = 0, y: number = 0, rotation: number = 0, shape: Shape = new Circle(0)) {
+    this._transform = new Transform(this, x, y, rotation, shape);
 
     this.gameObjects = [];
     this.components = [];

@@ -26,13 +26,13 @@ describe("Circle hit detection", () => {
     const Y = 0;
     const RADIUS = 5;
     const hitboxCircle = new Circle(RADIUS);
-    const hitbox = new Hitbox(hitboxCircle);
-    const hitboxGameObject = new GameObject(X, Y);
+    const hitboxGameObject = new GameObject(X, Y, 0, hitboxCircle);
+    const hitbox = new Hitbox();
     hitboxGameObject.addComponent(hitbox);
 
     const hurtboxCircle = new Circle(RADIUS);
-    const hurtbox = new Hitbox(hurtboxCircle);
-    const hurtboxGameObject = new GameObject(X, Y);
+    const hurtboxGameObject = new GameObject(X, Y, 0, hurtboxCircle);
+    const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
     expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(true);
@@ -45,13 +45,13 @@ describe("Circle hit detection", () => {
     const X_OFFSET = RADIUS * 2;
 
     const hitboxCircle = new Circle(RADIUS);
-    const hitbox = new Hitbox(hitboxCircle);
-    const hitboxGameObject = new GameObject(X, Y);
+    const hitboxGameObject = new GameObject(X, Y, 0, hitboxCircle);
+    const hitbox = new Hitbox();
     hitboxGameObject.addComponent(hitbox);
 
     const hurtboxCircle = new Circle(RADIUS);
-    const hurtbox = new Hitbox(hurtboxCircle);
-    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y);
+    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
+    const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
     expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(true);
@@ -64,13 +64,13 @@ describe("Circle hit detection", () => {
     const X_OFFSET = RADIUS * 2 + 1;
 
     const hitboxCircle = new Circle(RADIUS);
-    const hitbox = new Hitbox(hitboxCircle);
-    const hitboxGameObject = new GameObject(X, Y);
+    const hitboxGameObject = new GameObject(X, Y, 0, hitboxCircle);
+    const hitbox = new Hitbox();
     hitboxGameObject.addComponent(hitbox);
 
     const hurtboxCircle = new Circle(RADIUS);
-    const hurtbox = new Hitbox(hurtboxCircle);
-    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y);
+    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
+    const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
     expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(false);

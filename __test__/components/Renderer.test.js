@@ -1,4 +1,4 @@
-//const Canvas = require("canvas");
+import GameObject from "../../src/GameObject";
 import Renderer from "../../src/components/Renderer";
 import Circle from "../../src/shapes/Circle";
 import Canvas from "canvas";
@@ -9,7 +9,9 @@ describe("Renderer", () => {
     const ctx = canvas.getContext("2d");
 
     const circle = new Circle(5);
-    const renderer = new Renderer(circle);
+    const gameObject = new GameObject(0,0,0,circle);
+    const renderer = new Renderer();
+    gameObject.addComponent(renderer);
 
     jest.spyOn(circle, "render");
     renderer.render(ctx);
