@@ -6,16 +6,16 @@ const D_KEY_CODE = 68;
 const Q_KEY_CODE = 81;
 const E_KEY_CODE = 69;
 
-const ACCEL = 40;
-const MAX_SPEED = 400;
-const DRAG = .1;
+const ACCEL = 2000;
 
 class KeyboardControls extends DNA.Component {
-  constructor(acceleration, player) {
+  constructor(physicalBody, player) {
     super();
 
-    this.acceleration = acceleration;
+    this.physicalBody = physicalBody;
     this.player = player;
+
+    this.acceleration = new DNA.Coordinate.Cartesian(0,0);
 
     DNA.Keyboard.getKey(Q_KEY_CODE).addKeyDown(() => {
       this.player.swapLeftWeapon();
@@ -26,7 +26,7 @@ class KeyboardControls extends DNA.Component {
     });
   }
 
-  update() {
+  update(deltaTime) {
     let x_movement = 0;
     const leftKey = DNA.Keyboard.getKey(A_KEY_CODE);
     if (leftKey.pressed) x_movement -= 1;
@@ -39,9 +39,11 @@ class KeyboardControls extends DNA.Component {
     const downKey = DNA.Keyboard.getKey(S_KEY_CODE);
     if (downKey.pressed) y_movement -= 1;
 
-    this.acceleration.acceleration.x = x_movement;
-    this.acceleration.acceleration.y = y_movement;
+    this.acceleration.x = x_movement;
+    this.acceleration.y = y_movement;
     const isMoving = x_movement != 0 || y_movement != 0;
-    this.acceleration.acceleration.magnitude = isMoving ? ACCEL : 0;
+    this.acceleration.magnitude = isMoving ? ACCEL * deltaTime : 0;
+
+    this.physicalBody.addVelocity(this.acceleration);
   }
 }

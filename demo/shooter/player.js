@@ -41,9 +41,8 @@ function createPlayer(root, mouse) {
   const player = new DNA.GameObject();
   player.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(20)));
 
-  const accel = new DNA.Coordinate.Cartesian(0, 0);
-  const acceleration = new DNA.Components.Acceleration(accel, MAX_SPEED, DRAG);
-  player.addComponent(acceleration);
+  const physicalBody = new DNA.Components.PhysicalBody(.05);
+  player.addComponent(physicalBody);
 
   const leftHandPosition = new DNA.GameObject(-12.5, 12.5);
   const rightHandPosition = new DNA.GameObject(12.5, 12.5);
@@ -53,15 +52,15 @@ function createPlayer(root, mouse) {
     createFist(root, slowFist)
   ];
   const rightWeapons = [
-    createGun(root, fastGun),
-    createGun(root, normalGun),
-    createGun(root, rocketEngine)
+    createGun(root, physicalBody, fastGun),
+    createGun(root, physicalBody, normalGun),
+    createGun(root, physicalBody, rocketEngine)
   ];
   const playerComponent = new Player(leftHandPosition, rightHandPosition, leftWeapons, rightWeapons);
   player.addComponent(playerComponent);
 
   player.addComponent(new MouseControls(mouse, playerComponent));
-  player.addComponent(new KeyboardControls(acceleration, playerComponent));
+  player.addComponent(new KeyboardControls(physicalBody, playerComponent));
 
   player.addGameObject(leftHandPosition);
   player.addGameObject(rightHandPosition);

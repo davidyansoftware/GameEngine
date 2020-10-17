@@ -2,11 +2,11 @@ import GameObject from "./GameObject";
 import GameLoop from "./GameLoop";
 import Component from "./Component";
 
-import Acceleration from "./components/Acceleration";
 import Camera from "./components/Camera";
 import Text from "./components/Text";
 import Renderer from "./components/Renderer";
 import Hitbox from "./components/Hitbox";
+import PhysicalBody from "./components/PhysicalBody";
 import Physics from "./components/Physics";
 
 import Mouse from "./input/Mouse";
@@ -23,11 +23,11 @@ export default DNA = {
   Component: Component,
 
   Components: {
-    Acceleration: Acceleration,
     Camera: Camera,
     Text: Text,
     Renderer: Renderer,
     Hitbox: Hitbox,
+    PhysicalBody: PhysicalBody,
     Physics: Physics
   },
 

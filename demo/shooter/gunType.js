@@ -7,7 +7,6 @@ const fastGun = {
 
     cooldown: .25,
     recoilSpeed: 20,
-    recoilDistance: 20
 }
 
 const normalGun = {
@@ -17,7 +16,6 @@ const normalGun = {
 
     cooldown: .5,
     recoilSpeed: 20,
-    recoilDistance: 20
 }
 
 const slowGun = {
@@ -27,7 +25,6 @@ const slowGun = {
 
     cooldown: 1,
     recoilSpeed: 20,
-    recoilDistance: 20
 }
 
 const rocketEngine = {
@@ -36,6 +33,5 @@ const rocketEngine = {
     bulletMaxDistance: 1000,
 
     cooldown: .05,
-    recoilSpeed: 100,
-    recoilDistance: 20
+    recoilSpeed: 200,
 }

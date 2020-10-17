@@ -1,14 +1,16 @@
 class Gun extends DNA.Component {
-  constructor(root, gunType) {
+  constructor(root, physicalBody, gunType) {
     super();
 
     this.root = root;
+    this.physicalBody = physicalBody;
     this.gunType = gunType;
 
     this.bullets = [];
     this.mouseOffset = new DNA.Coordinate.Cartesian(0, 0);
 
     this.cooldown = 0;
+    this.recoilVelocity = new DNA.Coordinate.Polar(this.gunType.recoilSpeed, 0);
   }
 
   update(deltaTime) {
@@ -33,10 +35,9 @@ class Gun extends DNA.Component {
     this.root.addGameObject(bullet);
 
     this.cooldown = this.gunType.cooldown;
-
-    const recoilVelocity = new DNA.Coordinate.Polar(this.gunType.recoilSpeed, angleToMouse + Math.PI);
-    const recoil = new Knockback(recoilVelocity, this.gunType.recoilDistance);
-    attacker.gameObject.addComponent(recoil);
+    
+    this.recoilVelocity.angle = angleToMouse + Math.PI
+    this.physicalBody.addVelocity(this.recoilVelocity);
   }
 
   setPosition(position) {
@@ -51,10 +52,10 @@ class Gun extends DNA.Component {
   }
 }
 
-function createGun(root, gunType) {
+function createGun(root, physicalBody, gunType) {
   const gun = new DNA.GameObject();
   gun.addComponent(new DNA.Components.Renderer(new DNA.Shapes.Circle(10)));
-  const gunComponent = new Gun(root, gunType);
+  const gunComponent = new Gun(root, physicalBody, gunType);
   gun.addComponent(gunComponent);
 
   return gunComponent;
