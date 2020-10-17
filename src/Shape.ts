@@ -29,12 +29,18 @@ import Circle from "./shapes/Circle";
  */
 
  export default interface Shape {
-   render(ctx: CanvasRenderingContext2D): void;
-   isHitting(self: Hitbox, other: Hitbox): boolean;
-   isEnclosing(self: GameObject | null, other: GameObject | null): boolean;
-   isExcluding(self: GameObject | null, other: GameObject | null): boolean;
+    render(ctx: CanvasRenderingContext2D): void;
+    isHitting(self: Hitbox, other: Hitbox): boolean;
+    isEnclosing(self: GameObject | null, other: GameObject | null): boolean;
+    isExcluding(self: GameObject | null, other: GameObject | null): boolean;
 
-   _isHittingCircle(self: Hitbox, other: Hitbox): boolean;
-   _isEnclosedByCircle(self: GameObject, other: GameObject): boolean;
-   _isExcludedByCircle(self: GameObject, other: GameObject): boolean;
+    _enclose(self: GameObject | null, other: GameObject | null): void;
+    _exclude(self: GameObject | null, other: GameObject | null): void;
+
+    _isHittingCircle(self: Hitbox, other: Hitbox): boolean;
+    _isEnclosedByCircle(self: GameObject, other: GameObject): boolean;
+    _isExcludedByCircle(self: GameObject, other: GameObject): boolean;
+
+    _becomeEnclosedByCircle(self: GameObject | null, other: GameObject | null): void;
+    _becomeExcludedByCircle(self: GameObject | null, other: GameObject | null): void;
  }

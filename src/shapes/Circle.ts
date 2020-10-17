@@ -1,3 +1,5 @@
+import Cartesian from "../coordinate/Cartesian";
+import Coordinate from "../coordinate/Coordinate";
 import GameObject from "../GameObject";
 import Hitbox from "../components/Hitbox";
 import Shape from "../Shape";
@@ -9,6 +11,8 @@ import Shape from "../Shape";
  */
 export default class Circle implements Shape {
   radius: number;
+
+  private static coordinate: Coordinate = new Cartesian(0,0);
 
   /**
    * Create a Circle object
@@ -38,6 +42,16 @@ export default class Circle implements Shape {
   isExcluding(self: GameObject, other: GameObject): boolean {
     if (!other) return false;
     return other.transform.shape._isExcludedByCircle(other, self);
+  }
+
+  _enclose(self: GameObject, other: GameObject): void {
+    if (!other) return;
+    other.transform.shape._becomeEnclosedByCircle(other, self);
+  }
+
+  _exclude(self: GameObject, other: GameObject): void {
+    if (!other) return;
+    other.transform.shape._becomeExcludedByCircle(other, self);
   }
 
   _isHittingCircle(self: Hitbox, circle: Hitbox): boolean {
@@ -83,5 +97,33 @@ export default class Circle implements Shape {
 
     const otherCircle: Circle = <Circle>circle.transform.shape;
     return distanceBetween > otherCircle.radius + this.radius;
+  }
+
+  _becomeEnclosedByCircle(self: GameObject, circle: GameObject): void {
+    if (!circle.transform?.shape.isEnclosing(circle.gameObject, self.gameObject)) {
+      Circle.coordinate.x = self.transform.absoluteX - circle.transform.absoluteX;
+      Circle.coordinate.y = self.transform.absoluteY - circle.transform.absoluteY;
+
+      const enclosingCircle: Circle = <Circle>circle.transform.shape;
+      const enclosedCircle: Circle = <Circle>self.transform.shape;
+      Circle.coordinate.magnitude = enclosingCircle.radius - enclosedCircle.radius - 1;
+
+      self.transform.absoluteX = circle.transform.absoluteX + Circle.coordinate.x;
+      self.transform.absoluteY = circle.transform.absoluteY + Circle.coordinate.y;
+    }
+  }
+
+  _becomeExcludedByCircle(self: GameObject, circle: GameObject): void {
+    if (!circle.transform?.shape.isExcluding(circle.gameObject, self.gameObject)) {
+      Circle.coordinate.x = self.transform.absoluteX - circle.transform.absoluteX;
+      Circle.coordinate.y = self.transform.absoluteY - circle.transform.absoluteY;
+
+      const excludingCircle: Circle = <Circle>circle.transform.shape;
+      const excludedCircle: Circle = <Circle>self.transform.shape;
+      Circle.coordinate.magnitude = excludingCircle.radius + excludedCircle.radius + 1;
+
+      self.transform.absoluteX = circle.transform.absoluteX + Circle.coordinate.x;
+      self.transform.absoluteY = circle.transform.absoluteY + Circle.coordinate.y;
+    }
   }
 }
