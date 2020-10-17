@@ -76,3 +76,133 @@ describe("Circle hit detection", () => {
     expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(false);
   });
 });
+
+describe("Circle is enclosing", () => {
+  test("Circle is enclosed", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_RADIUS = 10;
+    const INNER_RADIUS = 5;
+
+    const outerCircle = new Circle(OUTER_RADIUS);
+    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
+
+    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+  });
+  
+  test("Circles off-by-one", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_RADIUS = 10;
+    const INNER_RADIUS = 5;
+    const X_OFFSET = INNER_RADIUS;
+
+    const outerCircle = new Circle(OUTER_RADIUS);
+    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X + X_OFFSET - 1, Y, 0, innerCircle);
+
+    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+  });
+
+  test("Circle touching enclosure", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_RADIUS = 10;
+    const INNER_RADIUS = 5;
+    const X_OFFSET = INNER_RADIUS;
+
+    const outerCircle = new Circle(OUTER_RADIUS);
+    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+
+    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+  });
+
+  test("Circle outside enclosure", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_RADIUS = 10;
+    const INNER_RADIUS = 5;
+    const X_OFFSET = 20;
+
+    const outerCircle = new Circle(OUTER_RADIUS);
+    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+
+    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+  });
+
+  describe("Circle is excluding", () => {
+    test("Circle is enclosed", () => {
+      const X = 0;
+      const Y = 0;
+      const OUTER_RADIUS = 10;
+      const INNER_RADIUS = 5;
+  
+      const outerCircle = new Circle(OUTER_RADIUS);
+      const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+  
+      const innerCircle = new Circle(INNER_RADIUS);
+      const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
+  
+      expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+    });
+  
+    test("Circle touching enclosure", () => {
+      const X = 0;
+      const Y = 0;
+      const OUTER_RADIUS = 10;
+      const INNER_RADIUS = 5;
+      const X_OFFSET = OUTER_RADIUS + INNER_RADIUS;
+  
+      const outerCircle = new Circle(OUTER_RADIUS);
+      const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+  
+      const innerCircle = new Circle(INNER_RADIUS);
+      const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+  
+      expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+    });
+
+    test("Circles off-by-one", () => {
+      const X = 0;
+      const Y = 0;
+      const OUTER_RADIUS = 10;
+      const INNER_RADIUS = 5;
+      const X_OFFSET = OUTER_RADIUS + INNER_RADIUS;
+  
+      const outerCircle = new Circle(OUTER_RADIUS);
+      const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+  
+      const innerCircle = new Circle(INNER_RADIUS);
+      const innerCircleGameObject = new GameObject(X + X_OFFSET + 1, Y, 0, innerCircle);
+  
+      expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+    });
+  
+    test("Circle outside enclosure", () => {
+      const X = 0;
+      const Y = 0;
+      const OUTER_RADIUS = 10;
+      const INNER_RADIUS = 5;
+      const X_OFFSET = 20;
+  
+      const outerCircle = new Circle(OUTER_RADIUS);
+      const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+  
+      const innerCircle = new Circle(INNER_RADIUS);
+      const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+  
+      expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+    });
+  });
+});

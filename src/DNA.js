@@ -2,6 +2,8 @@ import GameObject from "./GameObject";
 import GameLoop from "./GameLoop";
 import Component from "./Component";
 
+import EnclosingBoundary from "./components/EnclosingBoundary";
+import ExcludingBoundary from "./components/ExcludingBoundary";
 import Camera from "./components/Camera";
 import Text from "./components/Text";
 import Renderer from "./components/Renderer";
@@ -23,6 +25,8 @@ export default DNA = {
   Component: Component,
 
   Components: {
+    EnclosingBoundary: EnclosingBoundary,
+    ExcludingBoundary: ExcludingBoundary,
     Camera: Camera,
     Text: Text,
     Renderer: Renderer,

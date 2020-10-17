@@ -1,4 +1,5 @@
 import Hitbox from "./components/Hitbox";
+import GameObject from "./GameObject";
 
 import Circle from "./shapes/Circle";
 
@@ -28,8 +29,12 @@ import Circle from "./shapes/Circle";
  */
 
  export default interface Shape {
-    render(ctx: CanvasRenderingContext2D): void;
-    isHitting(self: Hitbox<any>, other: Hitbox<any>): boolean;
+   render(ctx: CanvasRenderingContext2D): void;
+   isHitting(self: Hitbox, other: Hitbox): boolean;
+   isEnclosing(self: GameObject | null, other: GameObject | null): boolean;
+   isExcluding(self: GameObject | null, other: GameObject | null): boolean;
 
-    _isHittingCircle(self: Hitbox<any>, other: Hitbox<Circle>): boolean;
+   _isHittingCircle(self: Hitbox, other: Hitbox): boolean;
+   _isEnclosedByCircle(self: GameObject, other: GameObject): boolean;
+   _isExcludedByCircle(self: GameObject, other: GameObject): boolean;
  }
