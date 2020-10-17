@@ -1,4 +1,3 @@
-//const Canvas = require("canvas");
 import Circle from "../../src/shapes/Circle";
 import Hitbox from "../../src/components/Hitbox";
 import GameObject from "../../src/GameObject";

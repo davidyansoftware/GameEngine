@@ -1,4 +1,3 @@
-//const Canvas = require("canvas");
 import Canvas from "canvas";
 import Text from "../../src/components/Text";
 

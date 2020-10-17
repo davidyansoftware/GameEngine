@@ -1,6 +1,4 @@
 import Component from "../Component";
-import GameObject from "../GameObject";
-import Shape from "../Shape";
 
 /**
  * A callback function for handling on hit events

@@ -1,5 +1,5 @@
 /**
- * Handles logic for oressable input
+ * Handles logic for pressable input
  */
 export default class Pressable {
   constructor() {

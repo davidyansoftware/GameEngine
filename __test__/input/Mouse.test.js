@@ -1,4 +1,3 @@
-//const Canvas = require("canvas");
 import Mouse from "../../src/input/Mouse";
 import Camera from "../../src/components/Camera";
 import Canvas from "canvas";

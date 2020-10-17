@@ -1,4 +1,3 @@
-//const Canvas = require("canvas");
 import Canvas from "canvas";
 import GameObject from "../src/GameObject";
 import Component from "../src/GameObject";

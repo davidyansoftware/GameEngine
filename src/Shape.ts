@@ -1,8 +1,6 @@
 import Hitbox from "./components/Hitbox";
 import GameObject from "./GameObject";
 
-import Circle from "./shapes/Circle";
-
 /**
  * Interface for types of shapes
  * Used in drawing Shapes and determining collisions in Hitboxes
