@@ -27,7 +27,7 @@ import GameObject from "./GameObject";
  */
 
  export default interface Shape {
-    render(ctx: CanvasRenderingContext2D): void;
+    render(ctx: CanvasRenderingContext2D, fill: boolean): void;
     isHitting(self: Hitbox, other: Hitbox): boolean;
     isEnclosing(self: GameObject | null, other: GameObject | null): boolean;
     isExcluding(self: GameObject | null, other: GameObject | null): boolean;

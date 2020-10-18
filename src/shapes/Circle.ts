@@ -23,10 +23,13 @@ export default class Circle implements Shape {
     this.radius = radius;
   }
 
-  render(ctx: CanvasRenderingContext2D): void {
+  render(ctx: CanvasRenderingContext2D, fill: boolean): void {
     ctx.beginPath();
     ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
     ctx.stroke();
+    if (fill) {
+      ctx.fill();
+    }
   }
 
   isHitting(self: Hitbox, other: Hitbox): boolean {
