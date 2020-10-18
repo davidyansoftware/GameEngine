@@ -15,12 +15,14 @@ export default class Camera extends Component {
   _x: number;
   _y: number;
 
+  private backgroundColor: string | null;
+
   /**
    *
    * @param {HTMLCanvasElement} canvas - The canvas to render to
    * @param {GameObject} root - The GameObject to be rendered
    */
-  constructor(canvas: HTMLCanvasElement, root: GameObject) {
+  constructor(canvas: HTMLCanvasElement, root: GameObject, backgroundColor: string | null) {
     super();
 
     this._canvas = canvas;
@@ -31,6 +33,9 @@ export default class Camera extends Component {
     }
     this.ctx = ctx;
     this.root = root;
+
+    //TODO test this
+    this.backgroundColor = backgroundColor;
 
     this._width = canvas.width;
     this._height = canvas.height;
@@ -50,6 +55,11 @@ export default class Camera extends Component {
     }
 
     this.ctx.clearRect(-this._x, -this._y, this._width, this._height);
+    //TODO test this
+    if (this.backgroundColor) {
+      this.ctx.fillStyle = this.backgroundColor;
+      this.ctx.fillRect(-this._x, -this._y, this._width, this._height);
+    }
 
     this.ctx.save();
 

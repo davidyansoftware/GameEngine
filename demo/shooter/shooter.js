@@ -4,18 +4,12 @@ const root = new DNA.GameObject();
 const math = new DNA.Coordinate.Cartesian(0,0);
 
 const camera = new DNA.GameObject();
-const cameraComponent = new DNA.Components.Camera(canvas, root);
+const cameraComponent = new DNA.Components.Camera(canvas, root, "#FFF0C9");
 camera.addComponent(cameraComponent);
 
 const mouse = new DNA.Input.Mouse(cameraComponent, true);
 const player = createPlayer(root, mouse);
 camera.addComponent(new Follow(player));
-
-const ringCircle = new DNA.Shapes.Circle(5000)
-const ring = new DNA.GameObject(0,0,0,ringCircle);
-ring.addComponent(new DNA.Components.Renderer("#FFF0C9"));
-ring.addComponent(new DNA.Components.EnclosingBoundary([player]));
-root.addGameObject(ring);
 
 function createObstacle() {
     math.magnitude = 100 + Math.random() * 4900;
@@ -45,6 +39,11 @@ for (let i = 0; i < 50; i++) {
     lake.addGameObject(createIsland());
 }
 root.addGameObject(lake);
+
+const ring = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(5000));
+ring.addComponent(new DNA.Components.Renderer());
+ring.addComponent(new DNA.Components.EnclosingBoundary([player]));
+root.addGameObject(ring);
 
 root.addGameObject(player);
 root.addGameObject(camera);
