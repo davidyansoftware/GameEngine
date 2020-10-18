@@ -36,6 +36,7 @@ export default DNA = {
   },
 
   Input: {
+    Keyboard: Keyboard,
     Mouse: Mouse
   },
 
@@ -46,13 +47,5 @@ export default DNA = {
   Coordinate: {
     Cartesian: Cartesian,
     Polar: Polar
-  },
-
-  //TODO this shouldn't be a singleton. can support multiple keyboard contexts
-  get Keyboard() {
-    if (!this._keyboard) {
-      this._keyboard = new Keyboard();
-    }
-    return this._keyboard;
   }
 }
