@@ -40,7 +40,7 @@ export default class GameObject {
    * @type {Transform}
    */
   get transform(): Transform {
-    return this._transform || null;
+    return this._transform;
   }
 
   /**
