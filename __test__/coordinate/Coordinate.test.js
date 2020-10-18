@@ -4,7 +4,7 @@ import Polar from "../../src/coordinate/Polar";
 const X = 1;
 const Y = 2;
 const MAGNITUDE = Math.sqrt(Math.pow(X, 2) + Math.pow(Y, 2));
-const ANGLE = Math.atan2(Y, X) + Math.PI / 2;
+const ANGLE = -Math.atan2(Y, X) + Math.PI / 2;
 
 describe("Cartesian getters", () => {
   let cartesian;

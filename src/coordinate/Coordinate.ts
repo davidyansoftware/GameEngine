@@ -1,6 +1,6 @@
 function recalculateCartesian(coordinate: Coordinate) {
   coordinate._x = Math.sin(coordinate._angle) * coordinate._magnitude;
-  coordinate._y = -Math.cos(coordinate._angle) * coordinate._magnitude;
+  coordinate._y = Math.cos(coordinate._angle) * coordinate._magnitude;
   coordinate._dirtyCartesian = false;
 }
 
@@ -9,7 +9,7 @@ function recalculatePolar(coordinate: Coordinate) {
   coordinate._magnitude = Math.sqrt(
     Math.pow(coordinate._x, 2) + Math.pow(coordinate._y, 2)
   );
-  coordinate._angle = Math.atan2(coordinate._y, coordinate._x) + Math.PI / 2;
+  coordinate._angle = -Math.atan2(coordinate._y, coordinate._x) + Math.PI / 2;
   coordinate._dirtyPolar = false;
 }
 
