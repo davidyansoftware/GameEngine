@@ -7,15 +7,15 @@ import Shape from "./Shape";
 export default class Transform {
   shape: Shape;
 
-  _gameObject: GameObject;
-  _x: number;
-  _y: number;
-  _rotation: number;
+  private _gameObject: GameObject;
+  private _x: number;
+  private _y: number;
+  private _rotation: number;
 
-  _absoluteDirty: boolean = false;
-  _absoluteX: number = 0;
-  _absoluteY: number = 0;
-  _absoluteRotation: number = 0;
+  private _absoluteDirty: boolean = false;
+  private _absoluteX: number = 0;
+  private _absoluteY: number = 0;
+  private _absoluteRotation: number = 0;
 
   /**
    * Create a Transform

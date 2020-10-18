@@ -9,12 +9,13 @@ import Circle from "./shapes/Circle";
  * GameObjects hold Components which handle game logic
  */
 export default class GameObject {
-  _transform: Transform;
-  parent?: GameObject;
-  gameObjects: Array<GameObject>;
-  components: Array<Component>;
+  gameObjects: Array<GameObject> = [];
+  components: Array<Component> = [];
 
-  _dead: boolean = false;
+  private _transform: Transform;
+  private _parent?: GameObject;
+  
+  private _dead: boolean = false;
 
   /**
    * Create a GameObject
@@ -24,9 +25,6 @@ export default class GameObject {
    */
   constructor(x: number = 0, y: number = 0, rotation: number = 0, shape: Shape = new Circle(0)) {
     this._transform = new Transform(this, x, y, rotation, shape);
-
-    this.gameObjects = [];
-    this.components = [];
   }
 
   /**
@@ -46,6 +44,14 @@ export default class GameObject {
   }
 
   /**
+   * This GameObject's parent
+   * @type {GameObject}
+   */
+  get parent(): GameObject | undefined {
+    return this._parent;
+  }
+
+  /**
    * Add a child GameObject
    * @param {GameObject} gameObject - The child game object
    * @param {boolean} maintainAbsolutePosition - GameObject should maintain its absolute position
@@ -59,7 +65,7 @@ export default class GameObject {
     let prevAbsoluteX = 0;
     let prevAbsoluteY = 0;
     let prevAbsoluteRotation = 0;
-    if (gameObject.parent) {
+    if (gameObject._parent) {
       if (maintainAbsolutePosition) {
         prevAbsoluteX = gameObject.transform.absoluteX;
         prevAbsoluteY = gameObject.transform.absoluteY;
@@ -67,16 +73,16 @@ export default class GameObject {
       if (maintainAbsoluteRotation) {
         prevAbsoluteRotation = gameObject.transform.absoluteRotation;
       }
-      gameObject.parent.removeGameObject(gameObject);
+      gameObject._parent.removeGameObject(gameObject);
     }
-    gameObject.parent = this;
+    gameObject._parent = this;
     this.gameObjects.push(gameObject);
 
-    if (gameObject.parent && maintainAbsolutePosition) {
+    if (gameObject._parent && maintainAbsolutePosition) {
       gameObject.transform.absoluteX = prevAbsoluteX;
       gameObject.transform.absoluteY = prevAbsoluteY;
     }
-    if (gameObject.parent && maintainAbsoluteRotation) {
+    if (gameObject._parent && maintainAbsoluteRotation) {
       gameObject.transform.absoluteRotation = prevAbsoluteRotation;
     }
 
@@ -169,6 +175,6 @@ export default class GameObject {
   }
 
   _destroyNow(): void {
-    this.parent?.removeGameObject(this);
+    this._parent?.removeGameObject(this);
   }
 }

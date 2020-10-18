@@ -10,10 +10,10 @@ export default class Camera extends Component {
   ctx: CanvasRenderingContext2D;
   root: GameObject;
 
-  _width: number;
-  _height: number;
-  _x: number;
-  _y: number;
+  private _width: number;
+  private _height: number;
+  private _x: number;
+  private _y: number;
 
   private backgroundColor: string | null;
 

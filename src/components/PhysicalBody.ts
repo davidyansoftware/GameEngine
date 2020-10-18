@@ -7,7 +7,6 @@ import Coordinate from "../coordinate/Coordinate";
  * @extends Component
  */
 export default class PhysicalBody extends Component {
-    //mass: number;
     drag: number;
 
     private velocity: Cartesian = new Cartesian(0, 0);
@@ -15,7 +14,6 @@ export default class PhysicalBody extends Component {
     constructor(drag: number) {
         super();
 
-        //this.mass = mass;
         this.drag = drag;
     }
 

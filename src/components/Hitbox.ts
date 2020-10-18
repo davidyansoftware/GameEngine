@@ -13,10 +13,10 @@ type HitCallback = (self: Hitbox, other: Hitbox) => void;
  * @extends Component
  */
 export default class Hitbox extends Component {
-  _hurtboxes: Array<Hitbox>;
-  _onHit: Array<HitCallback>;
+  private hurtboxes: Array<Hitbox>;
+  private onHit: Array<HitCallback>;
 
-  _isHitting: Set<Hitbox>;
+  private currHitting: Set<Hitbox>;
 
   /**
    * The shape of this Hitbox
@@ -25,11 +25,10 @@ export default class Hitbox extends Component {
   constructor(hurtboxes: Array<Hitbox> = []) {
     super();
 
-    this._hurtboxes = hurtboxes;
+    this.hurtboxes = hurtboxes;
+    this.onHit = [];
 
-    this._onHit = [];
-
-    this._isHitting = new Set<Hitbox>();
+    this.currHitting = new Set<Hitbox>();
   }
 
   /**
@@ -37,17 +36,17 @@ export default class Hitbox extends Component {
    * @param {number} deltaTime - The time elapsed since the previous update
    */
   update(deltaTime: number) {
-    for (const hurtbox of this._hurtboxes) {
+    for (const hurtbox of this.hurtboxes) {
       const isHitting = this.transform?.shape.isHitting(this, hurtbox);
       if (isHitting) {
-        this._isHitting.add(hurtbox);
-        hurtbox._isHitting.add(this);
-        for (const callback of this._onHit) {
+        this.currHitting.add(hurtbox);
+        hurtbox.currHitting.add(this);
+        for (const callback of this.onHit) {
           callback(this, hurtbox);
         }
       } else {
-        this._isHitting.delete(hurtbox);
-        hurtbox._isHitting.delete(this);
+        this.currHitting.delete(hurtbox);
+        hurtbox.currHitting.delete(this);
       }
     }
   }
@@ -57,7 +56,7 @@ export default class Hitbox extends Component {
    * @param {hitCallback}
    */
   addOnHit(hitCallback: HitCallback) {
-    this._onHit.push(hitCallback);
+    this.onHit.push(hitCallback);
   }
 
   /**
@@ -65,6 +64,6 @@ export default class Hitbox extends Component {
    * @param {Hitbox} other
    */
   isHitting(other: Hitbox) {
-    return this._isHitting.has(other);
+    return this.currHitting.has(other);
   }
 }

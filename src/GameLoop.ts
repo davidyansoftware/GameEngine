@@ -5,8 +5,8 @@ import GameObject from "./GameObject";
  */
 export default class GameLoop {
   gameObject: GameObject;
-  prevTime?: DOMHighResTimeStamp;
-  _currAnimationFrame: number;
+  private prevTime?: DOMHighResTimeStamp;
+  private currAnimationFrame: number;
 
   /**
    * Create a GameLoop
@@ -14,7 +14,7 @@ export default class GameLoop {
    */
   constructor(gameObject: GameObject) {
     this.gameObject = gameObject;
-    this._currAnimationFrame = window.requestAnimationFrame(currTime => {
+    this.currAnimationFrame = window.requestAnimationFrame(currTime => {
       this.gameLoop(currTime);
     });
   }
@@ -33,7 +33,7 @@ export default class GameLoop {
     this.gameObject.update(deltaTime);
 
     return window.requestAnimationFrame(currTime => {
-      this._currAnimationFrame = this.gameLoop(currTime);
+      this.currAnimationFrame = this.gameLoop(currTime);
     });
   }
 }
