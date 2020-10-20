@@ -37,11 +37,25 @@ class Player extends DNA.Component {
 
 }
 
-function createPlayer(root, mouse) {
+class PlayerPhysicalBody extends DNA.Components.PhysicalBody {
+  constructor(map) {
+    super(.05);
+
+    this.map = map;
+  }
+
+  update(deltaTime) {
+    super.update(deltaTime);
+
+    this.drag = this.map.getDrag(this);
+  }
+}
+
+function createPlayer(root, mouse, map) {
   const player = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(20));
   player.addComponent(new DNA.Components.Renderer());
 
-  const physicalBody = new DNA.Components.PhysicalBody(.05);
+  const physicalBody = new PlayerPhysicalBody(map);
   player.addComponent(physicalBody);
 
   const leftHandPosition = new DNA.GameObject(-12.5, 12.5);
