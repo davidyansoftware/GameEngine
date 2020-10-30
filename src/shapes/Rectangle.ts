@@ -1,3 +1,4 @@
+import GameObject from "../GameObject";
 import Shape from "../Shape";
 
 /**
@@ -22,5 +23,10 @@ export default class Rectangle {
 
     render(ctx: CanvasRenderingContext2D) {
         ctx.strokeRect(-this.width / 2, -this.height / 2, this.width, this.height);
+    }
+
+    isHitting(self: GameObject, other: GameObject): boolean {
+        if (!other.transform || !self.transform) return false;
+        return other.transform.shape._isHittingRectangle(other, self);
     }
 }

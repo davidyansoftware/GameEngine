@@ -41,4 +41,6 @@ import GameObject from "./GameObject";
 
     _becomeEnclosedByCircle(self: GameObject | null, other: GameObject | null): void;
     _becomeExcludedByCircle(self: GameObject | null, other: GameObject | null): void;
+
+    _isHittingRectangle(self: GameObject | null, other: GameObject | null): boolean;
  }

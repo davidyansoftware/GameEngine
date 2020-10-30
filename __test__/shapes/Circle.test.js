@@ -1,6 +1,7 @@
 import Circle from "../../src/shapes/Circle";
 import Hitbox from "../../src/components/Hitbox";
 import GameObject from "../../src/GameObject";
+import Rectangle from "../../src/shapes/Rectangle";
 import Canvas from "canvas";
 
 describe("Circle render", () => {
@@ -19,7 +20,7 @@ describe("Circle render", () => {
   });
 });
 
-describe("Circle hit detection", () => {
+describe("Circle on circle hit detection", () => {
   test("Circles overlapping", () => {
     const X = 0;
     const Y = 0;
@@ -73,6 +74,71 @@ describe("Circle hit detection", () => {
     hurtboxGameObject.addComponent(hurtbox);
 
     expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(false);
+  });
+});
+
+describe("Circle on rectangle hit detection", () => {
+  test("Circle overlapping rectangle", () => {
+    const X = 0;
+    const Y = 0;
+    const WIDTH = 5;
+    const HEIGHT = 5;
+    const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
+    const hitboxGameObject = new GameObject(X, Y, 0, hitboxRectangle);
+    const hitbox = new Hitbox();
+    hitboxGameObject.addComponent(hitbox);
+
+    const RADIUS = 5;
+    const hurtboxCircle = new Circle(RADIUS);
+    const hurtboxGameObject = new GameObject(X, Y, 0, hurtboxCircle);
+    const hurtbox = new Hitbox();
+    hurtboxGameObject.addComponent(hurtbox);
+
+    expect(hitboxRectangle.isHitting(hitbox, hurtbox)).toBe(true);
+  });
+
+  test("Circle touching rectangle", () => {
+    const X = 0;
+    const Y = 0;
+    const WIDTH = 5;
+    const HEIGHT = 5;
+
+    const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
+    const hitboxGameObject = new GameObject(X, Y, 0, hitboxRectangle);
+    const hitbox = new Hitbox();
+    hitboxGameObject.addComponent(hitbox);
+
+    const RADIUS = 5;
+    const X_OFFSET = RADIUS + WIDTH / 2;
+
+    const hurtboxCircle = new Circle(RADIUS);
+    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
+    const hurtbox = new Hitbox();
+    hurtboxGameObject.addComponent(hurtbox);
+
+    expect(hitboxRectangle.isHitting(hitbox, hurtbox)).toBe(true);
+  });
+
+  test("Circle off-by-one rectangle", () => {
+    const X = 0;
+    const Y = 0;
+    const WIDTH = 5;
+    const HEIGHT = 5;
+
+    const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
+    const hitboxGameObject = new GameObject(X, Y, 0, hitboxRectangle);
+    const hitbox = new Hitbox();
+    hitboxGameObject.addComponent(hitbox);
+
+    const RADIUS = 5;
+    const X_OFFSET = RADIUS + WIDTH / 2 + 1;
+
+    const hurtboxCircle = new Circle(RADIUS);
+    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
+    const hurtbox = new Hitbox();
+    hurtboxGameObject.addComponent(hurtbox);
+
+    expect(hitboxRectangle.isHitting(hitbox, hurtbox)).toBe(false);
   });
 });
 
