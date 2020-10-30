@@ -38,9 +38,9 @@ import GameObject from "./GameObject";
     _isHittingCircle(self: Hitbox, other: Hitbox): boolean;
     _isEnclosedByCircle(self: GameObject, other: GameObject): boolean;
     _isExcludedByCircle(self: GameObject, other: GameObject): boolean;
-
     _becomeEnclosedByCircle(self: GameObject | null, other: GameObject | null): void;
     _becomeExcludedByCircle(self: GameObject | null, other: GameObject | null): void;
 
     _isHittingRectangle(self: GameObject | null, other: GameObject | null): boolean;
+    _isEnclosedByRectangle(self: GameObject, other: GameObject): boolean;
  }

@@ -178,4 +178,40 @@ export default class Circle implements Shape {
 
     return Circle.coordinate.magnitude <= circle.radius;
   }
+
+  _isEnclosedByRectangle(self: GameObject, rectangle: GameObject): boolean {
+    const rectCenterX = rectangle.transform.absoluteX;
+    const rectCenterY = rectangle.transform.absoluteY;
+    const rectRotation = rectangle.transform.absoluteRotation;
+
+    //TODO this should be changed once rectangle implements Shape
+    const unknown = <unknown>rectangle.transform.shape;
+    const rect = <Rectangle>unknown;
+
+    const counterRotatedCircleX = Math.cos(rectRotation) * (self.transform.x - rectCenterX) - Math.sin(rectRotation) * (self.transform.y - rectCenterY) + rectCenterX;
+    const counterRotatedCircleY = Math.sin(rectRotation) * (self.transform.x - rectCenterX) + Math.cos(rectRotation) * (self.transform.y - rectCenterY) + rectCenterY;
+
+    const rectLeftX = rectCenterX - rect.width / 2;
+    const rectRightX = rectLeftX + rect.width;
+    const rectBottomY = rectCenterY - rect.height / 2;
+    const rectTopY = rectBottomY + rect.height;
+
+    const circle = <Circle>self.transform.shape;
+    console.log(self.transform);
+    console.log(rectangle.transform);
+    if (rectLeftX >= counterRotatedCircleX - circle.radius) {
+      return false;
+    }
+    if (rectRightX <= counterRotatedCircleX + circle.radius) {
+      return false;
+    }
+    if (rectBottomY >= counterRotatedCircleY - circle.radius) {
+      return false;
+    }
+    if (rectTopY <= counterRotatedCircleY + circle.radius) {
+      return false;
+    }
+    
+    return true;
+  }
 }
