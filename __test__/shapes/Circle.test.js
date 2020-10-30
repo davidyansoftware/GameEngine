@@ -340,3 +340,72 @@ describe("Rectangle is enclosing", () => {
     expect(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject)).toBe(false);
   });
 });
+
+describe("Rectangle is excluding", () => {
+  test("Circle is enclosed", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_WIDTH = 20;
+    const OUTER_HEIGHT = 20;
+    const INNER_RADIUS = 5;
+
+    const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
+    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
+
+    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(false);
+  });
+  
+  test("Circle touching enclosure", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_WIDTH = 20;
+    const OUTER_HEIGHT = 20;
+    const INNER_RADIUS = 5;
+    const X_OFFSET = OUTER_WIDTH / 2 + INNER_RADIUS;
+
+    const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
+    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+
+    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(false);
+  });
+
+  test("Circle off-by-one", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_WIDTH = 20;
+    const OUTER_HEIGHT = 20;
+    const INNER_RADIUS = 5;
+    const X_OFFSET = OUTER_WIDTH / 2 + INNER_RADIUS;
+
+    const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
+    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X + X_OFFSET + 1, Y, 0, innerCircle);
+
+    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(true);
+  });
+
+  test("Circle outside enclosure", () => {
+    const X = 0;
+    const Y = 0;
+    const OUTER_WIDTH = 20;
+    const OUTER_HEIGHT = 20;
+    const INNER_RADIUS = 5;
+    const X_OFFSET = OUTER_WIDTH + INNER_RADIUS;
+
+    const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
+    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+
+    const innerCircle = new Circle(INNER_RADIUS);
+    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+
+    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(true);
+  });
+});

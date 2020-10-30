@@ -43,4 +43,5 @@ import GameObject from "./GameObject";
 
     _isHittingRectangle(self: GameObject | null, other: GameObject | null): boolean;
     _isEnclosedByRectangle(self: GameObject, other: GameObject): boolean;
+    _isExcludedByRectangle(self: GameObject, other: GameObject): boolean;
  }

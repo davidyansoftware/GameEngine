@@ -34,4 +34,9 @@ export default class Rectangle {
         if (!other || !self) return false;
         return other.transform.shape._isEnclosedByRectangle(other, self);
     }
+
+    isExcluding(self: GameObject | null, other: GameObject | null): boolean {
+        if (!other || !self) return false;
+        return other.transform.shape._isExcludedByRectangle(other, self);
+    }
 }
