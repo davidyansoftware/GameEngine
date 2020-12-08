@@ -60,11 +60,18 @@ function createPlayer(root, mouse, map) {
 
   const leftHandPosition = new DNA.GameObject(-12.5, 12.5);
   const rightHandPosition = new DNA.GameObject(12.5, 12.5);
+  /*
   const leftWeapons = [
     createFist(root, fastFist),
     createFist(root, normalFist),
     createFist(root, slowFist)
   ];
+  */
+ const leftWeapons = [
+  createMeleeWeapon(root, .1),
+  createMeleeWeapon(root, .2),
+  createMeleeWeapon(root, .3)
+];
   const rightWeapons = [
     createGun(root, physicalBody, fastGun),
     createGun(root, physicalBody, normalGun),
