@@ -1,9 +1,9 @@
 class MeleeWeapon extends DNA.Component {
-    constructor(root, maxCooldown) {
+    constructor(root, meleeWeaponType) {
         super();
 
         this.root = root;
-        this.maxCooldown = maxCooldown;
+        this.meleeWeaponType = meleeWeaponType;
 
         this.cooldown = 0;
     }
@@ -17,11 +17,11 @@ class MeleeWeapon extends DNA.Component {
             return;
         }
 
-        const meleeAttack = createMeleeAttack(attacker.transform.x, attacker.transform.y, 50, .05);
+        const meleeAttack = createMeleeAttack(attacker.transform.x, attacker.transform.y, this.meleeWeaponType.radius, this.meleeWeaponType.duration);
 
         this.root.addGameObject(meleeAttack);
 
-        this.cooldown = this.maxCooldown;
+        this.cooldown = this.meleeWeaponType.cooldown;
     }
 
     setPosition(position) {
@@ -29,10 +29,10 @@ class MeleeWeapon extends DNA.Component {
     }
 }
 
-function createMeleeWeapon(root, maxCooldown) {
+function createMeleeWeapon(root, meleeWeaponType) {
     const meleeWeapon = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(1));
     meleeWeapon.addComponent(new DNA.Components.Renderer());
-    const meleeWeaponComponent = new MeleeWeapon(root, maxCooldown);
+    const meleeWeaponComponent = new MeleeWeapon(root, meleeWeaponType);
     meleeWeapon.addComponent(meleeWeaponComponent);
 
     return meleeWeaponComponent;

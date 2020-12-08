@@ -67,11 +67,11 @@ function createPlayer(root, mouse, map) {
     createFist(root, slowFist)
   ];
   */
- const leftWeapons = [
-  createMeleeWeapon(root, .1),
-  createMeleeWeapon(root, .2),
-  createMeleeWeapon(root, .3)
-];
+  const leftWeapons = [
+    createMeleeWeapon(root, smallAttack),
+    createMeleeWeapon(root, normalAttack),
+    createMeleeWeapon(root, largeAttack)
+  ];
   const rightWeapons = [
     createGun(root, physicalBody, fastGun),
     createGun(root, physicalBody, normalGun),
