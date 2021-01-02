@@ -5,7 +5,7 @@ import GameObject from "./GameObject";
  */
 export default class GameLoop {
   gameObject: GameObject;
-  private prevTime?: DOMHighResTimeStamp;
+  private prevTime: DOMHighResTimeStamp;
   private currAnimationFrame: number;
 
   /**
@@ -14,6 +14,7 @@ export default class GameLoop {
    */
   constructor(gameObject: GameObject) {
     this.gameObject = gameObject;
+    this.prevTime = performance.now();
     this.currAnimationFrame = window.requestAnimationFrame(currTime => {
       this.gameLoop(currTime);
     });
@@ -26,7 +27,6 @@ export default class GameLoop {
    * @return {number} The animation frame of the current request
    */
   gameLoop(currTime: DOMHighResTimeStamp): number {
-    if (!this.prevTime) this.prevTime = currTime;
     let deltaTime = (currTime - this.prevTime) / 1000;
     this.prevTime = currTime;
 
