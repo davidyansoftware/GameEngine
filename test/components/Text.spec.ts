@@ -10,13 +10,13 @@ describe("Text logic", () => {
   let text: Text;
 
   beforeEach(() => {
-    const canvas: Canvas.Canvas = Canvas.createCanvas(100, 100);
+    const canvas = Canvas.createCanvas(100, 100);
     ctx = canvas.getContext("2d");
     text = new Text(TEST);
   });
 
   it("will render text", () => {
-    const ctxSpy: sinon.SinonSpy = sinon.spy(ctx, "fillText");
+    const ctxSpy = sinon.spy(ctx, "fillText");
 
     text.render(ctx);
     assert.ok(ctxSpy.calledOnce);

@@ -1,22 +1,23 @@
+import * as assert from "assert";
 import GameObject from "../src/GameObject";
 import TestComponent from "./TestComponent";
 
 describe("Component", () => {
-  test("Components reference the GameObject they're attached to", () => {
+  it("references the GameObject its attached to", () => {
     const component = new TestComponent();
-    expect(component.gameObject).toBeNull();
+    assert.equal(component.gameObject, null);
 
     const gameObject = new GameObject();
     gameObject.addComponent(component);
-    expect(component.gameObject).toBe(gameObject);
+    assert.equal(component.gameObject, gameObject);
   });
 
-  test("Components reference the Transform they're attached to", () => {
+  it("it references the Transform its attached to", () => {
     const component = new TestComponent();
-    expect(component.transform).toBeNull();
+    assert.equal(component.transform, null);
 
     const gameObject = new GameObject();
     gameObject.addComponent(component);
-    expect(component.transform).toBe(gameObject.transform);
+    assert.equal(component.transform, gameObject.transform);
   });
 });
