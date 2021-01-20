@@ -1,24 +1,27 @@
+import * as assert from "assert";
+import * as sinon from "sinon";
 import Circle from "../../src/shapes/Circle";
 import Hitbox from "../../src/components/Hitbox";
 import GameObject from "../../src/GameObject";
 
 const Y = 0;
 const RADIUS = 5;
+const DELTA_TIME = 1;
 
 describe("Non-colliding Hitboxes", () => {
   const NOT_COLLIDING_X_1 = Number.NEGATIVE_INFINITY;
   const NOT_COLLIDING_X_2 = Number.POSITIVE_INFINITY;
 
-  let notColliding1;
-  let notColliding2;
+  let notColliding1: Hitbox;
+  let notColliding2: Hitbox;
 
-  let gameObject1;
-  let gameObject2;
+  let gameObject1: GameObject;
+  let gameObject2: GameObject;
 
   beforeEach(() => {
     const circle = new Circle(RADIUS);
 
-    const hurtboxes = [];
+    const hurtboxes: Array<Hitbox> = [];
     notColliding1 = new Hitbox(hurtboxes);
     notColliding2 = new Hitbox();
     hurtboxes.push(notColliding2);
@@ -29,20 +32,20 @@ describe("Non-colliding Hitboxes", () => {
     gameObject2.addComponent(notColliding2);
   });
 
-  test("Non-colliding Hitboxes are not colliding", () => {
-    gameObject1.update();
+  it("is not colliding", () => {
+    gameObject1.update(DELTA_TIME);
 
-    expect(notColliding1.isHitting(notColliding2)).toBeFalsy();
-    expect(notColliding2.isHitting(notColliding1)).toBeFalsy();
+    assert.ok(!notColliding1.isHitting(notColliding2));
+    assert.ok(!notColliding2.isHitting(notColliding1));
   });
 
-  test("Non-colliding Hitboxes dont callback", () => {
-    const callback = jest.fn();
+  it("doesn't call callback", () => {
+    const callback = sinon.fake();
     notColliding1.addOnHit(callback);
 
-    gameObject1.update();
+    gameObject1.update(DELTA_TIME);
 
-    expect(callback).not.toHaveBeenCalled();
+    assert.ok(callback.notCalled);
   });
 });
 
@@ -51,14 +54,14 @@ describe("Colliding Hitboxes", () => {
 
   const circle = new Circle(RADIUS);
 
-  let colliding1;
-  let colliding2;
+  let colliding1: Hitbox;
+  let colliding2: Hitbox;
 
-  let gameObject1;
-  let gameObject2;
+  let gameObject1: GameObject;
+  let gameObject2: GameObject;
 
   beforeEach(() => {
-    const hurtboxes = [];
+    const hurtboxes: Array<Hitbox> = [];
     colliding1 = new Hitbox(hurtboxes);
     colliding2 = new Hitbox();
     hurtboxes.push(colliding2);
@@ -69,19 +72,19 @@ describe("Colliding Hitboxes", () => {
     gameObject2.addComponent(colliding2);
   });
 
-  test("Colliding Hitboxes are colliding", () => {
-    gameObject1.update();
+  it("is colliding", () => {
+    gameObject1.update(DELTA_TIME);
 
-    expect(colliding1.isHitting(colliding2)).toBe(true);
-    expect(colliding2.isHitting(colliding1)).toBe(true);
+    assert.ok(colliding1.isHitting(colliding2));
+    assert.ok(colliding2.isHitting(colliding1));
   });
 
-  test("Colliding Hitboxes callback", () => {
-    const callback = jest.fn();
+  it("calls callback", () => {
+    const callback = sinon.fake();
     colliding1.addOnHit(callback);
 
-    gameObject1.update();
+    gameObject1.update(DELTA_TIME);
 
-    expect(callback).toHaveBeenCalledTimes(1);
+    assert.ok(callback.calledOnce);
   });
 });
