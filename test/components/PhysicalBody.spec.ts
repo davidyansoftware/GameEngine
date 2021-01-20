@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import almostEqual from "almost-equal";
+import * as testUtils from "../TestUtils";
 import Cartesian from "../../src/coordinate/Cartesian";
 import GameObject from "../../src/GameObject";
 import PhysicalBody from "../../src/components/PhysicalBody";
@@ -21,7 +21,7 @@ describe("Velocity", () => {
   const X_VELOCITY = 3;
   const Y_VELOCITY = 4;
 
-  let physicalBody;
+  let physicalBody: PhysicalBody;
 
   beforeEach(() => {
     const gameObject = new GameObject();
@@ -32,20 +32,20 @@ describe("Velocity", () => {
   it("allows body to move", () => {
     const velocity = new Cartesian(X_VELOCITY, Y_VELOCITY);
     physicalBody.addVelocity(velocity);
-    physicalBody.gameObject.update(ELAPSED_TIME);
+    physicalBody.gameObject!.update(ELAPSED_TIME);
 
-    assert.equal(physicalBody.transform.x, X_VELOCITY * ELAPSED_TIME);
-    assert.equal(physicalBody.transform.y, Y_VELOCITY * ELAPSED_TIME);
+    assert.equal(physicalBody.transform!.x, X_VELOCITY * ELAPSED_TIME);
+    assert.equal(physicalBody.transform!.y, Y_VELOCITY * ELAPSED_TIME);
   });
 
   it("is reduced by drag", () => {
     const velocity = new Cartesian(X_VELOCITY, Y_VELOCITY);
     physicalBody.addVelocity(velocity);
 
-    physicalBody.gameObject.update(ELAPSED_TIME);
-    physicalBody.gameObject.update(ELAPSED_TIME);
+    physicalBody.gameObject!.update(ELAPSED_TIME);
+    physicalBody.gameObject!.update(ELAPSED_TIME);
 
-    assert.ok(almostEqual(physicalBody.transform.x, 4.5));
-    assert.ok(almostEqual(physicalBody.transform.y, 6));
+    assert.ok(testUtils.almostEqual(physicalBody.transform!.x, 4.5));
+    assert.ok(testUtils.almostEqual(physicalBody.transform!.y, 6));
   });
 });
