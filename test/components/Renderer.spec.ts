@@ -7,15 +7,15 @@ import Canvas from "canvas";
 
 describe("Renderer", () => {
   it("will render a shape", () => {
-    const canvas: Canvas.Canvas = Canvas.createCanvas(100, 100);
-    const ctx: CanvasRenderingContext2D = canvas.getContext("2d");
+    const canvas = Canvas.createCanvas(100, 100);
+    const ctx = canvas.getContext("2d");
 
-    const circle: Circle = new Circle(5);
-    const gameObject: GameObject = new GameObject(0, 0, 0, circle);
-    const renderer: Renderer = new Renderer("black");
+    const circle = new Circle(5);
+    const gameObject = new GameObject(0, 0, 0, circle);
+    const renderer = new Renderer("black");
     gameObject.addComponent(renderer);
 
-    const circleSpy: sinon.SinonSpy = sinon.spy(circle, "render");
+    const circleSpy = sinon.spy(circle, "render");
     renderer.render(ctx);
     assert.ok(circleSpy.calledOnce);
   });
