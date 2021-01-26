@@ -1,47 +1,46 @@
+import * as assert from "assert";
+import should from "should";
+import * as sinon from "sinon";
+import * as testUtils from "./TestUtils";
 import Canvas from "canvas";
 import GameObject from "../src/GameObject";
 import Component from "../src/GameObject";
 
 describe("GameObject", () => {
-  test("GameObject can reference itself", () => {
+  it("can reference itself", () => {
     const gameObject = new GameObject();
-    expect(gameObject.gameObject).toBe(gameObject);
-  });
-
-  test("GameObject can reference it's Transform", () => {
-    const gameObject = new GameObject();
-    expect(gameObject.transform).toBe(gameObject._transform);
+    assert.equal(gameObject.gameObject, gameObject);
   });
 });
 
 describe("GameObject composite", () => {
-  test("addGameObject adds a game object", () => {
+  it("adds a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
-    expect(parent.gameObjects).not.toContain(child);
+    should(parent.gameObjects).not.containEql(child);
 
     parent.addGameObject(child);
-    expect(parent.gameObjects).toContain(child);
+    should(parent.gameObjects).containEql(child);
   });
 
-  test("addGameObject sets the parent", () => {
+  it("sets the parent", () => {
     const parent = new GameObject();
     const child = new GameObject();
 
     parent.addGameObject(child);
-    expect(child.parent).toBe(parent);
+    assert.equal(child.parent, parent);
   });
 
-  test("removeGameObject removes a game object", () => {
+  it("removes a game object", () => {
     const parent = new GameObject();
     const child = new GameObject();
     parent.addGameObject(child);
 
     parent.removeGameObject(child);
-    expect(parent.gameObjects).not.toContain(child);
+    should(parent.gameObjects).not.containEql(child);
   });
 
-  test("addGameObject removes the object from the previous parent", () => {
+  it("removes the object from the previous parent", () => {
     const parent1 = new GameObject();
     const parent2 = new GameObject();
     const child = new GameObject();
@@ -49,11 +48,11 @@ describe("GameObject composite", () => {
     parent1.addGameObject(child);
     parent2.addGameObject(child);
 
-    expect(parent1.gameObjects).not.toContain(child);
-    expect(parent2.gameObjects).toContain(child);
+    should(parent1.gameObjects).not.containEql(child);
+    should(parent2.gameObjects).containEql(child);
   });
 
-  test("addGameObject can maintain the absolute position", () => {
+  it("can maintain the absolute position", () => {
     const PARENT1_X = 1;
     const PARENT1_Y = 2;
     const parent1 = new GameObject(PARENT1_X, PARENT1_Y);
@@ -66,11 +65,11 @@ describe("GameObject composite", () => {
 
     parent1.addGameObject(child);
     parent2.addGameObject(child, true);
-    expect(child.transform.absoluteX).toBeCloseTo(PARENT1_X + CHILD_X);
-    expect(child.transform.absoluteY).toBeCloseTo(PARENT1_Y + CHILD_Y);
+    testUtils.assertAlmostEqual(child.transform.absoluteX, PARENT1_X + CHILD_X);
+    testUtils.assertAlmostEqual(child.transform.absoluteY, PARENT1_Y + CHILD_Y);
   });
 
-  test("addGameObject can maintain the absolute rotation", () => {
+  it("can maintain the absolute rotation", () => {
     const PARENT1_ROTATION = Math.PI / 2;
     const parent1 = new GameObject(0, 0, PARENT1_ROTATION);
     const PARENT2_ROTATION = Math.PI / 4;
@@ -80,92 +79,89 @@ describe("GameObject composite", () => {
 
     parent1.addGameObject(child);
     parent2.addGameObject(child, false, true);
-    expect(child.transform.absoluteRotation).toBeCloseTo(
+    testUtils.assertAlmostEqual(
+      child.transform.absoluteRotation,
       PARENT1_ROTATION + CHILD_ROTATION
     );
   });
 
-  test("update will update children GameObjects", () => {
+  it("will update children GameObjects", () => {
     const parent = new GameObject();
     const child = new GameObject();
-    jest.spyOn(child, "update");
+    const childSpy = sinon.spy(child, "update");
 
     parent.addGameObject(child);
-    expect(child.update).not.toHaveBeenCalled();
+    assert.ok(childSpy.notCalled);
 
     const TIMESTAMP = 12345;
     parent.update(TIMESTAMP);
-    expect(child.update).toHaveBeenCalledTimes(1);
-    expect(child.update).toHaveBeenLastCalledWith(TIMESTAMP);
+    assert.ok(childSpy.calledOnceWith(TIMESTAMP));
   });
 
-  test("render will render children GameObject", () => {
+  it("will render children GameObject", () => {
     const parent = new GameObject();
     const child = new GameObject();
-    jest.spyOn(child, "render");
+    const childSpy = sinon.spy(child, "render");
 
     parent.addGameObject(child);
-    expect(child.render).not.toHaveBeenCalled();
+    assert.ok(childSpy.notCalled);
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
     parent.render(ctx);
-    expect(child.render).toHaveBeenCalledTimes(1);
-    expect(child.render).toHaveBeenLastCalledWith(ctx);
+    assert.ok(childSpy.calledOnceWith(ctx));
   });
 });
 
 describe("GameObject components", () => {
-  test("addComponent adds a component", () => {
+  it("adds a component", () => {
     const gameObject = new GameObject();
     const component = new Component();
-    expect(gameObject.components).not.toContain(component);
+    should(gameObject.components).not.containEql(component);
 
     gameObject.addComponent(component);
-    expect(gameObject.components).toContain(component);
+    should(gameObject.components).containEql(component);
   });
 
-  test("removeComponent removes a component", () => {
+  it("removes a component", () => {
     const gameObject = new GameObject();
     const component = new Component();
     gameObject.addComponent(component);
 
     gameObject.removeComponent(component);
-    expect(gameObject.components).not.toContain(component);
+    should(gameObject.components).not.containEql(component);
   });
 
-  test("update will update components", () => {
+  it("will update components", () => {
     const gameObject = new GameObject();
     const component = new Component();
-    jest.spyOn(component, "update");
+    const componentSpy = sinon.spy(component, "update");
 
     gameObject.addComponent(component);
-    expect(component.update).not.toHaveBeenCalled();
+    assert.ok(componentSpy.notCalled);
 
     const TIMESTAMP = 12345;
     gameObject.update(TIMESTAMP);
-    expect(component.update).toHaveBeenCalledTimes(1);
-    expect(component.update).toHaveBeenLastCalledWith(TIMESTAMP);
+    assert.ok(componentSpy.calledOnceWith(TIMESTAMP));
   });
 
-  test("render will render Components", () => {
+  it("will render Components", () => {
     const gameObject = new GameObject();
     const component = new Component();
 
-    jest.spyOn(component, "render");
+    const componentSpy = sinon.spy(component, "render");
     gameObject.addComponent(component);
-    expect(component.render).not.toHaveBeenCalled();
+    assert.ok(componentSpy.notCalled);
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
     gameObject.render(ctx);
-    expect(component.render).toHaveBeenCalledTimes(1);
-    expect(component.render).toHaveBeenLastCalledWith(ctx);
+    assert.ok(componentSpy.calledOnceWith(ctx));
   });
 });
 
 describe("GameObject render", () => {
-  test("render will restore the state of the context", () => {
+  it("will restore the state of the context", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
     const ROTATION = Math.PI / 4;
@@ -173,15 +169,15 @@ describe("GameObject render", () => {
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
-    const beforeMatrix = ctx.currentTransform;
+    const beforeMatrix = ctx.currentTransform.toString();
 
     gameObject.render(ctx);
 
-    const afterMatrix = ctx.currentTransform;
-    expect(afterMatrix).toEqual(beforeMatrix);
+    const afterMatrix = ctx.currentTransform.toString();
+    assert.equal(afterMatrix, beforeMatrix);
   });
 
-  test("render will not translate canvas based on Transform", () => {
+  it("will not translate canvas based on Transform", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
     const ROTATION = Math.PI / 2;
@@ -189,15 +185,15 @@ describe("GameObject render", () => {
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
-    jest.spyOn(ctx, "translate");
-    jest.spyOn(ctx, "rotate");
+    const translateSpy = sinon.spy(ctx, "translate");
+    const rotateSpy = sinon.spy(ctx, "rotate");
 
     gameObject.render(ctx);
-    expect(ctx.translate).not.toHaveBeenCalled();
-    expect(ctx.rotate).not.toHaveBeenCalled();
+    assert.ok(translateSpy.notCalled);
+    assert.ok(rotateSpy.notCalled);
   });
 
-  test("render will translate canvas based on child GameObject Transforms", () => {
+  it("will translate canvas based on child GameObject Transforms", () => {
     const PARENT_X = 100;
     const PARENT_Y = 200;
     const PARENT_ROTATION = Math.PI / 2;
@@ -217,38 +213,40 @@ describe("GameObject render", () => {
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
-    jest.spyOn(ctx, "translate");
-    jest.spyOn(ctx, "rotate");
+    const translateSpy = sinon.spy(ctx, "translate");
+    const rotateSpy = sinon.spy(ctx, "rotate");
 
     parent.render(ctx);
-    expect(ctx.translate).toHaveBeenCalledTimes(2);
-    expect(ctx.translate).toHaveBeenNthCalledWith(1, CHILD1_X, -CHILD1_Y);
-    expect(ctx.translate).toHaveBeenNthCalledWith(2, CHILD2_X, -CHILD2_Y);
-    expect(ctx.rotate).toHaveBeenCalledTimes(2);
-    expect(ctx.rotate).toHaveBeenNthCalledWith(1, CHILD1_ROTATION);
-    expect(ctx.rotate).toHaveBeenNthCalledWith(2, CHILD2_ROTATION);
+    assert.ok(translateSpy.calledTwice);
+    assert.ok(translateSpy.calledWith(CHILD1_X, -CHILD1_Y));
+    assert.ok(translateSpy.calledWith(CHILD2_X, -CHILD2_Y));
+    assert.ok(rotateSpy.calledTwice);
+    assert.ok(rotateSpy.calledWith(CHILD1_ROTATION));
+    assert.ok(rotateSpy.calledWith(CHILD2_ROTATION));
   });
 });
 
 describe("GameObject destroy", () => {
-  test("Destroy removes GameObject from parent", () => {
+  it("removes GameObject from parent", () => {
+    const DELTA_TIME = 5;
+    
     const parent = new GameObject();
     const child = new GameObject();
     parent.addGameObject(child);
 
     child.destroy();
-    parent.update();
+    parent.update(DELTA_TIME);
 
-    expect(parent.gameObjects).not.toContain(child);
+    should(parent.gameObjects).not.containEql(child);
   });
 
-  test("Destroy waits for an update before destroying", () => {
+  it("waits for an update before destroying", () => {
     const parent = new GameObject();
     const child = new GameObject();
     parent.addGameObject(child);
 
     child.destroy();
 
-    expect(parent.gameObjects).toContain(child);
+    should(parent.gameObjects).containEql(child);
   });
 });
