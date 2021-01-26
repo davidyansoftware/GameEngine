@@ -106,7 +106,7 @@ describe("Camera", () => {
     });
     console.log(offsetRotation);
     assert.ok(translateSpy.calledWith(offsetX, -offsetY));
-    assert.ok(testUtils.almostEqual(rotateSpy.getCall(0).args[0], offsetRotation));
+    testUtils.assertAlmostEqual(rotateSpy.getCall(0).args[0], offsetRotation);
     assert.ok(rotateSpy.calledBefore(translateSpy));
   });
 

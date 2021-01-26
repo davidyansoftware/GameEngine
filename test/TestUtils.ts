@@ -1,8 +1,10 @@
-export function almostEqual(
+import * as assert from "assert";
+
+export function assertAlmostEqual(
   a: number,
   b: number,
   precision: number = 2
-): boolean {
+): void {
   const tolerance = Math.pow(10, -precision);
-  return Math.abs(a - b) < tolerance;
+  assert.ok(Math.abs(a - b) < tolerance);
 }

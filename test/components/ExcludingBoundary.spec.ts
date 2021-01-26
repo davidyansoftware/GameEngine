@@ -31,10 +31,9 @@ describe("Excluding Boundary", () => {
 
     excludingGameObject.update(ELAPSED_TIME);
 
-    assert.ok(
-      testUtils.almostEqual(excludedGameObject.transform.x, X + X_OFFSET)
-    );
-    assert.ok(testUtils.almostEqual(excludedGameObject.transform.y, Y));
+    
+    testUtils.assertAlmostEqual(excludedGameObject.transform.x, X + X_OFFSET)
+    testUtils.assertAlmostEqual(excludedGameObject.transform.y, Y);
   });
 
   it("will reposition breaching GameObject", () => {
@@ -50,9 +49,8 @@ describe("Excluding Boundary", () => {
 
     excludingGameObject.update(ELAPSED_TIME);
 
-    assert.ok(
-      testUtils.almostEqual(excludedGameObject.transform.x, RADIUS * 2 + 1)
-    );
-    assert.ok(testUtils.almostEqual(excludedGameObject.transform.y, Y));
+    
+    testUtils.assertAlmostEqual(excludedGameObject.transform.x, RADIUS * 2 + 1)
+    testUtils.assertAlmostEqual(excludedGameObject.transform.y, Y);
   });
 });

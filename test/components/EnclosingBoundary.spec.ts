@@ -49,12 +49,10 @@ describe("Enclosing Boundary", () => {
 
     enclosingGameObject.update(ELAPSED_TIME);
 
-    assert.ok(
-      testUtils.almostEqual(
+    testUtils.assertAlmostEqual(
         enclosedGameObject.transform.x,
         ENCLOSING_RADIUS - ENCLOSED_RADIUS - 1
-      )
     );
-    assert.ok(testUtils.almostEqual(enclosedGameObject.transform.y, Y));
+    testUtils.assertAlmostEqual(enclosedGameObject.transform.y, Y);
   });
 });

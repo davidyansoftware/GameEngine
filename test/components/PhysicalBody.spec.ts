@@ -45,7 +45,7 @@ describe("Velocity", () => {
     physicalBody.gameObject!.update(ELAPSED_TIME);
     physicalBody.gameObject!.update(ELAPSED_TIME);
 
-    assert.ok(testUtils.almostEqual(physicalBody.transform!.x, 4.5));
-    assert.ok(testUtils.almostEqual(physicalBody.transform!.y, 6));
+    testUtils.assertAlmostEqual(physicalBody.transform!.x, 4.5);
+    testUtils.assertAlmostEqual(physicalBody.transform!.y, 6);
   });
 });

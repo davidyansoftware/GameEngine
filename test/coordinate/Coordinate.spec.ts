@@ -17,13 +17,13 @@ describe("Cartesian getters", () => {
   });
 
   it("gets x y", () => {
-    assert.ok(testUtils.almostEqual(cartesian.x, X));
-    assert.ok(testUtils.almostEqual(cartesian.y, Y));
+    testUtils.assertAlmostEqual(cartesian.x, X);
+    testUtils.assertAlmostEqual(cartesian.y, Y);
   });
 
   it("gets magnitude angle", () => {
-    assert.ok(testUtils.almostEqual(cartesian.magnitude, MAGNITUDE));
-    assert.ok(testUtils.almostEqual(cartesian.angle, ANGLE));
+    testUtils.assertAlmostEqual(cartesian.magnitude, MAGNITUDE);
+    testUtils.assertAlmostEqual(cartesian.angle, ANGLE);
   });
 });
 
@@ -38,16 +38,16 @@ describe("Cartesian setters", () => {
     cartesian.x = X;
     cartesian.y = Y;
 
-    assert.ok(testUtils.almostEqual(cartesian.magnitude, MAGNITUDE));
-    assert.ok(testUtils.almostEqual(cartesian.angle, ANGLE));
+    testUtils.assertAlmostEqual(cartesian.magnitude, MAGNITUDE);
+    testUtils.assertAlmostEqual(cartesian.angle, ANGLE);
   });
 
   it("sets magnitude angle", () => {
     cartesian.magnitude = MAGNITUDE;
     cartesian.angle = ANGLE;
 
-    assert.ok(testUtils.almostEqual(cartesian.x, X));
-    assert.ok(testUtils.almostEqual(cartesian.y, Y));
+    testUtils.assertAlmostEqual(cartesian.x, X);
+    testUtils.assertAlmostEqual(cartesian.y, Y);
   });
 
   it("recalculates when needed", () => {
@@ -55,8 +55,8 @@ describe("Cartesian setters", () => {
     cartesian.magnitude = MAGNITUDE;
     cartesian.x = X;
 
-    assert.ok(testUtils.almostEqual(cartesian.angle, ANGLE));
-    assert.ok(testUtils.almostEqual(cartesian.magnitude, MAGNITUDE));
+    testUtils.assertAlmostEqual(cartesian.angle, ANGLE);
+    testUtils.assertAlmostEqual(cartesian.magnitude, MAGNITUDE);
   });
 });
 
@@ -70,13 +70,13 @@ describe("Polar getters", () => {
   it("gets magnitude angle", () => {
     const polar = new Polar(MAGNITUDE, ANGLE);
 
-    assert.ok(testUtils.almostEqual(polar.magnitude, MAGNITUDE));
-    assert.ok(testUtils.almostEqual(polar.angle, ANGLE));
+    testUtils.assertAlmostEqual(polar.magnitude, MAGNITUDE);
+    testUtils.assertAlmostEqual(polar.angle, ANGLE);
   });
 
   it("gets x y", () => {
-    assert.ok(testUtils.almostEqual(polar.x, X));
-    assert.ok(testUtils.almostEqual(polar.y, Y));
+    testUtils.assertAlmostEqual(polar.x, X);
+    testUtils.assertAlmostEqual(polar.y, Y);
   });
 });
 
@@ -91,16 +91,16 @@ describe("Polar setters", () => {
     polar.magnitude = MAGNITUDE;
     polar.angle = ANGLE;
 
-    assert.ok(testUtils.almostEqual(polar.x, X));
-    assert.ok(testUtils.almostEqual(polar.y, Y));
+    testUtils.assertAlmostEqual(polar.x, X);
+    testUtils.assertAlmostEqual(polar.y, Y);
   });
 
   it("sets x y", () => {
     polar.x = X;
     polar.y = Y;
 
-    assert.ok(testUtils.almostEqual(polar.magnitude, MAGNITUDE));
-    assert.ok(testUtils.almostEqual(polar.angle, ANGLE));
+    testUtils.assertAlmostEqual(polar.magnitude, MAGNITUDE);
+    testUtils.assertAlmostEqual(polar.angle, ANGLE);
   });
 
   it("recalculates when needed", () => {
@@ -108,7 +108,7 @@ describe("Polar setters", () => {
     polar.y = Y;
     polar.magnitude = MAGNITUDE;
 
-    assert.ok(testUtils.almostEqual(polar.x, X));
-    assert.ok(testUtils.almostEqual(polar.y, Y));
+    testUtils.assertAlmostEqual(polar.x, X);
+    testUtils.assertAlmostEqual(polar.y, Y);
   });
 });
