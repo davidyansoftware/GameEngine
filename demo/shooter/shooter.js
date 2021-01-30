@@ -10,7 +10,7 @@ camera.addComponent(cameraComponent);
 const players = [];
 const map = createMap(players);
 
-const mouse = new DNA.Input.Mouse(cameraComponent, true);
+const mouse = new DNA.Input.Mouse(document, cameraComponent, true);
 const player = createPlayer(root, mouse, map);
 players.push(player);
 camera.addComponent(new Follow(player));
