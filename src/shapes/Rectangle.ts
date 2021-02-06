@@ -1,5 +1,5 @@
 import GameObject from "../GameObject";
-import Shape from "../Shape";
+import { circleRectangleCollision } from "./ShapeCollision";
 
 /**
  * A Rectangle
@@ -39,4 +39,13 @@ export default class Rectangle {
         if (!other || !self) return false;
         return other.transform.shape._isExcludedByRectangle(other, self);
     }
+
+    _isHittingCircle(self: GameObject | null, circle: GameObject | null): boolean {
+        if (self == null || circle == null) {
+          //TODO test this
+          return false;
+        }
+    
+        return circleRectangleCollision(circle, self);
+      }
 }

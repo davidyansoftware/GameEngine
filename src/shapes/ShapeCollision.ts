@@ -1,5 +1,9 @@
+import Cartesian from "../coordinate/Cartesian";
 import Circle from "./Circle";
 import GameObject from "../GameObject";
+import Rectangle from "./Rectangle";
+
+const coordinate = new Cartesian(0, 0);
 
 export function circleCircleCollision(
     circle1: GameObject,
@@ -18,4 +22,55 @@ export function circleCircleCollision(
       const circle1Shape = <Circle>circle1.transform.shape;
       const circle2Shape = <Circle>circle2.transform.shape;
       return distanceBetween <= circle1Shape.radius + circle2Shape.radius;
+}
+
+export function circleRectangleCollision(
+    circle: GameObject,
+    rectangle: GameObject
+): boolean {
+    if (circle.transform == null || rectangle.transform == null) {
+        //TODO test this
+        return false;
+    }
+
+    const rectCenterX = rectangle.transform.absoluteX;
+    const rectCenterY = rectangle.transform.absoluteY;
+    const rectRotation = rectangle.transform.absoluteRotation;
+
+    //TODO current workaround since rectangle does not fully impliment Shape
+    const unknown = <unknown>rectangle.transform.shape;
+    const rectShape = <Rectangle>unknown;
+
+    const counterRotatedCircleX = Math.cos(rectRotation) * (circle.transform.x - rectCenterX) - Math.sin(rectRotation) * (circle.transform.y - rectCenterY) + rectCenterX;
+    const counterRotatedCircleY = Math.sin(rectRotation) * (circle.transform.x - rectCenterX) + Math.cos(rectRotation) * (circle.transform.y - rectCenterY) + rectCenterY;
+
+    const rectLeftX = rectCenterX - rectShape.width / 2;
+    const rectRightX = rectLeftX + rectShape.width;
+    const rectBottomY = rectCenterY - rectShape.height / 2;
+    const rectTopY = rectBottomY + rectShape.height;
+    
+    let closestX;
+    if (counterRotatedCircleX < rectLeftX) {
+      closestX = rectLeftX;
+    } else if (counterRotatedCircleX > rectRightX) {
+      closestX = rectRightX;
+    } else {
+      closestX = counterRotatedCircleX;
+    }
+
+    let closestY;
+    if (counterRotatedCircleY < rectBottomY) {
+      closestY = rectBottomY;
+    } else if (counterRotatedCircleY > rectTopY) {
+      closestY = rectTopY;
+    } else {
+      closestY = counterRotatedCircleY;
+    }
+
+    coordinate.x = counterRotatedCircleX - closestX;
+    coordinate.y = counterRotatedCircleY - closestY;
+
+    const circleShape = <Circle>circle.transform.shape;
+
+    return coordinate.magnitude <= circleShape.radius;
 }

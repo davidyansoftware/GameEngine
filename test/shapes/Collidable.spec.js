@@ -82,7 +82,7 @@ describe("Circle on circle", () => {
       hitboxGameObject2.addComponent(hitbox2);
   
       assert.ok(hitboxRectangle.isHitting(hitbox1, hitbox2));
-      //assert.ok(hitboxCircle.isHitting(hitbox2, hitbox1));
+      assert.ok(hitboxCircle.isHitting(hitbox2, hitbox1));
     });
   
     it("detects touching", () => {
@@ -105,7 +105,7 @@ describe("Circle on circle", () => {
       hitboxGameObject2.addComponent(hitbox2);
   
       assert.ok(hitboxRectangle.isHitting(hitbox1, hitbox2));
-      //assert.ok(hitboxCircle.isHitting(hitbox2, hitbox1));
+      assert.ok(hitboxCircle.isHitting(hitbox2, hitbox1));
     });
   
     it("detects off-by-one", () => {
@@ -128,6 +128,6 @@ describe("Circle on circle", () => {
       hitboxGameObject2.addComponent(hitbox2);
   
       assert.ok(!hitboxRectangle.isHitting(hitbox1, hitbox2));
-      //assert.ok(!hitboxCircle.isHitting(hitbox2, hitbox1));
+      assert.ok(!hitboxCircle.isHitting(hitbox2, hitbox1));
     });
   });
