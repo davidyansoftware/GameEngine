@@ -2,10 +2,10 @@
  * Represents a type of input
  */
 export default class Input {
-  constructor(pressDown, pressUp, eventPressable) {
+  constructor(eventTarget, pressDown, pressUp, eventPressable) {
     this._pressables = {};
 
-    document.addEventListener(pressDown, event => {
+    eventTarget.addEventListener(pressDown, event => {
       const pressableCode = event[eventPressable];
       const pressable = this._pressables[pressableCode];
       if (pressable) {
@@ -17,7 +17,7 @@ export default class Input {
       }
     });
 
-    document.addEventListener(pressUp, event => {
+    eventTarget.addEventListener(pressUp, event => {
       const pressableCode = event[eventPressable];
       const pressable = this._pressables[pressableCode];
       if (pressable) {

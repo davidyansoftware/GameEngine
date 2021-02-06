@@ -1,3 +1,5 @@
+import * as assert from "assert";
+import * as sinon from "sinon";
 import Circle from "../../src/shapes/Circle";
 import Hitbox from "../../src/components/Hitbox";
 import GameObject from "../../src/GameObject";
@@ -5,23 +7,25 @@ import Rectangle from "../../src/shapes/Rectangle";
 import Canvas from "canvas";
 
 describe("Circle render", () => {
-  test("render renders a circle", () => {
+  it("renders a circle", () => {
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
-    jest.spyOn(ctx, "arc");
-    jest.spyOn(ctx, "stroke");
+    const arcSpy = sinon.spy(ctx, "arc");
+    const strokeSpy = sinon.spy(ctx, "stroke");
 
     const RADIUS = 5;
     const circle = new Circle(RADIUS);
-    circle.render(ctx);
-    expect(ctx.arc).toHaveBeenCalledTimes(1);
-    expect(ctx.arc).toHaveBeenLastCalledWith(0, 0, RADIUS, 0, Math.PI * 2);
-    expect(ctx.stroke).toHaveBeenCalledTimes(1);
+
+    //TODO test fill vs no fill, test all parameters
+    circle.render(ctx, true);
+
+    assert.ok(arcSpy.calledOnceWith(0, 0, RADIUS, 0, Math.PI * 2));
+    assert.ok(strokeSpy.calledOnce);
   });
 });
 
 describe("Circle on circle hit detection", () => {
-  test("Circles overlapping", () => {
+  it("detects overlap", () => {
     const X = 0;
     const Y = 0;
     const RADIUS = 5;
@@ -35,10 +39,10 @@ describe("Circle on circle hit detection", () => {
     const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(true);
+    assert.ok(hitboxCircle.isHitting(hitbox, hurtbox));
   });
 
-  test("Circles touching", () => {
+  it("detects touching", () => {
     const X = 0;
     const Y = 0;
     const RADIUS = 5;
@@ -54,10 +58,10 @@ describe("Circle on circle hit detection", () => {
     const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(true);
+    assert.ok(hitboxCircle.isHitting(hitbox, hurtbox));
   });
 
-  test("Circles off-by-one", () => {
+  it("detects off-by-one", () => {
     const X = 0;
     const Y = 0;
     const RADIUS = 5;
@@ -73,12 +77,12 @@ describe("Circle on circle hit detection", () => {
     const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxCircle.isHitting(hitbox, hurtbox)).toBe(false);
+    assert.ok(!hitboxCircle.isHitting(hitbox, hurtbox));
   });
 });
 
 describe("Circle is enclosing", () => {
-  test("Circle is enclosed", () => {
+  it("detects enclosed", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -90,10 +94,10 @@ describe("Circle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
 
-    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
   
-  test("Circles off-by-one", () => {
+  it("detects off-by-one", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -106,10 +110,10 @@ describe("Circle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET - 1, Y, 0, innerCircle);
 
-    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
 
-  test("Circle touching enclosure", () => {
+  it("detects touching enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -122,10 +126,10 @@ describe("Circle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
 
-  test("Circle outside enclosure", () => {
+  it("detects outside enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -138,12 +142,12 @@ describe("Circle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
 });
 
 describe("Circle is excluding", () => {
-  test("Circle is enclosed", () => {
+  it("detects enclosed", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -155,10 +159,10 @@ describe("Circle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
 
-    expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
 
-  test("Circle touching enclosure", () => {
+  it("detects touching enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -171,10 +175,10 @@ describe("Circle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
 
-  test("Circles off-by-one", () => {
+  it("detects off-by-one", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -187,10 +191,10 @@ describe("Circle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET + 1, Y, 0, innerCircle);
 
-    expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
 
-  test("Circle outside enclosure", () => {
+  it("detects outside enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_RADIUS = 10;
@@ -203,12 +207,12 @@ describe("Circle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
 });
 
 describe("Circle on rectangle hit detection", () => {
-  test("Circle overlapping rectangle", () => {
+  it("detects overlapping", () => {
     const X = 0;
     const Y = 0;
     const WIDTH = 5;
@@ -224,10 +228,10 @@ describe("Circle on rectangle hit detection", () => {
     const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxRectangle.isHitting(hitbox, hurtbox)).toBe(true);
+    assert.ok(hitboxRectangle.isHitting(hitbox, hurtbox));
   });
 
-  test("Circle touching rectangle", () => {
+  it("detects touching", () => {
     const X = 0;
     const Y = 0;
     const WIDTH = 5;
@@ -246,10 +250,10 @@ describe("Circle on rectangle hit detection", () => {
     const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxRectangle.isHitting(hitbox, hurtbox)).toBe(true);
+    assert.ok(hitboxRectangle.isHitting(hitbox, hurtbox));
   });
 
-  test("Circle off-by-one rectangle", () => {
+  it("detects off-by-one", () => {
     const X = 0;
     const Y = 0;
     const WIDTH = 5;
@@ -268,12 +272,12 @@ describe("Circle on rectangle hit detection", () => {
     const hurtbox = new Hitbox();
     hurtboxGameObject.addComponent(hurtbox);
 
-    expect(hitboxRectangle.isHitting(hitbox, hurtbox)).toBe(false);
+    assert.ok(!hitboxRectangle.isHitting(hitbox, hurtbox));
   });
 });
 
 describe("Rectangle is enclosing", () => {
-  test("Circle is enclosed", () => {
+  it("detects Circle is enclosed", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -286,10 +290,10 @@ describe("Rectangle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
 
-    expect(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
   
-  test("Circle off-by-one", () => {
+  it("detects Circle off-by-one", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -303,10 +307,10 @@ describe("Rectangle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET - 1, Y, 0, innerCircle);
 
-    expect(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
 
-  test("Circle touching enclosure", () => {
+  it("detects Circle touching enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -320,10 +324,10 @@ describe("Rectangle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
 
-  test("Circle outside enclosure", () => {
+  it("detects Circle outside enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -337,12 +341,12 @@ describe("Rectangle is enclosing", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
 });
 
 describe("Rectangle is excluding", () => {
-  test("Circle is enclosed", () => {
+  it("detects Circle is enclosed", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -355,10 +359,10 @@ describe("Rectangle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
 
-    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });
   
-  test("Circle touching enclosure", () => {
+  it("detects Circle touching enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -372,10 +376,10 @@ describe("Rectangle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(false);
+    assert.ok(!outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });
 
-  test("Circle off-by-one", () => {
+  it("detects Circle off-by-one", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -389,10 +393,10 @@ describe("Rectangle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET + 1, Y, 0, innerCircle);
 
-    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });
 
-  test("Circle outside enclosure", () => {
+  it("detects Circle outside enclosure", () => {
     const X = 0;
     const Y = 0;
     const OUTER_WIDTH = 20;
@@ -406,6 +410,6 @@ describe("Rectangle is excluding", () => {
     const innerCircle = new Circle(INNER_RADIUS);
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
-    expect(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject)).toBe(true);
+    assert.ok(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });
 });

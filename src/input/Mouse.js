@@ -10,8 +10,8 @@ export default class Mouse extends Input {
    * Create a Mouse object
    */
   //TODO pass flag to disabledDefault on contextmenu
-  constructor(camera, disableContextMenu = false) {
-    super("mousedown", "mouseup", "button");
+  constructor(eventTarget, camera, disableContextMenu = false) {
+    super(eventTarget, "mousedown", "mouseup", "button");
 
     this._x = 0;
     this._y = 0;
@@ -19,13 +19,13 @@ export default class Mouse extends Input {
     this.camera = camera;
 
     // this will not call _onMouseMove directly
-    document.addEventListener("mousemove", event => {
+    eventTarget.addEventListener("mousemove", event => {
       this._onMouseMove(event);
     });
 
     //TODO test this
     if (disableContextMenu) {
-      document.addEventListener("contextmenu", event => {
+      eventTarget.addEventListener("contextmenu", event => {
         event.preventDefault();
       });
     }

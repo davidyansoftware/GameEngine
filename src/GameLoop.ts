@@ -1,4 +1,5 @@
 import GameObject from "./GameObject";
+import now from "performance-now";
 
 /**
  * GameLoop is responsible for updating game logic on every frame
@@ -14,8 +15,8 @@ export default class GameLoop {
    */
   constructor(gameObject: GameObject) {
     this.gameObject = gameObject;
-    this.prevTime = performance.now();
-    this.currAnimationFrame = window.requestAnimationFrame(currTime => {
+    this.prevTime = now();
+    this.currAnimationFrame = requestAnimationFrame(currTime => {
       this.gameLoop(currTime);
     });
   }
@@ -32,7 +33,7 @@ export default class GameLoop {
 
     this.gameObject.update(deltaTime);
 
-    return window.requestAnimationFrame(currTime => {
+    return requestAnimationFrame(currTime => {
       this.currAnimationFrame = this.gameLoop(currTime);
     });
   }

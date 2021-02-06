@@ -17,7 +17,7 @@ class KeyboardControls extends DNA.Component {
 
     this.acceleration = new DNA.Coordinate.Cartesian(0,0);
 
-    this.keyboard = new DNA.Input.Keyboard();
+    this.keyboard = new DNA.Input.Keyboard(document);
     this.keyboard.getKey(Q_KEY_CODE).addKeyDown(() => {
       this.player.swapLeftWeapon();
     });

@@ -9,8 +9,8 @@ export default class Keyboard extends Input {
   /**
    * Create a Keyboard object
    */
-  constructor() {
-    super("keydown", "keyup", "keyCode");
+  constructor(eventTarget) {
+    super(eventTarget, "keydown", "keyup", "keyCode");
   }
 
   /**
