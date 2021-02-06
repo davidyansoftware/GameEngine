@@ -4,6 +4,7 @@ import GameObject from "../GameObject";
 import Hitbox from "../components/Hitbox";
 import Shape from "../Shape";
 import Rectangle from "./Rectangle";
+import { circleCircleCollision } from "./ShapeCollision";
 
 /**
  * A Circle
@@ -59,18 +60,12 @@ export default class Circle implements Shape {
   }
 
   _isHittingCircle(self: Hitbox, circle: Hitbox): boolean {
-    if (self.transform == null || circle.transform == null) {
+    if (self.gameObject == null || circle.gameObject == null) {
       //TODO test this
       return false;
     }
 
-    let distanceBetween = Math.sqrt(
-      Math.pow(self.transform.absoluteX - circle.transform.absoluteX, 2) +
-        Math.pow(self.transform.absoluteY - circle.transform.absoluteY, 2)
-    );
-
-    const otherCircle: Circle = <Circle>circle.transform.shape;
-    return distanceBetween <= this.radius + otherCircle.radius;
+    return circleCircleCollision(self.gameObject, circle.gameObject);
   }
 
   _isEnclosedByCircle(self: GameObject, circle: GameObject): boolean {
