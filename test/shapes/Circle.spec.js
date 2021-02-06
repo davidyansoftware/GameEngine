@@ -1,7 +1,6 @@
 import * as assert from "assert";
 import * as sinon from "sinon";
 import Circle from "../../src/shapes/Circle";
-import Hitbox from "../../src/components/Hitbox";
 import GameObject from "../../src/GameObject";
 import Rectangle from "../../src/shapes/Rectangle";
 import Canvas from "canvas";
@@ -21,63 +20,6 @@ describe("Circle render", () => {
 
     assert.ok(arcSpy.calledOnceWith(0, 0, RADIUS, 0, Math.PI * 2));
     assert.ok(strokeSpy.calledOnce);
-  });
-});
-
-describe("Circle on circle hit detection", () => {
-  it("detects overlap", () => {
-    const X = 0;
-    const Y = 0;
-    const RADIUS = 5;
-    const hitboxCircle = new Circle(RADIUS);
-    const hitboxGameObject = new GameObject(X, Y, 0, hitboxCircle);
-    const hitbox = new Hitbox();
-    hitboxGameObject.addComponent(hitbox);
-
-    const hurtboxCircle = new Circle(RADIUS);
-    const hurtboxGameObject = new GameObject(X, Y, 0, hurtboxCircle);
-    const hurtbox = new Hitbox();
-    hurtboxGameObject.addComponent(hurtbox);
-
-    assert.ok(hitboxCircle.isHitting(hitbox, hurtbox));
-  });
-
-  it("detects touching", () => {
-    const X = 0;
-    const Y = 0;
-    const RADIUS = 5;
-    const X_OFFSET = RADIUS * 2;
-
-    const hitboxCircle = new Circle(RADIUS);
-    const hitboxGameObject = new GameObject(X, Y, 0, hitboxCircle);
-    const hitbox = new Hitbox();
-    hitboxGameObject.addComponent(hitbox);
-
-    const hurtboxCircle = new Circle(RADIUS);
-    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
-    const hurtbox = new Hitbox();
-    hurtboxGameObject.addComponent(hurtbox);
-
-    assert.ok(hitboxCircle.isHitting(hitbox, hurtbox));
-  });
-
-  it("detects off-by-one", () => {
-    const X = 0;
-    const Y = 0;
-    const RADIUS = 5;
-    const X_OFFSET = RADIUS * 2 + 1;
-
-    const hitboxCircle = new Circle(RADIUS);
-    const hitboxGameObject = new GameObject(X, Y, 0, hitboxCircle);
-    const hitbox = new Hitbox();
-    hitboxGameObject.addComponent(hitbox);
-
-    const hurtboxCircle = new Circle(RADIUS);
-    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
-    const hurtbox = new Hitbox();
-    hurtboxGameObject.addComponent(hurtbox);
-
-    assert.ok(!hitboxCircle.isHitting(hitbox, hurtbox));
   });
 });
 
@@ -208,71 +150,6 @@ describe("Circle is excluding", () => {
     const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
 
     assert.ok(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
-  });
-});
-
-describe("Circle on rectangle hit detection", () => {
-  it("detects overlapping", () => {
-    const X = 0;
-    const Y = 0;
-    const WIDTH = 5;
-    const HEIGHT = 5;
-    const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
-    const hitboxGameObject = new GameObject(X, Y, 0, hitboxRectangle);
-    const hitbox = new Hitbox();
-    hitboxGameObject.addComponent(hitbox);
-
-    const RADIUS = 5;
-    const hurtboxCircle = new Circle(RADIUS);
-    const hurtboxGameObject = new GameObject(X, Y, 0, hurtboxCircle);
-    const hurtbox = new Hitbox();
-    hurtboxGameObject.addComponent(hurtbox);
-
-    assert.ok(hitboxRectangle.isHitting(hitbox, hurtbox));
-  });
-
-  it("detects touching", () => {
-    const X = 0;
-    const Y = 0;
-    const WIDTH = 5;
-    const HEIGHT = 5;
-
-    const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
-    const hitboxGameObject = new GameObject(X, Y, 0, hitboxRectangle);
-    const hitbox = new Hitbox();
-    hitboxGameObject.addComponent(hitbox);
-
-    const RADIUS = 5;
-    const X_OFFSET = RADIUS + WIDTH / 2;
-
-    const hurtboxCircle = new Circle(RADIUS);
-    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
-    const hurtbox = new Hitbox();
-    hurtboxGameObject.addComponent(hurtbox);
-
-    assert.ok(hitboxRectangle.isHitting(hitbox, hurtbox));
-  });
-
-  it("detects off-by-one", () => {
-    const X = 0;
-    const Y = 0;
-    const WIDTH = 5;
-    const HEIGHT = 5;
-
-    const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
-    const hitboxGameObject = new GameObject(X, Y, 0, hitboxRectangle);
-    const hitbox = new Hitbox();
-    hitboxGameObject.addComponent(hitbox);
-
-    const RADIUS = 5;
-    const X_OFFSET = RADIUS + WIDTH / 2 + 1;
-
-    const hurtboxCircle = new Circle(RADIUS);
-    const hurtboxGameObject = new GameObject(X + X_OFFSET, Y, 0, hurtboxCircle);
-    const hurtbox = new Hitbox();
-    hurtboxGameObject.addComponent(hurtbox);
-
-    assert.ok(!hitboxRectangle.isHitting(hitbox, hurtbox));
   });
 });
 
