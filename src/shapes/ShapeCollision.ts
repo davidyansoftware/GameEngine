@@ -9,11 +9,6 @@ export function circleCircleCollision(
     circle1: GameObject,
     circle2: GameObject,
 ): boolean {
-    if (circle1.transform == null || circle2.transform == null) {
-        //TODO test this
-        return false;
-      }
-  
       let distanceBetween = Math.sqrt(
         Math.pow(circle1.transform.absoluteX - circle2.transform.absoluteX, 2) +
           Math.pow(circle1.transform.absoluteY - circle2.transform.absoluteY, 2)
@@ -28,11 +23,6 @@ export function circleRectangleCollision(
     circle: GameObject,
     rectangle: GameObject
 ): boolean {
-    if (circle.transform == null || rectangle.transform == null) {
-        //TODO test this
-        return false;
-    }
-
     const rectCenterX = rectangle.transform.absoluteX;
     const rectCenterY = rectangle.transform.absoluteY;
     const rectRotation = rectangle.transform.absoluteRotation;
