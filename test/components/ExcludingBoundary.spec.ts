@@ -17,15 +17,14 @@ describe("Excluding Boundary", () => {
 
     const X_OFFSET = RADIUS * 3;
 
-    const excludedGameObject = new GameObject(
-      X + X_OFFSET,
-      Y,
-      0,
-      EXCLUDED_SHAPE
-    );
+    const excludedGameObject = new GameObject({
+      x: X + X_OFFSET,
+      y: Y,
+      shape: EXCLUDED_SHAPE
+    });
     const excludedGameObjects = [excludedGameObject];
 
-    const excludingGameObject = new GameObject(X, Y, 0, EXCLUDING_SHAPE);
+    const excludingGameObject = new GameObject({x: X, y: Y, shape: EXCLUDING_SHAPE});
     const excludingBoundary = new ExcludingBoundary(excludedGameObjects);
     excludingGameObject.addComponent(excludingBoundary);
 
@@ -40,10 +39,10 @@ describe("Excluding Boundary", () => {
     const X = 0;
     const Y = 0;
 
-    const excludedGameObject = new GameObject(X, Y, 0, EXCLUDED_SHAPE);
+    const excludedGameObject = new GameObject({x: X, y: Y, shape: EXCLUDED_SHAPE});
     const excludedGameObjects = [excludedGameObject];
 
-    const excludingGameObject = new GameObject(X, Y, 0, EXCLUDING_SHAPE);
+    const excludingGameObject = new GameObject({x: X, y: Y, shape: EXCLUDING_SHAPE});
     const excludingBoundary = new ExcludingBoundary(excludedGameObjects);
     excludingGameObject.addComponent(excludingBoundary);
 

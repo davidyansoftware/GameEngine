@@ -51,7 +51,7 @@ describe("Mouse", () => {
     const CAMERA_X = 100;
     const CAMERA_Y = 200;
 
-    const camera = new GameObject(CAMERA_X, CAMERA_Y);
+    const camera = new GameObject({x: CAMERA_X, y: CAMERA_Y});
     const cameraComponent = new Camera(canvas);
     camera.addComponent(cameraComponent);
 

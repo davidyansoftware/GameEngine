@@ -50,12 +50,12 @@ describe("Circle on circle", () => {
       const X_OFFSET = RADIUS * 2 + 1;
   
       const hitboxCircle1 = new Circle(RADIUS);
-      const hitboxGameObject1 = new GameObject(X, Y, 0, hitboxCircle1);
+      const hitboxGameObject1 = new GameObject({x: X, y: Y, shape: hitboxCircle1});
       const hitbox1 = new Hitbox();
       hitboxGameObject1.addComponent(hitbox1);
   
       const hitboxCircle2 = new Circle(RADIUS);
-      const hitboxGameObject2 = new GameObject(X + X_OFFSET, Y, 0, hitboxCircle2);
+      const hitboxGameObject2 = new GameObject({x: X + X_OFFSET, y: Y, shape: hitboxCircle2});
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
@@ -71,13 +71,13 @@ describe("Circle on circle", () => {
       const WIDTH = 5;
       const HEIGHT = 5;
       const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
-      const hitboxGameObject1 = new GameObject(X, Y, 0, hitboxRectangle);
+      const hitboxGameObject1 = new GameObject({x: X, y: Y, shape: hitboxRectangle});
       const hitbox1 = new Hitbox();
       hitboxGameObject1.addComponent(hitbox1);
   
       const RADIUS = 5;
       const hitboxCircle = new Circle(RADIUS);
-      const hitboxGameObject2 = new GameObject(X, Y, 0, hitboxCircle);
+      const hitboxGameObject2 = new GameObject({x: X, y: Y, shape: hitboxCircle});
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
@@ -92,7 +92,7 @@ describe("Circle on circle", () => {
       const HEIGHT = 5;
   
       const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
-      const hitboxGameObject1 = new GameObject(X, Y, 0, hitboxRectangle);
+      const hitboxGameObject1 = new GameObject({x: X, y: Y, shape: hitboxRectangle});
       const hitbox1 = new Hitbox();
       hitboxGameObject1.addComponent(hitbox1);
   
@@ -100,7 +100,7 @@ describe("Circle on circle", () => {
       const X_OFFSET = RADIUS + WIDTH / 2;
   
       const hitboxCircle = new Circle(RADIUS);
-      const hitboxGameObject2 = new GameObject(X + X_OFFSET, Y, 0, hitboxCircle);
+      const hitboxGameObject2 = new GameObject({x: X + X_OFFSET, y: Y, shape: hitboxCircle});
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
@@ -115,7 +115,7 @@ describe("Circle on circle", () => {
       const HEIGHT = 5;
   
       const hitboxRectangle = new Rectangle(WIDTH, HEIGHT);
-      const hitboxGameObject1 = new GameObject(X, Y, 0, hitboxRectangle);
+      const hitboxGameObject1 = new GameObject({x: X, y: Y, shape: hitboxRectangle});
       const hitbox1 = new Hitbox();
       hitboxGameObject1.addComponent(hitbox1);
   
@@ -123,7 +123,7 @@ describe("Circle on circle", () => {
       const X_OFFSET = RADIUS + WIDTH / 2 + 1;
   
       const hitboxCircle = new Circle(RADIUS);
-      const hitboxGameObject2 = new GameObject(X + X_OFFSET, Y, 0, hitboxCircle);
+      const hitboxGameObject2 = new GameObject({x: X + X_OFFSET, y: Y, shape: hitboxCircle});
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   

@@ -3,6 +3,13 @@ import Transform from "./Transform";
 import Shape from "./Shape";
 import Circle from "./shapes/Circle";
 
+interface GameObjectParameters {
+  x?: number,
+  y?: number,
+  rotation?: number,
+  shape?: Shape
+}
+
 /**
  * GameObjects store game entities and logic
  * GameObjects are composites that propagate call to children GameObjects
@@ -23,7 +30,12 @@ export default class GameObject {
    * @param {number} y - The y-coordinate for the GameObject's Transform
    * @param {number} rotation - The rotation for the GameObject's Transform
    */
-  constructor(x: number = 0, y: number = 0, rotation: number = 0, shape: Shape = new Circle(0)) {
+  constructor({
+    x = 0,
+    y = 0,
+    rotation = 0,
+    shape = new Circle(0)
+  }: GameObjectParameters = {}) {
     this._transform = new Transform(this, x, y, rotation, shape);
   }
 

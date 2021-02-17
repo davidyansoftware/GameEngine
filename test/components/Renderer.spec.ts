@@ -11,7 +11,7 @@ describe("Renderer", () => {
     const ctx = canvas.getContext("2d");
 
     const circle = new Circle(5);
-    const gameObject = new GameObject(0, 0, 0, circle);
+    const gameObject = new GameObject({shape: circle});
     const renderer = new Renderer("black");
     gameObject.addComponent(renderer);
 

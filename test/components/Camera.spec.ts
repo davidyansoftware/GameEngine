@@ -81,12 +81,12 @@ describe("Camera", () => {
     const ROOT_X = 300;
     const ROOT_Y = 400;
     const ROOT_ROTATION = Math.PI / 4;
-    const root = new GameObject(ROOT_X, ROOT_Y, ROOT_ROTATION);
+    const root = new GameObject({x: ROOT_X, y: ROOT_Y, rotation: ROOT_ROTATION});
 
     const CAMERA_X = 500;
     const CAMERA_Y = 600;
     const CAMERA_ROTATION = Math.PI / 2;
-    const gameObject = new GameObject(CAMERA_X, CAMERA_Y, CAMERA_ROTATION);
+    const gameObject = new GameObject({x: CAMERA_X, y: CAMERA_Y, rotation: CAMERA_ROTATION});
     const camera = new Camera(canvas, root, BACKGROUND_COLOR);
     gameObject.addComponent(camera);
 
@@ -117,7 +117,7 @@ describe("Camera", () => {
     const ROOT_X = 300;
     const ROOT_Y = 400;
     const ROOT_ROTATION = Math.PI / 4;
-    const root = new GameObject(ROOT_X, ROOT_Y, ROOT_ROTATION);
+    const root = new GameObject({x: ROOT_X, y: ROOT_Y, rotation: ROOT_ROTATION});
 
     const camera = new Camera(canvas, root, BACKGROUND_COLOR);
     root.addComponent(camera);
@@ -139,12 +139,12 @@ describe("Camera", () => {
     const ROOT_X = 300;
     const ROOT_Y = 400;
     const ROOT_ROTATION = Math.PI / 4;
-    const root = new GameObject(ROOT_X, ROOT_Y, ROOT_ROTATION);
+    const root = new GameObject({x: ROOT_X, y: ROOT_Y, rotation: ROOT_ROTATION});
 
     const CAMERA_X = 500;
     const CAMERA_Y = 600;
     const CAMERA_ROTATION = Math.PI / 2;
-    const gameObject = new GameObject(CAMERA_X, CAMERA_Y, CAMERA_ROTATION);
+    const gameObject = new GameObject({x: CAMERA_X, y: CAMERA_Y, rotation: CAMERA_ROTATION});
     const camera = new Camera(htmlCanvas, root, BACKGROUND_COLOR);
     gameObject.addComponent(camera);
 

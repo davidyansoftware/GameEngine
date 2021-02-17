@@ -26,9 +26,9 @@ describe("Non-colliding Hitboxes", () => {
     notColliding2 = new Hitbox();
     hurtboxes.push(notColliding2);
 
-    gameObject1 = new GameObject(NOT_COLLIDING_X_1, Y, 0, circle);
+    gameObject1 = new GameObject({x: NOT_COLLIDING_X_1, y: Y, shape: circle});
     gameObject1.addComponent(notColliding1);
-    gameObject2 = new GameObject(NOT_COLLIDING_X_2, Y, 0, circle);
+    gameObject2 = new GameObject({x: NOT_COLLIDING_X_2, y: Y, shape: circle});
     gameObject2.addComponent(notColliding2);
   });
 
@@ -66,9 +66,9 @@ describe("Colliding Hitboxes", () => {
     colliding2 = new Hitbox();
     hurtboxes.push(colliding2);
 
-    gameObject1 = new GameObject(COLLIDING_X, Y, 0, circle);
+    gameObject1 = new GameObject({x: COLLIDING_X, y: Y, shape: circle});
     gameObject1.addComponent(colliding1);
-    gameObject2 = new GameObject(COLLIDING_X, Y, 0, circle);
+    gameObject2 = new GameObject({x: COLLIDING_X, y: Y, shape: circle});
     gameObject2.addComponent(colliding2);
   });
 

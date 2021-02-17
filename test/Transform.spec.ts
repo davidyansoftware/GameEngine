@@ -40,7 +40,7 @@ describe("Transform constructor", () => {
     const X_VALUE = 1;
     const Y_VALUE = 2;
     const ROTATION = Math.PI / 2;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE, ROTATION);
+    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE, rotation: ROTATION});
     assert.equal(gameObject.transform.x, X_VALUE);
     assert.equal(gameObject.transform.y, Y_VALUE);
     assert.equal(gameObject.transform.rotation, ROTATION);
@@ -52,20 +52,20 @@ describe("Transform absolute position", () => {
   it("includes parent's absolute position", () => {
     const GRAND_PARENT_X = 1;
     const GRAND_PARENT_Y = 2;
-    const grandParent = new GameObject(GRAND_PARENT_X, GRAND_PARENT_Y);
+    const grandParent = new GameObject({x: GRAND_PARENT_X, y: GRAND_PARENT_Y});
     assert.equal(grandParent.transform.absoluteX, GRAND_PARENT_X);
     assert.equal(grandParent.transform.absoluteY, GRAND_PARENT_Y);
 
     const PARENT_X = 3;
     const PARENT_Y = 4;
-    const parent = new GameObject(PARENT_X, PARENT_Y);
+    const parent = new GameObject({x: PARENT_X, y: PARENT_Y});
     grandParent.addGameObject(parent);
     assert.equal(parent.transform.absoluteX, GRAND_PARENT_X + PARENT_X);
     assert.equal(parent.transform.absoluteY, GRAND_PARENT_Y + PARENT_Y);
 
     const CHILD_X = 5;
     const CHILD_Y = 6;
-    const child = new GameObject(CHILD_X, CHILD_Y);
+    const child = new GameObject({x: CHILD_X, y: CHILD_Y});
     parent.addGameObject(child);
     assert.equal(child.transform.absoluteX, GRAND_PARENT_X + PARENT_X + CHILD_X);
     assert.equal(child.transform.absoluteY, GRAND_PARENT_Y + PARENT_Y + CHILD_Y);
@@ -74,7 +74,7 @@ describe("Transform absolute position", () => {
   it("is updated when its position changes", () => {
     const X_VALUE = 1;
     const Y_VALUE = 2;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE);
+    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE});
 
     const OFFSET_X = 3;
     const OFFSET_Y = 4;
@@ -90,11 +90,11 @@ describe("Transform absolute position", () => {
   it("is updated when its parent's position changes", () => {
     const PARENT_X = 1;
     const PARENT_Y = 2;
-    const parent = new GameObject(PARENT_X, PARENT_Y);
+    const parent = new GameObject({x: PARENT_X, y: PARENT_Y});
 
     const CHILD_X = 3;
     const CHILD_Y = 4;
-    const child = new GameObject(CHILD_X, CHILD_Y);
+    const child = new GameObject({x: CHILD_X, y: CHILD_Y});
     parent.addGameObject(child);
 
     const OFFSET_X = 5;
@@ -111,7 +111,7 @@ describe("Transform absolute position", () => {
   it("updates position", () => {
     const PARENT_X = 1;
     const PARENT_Y = 2;
-    const parent = new GameObject(PARENT_X, PARENT_Y);
+    const parent = new GameObject({x: PARENT_X, y: PARENT_Y});
     const child = new GameObject();
     parent.addGameObject(child);
 
@@ -135,18 +135,18 @@ describe("Transform absolute position", () => {
 describe("Transform absolute rotation", () => {
   it("includes parent's absolute rotation", () => {
     const GRAND_PARENT_ROTATION = Math.PI / 2;
-    const grandParent = new GameObject(0, 0, GRAND_PARENT_ROTATION);
+    const grandParent = new GameObject({rotation: GRAND_PARENT_ROTATION});
     assert.equal(grandParent.transform.absoluteRotation, GRAND_PARENT_ROTATION);
 
     const PARENT_ROTATION = Math.PI / 4;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     grandParent.addGameObject(parent);
     assert.equal(parent.transform.absoluteRotation, 
       GRAND_PARENT_ROTATION + PARENT_ROTATION
     );
 
     const CHILD_ROTATION = Math.PI / 8;
-    const child = new GameObject(0, 0, CHILD_ROTATION);
+    const child = new GameObject({rotation: CHILD_ROTATION});
     parent.addGameObject(child);
     assert.equal(child.transform.absoluteRotation, 
       GRAND_PARENT_ROTATION + PARENT_ROTATION + CHILD_ROTATION
@@ -155,7 +155,7 @@ describe("Transform absolute rotation", () => {
 
   it("is updated when its rotation changes", () => {
     const ROTATION = Math.PI / 2;
-    const gameObject = new GameObject(0, 0, ROTATION);
+    const gameObject = new GameObject({rotation: ROTATION});
 
     const OFFSET_ROTATION = Math.PI / 4;
     gameObject.transform.rotation += OFFSET_ROTATION;
@@ -166,10 +166,10 @@ describe("Transform absolute rotation", () => {
 
   it("is updated when its parent's rotation changes", () => {
     const PARENT_ROTATION = Math.PI / 2;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
 
     const CHILD_ROTATION = Math.PI / 4;
-    const child = new GameObject(0, 0, CHILD_ROTATION);
+    const child = new GameObject({rotation: CHILD_ROTATION});
     parent.addGameObject(child);
 
     const OFFSET_ROTATION = Math.PI / 8;
@@ -181,7 +181,7 @@ describe("Transform absolute rotation", () => {
 
   it("updates its own rotation", () => {
     const PARENT_ROTATION = Math.PI / 2;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     const child = new GameObject();
     parent.addGameObject(child);
 
@@ -201,10 +201,10 @@ describe("Transform absolute rotation", () => {
 describe("Transform absolute position", () => {
   it("includes parent's rotation (Math.PI/2)", () => {
     const PARENT_ROTATION = Math.PI / 2;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     const CHILD_X = 1;
     const CHILD_Y = 2;
-    const child = new GameObject(CHILD_X, CHILD_Y);
+    const child = new GameObject({x: CHILD_X, y: CHILD_Y});
     parent.addGameObject(child);
 
     const ABSOLUTE_X = 2;
@@ -215,10 +215,10 @@ describe("Transform absolute position", () => {
 
   it("includes parent's rotation (-Math.PI/2)", () => {
     const PARENT_ROTATION = -Math.PI / 2;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     const CHILD_X = 1;
     const CHILD_Y = 2;
-    const child = new GameObject(CHILD_X, CHILD_Y);
+    const child = new GameObject({x: CHILD_X, y: CHILD_Y});
     parent.addGameObject(child);
 
     const ABSOLUTE_X = -2;
@@ -229,10 +229,10 @@ describe("Transform absolute position", () => {
 
   it("includes parent's rotation (Math.PI)", () => {
     const PARENT_ROTATION = Math.PI;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     const CHILD_X = 1;
     const CHILD_Y = 2;
-    const child = new GameObject(CHILD_X, CHILD_Y);
+    const child = new GameObject({x: CHILD_X, y: CHILD_Y});
     parent.addGameObject(child);
 
     const ABSOLUTE_X = -1;
@@ -243,7 +243,7 @@ describe("Transform absolute position", () => {
 
   it("includes parent's rotation (Math.PI/2)", () => {
     const PARENT_ROTATION = Math.PI / 2;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     const child = new GameObject();
     parent.addGameObject(child);
 
@@ -262,7 +262,7 @@ describe("Transform absolute position", () => {
 
   it("includes parent's rotation (-Math.PI/2)", () => {
     const PARENT_ROTATION = -Math.PI / 2;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     const child = new GameObject();
     parent.addGameObject(child);
 
@@ -281,7 +281,7 @@ describe("Transform absolute position", () => {
 
   it("includes parent's rotation (Math.PI)", () => {
     const PARENT_ROTATION = Math.PI;
-    const parent = new GameObject(0, 0, PARENT_ROTATION);
+    const parent = new GameObject({rotation: PARENT_ROTATION});
     const child = new GameObject();
     parent.addGameObject(child);
 

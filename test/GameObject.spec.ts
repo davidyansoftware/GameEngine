@@ -55,13 +55,13 @@ describe("GameObject composite", () => {
   it("can maintain the absolute position", () => {
     const PARENT1_X = 1;
     const PARENT1_Y = 2;
-    const parent1 = new GameObject(PARENT1_X, PARENT1_Y);
+    const parent1 = new GameObject({x: PARENT1_X, y: PARENT1_Y});
     const PARENT2_X = 3;
     const PARENT2_Y = 4;
-    const parent2 = new GameObject(PARENT2_X, PARENT2_Y);
+    const parent2 = new GameObject({x: PARENT2_X, y: PARENT2_Y});
     const CHILD_X = 5;
     const CHILD_Y = 6;
-    const child = new GameObject(CHILD_X, CHILD_Y);
+    const child = new GameObject({x: CHILD_X, y: CHILD_Y});
 
     parent1.addGameObject(child);
     parent2.addGameObject(child, true);
@@ -71,11 +71,11 @@ describe("GameObject composite", () => {
 
   it("can maintain the absolute rotation", () => {
     const PARENT1_ROTATION = Math.PI / 2;
-    const parent1 = new GameObject(0, 0, PARENT1_ROTATION);
+    const parent1 = new GameObject({rotation: PARENT1_ROTATION});
     const PARENT2_ROTATION = Math.PI / 4;
-    const parent2 = new GameObject(0, 0, PARENT2_ROTATION);
+    const parent2 = new GameObject({rotation: PARENT2_ROTATION});
     const CHILD_ROTATION = Math.PI / 8;
-    const child = new GameObject(0, 0, CHILD_ROTATION);
+    const child = new GameObject({rotation: CHILD_ROTATION});
 
     parent1.addGameObject(child);
     parent2.addGameObject(child, false, true);
@@ -165,7 +165,7 @@ describe("GameObject render", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
     const ROTATION = Math.PI / 4;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE, ROTATION);
+    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE, rotation: ROTATION});
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
@@ -181,7 +181,7 @@ describe("GameObject render", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
     const ROTATION = Math.PI / 2;
-    const gameObject = new GameObject(X_VALUE, Y_VALUE, ROTATION);
+    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE, rotation: ROTATION});
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
@@ -197,18 +197,18 @@ describe("GameObject render", () => {
     const PARENT_X = 100;
     const PARENT_Y = 200;
     const PARENT_ROTATION = Math.PI / 2;
-    const parent = new GameObject(PARENT_X, PARENT_Y, PARENT_ROTATION);
+    const parent = new GameObject({x: PARENT_X, y: PARENT_Y, rotation: PARENT_ROTATION});
 
     const CHILD1_X = 300;
     const CHILD1_Y = 400;
     const CHILD1_ROTATION = Math.PI / 4;
-    const child1 = new GameObject(CHILD1_X, CHILD1_Y, CHILD1_ROTATION);
+    const child1 = new GameObject({x: CHILD1_X, y: CHILD1_Y, rotation: CHILD1_ROTATION});
     parent.addGameObject(child1);
 
     const CHILD2_X = 500;
     const CHILD2_Y = 600;
     const CHILD2_ROTATION = Math.PI / 8;
-    const child2 = new GameObject(CHILD2_X, CHILD2_Y, CHILD2_ROTATION);
+    const child2 = new GameObject({x: CHILD2_X, y: CHILD2_Y, rotation: CHILD2_ROTATION});
     parent.addGameObject(child2);
 
     const canvas = Canvas.createCanvas(100, 100);

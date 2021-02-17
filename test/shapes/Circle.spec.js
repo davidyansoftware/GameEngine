@@ -31,10 +31,10 @@ describe("Circle is enclosing", () => {
     const INNER_RADIUS = 5;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X, y: Y, shape: innerCircle});
 
     assert.ok(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
@@ -47,10 +47,10 @@ describe("Circle is enclosing", () => {
     const X_OFFSET = INNER_RADIUS;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET - 1, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET - 1, y: Y, shape: innerCircle});
 
     assert.ok(outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
@@ -63,10 +63,10 @@ describe("Circle is enclosing", () => {
     const X_OFFSET = INNER_RADIUS;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(!outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
@@ -79,10 +79,10 @@ describe("Circle is enclosing", () => {
     const X_OFFSET = 20;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(!outerCircle.isEnclosing(outerCircleGameObject, innerCircleGameObject));
   });
@@ -96,10 +96,10 @@ describe("Circle is excluding", () => {
     const INNER_RADIUS = 5;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X, y: Y, shape: innerCircle});
 
     assert.ok(!outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
@@ -112,10 +112,10 @@ describe("Circle is excluding", () => {
     const X_OFFSET = OUTER_RADIUS + INNER_RADIUS;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(!outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
@@ -128,10 +128,10 @@ describe("Circle is excluding", () => {
     const X_OFFSET = OUTER_RADIUS + INNER_RADIUS;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET + 1, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET + 1, y: Y, shape: innerCircle});
 
     assert.ok(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
@@ -144,10 +144,10 @@ describe("Circle is excluding", () => {
     const X_OFFSET = 20;
 
     const outerCircle = new Circle(OUTER_RADIUS);
-    const outerCircleGameObject = new GameObject(X, Y, 0, outerCircle);
+    const outerCircleGameObject = new GameObject({x: X, y: Y, shape: outerCircle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(outerCircle.isExcluding(outerCircleGameObject, innerCircleGameObject));
   });
@@ -162,10 +162,10 @@ describe("Rectangle is enclosing", () => {
     const INNER_RADIUS = 5;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X, y: Y, shape: innerCircle});
 
     assert.ok(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
@@ -179,10 +179,10 @@ describe("Rectangle is enclosing", () => {
     const X_OFFSET = OUTER_WIDTH / 2 - INNER_RADIUS;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET - 1, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET - 1, y: Y, shape: innerCircle});
 
     assert.ok(outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
@@ -196,10 +196,10 @@ describe("Rectangle is enclosing", () => {
     const X_OFFSET = OUTER_WIDTH / 2 - INNER_RADIUS;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(!outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
@@ -213,10 +213,10 @@ describe("Rectangle is enclosing", () => {
     const X_OFFSET = OUTER_WIDTH + INNER_RADIUS;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(!outerRectangle.isEnclosing(outerRectangleGameObject, innerCircleGameObject));
   });
@@ -231,10 +231,10 @@ describe("Rectangle is excluding", () => {
     const INNER_RADIUS = 5;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X, y: Y, shape: innerCircle});
 
     assert.ok(!outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });
@@ -248,10 +248,10 @@ describe("Rectangle is excluding", () => {
     const X_OFFSET = OUTER_WIDTH / 2 + INNER_RADIUS;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(!outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });
@@ -265,10 +265,10 @@ describe("Rectangle is excluding", () => {
     const X_OFFSET = OUTER_WIDTH / 2 + INNER_RADIUS;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET + 1, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET + 1, y: Y, shape: innerCircle});
 
     assert.ok(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });
@@ -282,10 +282,10 @@ describe("Rectangle is excluding", () => {
     const X_OFFSET = OUTER_WIDTH + INNER_RADIUS;
 
     const outerRectangle = new Rectangle(OUTER_WIDTH, OUTER_HEIGHT);
-    const outerRectangleGameObject = new GameObject(X, Y, 0, outerRectangle);
+    const outerRectangleGameObject = new GameObject({x: X, y: Y, shape: outerRectangle});
 
     const innerCircle = new Circle(INNER_RADIUS);
-    const innerCircleGameObject = new GameObject(X + X_OFFSET, Y, 0, innerCircle);
+    const innerCircleGameObject = new GameObject({x: X + X_OFFSET, y: Y, shape: innerCircle});
 
     assert.ok(outerRectangle.isExcluding(outerRectangleGameObject, innerCircleGameObject));
   });

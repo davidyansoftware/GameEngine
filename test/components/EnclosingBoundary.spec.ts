@@ -16,10 +16,10 @@ describe("Enclosing Boundary", () => {
     const X = 0;
     const Y = 0;
 
-    const enclosedGameObject = new GameObject(X, Y, 0, ENCLOSED_SHAPE);
+    const enclosedGameObject = new GameObject({x: X, y: Y, shape: ENCLOSED_SHAPE});
     const enclosedGameObjects = [enclosedGameObject];
 
-    const enclosingGameObject = new GameObject(X, Y, 0, ENCLOSING_SHAPE);
+    const enclosingGameObject = new GameObject({x: X, y: Y, shape: ENCLOSING_SHAPE});
     const enclosingBoundary = new EnclosingBoundary(enclosedGameObjects);
     enclosingGameObject.addComponent(enclosingBoundary);
 
@@ -35,15 +35,14 @@ describe("Enclosing Boundary", () => {
 
     const X_OFFSET = ENCLOSING_RADIUS * 2;
 
-    const enclosedGameObject = new GameObject(
-      X + X_OFFSET,
-      Y,
-      0,
-      ENCLOSED_SHAPE
-    );
+    const enclosedGameObject = new GameObject({
+      x: X + X_OFFSET,
+      y: Y,
+      shape: ENCLOSED_SHAPE
+    });
     const enclosedGameObjects = [enclosedGameObject];
 
-    const enclosingGameObject = new GameObject(X, Y, 0, ENCLOSING_SHAPE);
+    const enclosingGameObject = new GameObject({x: X, y: Y, shape: ENCLOSING_SHAPE});
     const enclosingBoundary = new EnclosingBoundary(enclosedGameObjects);
     enclosingGameObject.addComponent(enclosingBoundary);
 
