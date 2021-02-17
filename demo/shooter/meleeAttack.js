@@ -18,7 +18,7 @@ class MeleeAttack extends DNA.Component {
 }
 
 function createMeleeAttack(x, y, radius, duration) {
-    const attack = new DNA.GameObject(x, y, 0, new DNA.Shapes.Circle(radius));
+    const attack = new DNA.GameObject({x: x, y: y, shape: new DNA.Shapes.Circle(radius)});
 
     const meleeAttack = new MeleeAttack(duration);
     const renderer = new DNA.Components.Renderer();

@@ -1,6 +1,6 @@
 const canvas = document.getElementById("canvas");
 
-const root = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(100));
+const root = new DNA.GameObject({shape: new DNA.Shapes.Circle(100)});
 
 const cameraGameObject = new DNA.GameObject();
 const camera = new DNA.Components.Camera(canvas, root);
@@ -29,7 +29,7 @@ class Follow extends DNA.Component {
   }
 }
 
-const mouse = new DNA.Input.Mouse(camera);
+const mouse = new DNA.Input.Mouse(document, camera);
 
 const follow = new Follow(mouse);
 cameraGameObject.addComponent(follow);

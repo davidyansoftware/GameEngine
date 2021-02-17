@@ -22,7 +22,7 @@ class Bullet extends DNA.Component {
 
 const coordinate = new DNA.Coordinate.Cartesian(0, 0);
 function createBullet(x, y, angle, gunType) {
-  const bullet = new DNA.GameObject(x, y, 0, new DNA.Shapes.Circle(gunType.bulletRadius));
+  const bullet = new DNA.GameObject({x: x, y: y, shape: new DNA.Shapes.Circle(gunType.bulletRadius)});
 
   coordinate.magnitude = gunType.bulletSpeed;
   coordinate.angle = angle;

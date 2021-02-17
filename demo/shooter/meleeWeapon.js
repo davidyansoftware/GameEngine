@@ -30,7 +30,7 @@ class MeleeWeapon extends DNA.Component {
 }
 
 function createMeleeWeapon(root, meleeWeaponType) {
-    const meleeWeapon = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(1));
+    const meleeWeapon = new DNA.GameObject({shape: new DNA.Shapes.Circle(1)});
     meleeWeapon.addComponent(new DNA.Components.Renderer());
     const meleeWeaponComponent = new MeleeWeapon(root, meleeWeaponType);
     meleeWeapon.addComponent(meleeWeaponComponent);

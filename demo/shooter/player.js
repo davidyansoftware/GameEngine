@@ -52,7 +52,7 @@ class PlayerPhysicalBody extends DNA.Components.PhysicalBody {
 }
 
 function createPlayer(root, mouse, map) {
-  const player = new DNA.GameObject(0,0,0,new DNA.Shapes.Circle(20));
+  const player = new DNA.GameObject({shape: new DNA.Shapes.Circle(20)});
   player.addComponent(new DNA.Components.Renderer());
 
   const physicalBody = new PlayerPhysicalBody(map);
