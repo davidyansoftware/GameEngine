@@ -1,5 +1,7 @@
+import CircleTransform from "./CircleTransform";
 import Hitbox from "./components/Hitbox";
 import GameObject from "./GameObject";
+import Transform from "./Transform";
 
 /**
  * Interface for types of shapes
@@ -26,22 +28,22 @@ import GameObject from "./GameObject";
  * @returns {boolean} true if the Hitboxes are colliding
  */
 
- export default interface Shape {
-    render(ctx: CanvasRenderingContext2D, fill: boolean): void;
-    isHitting(self: Hitbox, other: Hitbox): boolean;
-    isEnclosing(self: GameObject | null, other: GameObject | null): boolean;
-    isExcluding(self: GameObject | null, other: GameObject | null): boolean;
+export default interface Shape {
+   createTransform(gameObject: GameObject, x: number, y: number, rotation: number): Transform;
 
-    _enclose(self: GameObject | null, other: GameObject | null): void;
-    _exclude(self: GameObject | null, other: GameObject | null): void;
+   render(ctx: CanvasRenderingContext2D, fill: boolean): void;
 
-    _isHittingCircle(self: Hitbox, other: Hitbox): boolean;
-    _isEnclosedByCircle(self: GameObject, other: GameObject): boolean;
-    _isExcludedByCircle(self: GameObject, other: GameObject): boolean;
-    _becomeEnclosedByCircle(self: GameObject | null, other: GameObject | null): void;
-    _becomeExcludedByCircle(self: GameObject | null, other: GameObject | null): void;
+   isEnclosing(self: Transform, other: Transform): boolean;
+   isExcluding(self: Transform, other: Transform): boolean;
 
-    _isHittingRectangle(self: GameObject | null, other: GameObject | null): boolean;
-    _isEnclosedByRectangle(self: GameObject, other: GameObject): boolean;
-    _isExcludedByRectangle(self: GameObject, other: GameObject): boolean;
- }
+   _enclose(self: Transform, other: Transform): void;
+   _exclude(self: Transform, other: Transform): void;
+
+   _isEnclosedByCircle(self: Transform, other: Transform): boolean;
+   _isExcludedByCircle(self: Transform, other: Transform): boolean;
+   _becomeEnclosedByCircle(self: Transform, other: Transform): void;
+   _becomeExcludedByCircle(self: Transform, other: Transform): void;
+
+   _isEnclosedByRectangle(self: Transform, other: Transform): boolean;
+   _isExcludedByRectangle(self: Transform, other: Transform): boolean;
+} 

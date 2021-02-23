@@ -1,4 +1,6 @@
 import GameObject from "../GameObject";
+import Transform from "../Transform";
+import RectangleTransform from "../RectangleTransform";
 import { circleRectangleCollision } from "./ShapeCollision";
 
 /**
@@ -21,31 +23,20 @@ export default class Rectangle {
         this.height = height;
     }
 
+    createTransform(gameObject: GameObject, x: number, y: number, rotation: number): Transform {
+        return new RectangleTransform(gameObject, x, y, rotation, this);
+      }
+
     render(ctx: CanvasRenderingContext2D) {
         ctx.strokeRect(-this.width / 2, -this.height / 2, this.width, this.height);
     }
 
-    isHitting(self: GameObject, other: GameObject): boolean {
-        if (!other.transform || !self.transform) return false;
-        return other.transform.shape._isHittingRectangle(other, self);
-    }
-
-    isEnclosing(self: GameObject | null, other: GameObject | null): boolean {
-        if (!other || !self) return false;
+    isEnclosing(self: Transform, other: Transform): boolean {
         return other.transform.shape._isEnclosedByRectangle(other, self);
     }
 
-    isExcluding(self: GameObject | null, other: GameObject | null): boolean {
-        if (!other || !self) return false;
+    isExcluding(self: Transform, other: Transform): boolean {
         return other.transform.shape._isExcludedByRectangle(other, self);
     }
 
-    _isHittingCircle(self: GameObject | null, circle: GameObject | null): boolean {
-        if (self == null || circle == null) {
-          //TODO test this
-          return false;
-        }
-    
-        return circleRectangleCollision(circle, self);
-      }
 }

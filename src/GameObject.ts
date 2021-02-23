@@ -36,7 +36,7 @@ export default class GameObject {
     rotation = 0,
     shape = new Circle(0)
   }: GameObjectParameters = {}) {
-    this._transform = new Transform(this, x, y, rotation, shape);
+    this._transform = shape.createTransform(this, x, y, rotation);
   }
 
   /**

@@ -37,7 +37,7 @@ export default class Hitbox extends Component {
    */
   update(deltaTime: number) {
     for (const hurtbox of this.hurtboxes) {
-      const isHitting = this.transform?.shape.isHitting(this, hurtbox);
+      const isHitting = this.transform?.isHitting(hurtbox.transform!);
       if (isHitting) {
         this.currHitting.add(hurtbox);
         hurtbox.currHitting.add(this);
