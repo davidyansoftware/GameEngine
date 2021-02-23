@@ -32,13 +32,11 @@ export default class Rectangle {
     }
 
     isEnclosing(self: Transform, other: Transform): boolean {
-        if (!other || !self) return false;
         return other.transform.shape._isEnclosedByRectangle(other, self);
     }
 
     isExcluding(self: Transform, other: Transform): boolean {
-        if (!other || !self) return false;
         return other.transform.shape._isExcludedByRectangle(other, self);
     }
-    
+
 }

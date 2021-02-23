@@ -36,7 +36,6 @@ export default abstract class Transform {
     this._cacheAbsolutePosition();
   }
 
-  abstract render(ctx: CanvasRenderingContext2D, fill: boolean): void;
   abstract isHitting(other: Transform): boolean;
   abstract _isHittingCircle(self: Transform, other: CircleTransform): boolean;
   abstract _isHittingRectangle(self: Transform, other: RectangleTransform): boolean;

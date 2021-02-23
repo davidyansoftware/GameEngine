@@ -8,9 +8,9 @@ import Rectangle from "./shapes/Rectangle";
 import Hitbox from "./components/Hitbox";
 
 /**
- * A Rectangle
+ * A Rectangle Transform
  *
- * @impliments {Shape}
+ * @impliments {Transform}
  */
 export default class RectangleTransform extends Transform {
     rectangle: Rectangle;
@@ -27,10 +27,6 @@ export default class RectangleTransform extends Transform {
         super(gameObject, x, y, rotation, shape);
 
         this.rectangle = rectangle;
-    }
-
-    render(ctx: CanvasRenderingContext2D) {
-        ctx.strokeRect(-this.rectangle.width / 2, -this.rectangle.height / 2, this.rectangle.width, this.rectangle.height);
     }
     
     isHitting(other: Transform): boolean {

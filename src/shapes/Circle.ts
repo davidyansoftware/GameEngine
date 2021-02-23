@@ -41,52 +41,38 @@ export default class Circle implements Shape {
   }
 
   isEnclosing(self: Transform, other: Transform): boolean {
-    if (!self || !other) return false;
     return other.transform.shape._isEnclosedByCircle(other, self);
   }
 
   isExcluding(self: Transform, other: Transform): boolean {
-    if (!other) return false;
     return other.transform.shape._isExcludedByCircle(other, self);
   }
 
   _enclose(self: Transform, other: Transform): void {
-    if (!other) return;
     other.transform.shape._becomeEnclosedByCircle(other, self);
   }
 
   _exclude(self: Transform, other: Transform): void {
-    if (!other) return;
     other.transform.shape._becomeExcludedByCircle(other, self);
   }
 
-  _isEnclosedByCircle(self: Transform, circle: CircleTransform): boolean {
-    if (self.transform == null || circle.transform == null) {
-      //TODO test this
-      return false;
-    }
-
+  _isEnclosedByCircle(self: Transform, circle: Transform): boolean {
     let distanceBetween = Math.sqrt(
       Math.pow(self.transform.absoluteX - circle.transform.absoluteX, 2) +
         Math.pow(self.transform.absoluteY - circle.transform.absoluteY, 2)
     );
 
-    const otherCircle: Circle = <Circle>circle.transform.shape;
+    const otherCircle = <Circle>circle.transform.shape;
     return distanceBetween < otherCircle.radius - this.radius;
   }
 
   _isExcludedByCircle(self: Transform, circle: Transform): boolean {
-    if (self.transform == null || circle.transform == null) {
-      //TODO test this
-      return false;
-    }
-
     let distanceBetween = Math.sqrt(
       Math.pow(self.transform.absoluteX - circle.transform.absoluteX, 2) +
         Math.pow(self.transform.absoluteY - circle.transform.absoluteY, 2)
     );
 
-    const otherCircle: Circle = <Circle>circle.transform.shape;
+    const otherCircle = <Circle>circle.transform.shape;
     return distanceBetween > otherCircle.radius + this.radius;
   }
 
