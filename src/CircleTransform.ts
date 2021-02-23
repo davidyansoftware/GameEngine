@@ -4,6 +4,7 @@ import { circleCircleCollision, circleRectangleCollision } from "./shapes/ShapeC
 import Shape from "./Shape";
 import Circle from "./shapes/Circle";
 import Rectangle from "./shapes/Rectangle";
+import RectangleTransform from "./RectangleTransform";
 import Hitbox from "./components/Hitbox";
 
 /**
@@ -26,14 +27,14 @@ export default class CircleTransform extends Transform {
     }
     
     isHitting(other: Transform): boolean {
-        return other.transform._isHittingCircle(other, this);
+        return other.transform._isHittingCircle(this);
     }
 
-    _isHittingCircle(self: Transform, circle: CircleTransform): boolean {
-        return circleCircleCollision(self, circle);
+    _isHittingCircle(circle: CircleTransform): boolean {
+        return circleCircleCollision(this, circle);
     }
 
-    _isHittingRectangle(self: Transform, rectangle: Transform): boolean {
-        return circleRectangleCollision(self, rectangle);
+    _isHittingRectangle(rectangle: RectangleTransform): boolean {
+        return circleRectangleCollision(this, rectangle);
     }
 }

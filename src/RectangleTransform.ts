@@ -1,6 +1,6 @@
 import GameObject from "./GameObject";
 import Transform from "./Transform";
-import { circleCircleCollision, circleRectangleCollision } from "./shapes/ShapeCollision";
+import { circleRectangleCollision, rectangleRectangleCollision } from "./shapes/ShapeCollision";
 import Shape from "./Shape";
 import Circle from "./shapes/Circle";
 import CircleTransform from "./CircleTransform";
@@ -30,19 +30,14 @@ export default class RectangleTransform extends Transform {
     }
     
     isHitting(other: Transform): boolean {
-        return other.transform._isHittingRectangle(other, this);
+        return other.transform._isHittingRectangle(this);
     }
 
-    _isHittingCircle(self: Transform, circle: CircleTransform): boolean {
-        return circleRectangleCollision(circle, self);
+    _isHittingCircle(circle: CircleTransform): boolean {
+        return circleRectangleCollision(circle, this);
     }
 
-    _isHittingRectangle(self: Transform, circle: RectangleTransform): boolean {
-        if (self == null || circle == null) {
-            //TODO test this
-            return false;
-        }
-
-        return circleRectangleCollision(circle, self);
+    _isHittingRectangle(rectangle: RectangleTransform): boolean {
+        return rectangleRectangleCollision(rectangle, this);
     }
 }

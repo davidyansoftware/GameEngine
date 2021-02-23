@@ -1,13 +1,14 @@
 import Cartesian from "../coordinate/Cartesian";
 import Circle from "./Circle";
 import CircleTransform from "../CircleTransform";
+import RectangleTransform from "../RectangleTransform";
 import Transform from "../Transform";
 import Rectangle from "./Rectangle";
 
 const coordinate = new Cartesian(0, 0);
 
 export function circleCircleCollision(
-    circle1: Transform,
+    circle1: CircleTransform,
     circle2: CircleTransform,
 ): boolean {
       let distanceBetween = Math.sqrt(
@@ -21,8 +22,8 @@ export function circleCircleCollision(
 }
 
 export function circleRectangleCollision(
-    circle: Transform,
-    rectangle: Transform
+    circle: CircleTransform,
+    rectangle: RectangleTransform
 ): boolean {
     const rectCenterX = rectangle.transform.absoluteX;
     const rectCenterY = rectangle.transform.absoluteY;
@@ -64,4 +65,11 @@ export function circleRectangleCollision(
     const circleShape = <Circle>circle.transform.shape;
 
     return coordinate.magnitude <= circleShape.radius;
+}
+
+export function rectangleRectangleCollision (
+  rectangle1: RectangleTransform,
+  rectangle2: RectangleTransform
+): boolean {
+  return true;
 }

@@ -37,8 +37,8 @@ export default abstract class Transform {
   }
 
   abstract isHitting(other: Transform): boolean;
-  abstract _isHittingCircle(self: Transform, other: CircleTransform): boolean;
-  abstract _isHittingRectangle(self: Transform, other: RectangleTransform): boolean;
+  abstract _isHittingCircle(other: CircleTransform): boolean;
+  abstract _isHittingRectangle(other: RectangleTransform): boolean;
 
   /**
    * The GameObject this Transform is attached to
