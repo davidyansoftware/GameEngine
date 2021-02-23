@@ -17,7 +17,7 @@ describe("Enclosing Boundary", () => {
     const Y = 0;
 
     const enclosedGameObject = new GameObject({x: X, y: Y, shape: ENCLOSED_SHAPE});
-    const enclosedGameObjects = [enclosedGameObject];
+    const enclosedGameObjects = [enclosedGameObject.transform];
 
     const enclosingGameObject = new GameObject({x: X, y: Y, shape: ENCLOSING_SHAPE});
     const enclosingBoundary = new EnclosingBoundary(enclosedGameObjects);
@@ -40,7 +40,7 @@ describe("Enclosing Boundary", () => {
       y: Y,
       shape: ENCLOSED_SHAPE
     });
-    const enclosedGameObjects = [enclosedGameObject];
+    const enclosedGameObjects = [enclosedGameObject.transform];
 
     const enclosingGameObject = new GameObject({x: X, y: Y, shape: ENCLOSING_SHAPE});
     const enclosingBoundary = new EnclosingBoundary(enclosedGameObjects);

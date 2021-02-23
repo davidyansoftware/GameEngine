@@ -1,10 +1,10 @@
 import Component from "../Component";
-import GameObject from "../GameObject";
+import Transform from "../Transform";
 
 export default class EnclosingBoundary extends Component {
-    private encloses: Array<GameObject>;
+    private encloses: Array<Transform>;
 
-    constructor(encloses: Array<GameObject> = []) {
+    constructor(encloses: Array<Transform> = []) {
         super();
 
         this.encloses = encloses;
@@ -12,7 +12,7 @@ export default class EnclosingBoundary extends Component {
 
     update(deltaTime: number) {
         this.encloses.forEach((enclosed) => {
-            this.transform?.shape._enclose(this.gameObject, enclosed);
+            this.transform?.shape._enclose(this.transform, enclosed);
         })
     }
 }

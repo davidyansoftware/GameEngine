@@ -1,8 +1,10 @@
 import Cartesian from "../coordinate/Cartesian";
 import Coordinate from "../coordinate/Coordinate";
+import CircleTransform from "../CircleTransform";
 import GameObject from "../GameObject";
 import Hitbox from "../components/Hitbox";
 import Shape from "../Shape";
+import Transform from "../Transform";
 import Rectangle from "./Rectangle";
 import { circleCircleCollision, circleRectangleCollision } from "./ShapeCollision";
 
@@ -25,6 +27,10 @@ export default class Circle implements Shape {
     this.radius = radius;
   }
 
+  createTransform(gameObject: GameObject, x: number, y: number, rotation: number): Transform {
+    return new CircleTransform(gameObject, x, y, rotation, this);
+  }
+
   render(ctx: CanvasRenderingContext2D, fill: boolean): void {
     ctx.beginPath();
     ctx.arc(0, 0, this.radius, 0, Math.PI * 2);
@@ -34,41 +40,27 @@ export default class Circle implements Shape {
     }
   }
 
-  isHitting(self: Hitbox, other: Hitbox): boolean {
-    if (!other.transform) return false;
-    return other.transform.shape._isHittingCircle(other, self);
-  }
-
-  isEnclosing(self: GameObject | null, other: GameObject | null): boolean {
+  isEnclosing(self: Transform, other: Transform): boolean {
     if (!self || !other) return false;
     return other.transform.shape._isEnclosedByCircle(other, self);
   }
 
-  isExcluding(self: GameObject, other: GameObject): boolean {
+  isExcluding(self: Transform, other: Transform): boolean {
     if (!other) return false;
     return other.transform.shape._isExcludedByCircle(other, self);
   }
 
-  _enclose(self: GameObject, other: GameObject): void {
+  _enclose(self: Transform, other: Transform): void {
     if (!other) return;
     other.transform.shape._becomeEnclosedByCircle(other, self);
   }
 
-  _exclude(self: GameObject, other: GameObject): void {
+  _exclude(self: Transform, other: Transform): void {
     if (!other) return;
     other.transform.shape._becomeExcludedByCircle(other, self);
   }
 
-  _isHittingCircle(self: Hitbox, circle: Hitbox): boolean {
-    if (self.gameObject == null || circle.gameObject == null) {
-      //TODO test this
-      return false;
-    }
-
-    return circleCircleCollision(self.gameObject, circle.gameObject);
-  }
-
-  _isEnclosedByCircle(self: GameObject, circle: GameObject): boolean {
+  _isEnclosedByCircle(self: Transform, circle: CircleTransform): boolean {
     if (self.transform == null || circle.transform == null) {
       //TODO test this
       return false;
@@ -83,7 +75,7 @@ export default class Circle implements Shape {
     return distanceBetween < otherCircle.radius - this.radius;
   }
 
-  _isExcludedByCircle(self: GameObject, circle: GameObject): boolean {
+  _isExcludedByCircle(self: Transform, circle: Transform): boolean {
     if (self.transform == null || circle.transform == null) {
       //TODO test this
       return false;
@@ -98,8 +90,8 @@ export default class Circle implements Shape {
     return distanceBetween > otherCircle.radius + this.radius;
   }
 
-  _becomeEnclosedByCircle(self: GameObject, circle: GameObject): void {
-    if (!circle.transform?.shape.isEnclosing(circle.gameObject, self.gameObject)) {
+  _becomeEnclosedByCircle(self: Transform, circle: Transform): void {
+    if (!circle.transform?.shape.isEnclosing(circle, self)) {
       Circle.coordinate.x = self.transform.absoluteX - circle.transform.absoluteX;
       Circle.coordinate.y = self.transform.absoluteY - circle.transform.absoluteY;
 
@@ -112,8 +104,8 @@ export default class Circle implements Shape {
     }
   }
 
-  _becomeExcludedByCircle(self: GameObject, circle: GameObject): void {
-    if (!circle.transform?.shape.isExcluding(circle.gameObject, self.gameObject)) {
+  _becomeExcludedByCircle(self: Transform, circle: Transform): void {
+    if (!circle.transform?.shape.isExcluding(circle, self)) {
       Circle.coordinate.x = self.transform.absoluteX - circle.transform.absoluteX;
       Circle.coordinate.y = self.transform.absoluteY - circle.transform.absoluteY;
 
@@ -126,16 +118,7 @@ export default class Circle implements Shape {
     }
   }
 
-  _isHittingRectangle(self: GameObject | null, rectangle: GameObject | null): boolean {
-    if (self == null || rectangle == null) {
-      //TODO test this
-      return false;
-    }
-
-    return circleRectangleCollision(self, rectangle);
-  }
-
-  _isEnclosedByRectangle(self: GameObject, rectangle: GameObject): boolean {
+  _isEnclosedByRectangle(self: Transform, rectangle: Transform): boolean {
     const rectCenterX = rectangle.transform.absoluteX;
     const rectCenterY = rectangle.transform.absoluteY;
     const rectRotation = rectangle.transform.absoluteRotation;
@@ -169,7 +152,7 @@ export default class Circle implements Shape {
     return true;
   }
 
-  _isExcludedByRectangle(self: GameObject, rectangle: GameObject): boolean {
+  _isExcludedByRectangle(self: Transform, rectangle: Transform): boolean {
     const rectCenterX = rectangle.transform.absoluteX;
     const rectCenterY = rectangle.transform.absoluteY;
     const rectRotation = rectangle.transform.absoluteRotation;

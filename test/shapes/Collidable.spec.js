@@ -19,8 +19,8 @@ describe("Circle on circle", () => {
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
-      assert.ok(hitboxCircle1.isHitting(hitbox1, hitbox2));
-      assert.ok(hitboxCircle2.isHitting(hitbox2, hitbox1));
+      assert.ok(hitbox1.transform.isHitting(hitbox2.transform));
+      assert.ok(hitbox2.transform.isHitting(hitbox1.transform));
     });
   
     it("detects touching", () => {
@@ -39,8 +39,8 @@ describe("Circle on circle", () => {
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
-      assert.ok(hitboxCircle1.isHitting(hitbox1, hitbox2));
-      assert.ok(hitboxCircle2.isHitting(hitbox2, hitbox1));
+      assert.ok(hitbox1.transform.isHitting(hitbox2.transform));
+      assert.ok(hitbox2.transform.isHitting(hitbox1.transform));
     });
   
     it("detects off-by-one", () => {
@@ -59,8 +59,8 @@ describe("Circle on circle", () => {
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
-      assert.ok(!hitboxCircle1.isHitting(hitbox1, hitbox2));
-      assert.ok(!hitboxCircle2.isHitting(hitbox2, hitbox1));
+      assert.ok(!hitbox1.transform.isHitting(hitbox2.transform));
+      assert.ok(!hitbox2.transform.isHitting(hitbox1.transform));
     });
   });
 
@@ -81,8 +81,8 @@ describe("Circle on circle", () => {
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
-      assert.ok(hitboxRectangle.isHitting(hitbox1, hitbox2));
-      assert.ok(hitboxCircle.isHitting(hitbox2, hitbox1));
+      assert.ok(hitbox1.transform.isHitting(hitbox2.transform));
+      assert.ok(hitbox2.transform.isHitting(hitbox1.transform));
     });
   
     it("detects touching", () => {
@@ -104,8 +104,8 @@ describe("Circle on circle", () => {
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
-      assert.ok(hitboxRectangle.isHitting(hitbox1, hitbox2));
-      assert.ok(hitboxCircle.isHitting(hitbox2, hitbox1));
+      assert.ok(hitbox1.transform.isHitting(hitbox2.transform));
+      assert.ok(hitbox2.transform.isHitting(hitbox1.transform));
     });
   
     it("detects off-by-one", () => {
@@ -127,7 +127,7 @@ describe("Circle on circle", () => {
       const hitbox2 = new Hitbox();
       hitboxGameObject2.addComponent(hitbox2);
   
-      assert.ok(!hitboxRectangle.isHitting(hitbox1, hitbox2));
-      assert.ok(!hitboxCircle.isHitting(hitbox2, hitbox1));
+      assert.ok(!hitbox1.transform.isHitting(hitbox2.transform));
+      assert.ok(!hitbox2.transform.isHitting(hitbox1.transform));
     });
   });

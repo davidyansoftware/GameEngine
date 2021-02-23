@@ -1,10 +1,12 @@
+import CircleTransform from "./CircleTransform";
+import RectangleTransform from "./RectangleTransform";
 import GameObject from "./GameObject";
 import Shape from "./Shape";
 
 /**
  * Transform store positional information about GameObjects
  */
-export default class Transform {
+export default abstract class Transform {
   shape: Shape;
 
   private _gameObject: GameObject;
@@ -33,6 +35,11 @@ export default class Transform {
 
     this._cacheAbsolutePosition();
   }
+
+  abstract render(ctx: CanvasRenderingContext2D, fill: boolean): void;
+  abstract isHitting(other: Transform): boolean;
+  abstract _isHittingCircle(self: Transform, other: CircleTransform): boolean;
+  abstract _isHittingRectangle(self: Transform, other: RectangleTransform): boolean;
 
   /**
    * The GameObject this Transform is attached to

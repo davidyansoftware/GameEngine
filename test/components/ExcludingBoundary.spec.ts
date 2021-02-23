@@ -22,7 +22,7 @@ describe("Excluding Boundary", () => {
       y: Y,
       shape: EXCLUDED_SHAPE
     });
-    const excludedGameObjects = [excludedGameObject];
+    const excludedGameObjects = [excludedGameObject.transform];
 
     const excludingGameObject = new GameObject({x: X, y: Y, shape: EXCLUDING_SHAPE});
     const excludingBoundary = new ExcludingBoundary(excludedGameObjects);
@@ -40,7 +40,7 @@ describe("Excluding Boundary", () => {
     const Y = 0;
 
     const excludedGameObject = new GameObject({x: X, y: Y, shape: EXCLUDED_SHAPE});
-    const excludedGameObjects = [excludedGameObject];
+    const excludedGameObjects = [excludedGameObject.transform];
 
     const excludingGameObject = new GameObject({x: X, y: Y, shape: EXCLUDING_SHAPE});
     const excludingBoundary = new ExcludingBoundary(excludedGameObjects);

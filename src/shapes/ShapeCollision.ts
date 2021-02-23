@@ -1,13 +1,14 @@
 import Cartesian from "../coordinate/Cartesian";
 import Circle from "./Circle";
-import GameObject from "../GameObject";
+import CircleTransform from "../CircleTransform";
+import Transform from "../Transform";
 import Rectangle from "./Rectangle";
 
 const coordinate = new Cartesian(0, 0);
 
 export function circleCircleCollision(
-    circle1: GameObject,
-    circle2: GameObject,
+    circle1: Transform,
+    circle2: CircleTransform,
 ): boolean {
       let distanceBetween = Math.sqrt(
         Math.pow(circle1.transform.absoluteX - circle2.transform.absoluteX, 2) +
@@ -20,8 +21,8 @@ export function circleCircleCollision(
 }
 
 export function circleRectangleCollision(
-    circle: GameObject,
-    rectangle: GameObject
+    circle: Transform,
+    rectangle: Transform
 ): boolean {
     const rectCenterX = rectangle.transform.absoluteX;
     const rectCenterY = rectangle.transform.absoluteY;
