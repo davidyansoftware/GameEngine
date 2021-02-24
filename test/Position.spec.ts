@@ -289,3 +289,44 @@ describe("Transform absolute position", () => {
     });
   });
   
+  describe("Transform GetAbsolutePosition", () => {
+    it("defaults to zero", () => {
+        const gameObject = new GameObject();
+
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(), 0);
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(), 0);
+    });
+
+    it("includes parent's rotation (Math.PI/2)", () => {
+        const PARENT_ROTATION = Math.PI / 2;
+        const parent = new GameObject({rotation: PARENT_ROTATION});
+        const CHILD_X = 1;
+        const CHILD_Y = 2;
+        const child = new GameObject({x: CHILD_X, y: CHILD_Y});
+        parent.addGameObject(child);
+    
+        const ABSOLUTE_X = 2;
+        const ABSOLUTE_Y = -1;
+        testUtils.assertAlmostEqual(child.transform.position.getAbsoluteX(), ABSOLUTE_X);
+        testUtils.assertAlmostEqual(child.transform.position.getAbsoluteY(), ABSOLUTE_Y);
+    });
+    
+    it("returns correct offsets for unrotated object", () => {
+        const X_OFFSET = 5;
+        const Y_OFFSET = 10;
+        const gameObject = new GameObject();
+    
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), X_OFFSET);
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), Y_OFFSET);
+    });
+
+    it("returns correct values for rotated object", () => {
+        const X_OFFSET = 5;
+        const Y_OFFSET = 10;
+        const ROTATION = Math.PI;
+        const gameObject = new GameObject({rotation: ROTATION});
+
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), -X_OFFSET);
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), -Y_OFFSET);
+    });
+  });

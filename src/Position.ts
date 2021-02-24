@@ -109,6 +109,14 @@ export default class Position {
     set absoluteRotation(value: number) {
       this._setAbsoluteRotation(value);
     }
+
+    getAbsoluteX(xOffset: number = 0, yOffset: number = 0): number {
+        return this.absoluteX + xOffset * Math.cos(this.absoluteRotation) - yOffset * Math.sin(this.absoluteRotation);
+    }
+
+    getAbsoluteY(xOffset: number = 0, yOffset: number = 0): number {
+        return this.absoluteY + xOffset * Math.sin(this.absoluteRotation) + yOffset * Math.cos(this.absoluteRotation);
+    }
   
     _cacheAbsolutePosition(): void {
       const parentAbsoluteX = this.transform.gameObject.parent
