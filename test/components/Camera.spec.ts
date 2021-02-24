@@ -101,10 +101,6 @@ describe("Camera", () => {
     const offsetRotation =
       root.transform.position.absoluteRotation - gameObject.transform.position.absoluteRotation;
 
-    rotateSpy.getCalls().forEach((call) => {
-        console.log(call.args);
-    });
-    console.log(offsetRotation);
     assert.ok(translateSpy.calledWith(offsetX, -offsetY));
     testUtils.assertAlmostEqual(rotateSpy.getCall(0).args[0], offsetRotation);
     assert.ok(rotateSpy.calledBefore(translateSpy));
@@ -154,8 +150,6 @@ describe("Camera", () => {
 
     const afterMatrix = ctx!.currentTransform.toString();
 
-    console.log(afterMatrix);
-    console.log(beforeMatrix);
     assert.equal(afterMatrix, beforeMatrix);
   });
 });
