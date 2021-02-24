@@ -17,17 +17,17 @@ class MoveTo extends DNA.Component {
     }
 
     move(maxDistance) {
-        this.coordinate.x = this.target.transform.absoluteX - this.transform.absoluteX;
-        this.coordinate.y = this.target.transform.absoluteY - this.transform.absoluteY;
+        this.coordinate.x = this.target.transform.position.absoluteX - this.transform.position.absoluteX;
+        this.coordinate.y = this.target.transform.position.absoluteY - this.transform.position.absoluteY;
 
         if (maxDistance > this.coordinate.magnitude) {
-          this.transform.absoluteX = this.target.transform.absoluteX;
-          this.transform.absoluteY = this.target.transform.absoluteY;
+          this.transform.position.absoluteX = this.target.transform.position.absoluteX;
+          this.transform.position.absoluteY = this.target.transform.position.absoluteY;
           return true;
         } else {
           this.coordinate.magnitude = maxDistance;
-          this.transform.absoluteX += this.coordinate.x;
-          this.transform.absoluteY += this.coordinate.y;
+          this.transform.position.absoluteX += this.coordinate.x;
+          this.transform.position.absoluteY += this.coordinate.y;
           return false;
         }
     }

@@ -79,11 +79,11 @@ export default class GameObject {
     let prevAbsoluteRotation = 0;
     if (gameObject._parent) {
       if (maintainAbsolutePosition) {
-        prevAbsoluteX = gameObject.transform.absoluteX;
-        prevAbsoluteY = gameObject.transform.absoluteY;
+        prevAbsoluteX = gameObject.transform.position.absoluteX;
+        prevAbsoluteY = gameObject.transform.position.absoluteY;
       }
       if (maintainAbsoluteRotation) {
-        prevAbsoluteRotation = gameObject.transform.absoluteRotation;
+        prevAbsoluteRotation = gameObject.transform.position.absoluteRotation;
       }
       gameObject._parent.removeGameObject(gameObject);
     }
@@ -91,14 +91,14 @@ export default class GameObject {
     this.gameObjects.push(gameObject);
 
     if (gameObject._parent && maintainAbsolutePosition) {
-      gameObject.transform.absoluteX = prevAbsoluteX;
-      gameObject.transform.absoluteY = prevAbsoluteY;
+      gameObject.transform.position.absoluteX = prevAbsoluteX;
+      gameObject.transform.position.absoluteY = prevAbsoluteY;
     }
     if (gameObject._parent && maintainAbsoluteRotation) {
-      gameObject.transform.absoluteRotation = prevAbsoluteRotation;
+      gameObject.transform.position.absoluteRotation = prevAbsoluteRotation;
     }
 
-    gameObject.transform._cacheAbsolutePosition();
+    gameObject.transform.position._cacheAbsolutePosition();
   }
 
   /**
@@ -111,7 +111,7 @@ export default class GameObject {
       this.gameObjects.splice(index, 1);
     }
 
-    gameObject.transform._cacheAbsolutePosition();
+    gameObject.transform.position._cacheAbsolutePosition();
   }
 
   /**
@@ -169,8 +169,8 @@ export default class GameObject {
     this.gameObjects.forEach(gameObject => {
       // translating transform for each child so we don't have to translate after finding absolute offsets
       ctx.save();
-      ctx.translate(gameObject.transform.x, -gameObject.transform.y);
-      ctx.rotate(gameObject.transform.rotation);
+      ctx.translate(gameObject.transform.position.x, -gameObject.transform.position.y);
+      ctx.rotate(gameObject.transform.position.rotation);
 
       gameObject.render(ctx);
 

@@ -29,7 +29,7 @@ export default class Physics extends Component {
       return;
     }
 
-    this.gameObject.transform.x += this.x * deltaTime;
-    this.gameObject.transform.y += this.y * deltaTime;
+    this.gameObject.transform.position.x += this.x * deltaTime;
+    this.gameObject.transform.position.y += this.y * deltaTime;
   }
 }

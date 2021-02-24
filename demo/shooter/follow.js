@@ -6,7 +6,7 @@ class Follow extends DNA.Component {
     }
 
     update(deltaTime) {
-        this.transform.absoluteX = this.target.transform.absoluteX;
-        this.transform.absoluteY = this.target.transform.absoluteY;
+        this.transform.position.absoluteX = this.target.transform.position.absoluteX;
+        this.transform.position.absoluteY = this.target.transform.position.absoluteY;
     }
 }

@@ -34,8 +34,8 @@ describe("Velocity", () => {
     physicalBody.addVelocity(velocity);
     physicalBody.gameObject!.update(ELAPSED_TIME);
 
-    assert.equal(physicalBody.transform!.x, X_VELOCITY * ELAPSED_TIME);
-    assert.equal(physicalBody.transform!.y, Y_VELOCITY * ELAPSED_TIME);
+    assert.equal(physicalBody.transform!.position.x, X_VELOCITY * ELAPSED_TIME);
+    assert.equal(physicalBody.transform!.position.y, Y_VELOCITY * ELAPSED_TIME);
   });
 
   it("is reduced by drag", () => {
@@ -45,7 +45,7 @@ describe("Velocity", () => {
     physicalBody.gameObject!.update(ELAPSED_TIME);
     physicalBody.gameObject!.update(ELAPSED_TIME);
 
-    testUtils.assertAlmostEqual(physicalBody.transform!.x, 4.5);
-    testUtils.assertAlmostEqual(physicalBody.transform!.y, 6);
+    testUtils.assertAlmostEqual(physicalBody.transform!.position.x, 4.5);
+    testUtils.assertAlmostEqual(physicalBody.transform!.position.y, 6);
   });
 });

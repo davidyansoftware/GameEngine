@@ -25,8 +25,8 @@ describe("Enclosing Boundary", () => {
 
     enclosingGameObject.update(ELAPSED_TIME);
 
-    assert.equal(enclosedGameObject.transform.x, X);
-    assert.equal(enclosedGameObject.transform.y, Y);
+    assert.equal(enclosedGameObject.transform.position.x, X);
+    assert.equal(enclosedGameObject.transform.position.y, Y);
   });
 
   it("will reposition breaching GameObject", () => {
@@ -49,9 +49,9 @@ describe("Enclosing Boundary", () => {
     enclosingGameObject.update(ELAPSED_TIME);
 
     testUtils.assertAlmostEqual(
-        enclosedGameObject.transform.x,
+        enclosedGameObject.transform.position.x,
         ENCLOSING_RADIUS - ENCLOSED_RADIUS - 1
     );
-    testUtils.assertAlmostEqual(enclosedGameObject.transform.y, Y);
+    testUtils.assertAlmostEqual(enclosedGameObject.transform.position.y, Y);
   });
 });

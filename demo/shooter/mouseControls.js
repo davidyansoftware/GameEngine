@@ -22,9 +22,9 @@ class MouseControls extends DNA.Component {
       this.player.currRightWeapon.attack(this.player, this.mouse);
     }
 
-    const dx = this.mouse.x - this.transform.absoluteX;
-    const dy = this.mouse.y - this.transform.absoluteY;
-    this.transform.rotation = Math.atan2(dx, dy);
+    const dx = this.mouse.x - this.transform.position.absoluteX;
+    const dy = this.mouse.y - this.transform.position.absoluteY;
+    this.transform.position.rotation = Math.atan2(dx, dy);
   }
   
 }

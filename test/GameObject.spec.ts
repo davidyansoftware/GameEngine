@@ -65,8 +65,8 @@ describe("GameObject composite", () => {
 
     parent1.addGameObject(child);
     parent2.addGameObject(child, true);
-    testUtils.assertAlmostEqual(child.transform.absoluteX, PARENT1_X + CHILD_X);
-    testUtils.assertAlmostEqual(child.transform.absoluteY, PARENT1_Y + CHILD_Y);
+    testUtils.assertAlmostEqual(child.transform.position.absoluteX, PARENT1_X + CHILD_X);
+    testUtils.assertAlmostEqual(child.transform.position.absoluteY, PARENT1_Y + CHILD_Y);
   });
 
   it("can maintain the absolute rotation", () => {
@@ -80,7 +80,7 @@ describe("GameObject composite", () => {
     parent1.addGameObject(child);
     parent2.addGameObject(child, false, true);
     testUtils.assertAlmostEqual(
-      child.transform.absoluteRotation,
+      child.transform.position.absoluteRotation,
       PARENT1_ROTATION + CHILD_ROTATION
     );
   });

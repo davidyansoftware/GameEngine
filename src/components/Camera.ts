@@ -63,10 +63,10 @@ export default class Camera extends Component {
 
     this.ctx.save();
 
-    const offsetX = this.root.transform.absoluteX - this.transform.absoluteX;
-    const offsetY = this.root.transform.absoluteY - this.transform.absoluteY;
+    const offsetX = this.root.transform.position.absoluteX - this.transform.position.absoluteX;
+    const offsetY = this.root.transform.position.absoluteY - this.transform.position.absoluteY;
     const offsetRotation =
-      this.root.transform.absoluteRotation - this.transform.absoluteRotation;
+      this.root.transform.position.absoluteRotation - this.transform.position.absoluteRotation;
 
     this.ctx.rotate(offsetRotation);
     this.ctx.translate(offsetX, -offsetY);

@@ -50,14 +50,14 @@ export default class Mouse extends Input {
    * @type {number}
    */
   get x() {
-    return this._x + this.camera.transform.absoluteX;
+    return this._x + this.camera.transform.position.absoluteX;
   }
 
   /**
    * @type {number}
    */
   get y() {
-    return this._y + this.camera.transform.absoluteY;
+    return this._y + this.camera.transform.position.absoluteY;
   }
 
   _onMouseMove(event) {

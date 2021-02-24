@@ -58,8 +58,8 @@ export default class Circle implements Shape {
 
   _isEnclosedByCircle(self: Transform, circle: Transform): boolean {
     let distanceBetween = Math.sqrt(
-      Math.pow(self.transform.absoluteX - circle.transform.absoluteX, 2) +
-        Math.pow(self.transform.absoluteY - circle.transform.absoluteY, 2)
+      Math.pow(self.transform.position.absoluteX - circle.transform.position.absoluteX, 2) +
+        Math.pow(self.transform.position.absoluteY - circle.transform.position.absoluteY, 2)
     );
 
     const otherCircle = <Circle>circle.transform.shape;
@@ -68,8 +68,8 @@ export default class Circle implements Shape {
 
   _isExcludedByCircle(self: Transform, circle: Transform): boolean {
     let distanceBetween = Math.sqrt(
-      Math.pow(self.transform.absoluteX - circle.transform.absoluteX, 2) +
-        Math.pow(self.transform.absoluteY - circle.transform.absoluteY, 2)
+      Math.pow(self.transform.position.absoluteX - circle.transform.position.absoluteX, 2) +
+        Math.pow(self.transform.position.absoluteY - circle.transform.position.absoluteY, 2)
     );
 
     const otherCircle = <Circle>circle.transform.shape;
@@ -78,43 +78,43 @@ export default class Circle implements Shape {
 
   _becomeEnclosedByCircle(self: Transform, circle: Transform): void {
     if (!circle.transform?.shape.isEnclosing(circle, self)) {
-      Circle.coordinate.x = self.transform.absoluteX - circle.transform.absoluteX;
-      Circle.coordinate.y = self.transform.absoluteY - circle.transform.absoluteY;
+      Circle.coordinate.x = self.transform.position.absoluteX - circle.transform.position.absoluteX;
+      Circle.coordinate.y = self.transform.position.absoluteY - circle.transform.position.absoluteY;
 
       const enclosingCircle: Circle = <Circle>circle.transform.shape;
       const enclosedCircle: Circle = <Circle>self.transform.shape;
       Circle.coordinate.magnitude = enclosingCircle.radius - enclosedCircle.radius - 1;
 
-      self.transform.absoluteX = circle.transform.absoluteX + Circle.coordinate.x;
-      self.transform.absoluteY = circle.transform.absoluteY + Circle.coordinate.y;
+      self.transform.position.absoluteX = circle.transform.position.absoluteX + Circle.coordinate.x;
+      self.transform.position.absoluteY = circle.transform.position.absoluteY + Circle.coordinate.y;
     }
   }
 
   _becomeExcludedByCircle(self: Transform, circle: Transform): void {
     if (!circle.transform?.shape.isExcluding(circle, self)) {
-      Circle.coordinate.x = self.transform.absoluteX - circle.transform.absoluteX;
-      Circle.coordinate.y = self.transform.absoluteY - circle.transform.absoluteY;
+      Circle.coordinate.x = self.transform.position.absoluteX - circle.transform.position.absoluteX;
+      Circle.coordinate.y = self.transform.position.absoluteY - circle.transform.position.absoluteY;
 
       const excludingCircle: Circle = <Circle>circle.transform.shape;
       const excludedCircle: Circle = <Circle>self.transform.shape;
       Circle.coordinate.magnitude = excludingCircle.radius + excludedCircle.radius + 1;
 
-      self.transform.absoluteX = circle.transform.absoluteX + Circle.coordinate.x;
-      self.transform.absoluteY = circle.transform.absoluteY + Circle.coordinate.y;
+      self.transform.position.absoluteX = circle.transform.position.absoluteX + Circle.coordinate.x;
+      self.transform.position.absoluteY = circle.transform.position.absoluteY + Circle.coordinate.y;
     }
   }
 
   _isEnclosedByRectangle(self: Transform, rectangle: Transform): boolean {
-    const rectCenterX = rectangle.transform.absoluteX;
-    const rectCenterY = rectangle.transform.absoluteY;
-    const rectRotation = rectangle.transform.absoluteRotation;
+    const rectCenterX = rectangle.transform.position.absoluteX;
+    const rectCenterY = rectangle.transform.position.absoluteY;
+    const rectRotation = rectangle.transform.position.absoluteRotation;
 
     //TODO this should be changed once rectangle implements Shape
     const unknown = <unknown>rectangle.transform.shape;
     const rect = <Rectangle>unknown;
 
-    const counterRotatedCircleX = Math.cos(rectRotation) * (self.transform.x - rectCenterX) - Math.sin(rectRotation) * (self.transform.y - rectCenterY) + rectCenterX;
-    const counterRotatedCircleY = Math.sin(rectRotation) * (self.transform.x - rectCenterX) + Math.cos(rectRotation) * (self.transform.y - rectCenterY) + rectCenterY;
+    const counterRotatedCircleX = Math.cos(rectRotation) * (self.transform.position.x - rectCenterX) - Math.sin(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterX;
+    const counterRotatedCircleY = Math.sin(rectRotation) * (self.transform.position.x - rectCenterX) + Math.cos(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterY;
 
     const rectLeftX = rectCenterX - rect.width / 2;
     const rectRightX = rectLeftX + rect.width;
@@ -139,16 +139,16 @@ export default class Circle implements Shape {
   }
 
   _isExcludedByRectangle(self: Transform, rectangle: Transform): boolean {
-    const rectCenterX = rectangle.transform.absoluteX;
-    const rectCenterY = rectangle.transform.absoluteY;
-    const rectRotation = rectangle.transform.absoluteRotation;
+    const rectCenterX = rectangle.transform.position.absoluteX;
+    const rectCenterY = rectangle.transform.position.absoluteY;
+    const rectRotation = rectangle.transform.position.absoluteRotation;
 
     //TODO this should be changed once rectangle implements Shape
     const unknown = <unknown>rectangle.transform.shape;
     const rect = <Rectangle>unknown;
 
-    const counterRotatedCircleX = Math.cos(rectRotation) * (self.transform.x - rectCenterX) - Math.sin(rectRotation) * (self.transform.y - rectCenterY) + rectCenterX;
-    const counterRotatedCircleY = Math.sin(rectRotation) * (self.transform.x - rectCenterX) + Math.cos(rectRotation) * (self.transform.y - rectCenterY) + rectCenterY;
+    const counterRotatedCircleX = Math.cos(rectRotation) * (self.transform.position.x - rectCenterX) - Math.sin(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterX;
+    const counterRotatedCircleY = Math.sin(rectRotation) * (self.transform.position.x - rectCenterX) + Math.cos(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterY;
 
     const rectLeftX = rectCenterX - rect.width / 2;
     const rectRightX = rectLeftX + rect.width;

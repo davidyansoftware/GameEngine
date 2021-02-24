@@ -12,8 +12,8 @@ export function circleCircleCollision(
     circle2: CircleTransform,
 ): boolean {
       let distanceBetween = Math.sqrt(
-        Math.pow(circle1.transform.absoluteX - circle2.transform.absoluteX, 2) +
-          Math.pow(circle1.transform.absoluteY - circle2.transform.absoluteY, 2)
+        Math.pow(circle1.transform.position.absoluteX - circle2.transform.position.absoluteX, 2) +
+          Math.pow(circle1.transform.position.absoluteY - circle2.transform.position.absoluteY, 2)
       );
   
       const circle1Shape = <Circle>circle1.transform.shape;
@@ -25,16 +25,16 @@ export function circleRectangleCollision(
     circle: CircleTransform,
     rectangle: RectangleTransform
 ): boolean {
-    const rectCenterX = rectangle.transform.absoluteX;
-    const rectCenterY = rectangle.transform.absoluteY;
-    const rectRotation = rectangle.transform.absoluteRotation;
+    const rectCenterX = rectangle.transform.position.absoluteX;
+    const rectCenterY = rectangle.transform.position.absoluteY;
+    const rectRotation = rectangle.transform.position.absoluteRotation;
 
     //TODO current workaround since rectangle does not fully impliment Shape
     const unknown = <unknown>rectangle.transform.shape;
     const rectShape = <Rectangle>unknown;
 
-    const counterRotatedCircleX = Math.cos(rectRotation) * (circle.transform.x - rectCenterX) - Math.sin(rectRotation) * (circle.transform.y - rectCenterY) + rectCenterX;
-    const counterRotatedCircleY = Math.sin(rectRotation) * (circle.transform.x - rectCenterX) + Math.cos(rectRotation) * (circle.transform.y - rectCenterY) + rectCenterY;
+    const counterRotatedCircleX = Math.cos(rectRotation) * (circle.transform.position.x - rectCenterX) - Math.sin(rectRotation) * (circle.transform.position.y - rectCenterY) + rectCenterX;
+    const counterRotatedCircleY = Math.sin(rectRotation) * (circle.transform.position.x - rectCenterX) + Math.cos(rectRotation) * (circle.transform.position.y - rectCenterY) + rectCenterY;
 
     const rectLeftX = rectCenterX - rectShape.width / 2;
     const rectRightX = rectLeftX + rectShape.width;

@@ -24,8 +24,8 @@ class Follow extends DNA.Component {
   update() {
     const dx = this.mouse.x;
     const dy = this.mouse.y;
-    this.transform.x += dx / 100;
-    this.transform.y += dy / 100;
+    this.transform.position.x += dx / 100;
+    this.transform.position.y += dy / 100;
   }
 }
 

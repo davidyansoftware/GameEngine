@@ -25,8 +25,8 @@ class Gun extends DNA.Component {
     const angleToMouse = this.getAngleToMouse(mouse);
 
     const bullet = createBullet(
-      this.transform.absoluteX,
-      this.transform.absoluteY,
+      this.transform.position.absoluteX,
+      this.transform.position.absoluteY,
       angleToMouse,
       this.gunType
     );
@@ -45,8 +45,8 @@ class Gun extends DNA.Component {
   }
 
   getAngleToMouse(mouse) {
-      this.mouseOffset.x = mouse.x - this.transform.absoluteX;
-      this.mouseOffset.y = mouse.y - this.transform.absoluteY;
+      this.mouseOffset.x = mouse.x - this.transform.position.absoluteX;
+      this.mouseOffset.y = mouse.y - this.transform.position.absoluteY;
 
       return this.mouseOffset.angle;
   }

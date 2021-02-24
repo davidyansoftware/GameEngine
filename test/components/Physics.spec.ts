@@ -22,7 +22,7 @@ describe("Physics", () => {
 
     gameObject.update(ELAPSED_TIME);
 
-    assert.equal(gameObject.transform.x, X * ELAPSED_TIME);
-    assert.equal(gameObject.transform.y, Y * ELAPSED_TIME);
+    assert.equal(gameObject.transform.position.x, X * ELAPSED_TIME);
+    assert.equal(gameObject.transform.position.y, Y * ELAPSED_TIME);
   });
 });

@@ -23,8 +23,8 @@ export default class PhysicalBody extends Component {
     update(deltaTime: number) {
         //TODO how should this interact with absolute velocity?
         if (this.transform) {
-            this.transform.x += this.velocity.x * deltaTime;
-            this.transform.y += this.velocity.y * deltaTime;
+            this.transform.position.x += this.velocity.x * deltaTime;
+            this.transform.position.y += this.velocity.y * deltaTime;
         }
         
         this.velocity.magnitude *= 1 - this.drag;

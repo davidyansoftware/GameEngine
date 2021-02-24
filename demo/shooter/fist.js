@@ -39,8 +39,8 @@ class Fist extends DNA.Component {
 
   reattach() {
     this.handPosition.gameObject.addGameObject(this.gameObject);
-    this.transform.x = 0;
-    this.transform.y = 0;
+    this.transform.position.x = 0;
+    this.transform.position.y = 0;
     this.attached = true;
   }
 }

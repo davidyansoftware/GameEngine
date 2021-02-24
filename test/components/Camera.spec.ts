@@ -96,10 +96,10 @@ describe("Camera", () => {
     const rotateSpy = sinon.spy(ctx!, "rotate");
 
     camera.update(DELTA_TIME);
-    const offsetX = root.transform.absoluteX - gameObject.transform.absoluteX;
-    const offsetY = root.transform.absoluteY - gameObject.transform.absoluteY;
+    const offsetX = root.transform.position.absoluteX - gameObject.transform.position.absoluteX;
+    const offsetY = root.transform.position.absoluteY - gameObject.transform.position.absoluteY;
     const offsetRotation =
-      root.transform.absoluteRotation - gameObject.transform.absoluteRotation;
+      root.transform.position.absoluteRotation - gameObject.transform.position.absoluteRotation;
 
     rotateSpy.getCalls().forEach((call) => {
         console.log(call.args);

@@ -17,7 +17,7 @@ class MeleeWeapon extends DNA.Component {
             return;
         }
 
-        const meleeAttack = createMeleeAttack(attacker.transform.x, attacker.transform.y, this.meleeWeaponType.radius, this.meleeWeaponType.duration);
+        const meleeAttack = createMeleeAttack(attacker.transform.position.x, attacker.transform.position.y, this.meleeWeaponType.radius, this.meleeWeaponType.duration);
 
         this.root.addGameObject(meleeAttack);
 
