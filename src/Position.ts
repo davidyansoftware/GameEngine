@@ -42,6 +42,7 @@ export default class Position {
     set x(value: number) {
       this._x = value;
       this.markAbsoluteDirty();
+      this.transform._markDirtyPosition();
     }
   
     /**
@@ -54,6 +55,7 @@ export default class Position {
     set y(value: number) {
       this._y = value;
       this.markAbsoluteDirty();
+      this.transform._markDirtyPosition();
     }
   
     /**
@@ -66,6 +68,7 @@ export default class Position {
     set rotation(value: number) {
       this._rotation = value;
       this.markAbsoluteDirty();
+      this.transform._markDirtyPosition();
     }
   
     /**
@@ -80,6 +83,7 @@ export default class Position {
     }
     set absoluteX(value: number) {
       this._setAbsolutePosition(value, this.absoluteY);
+      this.transform._markDirtyPosition();
     }
   
     /**
@@ -94,6 +98,7 @@ export default class Position {
     }
     set absoluteY(value: number) {
       this._setAbsolutePosition(this.absoluteX, value);
+      this.transform._markDirtyPosition();
     }
   
     /**
@@ -108,6 +113,7 @@ export default class Position {
     }
     set absoluteRotation(value: number) {
       this._setAbsoluteRotation(value);
+      this.transform._markDirtyPosition();
     }
 
     getAbsoluteX(xOffset: number = 0, yOffset: number = 0): number {

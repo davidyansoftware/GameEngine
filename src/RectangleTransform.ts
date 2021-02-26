@@ -2,10 +2,10 @@ import GameObject from "./GameObject";
 import Transform from "./Transform";
 import { circleRectangleCollision, rectangleRectangleCollision } from "./shapes/ShapeCollision";
 import Shape from "./Shape";
-import Circle from "./shapes/Circle";
 import CircleTransform from "./CircleTransform";
 import Rectangle from "./shapes/Rectangle";
-import Hitbox from "./components/Hitbox";
+import Coordinate from "./coordinate/Coordinate";
+import Cartesian from "./coordinate/Cartesian";
 
 /**
  * A Rectangle Transform
@@ -13,7 +13,14 @@ import Hitbox from "./components/Hitbox";
  * @impliments {Transform}
  */
 export default class RectangleTransform extends Transform {
-    rectangle: Rectangle;
+    private rectangle: Rectangle;
+
+    private topLeft: Coordinate;
+    private topRight: Coordinate;
+    private bottomLeft: Coordinate;
+    private bottomRight: Coordinate;
+
+    private corners: Array<Coordinate>;
 
     /**
      * Create a Rectangle object
@@ -27,6 +34,42 @@ export default class RectangleTransform extends Transform {
         super(gameObject, x, y, rotation, shape);
 
         this.rectangle = rectangle;
+
+        this.topLeft = new Cartesian(0, 0);
+        this.topRight = new Cartesian(0, 0);
+        this.bottomLeft = new Cartesian(0, 0);
+        this.bottomRight = new Cartesian(0, 0);
+        this.corners = [this.topLeft, this.topRight, this.bottomLeft, this.bottomRight];
+
+        this._dirtyPosition = true; // this is to indicate the corners are not cached
+    }
+
+    private cacheCorners() {
+        const leftX = -this.rectangle.width / 2;
+        const rightX = this.rectangle.width / 2;
+        const topY = this.rectangle.height / 2;
+        const bottomY = -this.rectangle.height / 2;
+        
+        this.topLeft.x = this.position.getAbsoluteX(leftX, topY);
+        this.topLeft.y = this.position.getAbsoluteY(leftX, topY);
+
+        this.topRight.x = this.position.getAbsoluteX(rightX, topY);
+        this.topRight.y = this.position.getAbsoluteY(rightX, topY);
+
+        this.bottomLeft.x = this.position.getAbsoluteX(leftX, bottomY);
+        this.bottomLeft.y = this.position.getAbsoluteY(leftX, bottomY);
+
+        this.bottomRight.x = this.position.getAbsoluteX(rightX, bottomY);
+        this.bottomRight.y = this.position.getAbsoluteY(rightX, bottomY);
+    }
+
+    _getCorners(): Array<Coordinate> {
+        if (this._dirtyPosition) {
+            this.cacheCorners();
+            console.log("caching corners");
+            this._dirtyPosition = false;
+        }
+        return this.corners;
     }
     
     isHitting(other: Transform): boolean {

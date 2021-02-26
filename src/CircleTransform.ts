@@ -1,11 +1,8 @@
 import GameObject from "./GameObject";
 import Transform from "./Transform";
 import { circleCircleCollision, circleRectangleCollision } from "./shapes/ShapeCollision";
-import Shape from "./Shape";
 import Circle from "./shapes/Circle";
-import Rectangle from "./shapes/Rectangle";
 import RectangleTransform from "./RectangleTransform";
-import Hitbox from "./components/Hitbox";
 
 /**
  * A Rectangle
@@ -13,7 +10,7 @@ import Hitbox from "./components/Hitbox";
  * @impliments {Shape}
  */
 export default class CircleTransform extends Transform {
-    circle: Circle;
+    private circle: Circle;
 
     /**
      * Create a Circle Transform

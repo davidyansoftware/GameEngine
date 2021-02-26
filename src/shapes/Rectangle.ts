@@ -1,7 +1,6 @@
 import GameObject from "../GameObject";
 import Transform from "../Transform";
 import RectangleTransform from "../RectangleTransform";
-import { circleRectangleCollision } from "./ShapeCollision";
 
 /**
  * A Rectangle

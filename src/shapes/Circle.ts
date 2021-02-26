@@ -2,11 +2,9 @@ import Cartesian from "../coordinate/Cartesian";
 import Coordinate from "../coordinate/Coordinate";
 import CircleTransform from "../CircleTransform";
 import GameObject from "../GameObject";
-import Hitbox from "../components/Hitbox";
 import Shape from "../Shape";
 import Transform from "../Transform";
 import Rectangle from "./Rectangle";
-import { circleCircleCollision, circleRectangleCollision } from "./ShapeCollision";
 
 /**
  * A Circle

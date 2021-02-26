@@ -9,7 +9,9 @@ import Position from "./Position";
  */
 export default abstract class Transform {
   shape: Shape;
-  position: Position
+  position: Position;
+
+  protected _dirtyPosition: boolean;
 
   private _gameObject: GameObject;
 
@@ -24,11 +26,20 @@ export default abstract class Transform {
     this._gameObject = gameObject;
     this.position = new Position(this, x, y, rotation);
     this.shape = shape;
+
+    this._dirtyPosition = false;
   }
 
   abstract isHitting(other: Transform): boolean;
   abstract _isHittingCircle(other: CircleTransform): boolean;
   abstract _isHittingRectangle(other: RectangleTransform): boolean;
+
+  _markDirtyPosition() {
+    this._dirtyPosition = true;
+    this.gameObject.gameObjects.forEach((gameObject) => {
+      gameObject.transform._markDirtyPosition();
+    });
+  }
 
   /**
    * The GameObject this Transform is attached to

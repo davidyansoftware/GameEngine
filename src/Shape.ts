@@ -1,5 +1,3 @@
-import CircleTransform from "./CircleTransform";
-import Hitbox from "./components/Hitbox";
 import GameObject from "./GameObject";
 import Transform from "./Transform";
 
