@@ -21,6 +21,7 @@ export default class RectangleTransform extends Transform {
     private bottomRight: Coordinate;
 
     private corners: Array<Coordinate>;
+    private dirtyCorners: boolean;
 
     /**
      * Create a Rectangle object
@@ -41,7 +42,7 @@ export default class RectangleTransform extends Transform {
         this.bottomRight = new Cartesian(0, 0);
         this.corners = [this.topLeft, this.topRight, this.bottomLeft, this.bottomRight];
 
-        this._dirtyPosition = true; // this is to indicate the corners are not cached
+        this.dirtyCorners = true; // this is to indicate the corners are not cached
     }
 
     private cacheCorners() {
@@ -64,12 +65,15 @@ export default class RectangleTransform extends Transform {
     }
 
     _getCorners(): Array<Coordinate> {
-        if (this._dirtyPosition) {
+        if (this.dirtyCorners) {
             this.cacheCorners();
-            console.log("caching corners");
-            this._dirtyPosition = false;
+            this.dirtyCorners = false;
         }
         return this.corners;
+    }
+
+    _onPositionChange(): void {
+        this.dirtyCorners = true;
     }
     
     isHitting(other: Transform): boolean {

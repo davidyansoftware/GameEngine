@@ -22,6 +22,10 @@ export default class CircleTransform extends Transform {
 
         this.circle = circle;
     }
+
+    _onPositionChange(): void {
+        // no change is required, since fields are not cached
+    }
     
     isHitting(other: Transform): boolean {
         return other.transform._isHittingCircle(this);
