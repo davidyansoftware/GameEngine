@@ -116,12 +116,14 @@ export default class Position {
       this.transform._positionChanged();
     }
 
-    getAbsoluteX(xOffset: number = 0, yOffset: number = 0): number {
-        return this.absoluteX + xOffset * Math.cos(this.absoluteRotation) + yOffset * Math.sin(this.absoluteRotation);
+    getAbsoluteX(xOffset: number = 0, yOffset: number = 0, rotation: number = 0): number {
+      const rotationWithOffset = this.absoluteRotation + rotation;
+      return this.absoluteX + xOffset * Math.cos(rotationWithOffset) + yOffset * Math.sin(rotationWithOffset);
     }
 
-    getAbsoluteY(xOffset: number = 0, yOffset: number = 0): number {
-        return this.absoluteY - xOffset * Math.sin(this.absoluteRotation) + yOffset * Math.cos(this.absoluteRotation);
+    getAbsoluteY(xOffset: number = 0, yOffset: number = 0, rotation: number = 0): number {
+      const rotationWithOffset = this.absoluteRotation + rotation;
+      return this.absoluteY - xOffset * Math.sin(rotationWithOffset) + yOffset * Math.cos(rotationWithOffset);
     }
   
     _cacheAbsolutePosition(): void {
