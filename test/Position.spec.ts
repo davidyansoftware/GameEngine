@@ -316,6 +316,8 @@ describe("Transform absolute position", () => {
         const Y_OFFSET = 10;
         const gameObject = new GameObject();
     
+        console.log(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET));
+        console.log(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET));
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), X_OFFSET);
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), Y_OFFSET);
     });
@@ -323,10 +325,10 @@ describe("Transform absolute position", () => {
     it("returns correct values for rotated object", () => {
         const X_OFFSET = 5;
         const Y_OFFSET = 10;
-        const ROTATION = Math.PI;
+        const ROTATION = Math.PI / 2;
         const gameObject = new GameObject({rotation: ROTATION});
 
-        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), -X_OFFSET);
-        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), -Y_OFFSET);
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), Y_OFFSET);
+        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), -X_OFFSET);
     });
   });

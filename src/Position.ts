@@ -117,11 +117,11 @@ export default class Position {
     }
 
     getAbsoluteX(xOffset: number = 0, yOffset: number = 0): number {
-        return this.absoluteX + xOffset * Math.cos(this.absoluteRotation) - yOffset * Math.sin(this.absoluteRotation);
+        return this.absoluteX + xOffset * Math.cos(this.absoluteRotation) + yOffset * Math.sin(this.absoluteRotation);
     }
 
     getAbsoluteY(xOffset: number = 0, yOffset: number = 0): number {
-        return this.absoluteY + xOffset * Math.sin(this.absoluteRotation) + yOffset * Math.cos(this.absoluteRotation);
+        return this.absoluteY - xOffset * Math.sin(this.absoluteRotation) + yOffset * Math.cos(this.absoluteRotation);
     }
   
     _cacheAbsolutePosition(): void {

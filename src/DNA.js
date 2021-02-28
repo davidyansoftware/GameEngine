@@ -15,6 +15,7 @@ import Mouse from "./input/Mouse";
 import Keyboard from "./input/Keyboard";
 
 import Circle from "./shapes/Circle";
+import Rectangle from "./shapes/Rectangle";
 
 import Cartesian from "./coordinate/Cartesian";
 import Polar from "./coordinate/Polar";
@@ -41,7 +42,8 @@ export default DNA = {
   },
 
   Shapes: {
-    Circle: Circle
+    Circle: Circle,
+    Rectangle: Rectangle
   },
 
   Coordinate: {
