@@ -67,15 +67,22 @@ function createPlayer(root, mouse, map) {
     createFist(root, slowFist)
   ];
   */
+  /*
   const leftWeapons = [
     createMeleeWeapon(root, smallAttack),
     createMeleeWeapon(root, normalAttack),
     createMeleeWeapon(root, largeAttack)
   ];
+  */
+  const leftWeapons = [
+    createRayGun(root, physicalBody, fastRayGun),
+    createRayGun(root, physicalBody, normalRayGun),
+    createRayGun(root, physicalBody, slowRayGun)
+  ];
   const rightWeapons = [
-    createGun(root, physicalBody, fastGun),
-    createGun(root, physicalBody, normalGun),
-    createGun(root, physicalBody, rocketEngine)
+    createProjectileGun(root, physicalBody, fastGun),
+    createProjectileGun(root, physicalBody, normalGun),
+    createProjectileGun(root, physicalBody, rocketEngine)
   ];
   const playerComponent = new Player(leftHandPosition, rightHandPosition, leftWeapons, rightWeapons);
   player.addComponent(playerComponent);

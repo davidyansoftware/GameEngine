@@ -1,4 +1,4 @@
-class Gun extends DNA.Component {
+class ProjectileGun extends DNA.Component {
   constructor(root, physicalBody, gunType) {
     super();
 
@@ -36,7 +36,7 @@ class Gun extends DNA.Component {
 
     this.cooldown = this.gunType.cooldown;
     
-    this.recoilVelocity.angle = angleToMouse + Math.PI
+    this.recoilVelocity.angle = angleToMouse + Math.PI;
     this.physicalBody.addVelocity(this.recoilVelocity);
   }
 
@@ -52,10 +52,10 @@ class Gun extends DNA.Component {
   }
 }
 
-function createGun(root, physicalBody, gunType) {
+function createProjectileGun(root, physicalBody, gunType) {
   const gun = new DNA.GameObject({shape: new DNA.Shapes.Circle(10)});
   gun.addComponent(new DNA.Components.Renderer());
-  const gunComponent = new Gun(root, physicalBody, gunType);
+  const gunComponent = new ProjectileGun(root, physicalBody, gunType);
   gun.addComponent(gunComponent);
 
   return gunComponent;
