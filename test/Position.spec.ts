@@ -316,8 +316,6 @@ describe("Transform absolute position", () => {
         const Y_OFFSET = 10;
         const gameObject = new GameObject();
     
-        console.log(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET));
-        console.log(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET));
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), X_OFFSET);
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), Y_OFFSET);
     });
