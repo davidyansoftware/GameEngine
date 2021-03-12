@@ -16,8 +16,6 @@ export default class Hitbox extends Component {
   private hurtboxes: Array<Hitbox>;
   private onHit: Array<HitCallback>;
 
-  private currHitting: Set<Hitbox>;
-
   /**
    * The shape of this Hitbox
    * @param {ShapeType} shape
@@ -27,8 +25,6 @@ export default class Hitbox extends Component {
 
     this.hurtboxes = hurtboxes;
     this.onHit = [];
-
-    this.currHitting = new Set<Hitbox>();
   }
 
   /**
@@ -39,14 +35,9 @@ export default class Hitbox extends Component {
     for (const hurtbox of this.hurtboxes) {
       const isHitting = this.transform?.isHitting(hurtbox.transform!);
       if (isHitting) {
-        this.currHitting.add(hurtbox);
-        hurtbox.currHitting.add(this);
         for (const callback of this.onHit) {
           callback(this, hurtbox);
         }
-      } else {
-        this.currHitting.delete(hurtbox);
-        hurtbox.currHitting.delete(this);
       }
     }
   }
@@ -59,11 +50,4 @@ export default class Hitbox extends Component {
     this.onHit.push(hitCallback);
   }
 
-  /**
-   * Is this colliding with another Hitbox
-   * @param {Hitbox} other
-   */
-  isHitting(other: Hitbox) {
-    return this.currHitting.has(other);
-  }
 }

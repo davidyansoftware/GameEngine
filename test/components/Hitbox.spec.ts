@@ -32,13 +32,6 @@ describe("Non-colliding Hitboxes", () => {
     gameObject2.addComponent(notColliding2);
   });
 
-  it("is not colliding", () => {
-    gameObject1.update(DELTA_TIME);
-
-    assert.ok(!notColliding1.isHitting(notColliding2));
-    assert.ok(!notColliding2.isHitting(notColliding1));
-  });
-
   it("doesn't call callback", () => {
     const callback = sinon.fake();
     notColliding1.addOnHit(callback);
@@ -70,13 +63,6 @@ describe("Colliding Hitboxes", () => {
     gameObject1.addComponent(colliding1);
     gameObject2 = new GameObject({x: COLLIDING_X, y: Y, shape: circle});
     gameObject2.addComponent(colliding2);
-  });
-
-  it("is colliding", () => {
-    gameObject1.update(DELTA_TIME);
-
-    assert.ok(colliding1.isHitting(colliding2));
-    assert.ok(colliding2.isHitting(colliding1));
   });
 
   it("calls callback", () => {
