@@ -17,9 +17,9 @@ class RayBullet extends DNA.Component {
     }
   }
   
-  function createRayBullet(sourceTransform, mouseAngle, rayGunType) {
+  function createRayBullet(sourceTransform, rayGunType) {
     const spread = Math.random() * rayGunType.spread - (rayGunType.spread / 2);
-    const bulletAngle = mouseAngle + spread;
+    const bulletAngle = sourceTransform.position.absoluteRotation + spread;
 
     const absoluteX = sourceTransform.position.getAbsoluteX(0, rayGunType.length/2, spread);
     const absoluteY = sourceTransform.position.getAbsoluteY(0, rayGunType.length/2, spread);
