@@ -12,24 +12,31 @@ const Y = 0;
 const RADIUS = 5;
 const DELTA_TIME = 1;
 
-describe("OnHit", () => {
-  it("is called on every colliding frame", () => {
-    const circle = new Circle(RADIUS);
+describe("Hitbox", () => {
+  const circle = new Circle(RADIUS);
 
-    let hitbox1: Hitbox;
-    let hitbox2: Hitbox;
+  let hitbox1: Hitbox;
+  let hitbox2: Hitbox;
 
+  let baseGameObject: GameObject;
+  let movingGameObject: GameObject;
+
+  let callback: sinon.SinonSpy;
+
+  beforeEach(() => {
     const hurtboxes: Array<Hitbox> = [];
     hitbox1 = new Hitbox(hurtboxes);
     hitbox2 = new Hitbox();
     hurtboxes.push(hitbox2);
-
-    const baseGameObject = new GameObject({x: BASE_X, y: Y, shape: circle});
+  
+    baseGameObject = new GameObject({x: BASE_X, y: Y, shape: circle});
     baseGameObject.addComponent(hitbox2);
-    const movingGameObject = new GameObject({x: NOT_COLLIDING_X, y: Y, shape: circle});
+    movingGameObject = new GameObject({x: NOT_COLLIDING_X, y: Y, shape: circle});
     movingGameObject.addComponent(hitbox1);
+  });
 
-    const callback = sinon.fake();
+  it("calls onHit on every colliding frame", () => {
+    callback = sinon.fake();
     hitbox1.addOnHit(callback);
 
     // objects are not colliding
@@ -50,26 +57,9 @@ describe("OnHit", () => {
     movingGameObject.update(DELTA_TIME);
     assert.ok(callback.calledTwice);
   });
-});
 
-describe("OnHitEnter", () => {
-  it("is only called on entering hitbox", () => {
-    const circle = new Circle(RADIUS);
-
-    let hitbox1: Hitbox;
-    let hitbox2: Hitbox;
-
-    const hurtboxes: Array<Hitbox> = [];
-    hitbox1 = new Hitbox(hurtboxes);
-    hitbox2 = new Hitbox();
-    hurtboxes.push(hitbox2);
-
-    const baseGameObject = new GameObject({x: BASE_X, y: Y, shape: circle});
-    baseGameObject.addComponent(hitbox2);
-    const movingGameObject = new GameObject({x: NOT_COLLIDING_X, y: Y, shape: circle});
-    movingGameObject.addComponent(hitbox1);
-
-    const callback = sinon.fake();
+  it("only calls onHitEnter when entering a hit", () => {
+    callback = sinon.fake();
     hitbox1.addOnHitEnter(callback);
 
     // objects are not colliding
@@ -90,26 +80,9 @@ describe("OnHitEnter", () => {
     movingGameObject.update(DELTA_TIME);
     assert.ok(callback.calledOnce);
   });
-});
 
-describe("OnHitExit", () => {
-  it("is only called on exiting hitbox", () => {
-    const circle = new Circle(RADIUS);
-
-    let hitbox1: Hitbox;
-    let hitbox2: Hitbox;
-
-    const hurtboxes: Array<Hitbox> = [];
-    hitbox1 = new Hitbox(hurtboxes);
-    hitbox2 = new Hitbox();
-    hurtboxes.push(hitbox2);
-
-    const baseGameObject = new GameObject({x: BASE_X, y: Y, shape: circle});
-    baseGameObject.addComponent(hitbox2);
-    const movingGameObject = new GameObject({x: NOT_COLLIDING_X, y: Y, shape: circle});
-    movingGameObject.addComponent(hitbox1);
-
-    const callback = sinon.fake();
+  it("only calls onHitExit when leaving a hit", () => {
+    callback = sinon.fake();
     hitbox1.addOnHitExit(callback);
 
     // objects are not colliding
