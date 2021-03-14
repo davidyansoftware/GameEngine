@@ -21,10 +21,6 @@ class MouseControls extends DNA.Component {
     if (rightMouseButton.pressed) {
       this.player.currRightWeapon.attack(this.player, this.mouse);
     }
-
-    const dx = this.mouse.x - this.transform.position.absoluteX;
-    const dy = this.mouse.y - this.transform.position.absoluteY;
-    this.transform.position.rotation = Math.atan2(dx, dy);
   }
   
 }

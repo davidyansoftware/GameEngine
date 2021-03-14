@@ -24,7 +24,7 @@ class RayGun extends DNA.Component {
 
         const angleToMouse = this.getAngleToMouse(mouse);
 
-        const bulletRay = createRayBullet(this.transform, this.rayGunType);
+        const bulletRay = createRayBullet(this.transform, angleToMouse, this.rayGunType);
 
         this.bulletRays.push(bulletRay);
         this.root.addGameObject(bulletRay);

@@ -17,12 +17,16 @@ class RayBullet extends DNA.Component {
     }
   }
   
-  function createRayBullet(sourceTransform, rayGunType) {
+  //TODO this is currently depending on math from another module. These should be consolidated, likely within the game engine
+  function createRayBullet(sourceTransform, mouseAngle, rayGunType) {
     const spread = Math.random() * rayGunType.spread - (rayGunType.spread / 2);
-    const bulletAngle = sourceTransform.position.absoluteRotation + spread;
+    const bulletAngle = mouseAngle + spread;
 
-    const absoluteX = sourceTransform.position.getAbsoluteX(0, rayGunType.length/2, spread);
-    const absoluteY = sourceTransform.position.getAbsoluteY(0, rayGunType.length/2, spread);
+    math.angle = bulletAngle;
+    math.magnitude = rayGunType.length / 2;
+
+    const absoluteX = sourceTransform.position.getAbsoluteX(math.x, math.y);
+    const absoluteY = sourceTransform.position.getAbsoluteY(math.x, math.y);
 
     const bullet = new DNA.GameObject({x: absoluteX, y: absoluteY, rotation: bulletAngle, shape: new DNA.Shapes.Rectangle(1, rayGunType.length)});
 
