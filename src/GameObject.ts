@@ -6,7 +6,6 @@ import Circle from "./shapes/Circle";
 interface GameObjectParameters {
   x?: number,
   y?: number,
-  rotation?: number,
   shape?: Shape
 }
 
@@ -28,15 +27,13 @@ export default class GameObject {
    * Create a GameObject
    * @param {number} x - The x-coordinate for the GameObject's Transform
    * @param {number} y - The y-coordinate for the GameObject's Transform
-   * @param {number} rotation - The rotation for the GameObject's Transform
    */
   constructor({
     x = 0,
     y = 0,
-    rotation = 0,
     shape = new Circle(0)
   }: GameObjectParameters = {}) {
-    this._transform = shape.createTransform(this, x, y, rotation);
+    this._transform = shape.createTransform(this, x, y);
   }
 
   /**
@@ -67,23 +64,17 @@ export default class GameObject {
    * Add a child GameObject
    * @param {GameObject} gameObject - The child game object
    * @param {boolean} maintainAbsolutePosition - GameObject should maintain its absolute position
-   * @param {boolean} maintainAbsoluteRotation  - Gamebject should maintain its absolute rotation
    */
   addGameObject(
     gameObject: GameObject,
     maintainAbsolutePosition: boolean = false,
-    maintainAbsoluteRotation: boolean = false
   ) {
     let prevAbsoluteX = 0;
     let prevAbsoluteY = 0;
-    let prevAbsoluteRotation = 0;
     if (gameObject._parent) {
       if (maintainAbsolutePosition) {
         prevAbsoluteX = gameObject.transform.position.absoluteX;
         prevAbsoluteY = gameObject.transform.position.absoluteY;
-      }
-      if (maintainAbsoluteRotation) {
-        prevAbsoluteRotation = gameObject.transform.position.absoluteRotation;
       }
       gameObject._parent.removeGameObject(gameObject);
     }
@@ -93,9 +84,6 @@ export default class GameObject {
     if (gameObject._parent && maintainAbsolutePosition) {
       gameObject.transform.position.absoluteX = prevAbsoluteX;
       gameObject.transform.position.absoluteY = prevAbsoluteY;
-    }
-    if (gameObject._parent && maintainAbsoluteRotation) {
-      gameObject.transform.position.absoluteRotation = prevAbsoluteRotation;
     }
 
     gameObject.transform.position._cacheAbsolutePosition();
@@ -170,7 +158,6 @@ export default class GameObject {
       // translating transform for each child so we don't have to translate after finding absolute offsets
       ctx.save();
       ctx.translate(gameObject.transform.position.x, -gameObject.transform.position.y);
-      ctx.rotate(gameObject.transform.position.rotation);
 
       gameObject.render(ctx);
 

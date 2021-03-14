@@ -27,14 +27,13 @@ export function circleRectangleCollision(
 ): boolean {
     const rectCenterX = rectangle.transform.position.absoluteX;
     const rectCenterY = rectangle.transform.position.absoluteY;
-    const rectRotation = rectangle.transform.position.absoluteRotation;
 
     //TODO current workaround since rectangle does not fully impliment Shape
     const unknown = <unknown>rectangle.transform.shape;
     const rectShape = <Rectangle>unknown;
 
-    const counterRotatedCircleX = Math.cos(rectRotation) * (circle.transform.position.x - rectCenterX) - Math.sin(rectRotation) * (circle.transform.position.y - rectCenterY) + rectCenterX;
-    const counterRotatedCircleY = Math.sin(rectRotation) * (circle.transform.position.x - rectCenterX) + Math.cos(rectRotation) * (circle.transform.position.y - rectCenterY) + rectCenterY;
+    const circleCenterX = circle.transform.position.absoluteX;
+    const circleCenterY = circle.transform.position.absoluteY;
 
     const rectLeftX = rectCenterX - rectShape.width / 2;
     const rectRightX = rectLeftX + rectShape.width;
@@ -42,25 +41,25 @@ export function circleRectangleCollision(
     const rectTopY = rectBottomY + rectShape.height;
     
     let closestX;
-    if (counterRotatedCircleX < rectLeftX) {
+    if (circleCenterX < rectLeftX) {
       closestX = rectLeftX;
-    } else if (counterRotatedCircleX > rectRightX) {
+    } else if (circleCenterX > rectRightX) {
       closestX = rectRightX;
     } else {
-      closestX = counterRotatedCircleX;
+      closestX = circleCenterX;
     }
 
     let closestY;
-    if (counterRotatedCircleY < rectBottomY) {
+    if (circleCenterY < rectBottomY) {
       closestY = rectBottomY;
-    } else if (counterRotatedCircleY > rectTopY) {
+    } else if (circleCenterY > rectTopY) {
       closestY = rectTopY;
     } else {
-      closestY = counterRotatedCircleY;
+      closestY = circleCenterY;
     }
 
-    coordinate.x = counterRotatedCircleX - closestX;
-    coordinate.y = counterRotatedCircleY - closestY;
+    coordinate.x = circleCenterX - closestX;
+    coordinate.y = circleCenterY - closestY;
 
     const circleShape = <Circle>circle.transform.shape;
 

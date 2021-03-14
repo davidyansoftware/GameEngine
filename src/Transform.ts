@@ -18,11 +18,10 @@ export default abstract class Transform {
    * @param {GameObject} gameObject - The GameObject this Transform is attached to
    * @param {number} x - The x-coordinate
    * @param {number} y - The y-coordinate
-   * @param {number} rotation - The rotation in radians
    */
-  constructor(gameObject: GameObject, x: number = 0, y: number = 0, rotation: number = 0, shape: Shape) {
+  constructor(gameObject: GameObject, x: number = 0, y: number = 0, shape: Shape) {
     this._gameObject = gameObject;
-    this.position = new Position(this, x, y, rotation);
+    this.position = new Position(this, x, y);
     this.shape = shape;
   }
 

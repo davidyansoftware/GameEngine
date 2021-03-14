@@ -1,6 +1,5 @@
 import * as assert from "assert";
 import * as sinon from "sinon";
-import * as testUtils from "../TestUtils"
 import Canvas from "canvas";
 import GameObject from "../../src/GameObject";
 import Camera from "../../src/components/Camera";
@@ -80,30 +79,23 @@ describe("Camera", () => {
 
     const ROOT_X = 300;
     const ROOT_Y = 400;
-    const ROOT_ROTATION = Math.PI / 4;
-    const root = new GameObject({x: ROOT_X, y: ROOT_Y, rotation: ROOT_ROTATION});
+    const root = new GameObject({x: ROOT_X, y: ROOT_Y});
 
     const CAMERA_X = 500;
     const CAMERA_Y = 600;
-    const CAMERA_ROTATION = Math.PI / 2;
-    const gameObject = new GameObject({x: CAMERA_X, y: CAMERA_Y, rotation: CAMERA_ROTATION});
+    const gameObject = new GameObject({x: CAMERA_X, y: CAMERA_Y});
     const camera = new Camera(canvas, root, BACKGROUND_COLOR);
     gameObject.addComponent(camera);
 
     root.addGameObject(gameObject);
 
     const translateSpy = sinon.spy(ctx!, "translate");
-    const rotateSpy = sinon.spy(ctx!, "rotate");
 
     camera.update(DELTA_TIME);
     const offsetX = root.transform.position.absoluteX - gameObject.transform.position.absoluteX;
     const offsetY = root.transform.position.absoluteY - gameObject.transform.position.absoluteY;
-    const offsetRotation =
-      root.transform.position.absoluteRotation - gameObject.transform.position.absoluteRotation;
 
     assert.ok(translateSpy.calledWith(offsetX, -offsetY));
-    testUtils.assertAlmostEqual(rotateSpy.getCall(0).args[0], offsetRotation);
-    assert.ok(rotateSpy.calledBefore(translateSpy));
   });
 
   it("will not transform if it is on the root", () => {
@@ -112,19 +104,16 @@ describe("Camera", () => {
 
     const ROOT_X = 300;
     const ROOT_Y = 400;
-    const ROOT_ROTATION = Math.PI / 4;
-    const root = new GameObject({x: ROOT_X, y: ROOT_Y, rotation: ROOT_ROTATION});
+    const root = new GameObject({x: ROOT_X, y: ROOT_Y});
 
     const camera = new Camera(canvas, root, BACKGROUND_COLOR);
     root.addComponent(camera);
 
     const ctxTranslateSpy = sinon.spy(ctx!, "translate");
-    const ctxRotateSpy = sinon.spy(ctx!, "rotate");
     camera.update(DELTA_TIME);
 
     //TODO this is not the right way to measure non-transforming
     assert.ok(ctxTranslateSpy.calledWith(0, -0));
-    assert.ok(ctxRotateSpy.calledWith(0));
   });
 
   it("will restore context", () => {
@@ -134,13 +123,11 @@ describe("Camera", () => {
 
     const ROOT_X = 300;
     const ROOT_Y = 400;
-    const ROOT_ROTATION = Math.PI / 4;
-    const root = new GameObject({x: ROOT_X, y: ROOT_Y, rotation: ROOT_ROTATION});
+    const root = new GameObject({x: ROOT_X, y: ROOT_Y});
 
     const CAMERA_X = 500;
     const CAMERA_Y = 600;
-    const CAMERA_ROTATION = Math.PI / 2;
-    const gameObject = new GameObject({x: CAMERA_X, y: CAMERA_Y, rotation: CAMERA_ROTATION});
+    const gameObject = new GameObject({x: CAMERA_X, y: CAMERA_Y});
     const camera = new Camera(htmlCanvas, root, BACKGROUND_COLOR);
     gameObject.addComponent(camera);
 

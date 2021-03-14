@@ -17,8 +17,8 @@ export default class CircleTransform extends Transform {
      *
      * @impliments {Transform}
      */
-    constructor(gameObject: GameObject, x: number = 0, y: number = 0, rotation: number = 0, circle: Circle) {
-        super(gameObject, x, y, rotation, circle);
+    constructor(gameObject: GameObject, x: number = 0, y: number = 0, circle: Circle) {
+        super(gameObject, x, y, circle);
 
         this.circle = circle;
     }

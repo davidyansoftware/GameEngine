@@ -27,7 +27,7 @@ import Transform from "./Transform";
  */
 
 export default interface Shape {
-   createTransform(gameObject: GameObject, x: number, y: number, rotation: number): Transform;
+   createTransform(gameObject: GameObject, x: number, y: number): Transform;
 
    render(ctx: CanvasRenderingContext2D, fill: boolean): void;
 

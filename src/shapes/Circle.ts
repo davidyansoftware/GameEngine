@@ -25,8 +25,8 @@ export default class Circle implements Shape {
     this.radius = radius;
   }
 
-  createTransform(gameObject: GameObject, x: number, y: number, rotation: number): Transform {
-    return new CircleTransform(gameObject, x, y, rotation, this);
+  createTransform(gameObject: GameObject, x: number, y: number): Transform {
+    return new CircleTransform(gameObject, x, y, this);
   }
 
   render(ctx: CanvasRenderingContext2D, fill: boolean): void {
@@ -105,14 +105,13 @@ export default class Circle implements Shape {
   _isEnclosedByRectangle(self: Transform, rectangle: Transform): boolean {
     const rectCenterX = rectangle.transform.position.absoluteX;
     const rectCenterY = rectangle.transform.position.absoluteY;
-    const rectRotation = rectangle.transform.position.absoluteRotation;
 
     //TODO this should be changed once rectangle implements Shape
     const unknown = <unknown>rectangle.transform.shape;
     const rect = <Rectangle>unknown;
-
-    const counterRotatedCircleX = Math.cos(rectRotation) * (self.transform.position.x - rectCenterX) - Math.sin(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterX;
-    const counterRotatedCircleY = Math.sin(rectRotation) * (self.transform.position.x - rectCenterX) + Math.cos(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterY;
+    
+    const circleCenterX = self.transform.position.absoluteX;
+    const circleCenterY = self.transform.position.absoluteY;
 
     const rectLeftX = rectCenterX - rect.width / 2;
     const rectRightX = rectLeftX + rect.width;
@@ -120,16 +119,16 @@ export default class Circle implements Shape {
     const rectTopY = rectBottomY + rect.height;
 
     const circle = <Circle>self.transform.shape;
-    if (rectLeftX >= counterRotatedCircleX - circle.radius) {
+    if (rectLeftX >= circleCenterX - circle.radius) {
       return false;
     }
-    if (rectRightX <= counterRotatedCircleX + circle.radius) {
+    if (rectRightX <= circleCenterX + circle.radius) {
       return false;
     }
-    if (rectBottomY >= counterRotatedCircleY - circle.radius) {
+    if (rectBottomY >= circleCenterY - circle.radius) {
       return false;
     }
-    if (rectTopY <= counterRotatedCircleY + circle.radius) {
+    if (rectTopY <= circleCenterY + circle.radius) {
       return false;
     }
     
@@ -139,14 +138,13 @@ export default class Circle implements Shape {
   _isExcludedByRectangle(self: Transform, rectangle: Transform): boolean {
     const rectCenterX = rectangle.transform.position.absoluteX;
     const rectCenterY = rectangle.transform.position.absoluteY;
-    const rectRotation = rectangle.transform.position.absoluteRotation;
 
     //TODO this should be changed once rectangle implements Shape
     const unknown = <unknown>rectangle.transform.shape;
     const rect = <Rectangle>unknown;
 
-    const counterRotatedCircleX = Math.cos(rectRotation) * (self.transform.position.x - rectCenterX) - Math.sin(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterX;
-    const counterRotatedCircleY = Math.sin(rectRotation) * (self.transform.position.x - rectCenterX) + Math.cos(rectRotation) * (self.transform.position.y - rectCenterY) + rectCenterY;
+    const circleCenterX = self.transform.position.absoluteX;
+    const circleCenterY = self.transform.position.absoluteY;
 
     const rectLeftX = rectCenterX - rect.width / 2;
     const rectRightX = rectLeftX + rect.width;
@@ -154,16 +152,16 @@ export default class Circle implements Shape {
     const rectTopY = rectBottomY + rect.height;
 
     const circle = <Circle>self.transform.shape;
-    if (rectLeftX > counterRotatedCircleX + circle.radius) {
+    if (rectLeftX > circleCenterX + circle.radius) {
       return true;
     }
-    if (rectRightX < counterRotatedCircleX - circle.radius) {
+    if (rectRightX < circleCenterX - circle.radius) {
       return true;
     }
-    if (rectBottomY > counterRotatedCircleY + circle.radius) {
+    if (rectBottomY > circleCenterY + circle.radius) {
       return true;
     }
-    if (rectTopY < counterRotatedCircleY - circle.radius) {
+    if (rectTopY < circleCenterY - circle.radius) {
       return true;
     }
     

@@ -29,10 +29,10 @@ export default class RectangleTransform extends Transform {
      * @param {number} width - Width of the rectangle
      * @param {number} height - Height of the rectangle
      */
-    constructor(gameObject: GameObject, x: number = 0, y: number = 0, rotation: number = 0, rectangle: Rectangle) {
+    constructor(gameObject: GameObject, x: number = 0, y: number = 0, rectangle: Rectangle) {
         const unknown = <unknown> rectangle;
         const shape = <Shape> unknown;
-        super(gameObject, x, y, rotation, shape);
+        super(gameObject, x, y, shape);
 
         this.rectangle = rectangle;
 

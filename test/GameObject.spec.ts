@@ -69,22 +69,6 @@ describe("GameObject composite", () => {
     testUtils.assertAlmostEqual(child.transform.position.absoluteY, PARENT1_Y + CHILD_Y);
   });
 
-  it("can maintain the absolute rotation", () => {
-    const PARENT1_ROTATION = Math.PI / 2;
-    const parent1 = new GameObject({rotation: PARENT1_ROTATION});
-    const PARENT2_ROTATION = Math.PI / 4;
-    const parent2 = new GameObject({rotation: PARENT2_ROTATION});
-    const CHILD_ROTATION = Math.PI / 8;
-    const child = new GameObject({rotation: CHILD_ROTATION});
-
-    parent1.addGameObject(child);
-    parent2.addGameObject(child, false, true);
-    testUtils.assertAlmostEqual(
-      child.transform.position.absoluteRotation,
-      PARENT1_ROTATION + CHILD_ROTATION
-    );
-  });
-
   it("will update children GameObjects", () => {
     const parent = new GameObject();
     const child = new GameObject();
@@ -164,8 +148,7 @@ describe("GameObject render", () => {
   it("will restore the state of the context", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
-    const ROTATION = Math.PI / 4;
-    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE, rotation: ROTATION});
+    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE});
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
@@ -180,8 +163,7 @@ describe("GameObject render", () => {
   it("will not translate canvas based on Transform", () => {
     const X_VALUE = 100;
     const Y_VALUE = 200;
-    const ROTATION = Math.PI / 2;
-    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE, rotation: ROTATION});
+    const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE});
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
@@ -196,33 +178,26 @@ describe("GameObject render", () => {
   it("will translate canvas based on child GameObject Transforms", () => {
     const PARENT_X = 100;
     const PARENT_Y = 200;
-    const PARENT_ROTATION = Math.PI / 2;
-    const parent = new GameObject({x: PARENT_X, y: PARENT_Y, rotation: PARENT_ROTATION});
+    const parent = new GameObject({x: PARENT_X, y: PARENT_Y});
 
     const CHILD1_X = 300;
     const CHILD1_Y = 400;
-    const CHILD1_ROTATION = Math.PI / 4;
-    const child1 = new GameObject({x: CHILD1_X, y: CHILD1_Y, rotation: CHILD1_ROTATION});
+    const child1 = new GameObject({x: CHILD1_X, y: CHILD1_Y});
     parent.addGameObject(child1);
 
     const CHILD2_X = 500;
     const CHILD2_Y = 600;
-    const CHILD2_ROTATION = Math.PI / 8;
-    const child2 = new GameObject({x: CHILD2_X, y: CHILD2_Y, rotation: CHILD2_ROTATION});
+    const child2 = new GameObject({x: CHILD2_X, y: CHILD2_Y});
     parent.addGameObject(child2);
 
     const canvas = Canvas.createCanvas(100, 100);
     const ctx = canvas.getContext("2d");
     const translateSpy = sinon.spy(ctx, "translate");
-    const rotateSpy = sinon.spy(ctx, "rotate");
 
     parent.render(ctx);
     assert.ok(translateSpy.calledTwice);
     assert.ok(translateSpy.calledWith(CHILD1_X, -CHILD1_Y));
     assert.ok(translateSpy.calledWith(CHILD2_X, -CHILD2_Y));
-    assert.ok(rotateSpy.calledTwice);
-    assert.ok(rotateSpy.calledWith(CHILD1_ROTATION));
-    assert.ok(rotateSpy.calledWith(CHILD2_ROTATION));
   });
 });
 

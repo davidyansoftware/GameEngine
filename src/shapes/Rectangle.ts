@@ -22,8 +22,8 @@ export default class Rectangle {
         this.height = height;
     }
 
-    createTransform(gameObject: GameObject, x: number, y: number, rotation: number): Transform {
-        return new RectangleTransform(gameObject, x, y, rotation, this);
+    createTransform(gameObject: GameObject, x: number, y: number): Transform {
+        return new RectangleTransform(gameObject, x, y, this);
       }
 
     render(ctx: CanvasRenderingContext2D) {

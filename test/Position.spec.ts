@@ -7,13 +7,11 @@ describe("Position constructor", () => {
       const gameObject = new GameObject();
       assert.equal(gameObject.transform.position.x, 0);
       assert.equal(gameObject.transform.position.y, 0);
-      assert.equal(gameObject.transform.position.rotation, 0);
     });
   
     it("getters match setters", () => {
       const X_VALUE = 1;
       const Y_VALUE = 2;
-      const ROTATION = Math.PI / 2;
       const gameObject = new GameObject();
   
       gameObject.transform.position.x = X_VALUE;
@@ -21,23 +19,17 @@ describe("Position constructor", () => {
   
       gameObject.transform.position.y = Y_VALUE;
       assert.equal(gameObject.transform.position.y, Y_VALUE);
-  
-      gameObject.transform.position.rotation = ROTATION;
-      assert.equal(gameObject.transform.position.rotation, ROTATION);
     });
   
     it("sets values", () => {
       const X_VALUE = 1;
       const Y_VALUE = 2;
-      const ROTATION = Math.PI / 2;
-      const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE, rotation: ROTATION});
+      const gameObject = new GameObject({x: X_VALUE, y: Y_VALUE});
       assert.equal(gameObject.transform.position.x, X_VALUE);
       assert.equal(gameObject.transform.position.y, Y_VALUE);
-      assert.equal(gameObject.transform.position.rotation, ROTATION);
     });
   });
 
-// position and rotation tests are separated so dirty flags do not interfere with eachother
 describe("Transform absolute position", () => {
     it("includes parent's absolute position", () => {
       const GRAND_PARENT_X = 1;
@@ -122,193 +114,12 @@ describe("Transform absolute position", () => {
     });
   });
   
-  describe("Transform absolute rotation", () => {
-    it("includes parent's absolute rotation", () => {
-      const GRAND_PARENT_ROTATION = Math.PI / 2;
-      const grandParent = new GameObject({rotation: GRAND_PARENT_ROTATION});
-      assert.equal(grandParent.transform.position.absoluteRotation, GRAND_PARENT_ROTATION);
-  
-      const PARENT_ROTATION = Math.PI / 4;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      grandParent.addGameObject(parent);
-      assert.equal(parent.transform.position.absoluteRotation, 
-        GRAND_PARENT_ROTATION + PARENT_ROTATION
-      );
-  
-      const CHILD_ROTATION = Math.PI / 8;
-      const child = new GameObject({rotation: CHILD_ROTATION});
-      parent.addGameObject(child);
-      assert.equal(child.transform.position.absoluteRotation, 
-        GRAND_PARENT_ROTATION + PARENT_ROTATION + CHILD_ROTATION
-      );
-    });
-  
-    it("is updated when its rotation changes", () => {
-      const ROTATION = Math.PI / 2;
-      const gameObject = new GameObject({rotation: ROTATION});
-  
-      const OFFSET_ROTATION = Math.PI / 4;
-      gameObject.transform.position.rotation += OFFSET_ROTATION;
-      assert.equal(gameObject.transform.position.absoluteRotation,
-        ROTATION + OFFSET_ROTATION
-      );
-    });
-  
-    it("is updated when its parent's rotation changes", () => {
-      const PARENT_ROTATION = Math.PI / 2;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-  
-      const CHILD_ROTATION = Math.PI / 4;
-      const child = new GameObject({rotation: CHILD_ROTATION});
-      parent.addGameObject(child);
-  
-      const OFFSET_ROTATION = Math.PI / 8;
-      parent.transform.position.rotation += OFFSET_ROTATION;
-      assert.equal(child.transform.position.absoluteRotation,
-        PARENT_ROTATION + CHILD_ROTATION + OFFSET_ROTATION
-      );
-    });
-  
-    it("updates its own rotation", () => {
-      const PARENT_ROTATION = Math.PI / 2;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      const child = new GameObject();
-      parent.addGameObject(child);
-  
-      const CHILD_ABSOLUTE_ROTATION = Math.PI / 4;
-      child.transform.position.absoluteRotation = CHILD_ABSOLUTE_ROTATION;
-  
-      assert.equal(child.transform.position.rotation,
-        CHILD_ABSOLUTE_ROTATION - PARENT_ROTATION
-      );
-  
-      // ensure changing the child didn't change the parent's position
-      assert.equal(parent.transform.position.rotation, PARENT_ROTATION);
-      assert.equal(parent.transform.position.absoluteRotation, PARENT_ROTATION);
-    });
-  });
-  
-  describe("Transform absolute position", () => {
-    it("includes parent's rotation (Math.PI/2)", () => {
-      const PARENT_ROTATION = Math.PI / 2;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      const CHILD_X = 1;
-      const CHILD_Y = 2;
-      const child = new GameObject({x: CHILD_X, y: CHILD_Y});
-      parent.addGameObject(child);
-  
-      const ABSOLUTE_X = 2;
-      const ABSOLUTE_Y = -1;
-      testUtils.assertAlmostEqual(child.transform.position.absoluteX, ABSOLUTE_X);
-      testUtils.assertAlmostEqual(child.transform.position.absoluteY, ABSOLUTE_Y);
-    });
-  
-    it("includes parent's rotation (-Math.PI/2)", () => {
-      const PARENT_ROTATION = -Math.PI / 2;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      const CHILD_X = 1;
-      const CHILD_Y = 2;
-      const child = new GameObject({x: CHILD_X, y: CHILD_Y});
-      parent.addGameObject(child);
-  
-      const ABSOLUTE_X = -2;
-      const ABSOLUTE_Y = 1;
-      testUtils.assertAlmostEqual(child.transform.position.absoluteX, ABSOLUTE_X);
-      testUtils.assertAlmostEqual(child.transform.position.absoluteY, ABSOLUTE_Y);
-    });
-  
-    it("includes parent's rotation (Math.PI)", () => {
-      const PARENT_ROTATION = Math.PI;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      const CHILD_X = 1;
-      const CHILD_Y = 2;
-      const child = new GameObject({x: CHILD_X, y: CHILD_Y});
-      parent.addGameObject(child);
-  
-      const ABSOLUTE_X = -1;
-      const ABSOLUTE_Y = -2;
-      testUtils.assertAlmostEqual(child.transform.position.absoluteX, ABSOLUTE_X);
-      testUtils.assertAlmostEqual(child.transform.position.absoluteY, ABSOLUTE_Y);
-    });
-  
-    it("includes parent's rotation (Math.PI/2)", () => {
-      const PARENT_ROTATION = Math.PI / 2;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      const child = new GameObject();
-      parent.addGameObject(child);
-  
-      const ABSOLUTE_X = 1;
-      child.transform.position.absoluteX = ABSOLUTE_X;
-      const CHILD_Y = 1;
-      testUtils.assertAlmostEqual(child.transform.position.x, 0);
-      testUtils.assertAlmostEqual(child.transform.position.y, CHILD_Y);
-  
-      const ABSOLUTE_Y = 2;
-      child.transform.position.absoluteY = ABSOLUTE_Y;
-      const CHILD_X = -2;
-      testUtils.assertAlmostEqual(child.transform.position.x, CHILD_X);
-      testUtils.assertAlmostEqual(child.transform.position.y, CHILD_Y);
-    });
-  
-    it("includes parent's rotation (-Math.PI/2)", () => {
-      const PARENT_ROTATION = -Math.PI / 2;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      const child = new GameObject();
-      parent.addGameObject(child);
-  
-      const ABSOLUTE_X = 1;
-      child.transform.position.absoluteX = ABSOLUTE_X;
-      const CHILD_Y = -1;
-      testUtils.assertAlmostEqual(child.transform.position.x, 0);
-      testUtils.assertAlmostEqual(child.transform.position.y, CHILD_Y);
-  
-      const ABSOLUTE_Y = 2;
-      child.transform.position.absoluteY = ABSOLUTE_Y;
-      const CHILD_X = 2;
-      testUtils.assertAlmostEqual(child.transform.position.x, CHILD_X);
-      testUtils.assertAlmostEqual(child.transform.position.y, CHILD_Y);
-    });
-  
-    it("includes parent's rotation (Math.PI)", () => {
-      const PARENT_ROTATION = Math.PI;
-      const parent = new GameObject({rotation: PARENT_ROTATION});
-      const child = new GameObject();
-      parent.addGameObject(child);
-  
-      const ABSOLUTE_X = 1;
-      child.transform.position.absoluteX = ABSOLUTE_X;
-      const CHILD_X = -1;
-      testUtils.assertAlmostEqual(child.transform.position.x, CHILD_X);
-      testUtils.assertAlmostEqual(child.transform.position.y, 0);
-  
-      const ABSOLUTE_Y = 2;
-      child.transform.position.absoluteY = ABSOLUTE_Y;
-      const CHILD_Y = -2;
-      testUtils.assertAlmostEqual(child.transform.position.x, CHILD_X);
-      testUtils.assertAlmostEqual(child.transform.position.y, CHILD_Y);
-    });
-  });
-  
   describe("Transform GetAbsolutePosition", () => {
     it("defaults to zero", () => {
         const gameObject = new GameObject();
 
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(), 0);
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(), 0);
-    });
-
-    it("includes parent's rotation (Math.PI/2)", () => {
-        const PARENT_ROTATION = Math.PI / 2;
-        const parent = new GameObject({rotation: PARENT_ROTATION});
-        const CHILD_X = 1;
-        const CHILD_Y = 2;
-        const child = new GameObject({x: CHILD_X, y: CHILD_Y});
-        parent.addGameObject(child);
-    
-        const ABSOLUTE_X = 2;
-        const ABSOLUTE_Y = -1;
-        testUtils.assertAlmostEqual(child.transform.position.getAbsoluteX(), ABSOLUTE_X);
-        testUtils.assertAlmostEqual(child.transform.position.getAbsoluteY(), ABSOLUTE_Y);
     });
     
     it("returns correct offsets for unrotated object", () => {
@@ -319,24 +130,4 @@ describe("Transform absolute position", () => {
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), X_OFFSET);
         testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), Y_OFFSET);
     });
-
-    it("returns correct values for rotated object", () => {
-        const X_OFFSET = 5;
-        const Y_OFFSET = 10;
-        const ROTATION = Math.PI / 2;
-        const gameObject = new GameObject({rotation: ROTATION});
-
-        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET), Y_OFFSET);
-        testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET), -X_OFFSET);
-    });
-
-    it("returns correct values for offset rotation", () => {
-      const X_OFFSET = 5;
-      const Y_OFFSET = 10;
-      const ROTATION = Math.PI / 2;
-      const gameObject = new GameObject();
-
-      testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteX(X_OFFSET, Y_OFFSET, ROTATION), Y_OFFSET);
-      testUtils.assertAlmostEqual(gameObject.transform.position.getAbsoluteY(X_OFFSET, Y_OFFSET, ROTATION), -X_OFFSET);
-    })
   });
